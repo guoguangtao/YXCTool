@@ -15,6 +15,7 @@
     6. `YXCWeakSelf` 弱引用
     7. `IPHONE_HEIGHT` 当前设备屏幕的高度
     8. `IPHONE_WIDTH` 当前设备屏幕的宽度
+    9. `kIsBangsScreen` 判断当前设备是否是刘海屏幕
 
 #### NSArray+Category 
 

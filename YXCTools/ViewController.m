@@ -19,20 +19,41 @@
     
     [self.view yxc_removeAllSubView];
     
-//    [self useUIViewCategory];
-//    [self useNSArrayCategory];
     [self useUIControlCategory];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"%s", __func__);
+    
+    [self logIsBangsScreen];
+    
+//    [self logWindows:NSStringFromSelector(@selector(viewDidAppear:))];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 使用 x/y 赋值
-//    [self useUIViewCategory];
-//
-//    [self useNSArrayCategory];
+    NSLog(@"%s", __func__);
     
-    [self useUIControlCategory];
+    [self logIsBangsScreen];
+//    [self logWindows:NSStringFromSelector(@selector(viewDidLoad))];
+}
+
+- (void)logIsBangsScreen {
+    
+    YXCLog(@"%@刘海屏幕", kIsBangsScreen ? @"是" : @"不是");
+}
+
+- (void)logWindows:(NSString *)methodString {
+    
+    NSLog(@"=========================================================");
+    
+    NSLog(@"%@ --- windows = %@", methodString, [UIApplication sharedApplication].windows);
+    NSLog(@"%@ --- keyWindow = %@", methodString, [UIApplication sharedApplication].keyWindow);
+    NSLog(@"%@ --- delegate.window = %@", methodString, [UIApplication sharedApplication].delegate.window);
 }
 
 

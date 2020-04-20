@@ -39,6 +39,18 @@ alpha:1.0];
 /// 动态获取设备宽度
 #define IPHONE_WIDTH [UIScreen mainScreen].bounds.size.width
 
+/// 判断当前设备是否为刘海屏幕
+#define kIsBangsScreen ({\
+    BOOL isBangsScreen = NO; \
+    if (@available(iOS 11.0, *)) { \
+        UIWindow *window = [[UIApplication sharedApplication].windows firstObject]; \
+        if (window && [window isKindOfClass:[UIWindow class]]) { \
+            isBangsScreen = window.safeAreaInsets.bottom > 0; \
+        } \
+    }\
+    isBangsScreen; \
+})
+
 
 #pragma mark - Header
 
