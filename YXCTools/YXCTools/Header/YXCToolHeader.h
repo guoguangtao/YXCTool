@@ -11,10 +11,21 @@
 
 #pragma mark - 宏定义
 
+#define kYXCDateString ({\
+NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; \
+[dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS"]; \
+NSString *dateString = [dateFormatter stringFromDate:[NSDate date]]; \
+dateString; \
+})
+
+#define kYXCClass [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent
+
 #ifdef DEBUG
-# define YXCLog(fmt, ...) NSLog((@"%s " "%d行 : " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define YXCLog(fmt, ...) NSLog((@"%s " "%d行 : " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define YXCPrintf(...) printf("%s : %s %s %d行 : %s\n", [kYXCDateString UTF8String], [kYXCClass UTF8String], __FUNCTION__, __LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
 #else
-# define YXCLog(...);
+#define YXCLog(...);
+#define YXCPrintf(...);
 #endif
 
 
@@ -41,14 +52,14 @@ alpha:1.0];
 
 /// 判断当前设备是否为刘海屏幕
 #define kIsBangsScreen ({\
-    BOOL isBangsScreen = NO; \
-    if (@available(iOS 11.0, *)) { \
-        UIWindow *window = [[UIApplication sharedApplication].windows firstObject]; \
-        if (window && [window isKindOfClass:[UIWindow class]]) { \
-            isBangsScreen = window.safeAreaInsets.bottom > 0; \
-        } \
-    }\
-    isBangsScreen; \
+BOOL isBangsScreen = NO; \
+if (@available(iOS 11.0, *)) { \
+UIWindow *window = [[UIApplication sharedApplication].windows firstObject]; \
+if (window && [window isKindOfClass:[UIWindow class]]) { \
+isBangsScreen = window.safeAreaInsets.bottom > 0; \
+} \
+}\
+isBangsScreen; \
 })
 
 
