@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A8890F924AD944300217E14 /* UIDevice+Handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8890F624AD944300217E14 /* UIDevice+Handler.m */; };
 		8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2824497FEA00537181 /* AppDelegate.m */; };
 		8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2B24497FEA00537181 /* SceneDelegate.m */; };
 		8AECEC2F24497FEA00537181 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2E24497FEA00537181 /* ViewController.m */; };
@@ -45,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A8890F624AD944300217E14 /* UIDevice+Handler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Handler.m"; sourceTree = "<group>"; };
+		8A8890F724AD944300217E14 /* UIDevice+Handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Handler.h"; sourceTree = "<group>"; };
+		8A8890F824AD944300217E14 /* UIDeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceName.h; sourceTree = "<group>"; };
 		8AECEC2424497FEA00537181 /* YXCTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXCTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AECEC2724497FEA00537181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8AECEC2824497FEA00537181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -182,6 +186,9 @@
 		8AECEC602449850D00537181 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				8A8890F824AD944300217E14 /* UIDeviceName.h */,
+				8A8890F724AD944300217E14 /* UIDevice+Handler.h */,
+				8A8890F624AD944300217E14 /* UIDevice+Handler.m */,
 				8AECEC5D2449809B00537181 /* UIView+Category.h */,
 				8AECEC5E2449809B00537181 /* UIView+Category.m */,
 				8AECEC6B24498C2200537181 /* UIControl+Category.h */,
@@ -352,6 +359,7 @@
 				8AECEC6D24498C2200537181 /* UIControl+Category.m in Sources */,
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8AECEC6A244987DB00537181 /* YXCPerson.m in Sources */,
+				8A8890F924AD944300217E14 /* UIDevice+Handler.m in Sources */,
 				8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */,
 				8AECEC782449941600537181 /* UITextField+Category.m in Sources */,
 				8AECEC702449920B00537181 /* NSArray+Crash.m in Sources */,
@@ -529,7 +537,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T6K9Y5H6C4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/GGT/GGT/Code/YXCTools/YXCTools/YXCTools/Header/YXCTool.pch;
 				INFOPLIST_FILE = YXCTools/Info.plist;
@@ -540,6 +550,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = com_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -548,7 +559,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T6K9Y5H6C4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/GGT/GGT/Code/YXCTools/YXCTools/YXCTools/Header/YXCTool.pch;
 				INFOPLIST_FILE = YXCTools/Info.plist;
@@ -559,6 +572,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = com_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -79,6 +79,7 @@ isBangsScreen; \
 #import "UIControl+Category.h"
 #import "UITextField+Category.h"
 #import "UITextView+Category.h"
+#import "UIDevice+Handler.h"
 
 
 #endif /* YXCToolHeader_h */

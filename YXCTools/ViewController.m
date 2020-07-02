@@ -25,21 +25,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"%s", __func__);
-    
-    [self logIsBangsScreen];
-    
-//    [self logWindows:NSStringFromSelector(@selector(viewDidAppear:))];
+
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%s", __func__);
-    
-    [self logIsBangsScreen];
-//    [self logWindows:NSStringFromSelector(@selector(viewDidLoad))];
+    YXCLog(@"%@", [UIDevice currentDevice].platformName);
 }
 
 - (void)logIsBangsScreen {
@@ -49,11 +42,11 @@
 
 - (void)logWindows:(NSString *)methodString {
     
-    NSLog(@"=========================================================");
+    YXCLog(@"=========================================================");
     
-    NSLog(@"%@ --- windows = %@", methodString, [UIApplication sharedApplication].windows);
-    NSLog(@"%@ --- keyWindow = %@", methodString, [UIApplication sharedApplication].keyWindow);
-    NSLog(@"%@ --- delegate.window = %@", methodString, [UIApplication sharedApplication].delegate.window);
+    YXCLog(@"%@ --- windows = %@", methodString, [UIApplication sharedApplication].windows);
+    YXCLog(@"%@ --- keyWindow = %@", methodString, [UIApplication sharedApplication].keyWindow);
+    YXCLog(@"%@ --- delegate.window = %@", methodString, [UIApplication sharedApplication].delegate.window);
 }
 
 
@@ -80,7 +73,7 @@
     
     NSArray *array = @[@"1", @"2", @{@"测试" : @"这是内容"}, person];
     
-    NSLog(@"%@", array);
+    YXCLog(@"%@", array);
 }
 
 #pragma mark - UIControl+Category
@@ -100,7 +93,7 @@
 
 - (void)buttonClicked {
     
-    NSLog(@"%s", __func__);
+    YXCLog(@"%s", __func__);
 }
 
 
