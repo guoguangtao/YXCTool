@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A479FE324B711AA00B30807 /* YXCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A479FE224B711AA00B30807 /* YXCController.m */; };
 		8A8890F924AD944300217E14 /* UIDevice+Handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8890F624AD944300217E14 /* UIDevice+Handler.m */; };
 		8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2824497FEA00537181 /* AppDelegate.m */; };
 		8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2B24497FEA00537181 /* SceneDelegate.m */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A479FE124B711AA00B30807 /* YXCController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCController.h; sourceTree = "<group>"; };
+		8A479FE224B711AA00B30807 /* YXCController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCController.m; sourceTree = "<group>"; };
 		8A8890F624AD944300217E14 /* UIDevice+Handler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Handler.m"; sourceTree = "<group>"; };
 		8A8890F724AD944300217E14 /* UIDevice+Handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Handler.h"; sourceTree = "<group>"; };
 		8A8890F824AD944300217E14 /* UIDeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceName.h; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				8AECEC2B24497FEA00537181 /* SceneDelegate.m */,
 				8AECEC2D24497FEA00537181 /* ViewController.h */,
 				8AECEC2E24497FEA00537181 /* ViewController.m */,
+				8A479FE124B711AA00B30807 /* YXCController.h */,
+				8A479FE224B711AA00B30807 /* YXCController.m */,
 				8AECEC68244987DB00537181 /* YXCPerson.h */,
 				8AECEC69244987DB00537181 /* YXCPerson.m */,
 				8AECEC3024497FEA00537181 /* Main.storyboard */,
@@ -356,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AECEC732449926A00537181 /* NSDictionary+Crash.m in Sources */,
+				8A479FE324B711AA00B30807 /* YXCController.m in Sources */,
 				8AECEC6D24498C2200537181 /* UIControl+Category.m in Sources */,
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8AECEC6A244987DB00537181 /* YXCPerson.m in Sources */,

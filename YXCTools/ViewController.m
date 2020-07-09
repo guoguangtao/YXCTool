@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "YXCPerson.h"
+#import "YXCController.h"
 
 @interface ViewController ()
 
@@ -15,70 +15,11 @@
 
 @implementation ViewController
 
-- (void)injected {
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
-    [self.view yxc_removeAllSubView];
-    
-    [self useUIControlCategory];
+    YXCController *controller = [YXCController new];
+    [self.navigationController pushViewController:controller animated:YES];
 }
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-}
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-}
-
-
-#pragma mark - UIView+Category
-
-- (void)useUIViewCategory {
-    
-    UIView *redView = [UIView new];
-    redView.width = 50;
-    redView.height = 50;
-    redView.center = self.view.center;
-    redView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:redView];
-}
-
-#pragma mark - NSArray+Category / NSDictionary+Category
-
-- (void)useNSArrayCategory {
-    
-    YXCPerson *person = [YXCPerson new];
-    person.name = @"张三";
-    person.age = 20;
-    person.height = 190;
-    
-    NSArray *array = @[@"1", @"2", @{@"测试" : @"这是内容"}, person];
-    
-    YXCLog(@"%@", array);
-}
-
-#pragma mark - UIControl+Category
-
-- (void)useUIControlCategory {
-    
-    UIButton *button = [UIButton new];
-    button.width = 100;
-    button.height = 30;
-    button.center = self.view.center;
-    button.backgroundColor = kColorFromHexCode(0x0000FF);
-    [button addTarget:self
-               action:@selector(buttonClicked)
-     forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-}
-
-- (void)buttonClicked {
-    
-    YXCLog(@"%s", __func__);
-}
-
 
 @end

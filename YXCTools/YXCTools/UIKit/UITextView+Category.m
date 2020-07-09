@@ -9,7 +9,7 @@
 #import "UITextView+Category.h"
 #import <objc/runtime.h>
 
-@interface UITextView (TextMaxCount)
+@interface UITextView ()
 
 @property (nonatomic, strong) UILabel *placeHolderLabel; /**< 占位文字 */
 

@@ -60,6 +60,9 @@
 #### UIView+Category
 
 * 主要是对 `UIView` 进行一些分类处理，比如：`x`、`y`、`center`、`width`、`height`等属性的使用
+* `yxc_border` 边框，可以设置左边、右边、顶部、底部边框
+* `yxc_borderWidth` 边框的宽度
+* `yxc_borderColor` 边框颜色
 * `yxc_removeAllSubView` 移除当前 `View` 的所有子视图
 
 #### UIControl+Category
