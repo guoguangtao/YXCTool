@@ -9,6 +9,12 @@
 #import "UITextView+Category.h"
 #import <objc/runtime.h>
 
+@interface UITextView (TextMaxCount)
+
+@property (nonatomic, strong) UILabel *placeHolderLabel; /**< 占位文字 */
+
+@end
+
 @implementation UITextView (Category)
 
 + (void)load {
@@ -68,8 +74,51 @@
     return objc_getAssociatedObject(self, @selector(yxc_delegate));
 }
 
+- (void)setYxc_placeHolder:(NSString *)yxc_placeHolder {
+    
+    if (yxc_placeHolder &&
+        [yxc_placeHolder isKindOfClass:[NSString class]] &&
+        yxc_placeHolder.length) {
+        objc_setAssociatedObject(self, @selector(yxc_placeHolder), yxc_placeHolder, OBJC_ASSOCIATION_COPY);
+        
+        // 创建占位文字
+        if (self.placeHolderLabel == nil) {
+            self.placeHolderLabel = [UILabel new];
+            self.placeHolderLabel.textColor = [UIColor grayColor];
+            self.placeHolderLabel.font = self.font;
+            [self addSubview:self.placeHolderLabel];
+        }
+        
+        if (self.placeHolderLabel) {
+            self.placeHolderLabel.text = yxc_placeHolder;
+            CGSize size = [self.placeHolderLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+            UIEdgeInsets insets = self.textContainerInset;
+            self.placeHolderLabel.frame = CGRectMake(insets.left + 2, insets.top, size.width, size.height);
+        }
+    }
+}
+
+- (NSString *)yxc_placeHolder {
+    
+    return objc_getAssociatedObject(self, @selector(yxc_placeHolder));
+}
+
+- (void)setPlaceHolderLabel:(UILabel *)placeHolderLabel {
+    
+    objc_setAssociatedObject(self, @selector(placeHolderLabel), placeHolderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UILabel *)placeHolderLabel {
+    
+    return objc_getAssociatedObject(self, @selector(placeHolderLabel));
+}
+
 
 - (void)textViewTextDidChange {
+    
+    if (self.placeHolderLabel) {
+        self.placeHolderLabel.hidden = self.text.length;
+    }
     
     if (self.textMaxLength <= 0) return;
     
@@ -103,6 +152,10 @@
 }
 
 - (void)performDelegate {
+    
+    if (self.placeHolderLabel) {
+        self.placeHolderLabel.hidden = self.text.length;
+    }
     
     if ([self.yxc_delegate respondsToSelector:@selector(textView:textDidChange:textLength:textMaxLength:)]) {
         [self.yxc_delegate textView:self

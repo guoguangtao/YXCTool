@@ -37,6 +37,26 @@
 
 具体使用场景，可以查看[iOS NSDictionary Crash 异常处理](https://www.jianshu.com/p/e56e58821233)
 
+#### UIDeviceName
+
+* iPhone 和 iPad 型号定义的字符串常量
+
+#### UIDevice+Handler
+
+* 获取机型
+
+  ```objective-c
+  /// 获取到机型
+  - (NSString *)platform;
+  ```
+
+* 获取机型名称
+
+  ```objective-c
+  /// 获取到机型名称
+  - (NSString *)platformName;
+  ```
+
 #### UIView+Category
 
 * 主要是对 `UIView` 进行一些分类处理，比如：`x`、`y`、`center`、`width`、`height`等属性的使用
@@ -53,7 +73,7 @@
 * `textMaxLength` 设置 `UITextField` 文本输入最大长度，并且解决了输入中文时字数统计的问题
 * `yxc_delegate` `UITextFieldTextMaxLengthDelegate` 协议，当文本发生改变通过这个协议回调
 
-    ```
+    ```objective-c
     /// UITextField 文本发生改变代理方法
     /// @param textField UITextField输入框
     /// @param text 当前文本字符串
@@ -67,9 +87,12 @@
 #### UITextView+Category
 
 * `textMaxLength` 设置 `UITextView` 文本输入最大长度，并且解决了输入中文时字数统计的问题
+
+* `yxc_placeHolder` 设置 `UITextView` 的占位文字，如果 `textView` 还有初始值，请在设置  `yxc_delegate`, `textMaxLength` 属性之前，设置 `yxc_placeHolder` 和 `text`属性
+
 * `yxc_delegate` `UITextViewTextMaxLengthDelegate` 协议，当文本发生改变通过这个协议回调
 
-    ```
+    ```objective-c
     /// TextView 文本发生改变代理方法
     /// @param textView TextView输入框
     /// @param text 当前文本字符串

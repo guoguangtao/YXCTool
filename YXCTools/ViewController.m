@@ -25,28 +25,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    YXCLog(@"%@", [UIDevice currentDevice].platformName);
-}
-
-- (void)logIsBangsScreen {
-    
-    YXCLog(@"%@刘海屏幕", kIsBangsScreen ? @"是" : @"不是");
-}
-
-- (void)logWindows:(NSString *)methodString {
-    
-    YXCLog(@"=========================================================");
-    
-    YXCLog(@"%@ --- windows = %@", methodString, [UIApplication sharedApplication].windows);
-    YXCLog(@"%@ --- keyWindow = %@", methodString, [UIApplication sharedApplication].keyWindow);
-    YXCLog(@"%@ --- delegate.window = %@", methodString, [UIApplication sharedApplication].delegate.window);
 }
 
 

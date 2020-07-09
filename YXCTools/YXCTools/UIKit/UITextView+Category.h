@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<UITextViewTextMaxLengthDelegate> yxc_delegate; /**< 代理 */
 @property (nonatomic, assign) NSInteger textMaxLength; /**< 文本最大字数限制 默认为0，代表无限制输入*/
+@property (nonatomic, copy) NSString *yxc_placeHolder; /**< 占位文字，如果textView还有初始值，请在设置 yxc_delegate, textMaxLength 属性之前，设置 yxc_placeHolder 和 text 属性  */
+
 
 @end
 
