@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A479FE324B711AA00B30807 /* YXCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A479FE224B711AA00B30807 /* YXCController.m */; };
 		8A8890F924AD944300217E14 /* UIDevice+Handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8890F624AD944300217E14 /* UIDevice+Handler.m */; };
+		8ACE134524BC0A4A0048175C /* UIFont+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACE134424BC0A4A0048175C /* UIFont+Extension.m */; };
 		8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2824497FEA00537181 /* AppDelegate.m */; };
 		8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2B24497FEA00537181 /* SceneDelegate.m */; };
 		8AECEC2F24497FEA00537181 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2E24497FEA00537181 /* ViewController.m */; };
@@ -52,6 +53,8 @@
 		8A8890F624AD944300217E14 /* UIDevice+Handler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Handler.m"; sourceTree = "<group>"; };
 		8A8890F724AD944300217E14 /* UIDevice+Handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Handler.h"; sourceTree = "<group>"; };
 		8A8890F824AD944300217E14 /* UIDeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceName.h; sourceTree = "<group>"; };
+		8ACE134324BC0A4A0048175C /* UIFont+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Extension.h"; sourceTree = "<group>"; };
+		8ACE134424BC0A4A0048175C /* UIFont+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Extension.m"; sourceTree = "<group>"; };
 		8AECEC2424497FEA00537181 /* YXCTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXCTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AECEC2724497FEA00537181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8AECEC2824497FEA00537181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				8AECEC772449941600537181 /* UITextField+Category.m */,
 				8AECEC792449949600537181 /* UITextView+Category.h */,
 				8AECEC7A2449949600537181 /* UITextView+Category.m */,
+				8ACE134324BC0A4A0048175C /* UIFont+Extension.h */,
+				8ACE134424BC0A4A0048175C /* UIFont+Extension.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				8AECEC782449941600537181 /* UITextField+Category.m in Sources */,
 				8AECEC702449920B00537181 /* NSArray+Crash.m in Sources */,
 				8AECEC3A24497FED00537181 /* main.m in Sources */,
+				8ACE134524BC0A4A0048175C /* UIFont+Extension.m in Sources */,
 				8AECEC7B2449949600537181 /* UITextView+Category.m in Sources */,
 				8AECEC5F2449809B00537181 /* UIView+Category.m in Sources */,
 				8AECEC642449854F00537181 /* NSArray+Category.m in Sources */,

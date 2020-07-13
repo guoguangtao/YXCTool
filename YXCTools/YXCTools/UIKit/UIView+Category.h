@@ -32,6 +32,10 @@ typedef NS_OPTIONS(NSUInteger, YXCViewBorder) {
 @property (nonatomic, assign) CGPoint origin;    /**< UIView Origin 坐标值 */
 @property (nonatomic, assign) CGFloat centerX;   /**< UIView Center X坐标值 */
 @property (nonatomic, assign) CGFloat centerY;   /**< UIView Center Y坐标值 */
+@property (nonatomic, assign) CGFloat top; /**< 顶部值，等于 Y 值 */
+@property (nonatomic, assign) CGFloat left; /**< 左边值，等于 X 值 */
+@property (nonatomic, assign) CGFloat bottom; /**< 底部值，等于 Y + height，在设置这个属性值时，请先确认设置了 height */
+@property (nonatomic, assign) CGFloat right; /**< 右边值，等于 x + width， 在设置这个属性值时，请先确认设置了 width */
 @property (nonatomic, assign) YXCViewBorder yxc_border; /**< UIView 边框 */
 @property (nonatomic, assign) CGFloat yxc_borderWidth; /**< UIView 边框宽度 */
 @property (nonatomic, strong) UIColor *yxc_borderColor; /**< UIView 边框颜色 */

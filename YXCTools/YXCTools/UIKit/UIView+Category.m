@@ -354,6 +354,68 @@
     return self.center.y;
 }
 
+#pragma mark - top
+
+/// UIView top Setter 方法
+/// @param top 顶部距离父视图的值
+- (void)setTop:(CGFloat)top {
+    CGRect temp = self.frame;
+    temp.origin.y = top;
+    self.frame = temp;
+}
+
+/// 顶部距离父视图的值
+- (CGFloat)top {
+    
+    return self.frame.origin.y;
+}
+
+#pragma mark - left
+
+- (void)setLeft:(CGFloat)left {
+    
+    CGRect temp = self.frame;
+    temp.origin.x = left;
+    self.frame = temp;
+}
+
+- (CGFloat)left {
+    
+    return self.frame.origin.x;
+}
+
+
+#pragma mark - bottom
+
+- (void)setBottom:(CGFloat)bottom {
+    
+    CGRect temp = self.frame;
+    CGFloat height = temp.size.height;
+    temp.origin.y = bottom - height;
+    self.frame = temp;
+}
+
+- (CGFloat)bottom {
+    
+    return CGRectGetMaxY(self.frame);
+}
+
+
+#pragma mark - right
+
+- (void)setRight:(CGFloat)right {
+    
+    CGRect temp = self.frame;
+    CGFloat width = temp.size.width;
+    temp.origin.x = right - width;
+    self.frame = temp;
+}
+
+- (CGFloat)right {
+    
+    return CGRectGetMaxX(self.frame);
+}
+
 #pragma mark - 移除所有子视图
 
 - (void)yxc_removeAllSubView {
