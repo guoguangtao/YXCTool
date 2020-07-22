@@ -19,49 +19,42 @@
 - (void)injected {
     [self.view yxc_removeAllSubView];
     
-    [self setupLabel];
+    [self setupUI];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupLabel];
+    [self setupUI];
 }
 
-- (void)setupLabel {
+/// 创建UI
+- (void)setupUI {
     
-    NSString *text = @"这是在iPhone6设计稿15号字体";
     
-    UILabel *label1 = [UILabel new];
-    label1.textColor = [UIColor orangeColor];
-    label1.text = text;
-    label1.backgroundColor = [UIColor colorWithRed:arc4random() % 255 /255.0f green:arc4random() % 255 /255.0f blue:arc4random() % 255 /255.0f alpha:1.0f];
-    label1.font = [UIFont systemFontOfSize:15.0f weight:UIFontWeightBold];
+    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(kYXCPT(100), kYXCPT(100), kYXCPT(30), kYXCPT(30))];
+    redView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:redView];
+    
+    UIView *orangeView = [[UIView alloc] initWithFrame:CGRectMake(kYXCPX(200), kYXCPX(400), kYXCPX(60), kYXCPX(60))];
+    orangeView.backgroundColor = [UIColor orangeColor];
+    [self.view addSubview:orangeView];
+    
+    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(100, 150, 30, 30)];
+    blackView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:blackView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, IPHONE_WIDTH, 50)];
+    label.font = [UIFont systemFontOfSize:20 weight:UIFontWeightBold];
+    label.text = @"15";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, IPHONE_WIDTH, 50)];
+    label1.font = [UIFont boldSystemFontOfSize:20];
+    label1.text = @"15";
+    label1.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label1];
-    CGSize size1 = [label1 sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
-    label1.width = size1.width;
-    label1.height = size1.height;
-    label1.centerX = self.view.centerX;
-    label1.bottom = 100;
-    
-    UILabel *label2 = [UILabel new];
-    label2.textColor = [UIColor orangeColor];
-    label2.backgroundColor = [UIColor colorWithRed:arc4random() % 255 /255.0f green:arc4random() % 255 /255.0f blue:arc4random() % 255 /255.0f alpha:1.0f];
-    label2.text = text;
-    label2.font = [UIFont boldSystemFontOfSize:15];
-    [self.view addSubview:label2];
-    CGSize size2 = [label2 sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
-    label2.width = size2.width;
-    label2.height = size2.height;
-    label2.centerX = self.view.centerX;
-    label2.bottom = 200;
-}
-
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    YXCController *controller = [YXCController new];
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

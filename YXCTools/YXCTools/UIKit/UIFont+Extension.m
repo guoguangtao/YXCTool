@@ -9,7 +9,7 @@
 #import "UIFont+Extension.h"
 #import <objc/runtime.h>
 
-#define DESIGN_SCREEN_WIDTH  375
+#define DESIGN_SCREEN_WIDTH  750
 
 @implementation UIFont (Extension)
 
@@ -37,7 +37,7 @@
 
 + (CGFloat)yxc_fontSizeWithSize:(CGFloat)fontSize {
     
-    return [UIScreen mainScreen].bounds.size.width / DESIGN_SCREEN_WIDTH * fontSize;
+    return [UIScreen mainScreen].bounds.size.width / DESIGN_SCREEN_WIDTH * 2 * fontSize;
 }
 
 + (UIFont *)yxc_systemFontOfSize:(CGFloat)fontSize weight:(UIFontWeight)weight {

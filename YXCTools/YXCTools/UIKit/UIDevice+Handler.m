@@ -9,6 +9,8 @@
 #import "UIDevice+Handler.h"
 #import <sys/utsname.h>
 
+#define kDesignWidth 750
+
 @implementation UIDevice (Handler)
 
 - (NSString *)platform {
@@ -127,6 +129,20 @@
         @"iPad11,1" : iPadmini5,
         @"iPad11,2" : iPadmini5,
     };
+}
+
+/// 根据像素设置实际值
+/// @param px 设计稿具体值
++ (CGFloat)fitWithPx:(CGFloat)px {
+    
+    return [UIScreen mainScreen].bounds.size.width / kDesignWidth * px;
+}
+
+/// 根据点设置实际值
+/// @param pt 点具体值
++ (CGFloat)fitWithPt:(CGFloat)pt {
+    
+    return [UIScreen mainScreen].bounds.size.width / kDesignWidth * 2 * pt;
 }
 
 @end
