@@ -31,30 +31,26 @@
 /// 创建UI
 - (void)setupUI {
     
+    YXCButton *button = [YXCButton new];
+    button.yxc_imagePosition = YXCButtonImagePositionRight;
+    button.yxc_space = 15;
+    button.titleLabel.font = [UIFont systemFontOfSize:40];
+    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"calendar"] forState:UIControlStateNormal];
+    [button setTitle:@"星期日" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
     
-    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(kYXCPT(100), kYXCPT(100), kYXCPT(30), kYXCPT(30))];
-    redView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:redView];
-    
-    UIView *orangeView = [[UIView alloc] initWithFrame:CGRectMake(kYXCPX(200), kYXCPX(400), kYXCPX(60), kYXCPX(60))];
-    orangeView.backgroundColor = [UIColor orangeColor];
-    [self.view addSubview:orangeView];
-    
-    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(100, 150, 30, 30)];
-    blackView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:blackView];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, IPHONE_WIDTH, 50)];
-    label.font = [UIFont systemFontOfSize:20 weight:UIFontWeightBold];
-    label.text = @"15";
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:label];
-    
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, IPHONE_WIDTH, 50)];
-    label1.font = [UIFont boldSystemFontOfSize:20];
-    label1.text = @"15";
-    label1.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:label1];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+    }];
+}
+
+- (void)buttonClicked:(UIButton *)button {
+    NSArray *days = @[@"一", @"二", @"三", @"四", @"五", @"六", @"日"];
+    NSString *titleString = [NSString stringWithFormat:@"星期%@", days[arc4random_uniform(7)]];
+    NSLog(@"%@", titleString);
+    [button setTitle:titleString forState:UIControlStateNormal];
 }
 
 @end

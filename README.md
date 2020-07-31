@@ -43,6 +43,12 @@
 
 #### UIDevice+Handler
 
+/// 点设置
+#define kYXCPT(num) [UIDevice fitWithPt:(num)]
+
+/// 像素设置
+#define kYXCPX(num) [UIDevice fitWithPx:(num)]
+
 * 获取机型
 
   ```objective-c
@@ -56,6 +62,20 @@
   /// 获取到机型名称
   - (NSString *)platformName;
   ```
+
+* 屏幕适配(px)
+```Objective-c
+/// 根据像素设置实际值
+/// @param px 设计稿具体值
++ (CGFloat)fitWithPx:(CGFloat)px;
+```
+
+* 屏幕适配(pt)
+```Objecive-c
+/// 根据点设置实际值
+/// @param pt 点具体值
++ (CGFloat)fitWithPt:(CGFloat)pt;
+```
 
 #### UIView+Category
 
@@ -105,3 +125,14 @@
     ```
 
 [具体介绍](https://www.jianshu.com/p/38287c8c4be6)
+
+#### UIFont+Extension
+
+* 替换系统方法 `systemFontOfSize:`、`systemFontOfSize:weight:` 实现屏幕适配
+
+#### YXCButton
+
+根据 `yxc_imagePosition` 枚举值,设置图片显示的位置
+
+* `yxc_space` 图片和文件的间距
+* `yxc_imagePosition` 图片显示的位置

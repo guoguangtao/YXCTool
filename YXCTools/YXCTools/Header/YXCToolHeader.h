@@ -65,6 +65,8 @@ isBangsScreen; \
 
 #pragma mark - Header
 
+#import "Masonry.h"
+
 
 #pragma mark - NSObject
 
@@ -81,6 +83,6 @@ isBangsScreen; \
 #import "UITextView+Category.h"
 #import "UIDevice+Handler.h"
 #import "UIFont+Extension.h"
-
+#import "YXCButton.h"
 
 #endif /* YXCToolHeader_h */
