@@ -32,7 +32,7 @@
 - (void)setupUI {
     
     YXCButton *button = [YXCButton new];
-    button.yxc_imagePosition = YXCButtonImagePositionRight;
+    button.yxc_imagePosition = YXCButtonImagePositionBottom;
     button.yxc_space = 15;
     button.titleLabel.font = [UIFont systemFontOfSize:40];
     [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];

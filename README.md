@@ -136,3 +136,12 @@
 
 * `yxc_space` 图片和文件的间距
 * `yxc_imagePosition` 图片显示的位置
+
+  * YXCButtonImagePositionLeft
+    ![左图右文](https://raw.githubusercontent.com/guoguangtao/VSCodePicGoImages/master/20200731143419.png)
+  * YXCButtonImagePositionTop
+    ![上图下文](https://raw.githubusercontent.com/guoguangtao/VSCodePicGoImages/master/20200731143458.png)
+  * YXCButtonImagePositionRight
+    ![左文右图](https://raw.githubusercontent.com/guoguangtao/VSCodePicGoImages/master/20200731143534.png)
+  * YXCButtonImagePositionBottom
+    ![上文下图](https://raw.githubusercontent.com/guoguangtao/VSCodePicGoImages/master/20200731143621.png)
