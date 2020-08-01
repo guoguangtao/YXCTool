@@ -135,4 +135,18 @@
     return [self objectAtIndex:idx];
 }
 
+/// 打印数组
+- (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level {
+    
+    NSMutableString *strM = [NSMutableString stringWithString:@"(\n"];
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [strM appendFormat:@"\t%@,\n", obj];
+    }];
+    
+    [strM appendString:@")"];
+    
+    return strM;
+}
+
 @end

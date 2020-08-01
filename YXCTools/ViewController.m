@@ -31,6 +31,12 @@
 /// 创建UI
 - (void)setupUI {
     
+    NSArray *array = @[@"哈哈", @"嘿嘿"];
+    YXCLog(@"%@", array);
+    
+    NSDictionary *dict = @{@"这是一个字典": @"哈哈哈"};
+    YXCLog(@"%@", dict);
+    
     YXCButton *button = [YXCButton new];
     button.yxc_imagePosition = YXCButtonImagePositionBottom;
     button.yxc_space = 15;

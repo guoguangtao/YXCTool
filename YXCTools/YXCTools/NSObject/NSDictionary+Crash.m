@@ -75,4 +75,16 @@
     YXCLog(@"setValue:forUndefinedKey - %@ : %@", key, value);
 }
 
+- (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level {
+    NSMutableString *strM = [NSMutableString stringWithString:@"{\n"];
+    
+    [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [strM appendFormat:@"\t%@ = %@;\n", key, obj];
+    }];
+    
+    [strM appendString:@"}\n"];
+    
+    return strM;
+}
+
 @end
