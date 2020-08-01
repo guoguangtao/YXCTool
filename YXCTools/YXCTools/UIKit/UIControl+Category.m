@@ -22,7 +22,6 @@
     // 将系统的 sendAction:to:forEvent: 方法进行交换，拦截按钮事件
     Method system_method = class_getInstanceMethod([self class], @selector(sendAction:to:forEvent:));
     Method my_method = class_getInstanceMethod([self class], @selector(yxc_sendAction:to:forEvent:));
-    
     method_exchangeImplementations(system_method, my_method);
 }
 
