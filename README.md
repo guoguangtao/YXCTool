@@ -84,6 +84,7 @@
 * `yxc_borderWidth` 边框的宽度
 * `yxc_borderColor` 边框颜色
 * `yxc_removeAllSubView` 移除当前 `View` 的所有子视图
+* `saveToAlbum` 将当前的 `view` 转成图片保存到相册中
 
 #### UIControl+Category
 

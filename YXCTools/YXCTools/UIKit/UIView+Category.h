@@ -46,6 +46,7 @@ typedef NS_OPTIONS(NSUInteger, YXCViewBorder) {
 /// 移除所有子视图
 - (void)yxc_removeAllSubView;
 
+/// 将 view 转成图片保存到相册中
 - (void)saveToAlbum;
 
 @end

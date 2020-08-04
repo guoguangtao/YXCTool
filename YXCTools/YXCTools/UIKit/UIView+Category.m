@@ -440,11 +440,14 @@
     }
 }
 
+/// 图片保存成功回调
+/// @param image 需要保存的图片
+/// @param error 错误信息
+/// @param contextInfo context 信息
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     
     YXCLog(@"图片保存成功");
 }
-
 
 /// 将当前 view 转成 图片
 - (UIImage *)convertViewToImage {
