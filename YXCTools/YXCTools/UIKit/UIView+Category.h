@@ -46,6 +46,8 @@ typedef NS_OPTIONS(NSUInteger, YXCViewBorder) {
 /// 移除所有子视图
 - (void)yxc_removeAllSubView;
 
+- (void)saveToAlbum;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -425,4 +425,38 @@
     }
 }
 
+#pragma mark - 将视图保存到相册中去
+
+/// 将图片保存到相册中
+- (void)saveToAlbum {
+    
+    UIImage *image = [self convertViewToImage];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.frame = CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT);
+    image = [imageView convertViewToImage];
+    if (image != nil) {
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    }
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
+    YXCLog(@"图片保存成功");
+}
+
+
+/// 将当前 view 转成 图片
+- (UIImage *)convertViewToImage {
+    
+    UIImage *imageRet = [[UIImage alloc]init];
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, [UIScreen mainScreen].scale);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    imageRet = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageRet;
+    
+}
+
 @end

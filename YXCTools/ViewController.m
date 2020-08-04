@@ -28,35 +28,16 @@
     [self setupUI];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    YXCController *controller = [YXCController new];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 /// 创建UI
 - (void)setupUI {
     
-    NSArray *array = @[@"哈哈", @"嘿嘿"];
-    YXCLog(@"%@", array);
     
-    NSDictionary *dict = @{@"这是一个字典": @"哈哈哈"};
-    YXCLog(@"%@", dict);
-    
-    YXCButton *button = [YXCButton new];
-    button.yxc_imagePosition = YXCButtonImagePositionBottom;
-    button.yxc_space = 15;
-    button.titleLabel.font = [UIFont systemFontOfSize:40];
-    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"calendar"] forState:UIControlStateNormal];
-    [button setTitle:@"星期日" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-    }];
-}
-
-- (void)buttonClicked:(UIButton *)button {
-    NSArray *days = @[@"一", @"二", @"三", @"四", @"五", @"六", @"日"];
-    NSString *titleString = [NSString stringWithFormat:@"星期%@", days[arc4random_uniform(7)]];
-    NSLog(@"%@", titleString);
-    [button setTitle:titleString forState:UIControlStateNormal];
 }
 
 @end

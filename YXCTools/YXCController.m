@@ -22,14 +22,15 @@
 /// 刷新UI
 - (void)injected {
     
+    [self.view yxc_removeAllSubView];
+    
+    [self useUIViewCategory];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self useUIViewCategory];
     
     [self setupUI];
     [self setupConstraints];
@@ -42,15 +43,6 @@
 
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    CGFloat borderWidth = arc4random_uniform(10);
-    UIColor *color = [UIColor colorWithRed:arc4random() % 255 /255.0f green:arc4random() % 255 /255.0f blue:arc4random() % 255 /255.0f alpha:1.0f];
-    self.redView.yxc_border = arc4random_uniform(20) & YXCViewBorderAll;
-    self.redView.yxc_borderWidth = borderWidth;
-    self.redView.yxc_borderColor = color;
-}
 
 
 #pragma mark - IBActions
@@ -66,16 +58,41 @@
 
 - (void)useUIViewCategory {
     
-    UIView *redView = [UIView new];
-    redView.width = 100;
-    redView.height = 100;
-    redView.center = self.view.center;
-    redView.backgroundColor = [UIColor grayColor];
-    redView.yxc_border = YXCViewBorderAll;
-    redView.yxc_borderWidth = 2.0f;
-    redView.yxc_borderColor = [UIColor redColor];
+    self.navigationItem.rightBarButtonItems = nil;
+    
+    UIButton *button = [UIButton new];
+    [button setTitle:@"保存" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(saveToAlbum) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItems = @[item];
+    
+    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT)];
+    redView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:redView];
     self.redView = redView;
+    
+    YXCButton *btn = [YXCButton new];
+    btn.yxc_space = 20;
+    btn.yxc_imagePosition = YXCButtonImagePositionTop;
+    btn.titleLabel.font = [UIFont systemFontOfSize:25 weight:UIFontWeightMedium];
+    [btn setImage:[UIImage imageNamed:@"live"] forState:UIControlStateNormal];
+    [btn setTitle:@"品   播" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorWithRed:43.0f / 255.0f
+                                       green:133.0f / 255.0f
+                                        blue:250.0f / 255.0f
+                                       alpha:1.0f]
+              forState:UIControlStateNormal];
+    [redView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(redView);
+    }];
+}
+
+- (void)saveToAlbum {
+    
+    [self.redView saveToAlbum];
 }
 
 #pragma mark - NSArray+Category / NSDictionary+Category
