@@ -37,7 +37,24 @@
 /// 创建UI
 - (void)setupUI {
     
+    UIButton *button = [UIButton new];
+    button.backgroundColor = UIColor.orangeColor;
+    button.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    [button setTitle:@"相机/相册访问" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.mas_equalTo(150);
+        make.height.mas_equalTo(50);
+    }];
+}
+
+- (void)buttonClicked {
     
+    [[YXCImagePickerHandler shareImagePicker] choosePhotoOrCameraWithController:self allowsEditing:YES complete:^(UIImage *image, NSDictionary *info) {
+
+    }];
 }
 
 @end

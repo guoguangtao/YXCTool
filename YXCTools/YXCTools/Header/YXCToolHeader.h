@@ -72,6 +72,7 @@ isBangsScreen; \
 
 #import "NSArray+Crash.h"
 #import "NSDictionary+Crash.h"
+#import "YXCImagePickerHandler.h"
 
 #pragma mark - UIKit
 

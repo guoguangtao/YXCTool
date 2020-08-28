@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A002E9E24F8BB29000F9CBC /* YXCImagePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A002E9D24F8BB29000F9CBC /* YXCImagePickerHandler.m */; };
 		8A479FE324B711AA00B30807 /* YXCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A479FE224B711AA00B30807 /* YXCController.m */; };
 		8A603EA824D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603E9024D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		8A603EA924D2EE7A008AC9BD /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603E9924D2EE7A008AC9BD /* ViewController+MASAdditions.m */; };
@@ -57,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A002E9C24F8BB29000F9CBC /* YXCImagePickerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCImagePickerHandler.h; sourceTree = "<group>"; };
+		8A002E9D24F8BB29000F9CBC /* YXCImagePickerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCImagePickerHandler.m; sourceTree = "<group>"; };
 		8A479FE124B711AA00B30807 /* YXCController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCController.h; sourceTree = "<group>"; };
 		8A479FE224B711AA00B30807 /* YXCController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCController.m; sourceTree = "<group>"; };
 		8A603E8F24D2EE7A008AC9BD /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 				8AECEC6F2449920B00537181 /* NSArray+Crash.m */,
 				8AECEC712449926A00537181 /* NSDictionary+Crash.h */,
 				8AECEC722449926A00537181 /* NSDictionary+Crash.m */,
+				8A002E9C24F8BB29000F9CBC /* YXCImagePickerHandler.h */,
+				8A002E9D24F8BB29000F9CBC /* YXCImagePickerHandler.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 				8A603EAC24D2EE7A008AC9BD /* MASLayoutConstraint.m in Sources */,
 				8AECEC702449920B00537181 /* NSArray+Crash.m in Sources */,
 				8AECEC3A24497FED00537181 /* main.m in Sources */,
+				8A002E9E24F8BB29000F9CBC /* YXCImagePickerHandler.m in Sources */,
 				8A603EB024D2EE7A008AC9BD /* MASViewConstraint.m in Sources */,
 				8ACE134524BC0A4A0048175C /* UIFont+Extension.m in Sources */,
 				8AECEC7B2449949600537181 /* UITextView+Category.m in Sources */,
