@@ -126,7 +126,7 @@ static YXCImagePickerHandler *_instance;
 - (BOOL)cameraAuthorizationStatus {
     
     NSString *mediaType = AVMediaTypeVideo;//读取媒体类型
-    __block AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
     
     switch (authStatus) {
         case AVAuthorizationStatusNotDetermined: YXCLog(@"还没申请权限,现在开始申请"); break;
