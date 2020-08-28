@@ -11,6 +11,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) UIImageView *imageView;
+
 @end
 
 @implementation ViewController
@@ -48,12 +50,26 @@
         make.width.mas_equalTo(150);
         make.height.mas_equalTo(50);
     }];
+    
+    self.imageView = [UIImageView new];
+    self.imageView.contentMode = UIViewContentModeScaleToFill;
+    self.imageView.hidden = YES;
+    [self.view addSubview:self.imageView];
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.centerY.equalTo(self.view);
+    }];
 }
 
 - (void)buttonClicked {
     
+    __weak typeof(self) weakSelf = self;
     [[YXCImagePickerHandler shareImagePicker] choosePhotoOrCameraWithController:self allowsEditing:YES complete:^(UIImage *image, NSDictionary *info) {
-
+        weakSelf.imageView.image = image;
+        weakSelf.imageView.hidden = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            weakSelf.imageView.hidden = YES;
+        });
     }];
 }
 

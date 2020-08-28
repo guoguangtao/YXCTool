@@ -212,8 +212,13 @@ static YXCImagePickerHandler *_instance;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     
-    // 这里不使用系统裁剪功能，所以直接获取 UIImagePickerControllerOriginalImage
+    // 不允许裁剪获取 UIImagePickerControllerOriginalImage
     UIImage *image = info[UIImagePickerControllerOriginalImage];
+    
+    if (self.allowsEditing) {
+        // 允许裁剪获取 UIImagePickerControllerEditedImage
+        image = info[UIImagePickerControllerEditedImage];
+    }
     
     if (self.complete) {
         self.complete(image, info);
