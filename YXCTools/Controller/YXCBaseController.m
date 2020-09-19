@@ -26,9 +26,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self setupUI];
-    [self setupConstraints];
 }
 
 - (void)dealloc {

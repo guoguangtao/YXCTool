@@ -1,44 +1,48 @@
 //
-//  YXCDatePickerController.m
+//  YXCDatePickerView.m
 //  YXCTools
 //
 //  Created by GGT on 2020/9/19.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "YXCDatePickerController.h"
 #import "YXCDatePickerView.h"
 
-@interface YXCDatePickerController ()
-
+@interface YXCDatePickerView ()
 
 @end
 
-@implementation YXCDatePickerController
+@implementation YXCDatePickerView
 
 #pragma mark - Lifecycle
 
 /// 刷新UI
 - (void)injected {
-    [self.view yxc_removeAllSubView];
     
-    [self setupUI];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (instancetype)initWithFrame:(CGRect)frame {
     
-    self.view.backgroundColor = [UIColor orangeColor];
+    if (self = [super initWithFrame:frame]) {
+        
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
+        
+        [self setupUI];
+        [self setupConstraints];
+    }
     
-    [self setupUI];
-    [self setupConstraints];
+    return self;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self removeFromSuperview];
 }
 
 - (void)dealloc {
     
     NSLog(@"%s", __func__);
 }
-
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
 
@@ -59,8 +63,7 @@
 
 - (void)setupUI {
     
-    YXCDatePickerView *datePickerView = [[YXCDatePickerView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:datePickerView];
+    
 }
 
 

@@ -13,6 +13,7 @@
 		8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D025160A9D00BB9595 /* YXCPushHandler.m */; };
 		8A2B79D525160CBC00BB9595 /* YXCBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D425160CBC00BB9595 /* YXCBaseController.m */; };
 		8A2B79D82516111C00BB9595 /* YXCDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D72516111C00BB9595 /* YXCDatePickerController.m */; };
+		8A2B79DE2516127400BB9595 /* YXCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79DD2516127400BB9595 /* YXCDatePickerView.m */; };
 		8A603EA824D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603E9024D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		8A603EA924D2EE7A008AC9BD /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603E9924D2EE7A008AC9BD /* ViewController+MASAdditions.m */; };
 		8A603EAA24D2EE7A008AC9BD /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603E9D24D2EE7A008AC9BD /* MASCompositeConstraint.m */; };
@@ -73,6 +74,8 @@
 		8A2B79D425160CBC00BB9595 /* YXCBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBaseController.m; sourceTree = "<group>"; };
 		8A2B79D62516111C00BB9595 /* YXCDatePickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCDatePickerController.h; sourceTree = "<group>"; };
 		8A2B79D72516111C00BB9595 /* YXCDatePickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCDatePickerController.m; sourceTree = "<group>"; };
+		8A2B79DC2516127400BB9595 /* YXCDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCDatePickerView.h; sourceTree = "<group>"; };
+		8A2B79DD2516127400BB9595 /* YXCDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCDatePickerView.m; sourceTree = "<group>"; };
 		8A603E8F24D2EE7A008AC9BD /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		8A603E9024D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		8A603E9124D2EE7A008AC9BD /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -164,11 +167,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8A1E82A6251605880016627D /* iOS14 */ = {
+		8A1E82A6251605880016627D /* iOS14(iOS 14 适配) */ = {
 			isa = PBXGroup;
 			children = (
+				8A2B79DA2516125400BB9595 /* View */,
 				8A1E82AA251606410016627D /* Controller */,
 			);
+			name = "iOS14(iOS 14 适配)";
 			path = iOS14;
 			sourceTree = "<group>";
 		};
@@ -221,6 +226,15 @@
 				8AECEC2B24497FEA00537181 /* SceneDelegate.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		8A2B79DA2516125400BB9595 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8A2B79DC2516127400BB9595 /* YXCDatePickerView.h */,
+				8A2B79DD2516127400BB9595 /* YXCDatePickerView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8A603E8E24D2EE7A008AC9BD /* Masonry */ = {
@@ -282,7 +296,7 @@
 				8A2B79D225160CA200BB9595 /* Controller */,
 				8A2B79CE25160A7400BB9595 /* Tools */,
 				8A2B79C7251606EE00BB9595 /* Model */,
-				8A1E82A6251605880016627D /* iOS14 */,
+				8A1E82A6251605880016627D /* iOS14(iOS 14 适配) */,
 				8A603E8E24D2EE7A008AC9BD /* Masonry */,
 				8AECEC5C2449808B00537181 /* YXCTools */,
 				8AECEC3024497FEA00537181 /* Main.storyboard */,
@@ -517,6 +531,7 @@
 				8A603EB024D2EE7A008AC9BD /* MASViewConstraint.m in Sources */,
 				8ACE134524BC0A4A0048175C /* UIFont+Extension.m in Sources */,
 				8AECEC7B2449949600537181 /* UITextView+Category.m in Sources */,
+				8A2B79DE2516127400BB9595 /* YXCDatePickerView.m in Sources */,
 				8AECEC5F2449809B00537181 /* UIView+Category.m in Sources */,
 				8A2B79D525160CBC00BB9595 /* YXCBaseController.m in Sources */,
 				8A603EAD24D2EE7A008AC9BD /* NSArray+MASAdditions.m in Sources */,
