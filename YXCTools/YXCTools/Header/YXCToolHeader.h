@@ -11,6 +11,8 @@
 
 #pragma mark - 宏定义
 
+#define kCellIdentifier @"DefalutCellIdentifier"
+
 #define kYXCDateString ({\
 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; \
 [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS"]; \
@@ -73,6 +75,8 @@ isBangsScreen; \
 #import "NSArray+Crash.h"
 #import "NSDictionary+Crash.h"
 #import "YXCImagePickerHandler.h"
+#import "YXCPushHandler.h"
+#import "YXCControllerModel.h"
 
 #pragma mark - UIKit
 
