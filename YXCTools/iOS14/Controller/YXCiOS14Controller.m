@@ -64,10 +64,6 @@
     YXCControllerModel *model = self.dataSources[indexPath.row];
     cell.textLabel.text = model.title;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
-    label.backgroundColor = [UIColor redColor];
-    [cell addSubview:label];
-    
     return cell;
 }
 
