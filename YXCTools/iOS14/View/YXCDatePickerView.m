@@ -63,7 +63,14 @@
 
 - (void)setupUI {
     
-    
+    CGRect frame = CGRectMake(0, 200, self.width, 100);
+    UIDatePicker *datePicer = [[UIDatePicker alloc] initWithFrame:CGRectZero];
+    if (@available(iOS 13.4, *)) {
+        datePicer.preferredDatePickerStyle = UIDatePickerStyleWheels; // 只设置了 preferredDatePickerStyle 属性
+    }
+    datePicer.backgroundColor = [UIColor whiteColor];
+    datePicer.frame = frame;
+    [self addSubview:datePicer];
 }
 
 
