@@ -106,6 +106,7 @@
     if (_dataSources == nil) {
         _dataSources = @[
             [YXCControllerModel modelWithClassName:@"YXCDatePickerController" title:@"UIDatePicker的使用" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCUIPageControlController" title:@"UIPageControl" parameter:nil],
         ];
     }
     
