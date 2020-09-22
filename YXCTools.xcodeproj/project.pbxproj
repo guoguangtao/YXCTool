@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8A002E9E24F8BB29000F9CBC /* YXCImagePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A002E9D24F8BB29000F9CBC /* YXCImagePickerHandler.m */; };
+		8A1FB4642519A06F00825BEA /* YXCPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FB4632519A06F00825BEA /* YXCPhotoListController.m */; };
+		8A1FB4682519A09D00825BEA /* YXCPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FB4672519A09D00825BEA /* YXCPhotoView.m */; };
+		8A1FB46C2519A25400825BEA /* YXCPhotoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FB46B2519A25400825BEA /* YXCPhotoHandler.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
 		8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79CC2516092200BB9595 /* YXCiOS14Controller.m */; };
 		8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D025160A9D00BB9595 /* YXCPushHandler.m */; };
@@ -65,6 +68,12 @@
 /* Begin PBXFileReference section */
 		8A002E9C24F8BB29000F9CBC /* YXCImagePickerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCImagePickerHandler.h; sourceTree = "<group>"; };
 		8A002E9D24F8BB29000F9CBC /* YXCImagePickerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCImagePickerHandler.m; sourceTree = "<group>"; };
+		8A1FB4622519A06F00825BEA /* YXCPhotoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoListController.h; sourceTree = "<group>"; };
+		8A1FB4632519A06F00825BEA /* YXCPhotoListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoListController.m; sourceTree = "<group>"; };
+		8A1FB4662519A09D00825BEA /* YXCPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoView.h; sourceTree = "<group>"; };
+		8A1FB4672519A09D00825BEA /* YXCPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoView.m; sourceTree = "<group>"; };
+		8A1FB46A2519A25400825BEA /* YXCPhotoHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoHandler.h; sourceTree = "<group>"; };
+		8A1FB46B2519A25400825BEA /* YXCPhotoHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoHandler.m; sourceTree = "<group>"; };
 		8A2B79C82516070A00BB9595 /* YXCControllerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCControllerModel.h; sourceTree = "<group>"; };
 		8A2B79C92516070A00BB9595 /* YXCControllerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCControllerModel.m; sourceTree = "<group>"; };
 		8A2B79CB2516092200BB9595 /* YXCiOS14Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCiOS14Controller.h; sourceTree = "<group>"; };
@@ -191,6 +200,35 @@
 				8AADCC1A25184AFC000F7F5F /* YXCUIPageControlController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A1FB4612519A03300825BEA /* PhotoKit */ = {
+			isa = PBXGroup;
+			children = (
+				8A1FB4692519A23500825BEA /* Tools */,
+				8A1FB4652519A08500825BEA /* View */,
+				8A1FB4622519A06F00825BEA /* YXCPhotoListController.h */,
+				8A1FB4632519A06F00825BEA /* YXCPhotoListController.m */,
+			);
+			path = PhotoKit;
+			sourceTree = "<group>";
+		};
+		8A1FB4652519A08500825BEA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8A1FB4662519A09D00825BEA /* YXCPhotoView.h */,
+				8A1FB4672519A09D00825BEA /* YXCPhotoView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8A1FB4692519A23500825BEA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8A1FB46A2519A25400825BEA /* YXCPhotoHandler.h */,
+				8A1FB46B2519A25400825BEA /* YXCPhotoHandler.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		8A2B79C7251606EE00BB9595 /* Model */ = {
@@ -334,6 +372,7 @@
 		8AECEC5C2449808B00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				8A1FB4612519A03300825BEA /* PhotoKit */,
 				8AECEC75244993E400537181 /* Header */,
 				8AECEC612449853100537181 /* NSObject */,
 				8AECEC602449850D00537181 /* UIKit */,
@@ -532,10 +571,13 @@
 				8AECEC702449920B00537181 /* NSArray+Crash.m in Sources */,
 				8AECEC3A24497FED00537181 /* main.m in Sources */,
 				8A2B79D82516111C00BB9595 /* YXCDatePickerController.m in Sources */,
+				8A1FB4642519A06F00825BEA /* YXCPhotoListController.m in Sources */,
 				8A002E9E24F8BB29000F9CBC /* YXCImagePickerHandler.m in Sources */,
 				8A603EB024D2EE7A008AC9BD /* MASViewConstraint.m in Sources */,
+				8A1FB46C2519A25400825BEA /* YXCPhotoHandler.m in Sources */,
 				8ACE134524BC0A4A0048175C /* UIFont+Extension.m in Sources */,
 				8AECEC7B2449949600537181 /* UITextView+Category.m in Sources */,
+				8A1FB4682519A09D00825BEA /* YXCPhotoView.m in Sources */,
 				8A2B79DE2516127400BB9595 /* YXCDatePickerView.m in Sources */,
 				8AECEC5F2449809B00537181 /* UIView+Category.m in Sources */,
 				8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */,

@@ -100,26 +100,28 @@ static YXCImagePickerHandler *_instance;
 /// @param sourceType 相机/相册选项
 - (void)gotoImagePickerController:(UIImagePickerControllerSourceType)sourceType {
     
-    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
-        // 判断当前设备相机是否可用
-        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            [self showAlertWithTitle:@"当前设备相机不可用" message:@""];
-            return;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+            // 判断当前设备相机是否可用
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                [self showAlertWithTitle:@"当前设备相机不可用" message:@""];
+                return;
+            }
+            // 相机访问权限
+            if ([self cameraAuthorizationStatus] == NO) return;
+        } else if (sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+            // 相册访问权限
+            if (![self photoAuthorizationStatus]) return;
         }
-        // 相机访问权限
-        if ([self cameraAuthorizationStatus] == NO) return;
-    } else if (sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
-        // 相册访问权限
-        if (![self photoAuthorizationStatus]) return;
-    }
-    
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = sourceType;
-    imagePicker.allowsEditing = self.allowsEditing;
-    // iOS13 无法全屏，加上这句代码全屏设置，iOS13 默认 UIModalPresentationAutomatic
-    imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
-    imagePicker.delegate = self;
-    [self.owner presentViewController:imagePicker animated:YES completion:nil];
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.sourceType = sourceType;
+        imagePicker.allowsEditing = self.allowsEditing;
+        // iOS13 无法全屏，加上这句代码全屏设置，iOS13 默认 UIModalPresentationAutomatic
+        imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
+        imagePicker.delegate = self;
+        [self.owner presentViewController:imagePicker animated:YES completion:nil];
+    });
 }
 
 /// 相机权限
@@ -159,12 +161,15 @@ static YXCImagePickerHandler *_instance;
 - (BOOL)photoAuthorizationStatus {
     
     PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
+    
     switch (authStatus) {
         case PHAuthorizationStatusNotDetermined: YXCLog(@"相册还没申请权限,现在开始申请"); break;
         case PHAuthorizationStatusRestricted : YXCLog(@"相册受限制"); break;
         case PHAuthorizationStatusDenied : YXCLog(@"相册权限被拒绝"); break;
         case PHAuthorizationStatusAuthorized : YXCLog(@"相册权限已授权"); break;
+        case PHAuthorizationStatusLimited: YXCLog(@"相册部分授权"); break;
     }
+    
     if (authStatus == PHAuthorizationStatusNotDetermined) {
         // 还未申请权限,申请权限
         dispatch_async(dispatch_get_main_queue(), ^{
