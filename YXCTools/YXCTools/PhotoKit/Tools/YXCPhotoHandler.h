@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 /// 相册/相机 访问工具类
 @interface YXCPhotoHandler : NSObject
@@ -25,5 +26,9 @@
 /// 相册权限
 /// @param handler 第一次申请权限回调
 + (BOOL)photoAuthorizationStatus:(void(^)(PHAuthorizationStatus status))handler;
+
++ (void)getAllPhotoAlbums:(void (^)(NSArray<NSDictionary *> *photos))complete;
+
++ (void)getPhotosWithGroup:(ALAssetsGroup *)group complete:(void (^)(NSArray<ALAsset *> *photos))complete;
 
 @end

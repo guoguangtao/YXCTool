@@ -8,8 +8,15 @@
 
 #import "YXCPhotoView.h"
 #import "YXCPhotoHandler.h"
+#import "YXCPhotoListCell.h"
 
-@interface YXCPhotoView ()
+@interface YXCPhotoView ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView; /**< tableView */
+@property (nonatomic, strong) NSArray<NSDictionary *> *dataSources; /**< 数据源 */
+@property (nonatomic, strong) NSMutableArray<YXCControllerModel *> *pushModelArray; /**< 跳转模型数据 */
+
+@property (nonatomic, weak) UIViewController *owner; /**< 拥有者 */
 
 @end
 
@@ -23,17 +30,13 @@
     
     [self setupUI];
     [self setupConstraints];
+    [self getPhotos];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (void)layoutSubviews {
+    [super layoutSubviews];
     
-    if (self = [super initWithFrame:frame]) {
-        
-        [self setupUI];
-        [self setupConstraints];
-    }
-    
-    return self;
+    self.tableView.frame = self.bounds;
 }
 
 - (void)dealloc {
@@ -49,38 +52,98 @@
 
 #pragma mark - Public
 
++ (instancetype)photoViewWithOwner:(UIViewController *)owner {
+    
+    return [[YXCPhotoView alloc] initWithOwner:owner];
+}
+
+- (instancetype)initWithOwner:(UIViewController *)owner {
+    
+    if (self = [super init]) {
+        
+        self.owner = owner;
+        
+        [self setupUI];
+        [self setupConstraints];
+        [self getPhotos];
+    }
+    
+    return self;
+}
+
 
 #pragma mark - Private
 
 - (void)getPhotos {
     
     // 先查看相册是否授权
+    BOOL authorizationStatus = [YXCPhotoHandler photoAuthorizationStatus:^(PHAuthorizationStatus status) {
+        // 第一次授权,等待授权操作完成
+        [self getPhotos];
+    }];
     
+    // 未授权
+    if (!authorizationStatus) return;
+    
+    [YXCPhotoHandler getAllPhotoAlbums:^(NSArray<NSDictionary *> *photos) {
+        self.dataSources = photos;
+        [self setupPushModel];
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)setupPushModel {
+    
+    self.pushModelArray = [NSMutableArray array];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (NSDictionary *dict in self.dataSources) {
+            YXCControllerModel *model = [YXCControllerModel modelWithClassName:@"YXCPhotoListController"
+                                                                         title:dict[@"name"]
+                                                                     parameter:dict];
+            [self.pushModelArray addObject:model];
+        }
+    });
 }
 
 
 #pragma mark - Protocol
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.dataSources.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    YXCPhotoListCell *cell = [YXCPhotoListCell cellWithTableView:tableView indexPath:indexPath];
+    cell.textLabel.text = self.dataSources[indexPath.row][@"name"];
+    
+    return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.owner) {
+        [YXCPushHandler pushController:self.owner model:self.pushModelArray[indexPath.row]];
+    }
+}
 
 
 #pragma mark - UI
 
 - (void)setupUI {
     
-    UIImageView *imageView = [UIImageView new];
-    imageView.image = [UIImage imageNamed:@"calendar"];
-    imageView.size = CGSizeMake(200, 200);
-    imageView.center = self.center;
-    [self addSubview:imageView];
-    
-    CALayer *maskLayer = [[CALayer alloc] init];
-    maskLayer.frame = CGRectMake(0, 0, 180, 90);
-    maskLayer.contents = (__bridge id)[UIImage imageNamed:@"green_pop"].CGImage;
-    imageView.layer.mask = maskLayer;
-    
-    //    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150, 80)];
-    //    imgView.image = [UIImage imageNamed:@"green_pop"];
-    //    [imageView addSubview:imgView];
-    //    imageView.layer.mask = imgView.layer;
+    self.tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self addSubview:self.tableView];
 }
 
 

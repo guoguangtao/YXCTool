@@ -16,4 +16,8 @@
 
 #pragma mark - Method
 
++ (instancetype)photoViewWithOwner:(UIViewController *)owner;
+
+- (instancetype)initWithOwner:(UIViewController *)owner;
+
 @end

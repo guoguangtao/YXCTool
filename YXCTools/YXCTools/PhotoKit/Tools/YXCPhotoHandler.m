@@ -7,10 +7,11 @@
 //
 
 #import "YXCPhotoHandler.h"
+#import <objc/runtime.h>
 
 @interface YXCPhotoHandler ()
 
-
+@property (nonatomic, strong, class) ALAssetsLibrary *assetsLibrary;
 
 @end
 
@@ -47,7 +48,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
                 if (handler) {
-                    handler(granted);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        handler(granted);
+                    });
                 }
             }];
         });
@@ -60,7 +63,7 @@
         NSString *title = [NSString stringWithFormat:@"请在“设置-隐私-相机”选项中允许<< %@ >>访问你的相机", appName];
         [self showAlertWithTitle:title message:nil];
     }
-
+    
     return authStatus == AVAuthorizationStatusAuthorized;
 }
 
@@ -82,7 +85,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 if (handler) {
-                    handler(status);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        handler(status);
+                    });
                 }
             }];
         });
@@ -95,7 +100,7 @@
         NSString *title = [NSString stringWithFormat:@"请在“设置-隐私-相册”选项中允许<< %@ >>访问你的相册", appName];
         [self showAlertWithTitle:title message:nil];
     }
-
+    
     return authStatus == PHAuthorizationStatusAuthorized;
 }
 
@@ -107,10 +112,87 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:sureAction];
+    
+    NSArray *windowsArray = [UIApplication sharedApplication].windows;
+    
+    for (UIWindow *windows in windowsArray) {
+        if (windows.rootViewController) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [windows.rootViewController presentViewController:alertController animated:YES completion:nil];
+            });
+            return;
+        }
+    }
+}
+
++ (void)getAllPhotoAlbums:(void (^)(NSArray<NSDictionary *> *))complete {
+    if (!YXCPhotoHandler.assetsLibrary) {
+        YXCPhotoHandler.assetsLibrary = [[ALAssetsLibrary alloc] init];
+    }
+    
+    NSMutableArray<NSDictionary *> *albumsArray = [NSMutableArray array];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [YXCPhotoHandler.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            if (group) {
+                [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+                if (group.numberOfAssets) {
+                    NSString *groupName = [group valueForProperty:ALAssetsGroupPropertyName];
+                    NSNumber *type = [group valueForProperty:ALAssetsGroupPropertyType];
+                    NSString *persistentID = [group valueForProperty:ALAssetsGroupPropertyPersistentID];
+                    NSURL *url = [group valueForProperty:ALAssetsGroupPropertyURL];
+                    
+                    NSDictionary *dict = @{
+                        @"name" : groupName,
+                        @"type" : type,
+                        @"persistentID" : persistentID,
+                        @"URL" : url,
+                        @"group" : group
+                    };
+                    [albumsArray addObject:dict];
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (complete) {
+                        complete([NSArray arrayWithArray:albumsArray]);
+                    }
+                });
+            }
+        } failureBlock:^(NSError *error) {
+            NSLog(@"Asset group failed");
+        }];
+    });
+    
+}
+
++ (void)getPhotosWithGroup:(ALAssetsGroup *)group complete:(void (^)(NSArray<ALAsset *> *))complete {
+    
+    NSMutableArray *imagesArray = [NSMutableArray array];
+    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if (result) {
+            [imagesArray addObject:result];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (complete) {
+                    complete(imagesArray);
+                }
+            });
+        }
+    }];
 }
 
 
 #pragma mark - Private
+
++ (void)setAssetsLibrary:(ALAssetsLibrary *)assetsLibrary {
+    
+    objc_setAssociatedObject(self, @selector(assetsLibrary), assetsLibrary, OBJC_ASSOCIATION_RETAIN);
+}
+
++ (ALAssetsLibrary *)assetsLibrary {
+    
+    return objc_getAssociatedObject(self, @selector(assetsLibrary));
+}
 
 
 #pragma mark - Protocol

@@ -33,7 +33,9 @@
 
 #pragma mark - Public
 
+
 /// 以 push 的方式跳转控制器
+/// @param controller 上一层控制器
 /// @param model 需要跳转控制器的模型数据
 + (void)pushController:(UIViewController *)controller model:(YXCControllerModel *)model {
     
@@ -50,6 +52,7 @@
 }
 
 /// 以 Present 的方式跳转控制器
+/// @param controller 上一层控制器
 /// @param model 需要跳转控制器的模型数据
 + (void)presentController:(UIViewController *)controller model:(YXCControllerModel *)model {
     

@@ -1,21 +1,21 @@
 //
-//  YXCPhotoListController.m
+//  YXCPhotoAlbumListController.m
 //  YXCTools
 //
 //  Created by GGT on 2020/9/22.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "YXCPhotoListController.h"
+#import "YXCPhotoAlbumListController.h"
 #import "YXCPhotoView.h"
 
-@interface YXCPhotoListController ()
+@interface YXCPhotoAlbumListController ()
 
 
 
 @end
 
-@implementation YXCPhotoListController
+@implementation YXCPhotoAlbumListController
 
 #pragma mark - Lifecycle
 
@@ -42,11 +42,6 @@
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    [[YXCImagePickerHandler shareImagePicker] choosePhotoOrCameraWithController:self allowsEditing:NO complete:nil];
-}
-
 
 #pragma mark - IBActions
 
@@ -64,8 +59,8 @@
 
 - (void)setupUI {
     
-    YXCPhotoView *photoView = [[YXCPhotoView alloc] initWithFrame:self.view.bounds];
-    photoView.backgroundColor = [UIColor orangeColor];
+    YXCPhotoView *photoView = [YXCPhotoView photoViewWithOwner:self];
+    photoView.frame = self.view.bounds;
     [self.view addSubview:photoView];
 }
 

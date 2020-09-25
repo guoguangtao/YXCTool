@@ -109,7 +109,7 @@
     if (_dataSources == nil) {
         _dataSources = @[
             [YXCControllerModel modelWithClassName:@"YXCiOS14Controller" title:@"iOS14适配" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCPhotoListController" title:@"PhotoKit的使用" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCPhotoAlbumListController" title:@"PhotoKit的使用" parameter:nil],
         ];
     }
     
