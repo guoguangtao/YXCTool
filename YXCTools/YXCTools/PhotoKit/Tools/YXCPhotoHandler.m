@@ -11,7 +11,10 @@
 
 @interface YXCPhotoHandler ()
 
-@property (nonatomic, strong, class) ALAssetsLibrary *assetsLibrary;
+
+
+#pragma mark - 注释掉 AssetsLibrary 的方式
+//@property (nonatomic, strong, class) ALAssetsLibrary *assetsLibrary;
 
 @end
 
@@ -125,86 +128,88 @@
     }
 }
 
-/// 获取所有相册分组
-/// @param complete 完成回调
-+ (void)getAllPhotoAlbums:(void (^)(NSArray<NSDictionary *> *))complete {
-    if (!YXCPhotoHandler.assetsLibrary) {
-        YXCPhotoHandler.assetsLibrary = [[ALAssetsLibrary alloc] init];
-    }
-    
-    NSMutableArray<NSDictionary *> *albumsArray = [NSMutableArray array];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [YXCPhotoHandler.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-            if (group) {
-                [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-                if (group.numberOfAssets) {
-                    NSString *groupName = [group valueForProperty:ALAssetsGroupPropertyName];
-                    NSNumber *type = [group valueForProperty:ALAssetsGroupPropertyType];
-                    NSString *persistentID = [group valueForProperty:ALAssetsGroupPropertyPersistentID];
-                    NSURL *url = [group valueForProperty:ALAssetsGroupPropertyURL];
-                    
-                    NSDictionary *dict = @{
-                        @"name" : groupName,
-                        @"type" : type,
-                        @"persistentID" : persistentID,
-                        @"URL" : url,
-                        @"group" : group
-                    };
-                    [albumsArray addObject:dict];
-                }
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (complete) {
-                        complete([NSArray arrayWithArray:albumsArray]);
-                    }
-                });
-            }
-        } failureBlock:^(NSError *error) {
-            NSLog(@"Asset group failed");
-        }];
-    });
-    
-}
-
-/// 根据相册组获取相册中的图片
-/// @param group 相册组
-/// @param complete 完成回调
-+ (void)getPhotosWithGroup:(ALAssetsGroup *)group complete:(void (^)(NSArray<ALAsset *> *))complete {
-    
-    NSMutableArray *imagesArray = [NSMutableArray array];
-    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-        if (result) {
-            YXCLog(@"图片所在的字节数：%ld", [result defaultRepresentation].size);
-            [imagesArray addObject:result];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (complete) {
-                    complete(imagesArray);
-                }
-            });
-        }
-    }];
-}
-
-
 #pragma mark - Private
-
-+ (void)setAssetsLibrary:(ALAssetsLibrary *)assetsLibrary {
-    
-    objc_setAssociatedObject(self, @selector(assetsLibrary), assetsLibrary, OBJC_ASSOCIATION_RETAIN);
-}
-
-+ (ALAssetsLibrary *)assetsLibrary {
-    
-    return objc_getAssociatedObject(self, @selector(assetsLibrary));
-}
 
 
 #pragma mark - Protocol
 
 
 #pragma mark - 懒加载
+
+
+#pragma mark - 注释掉 AssetsLibrary 的方式
+
+/// 获取所有相册分组
+/// @param complete 完成回调
+//+ (void)getAllPhotoAlbums:(void (^)(NSArray<NSDictionary *> *))complete {
+//    if (!YXCPhotoHandler.assetsLibrary) {
+//        YXCPhotoHandler.assetsLibrary = [[ALAssetsLibrary alloc] init];
+//    }
+//
+//    NSMutableArray<NSDictionary *> *albumsArray = [NSMutableArray array];
+//
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [YXCPhotoHandler.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+//            if (group) {
+//                [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+//                if (group.numberOfAssets) {
+//                    NSString *groupName = [group valueForProperty:ALAssetsGroupPropertyName];
+//                    NSNumber *type = [group valueForProperty:ALAssetsGroupPropertyType];
+//                    NSString *persistentID = [group valueForProperty:ALAssetsGroupPropertyPersistentID];
+//                    NSURL *url = [group valueForProperty:ALAssetsGroupPropertyURL];
+//
+//                    NSDictionary *dict = @{
+//                        @"name" : groupName,
+//                        @"type" : type,
+//                        @"persistentID" : persistentID,
+//                        @"URL" : url,
+//                        @"group" : group
+//                    };
+//                    [albumsArray addObject:dict];
+//                }
+//            } else {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    if (complete) {
+//                        complete([NSArray arrayWithArray:albumsArray]);
+//                    }
+//                });
+//            }
+//        } failureBlock:^(NSError *error) {
+//            NSLog(@"Asset group failed");
+//        }];
+//    });
+//
+//}
+
+/// 根据相册组获取相册中的图片
+/// @param group 相册组
+/// @param complete 完成回调
+//+ (void)getPhotosWithGroup:(ALAssetsGroup *)group complete:(void (^)(NSArray<ALAsset *> *))complete {
+//
+//    NSMutableArray *imagesArray = [NSMutableArray array];
+//    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+//        if (result) {
+//            YXCLog(@"图片所在的字节数：%ld", [result defaultRepresentation].size);
+//            [imagesArray addObject:result];
+//        } else {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                if (complete) {
+//                    complete(imagesArray);
+//                }
+//            });
+//        }
+//    }];
+//}
+
+//+ (void)setAssetsLibrary:(ALAssetsLibrary *)assetsLibrary {
+//
+//    objc_setAssociatedObject(self, @selector(assetsLibrary), assetsLibrary, OBJC_ASSOCIATION_RETAIN);
+//}
+//
+//+ (ALAssetsLibrary *)assetsLibrary {
+//
+//    return objc_getAssociatedObject(self, @selector(assetsLibrary));
+//}
 
 
 
