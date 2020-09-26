@@ -27,8 +27,14 @@
 /// @param handler 第一次申请权限回调
 + (BOOL)photoAuthorizationStatus:(void(^)(PHAuthorizationStatus status))handler;
 
+
+/// 获取所有相册分组
+/// @param complete 完成回调
 + (void)getAllPhotoAlbums:(void (^)(NSArray<NSDictionary *> *photos))complete;
 
+/// 根据相册组获取相册中的图片
+/// @param group 相册组
+/// @param complete 完成回调
 + (void)getPhotosWithGroup:(ALAssetsGroup *)group complete:(void (^)(NSArray<ALAsset *> *photos))complete;
 
 @end

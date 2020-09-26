@@ -125,6 +125,8 @@
     }
 }
 
+/// 获取所有相册分组
+/// @param complete 完成回调
 + (void)getAllPhotoAlbums:(void (^)(NSArray<NSDictionary *> *))complete {
     if (!YXCPhotoHandler.assetsLibrary) {
         YXCPhotoHandler.assetsLibrary = [[ALAssetsLibrary alloc] init];
@@ -165,11 +167,15 @@
     
 }
 
+/// 根据相册组获取相册中的图片
+/// @param group 相册组
+/// @param complete 完成回调
 + (void)getPhotosWithGroup:(ALAssetsGroup *)group complete:(void (^)(NSArray<ALAsset *> *))complete {
     
     NSMutableArray *imagesArray = [NSMutableArray array];
     [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
+            YXCLog(@"图片所在的字节数：%ld", [result defaultRepresentation].size);
             [imagesArray addObject:result];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
