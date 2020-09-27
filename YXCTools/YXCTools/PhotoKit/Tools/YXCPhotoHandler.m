@@ -164,6 +164,42 @@
     });
 }
 
++ (void)getAlbumsPhotoWithCollection:(PHAssetCollection *)collection complete:(void (^)(NSArray<UIImage *> *))complete {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        YXCLog(@"遍历相册");
+        NSMutableArray<UIImage *> *imagesArray = [NSMutableArray array];
+        // 先定义一个过滤器,按照创建时间降序
+        PHFetchOptions *options = [PHFetchOptions new];
+        NSSortDescriptor *createData = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO];
+        options.sortDescriptors = @[createData];
+        
+        PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:collection options:options];
+        [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+            YXCLog(@"遍历到图片");
+            if (asset.mediaType == PHAssetMediaTypeImage) {
+                PHImageManager *imageManager = [[PHImageManager alloc] init];
+                PHImageRequestOptions *opt = [[PHImageRequestOptions alloc]init];
+                opt.synchronous = YES;
+                [imageManager requestImageDataForAsset:asset
+                                               options:opt
+                                         resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    [imagesArray addObject:image];
+                    YXCLog(@"字典：%@", info);
+                }];
+            }
+        }];
+        
+        YXCLog(@"遍历完成");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (complete) {
+                complete(imagesArray);
+            }
+        });
+    });
+}
+
 #pragma mark - Private
 
 

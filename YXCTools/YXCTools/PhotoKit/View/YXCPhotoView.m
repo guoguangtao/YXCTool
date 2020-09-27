@@ -87,6 +87,7 @@
     
     [YXCPhotoHandler getAllPhotoAlbumsComplete:^(NSArray<NSDictionary *> *assetArray) {
         self.dataSources = assetArray;
+        [self setupPushModel];
         [self.tableView reloadData];
     }];
 }

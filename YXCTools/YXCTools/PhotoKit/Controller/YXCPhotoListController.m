@@ -13,7 +13,7 @@
 @interface YXCPhotoListController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *dataSources;
+@property (nonatomic, strong) NSArray<UIImage *> *dataSources;
 
 @end
 
@@ -53,7 +53,11 @@
 
 - (void)getPhotos {
     
-
+    PHAssetCollection *collection = self.parameter[@"collection"];
+    [YXCPhotoHandler getAlbumsPhotoWithCollection:collection complete:^(NSArray<UIImage *> *photos) {
+        self.dataSources = photos;
+        [self.collectionView reloadData];
+    }];
 }
 
 
@@ -70,6 +74,7 @@
     
     YXCPhotoListImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoListImageCellIdentifier
                                                                             forIndexPath:indexPath];
+    cell.image = self.dataSources[indexPath.row];
     
     return cell;
 }

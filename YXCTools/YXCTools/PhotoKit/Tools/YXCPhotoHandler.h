@@ -32,6 +32,9 @@
 + (void)getAllPhotoAlbumsComplete:(void (^)(NSArray<NSDictionary *> *photosArray))complete;
 
 
++ (void)getAlbumsPhotoWithCollection:(PHAssetCollection *)collection complete:(void (^)(NSArray<UIImage *> *photos))complete;
+
+
 #pragma mark - 注释掉 AssetsLibrary 的方式
 
 /// 获取所有相册分组
