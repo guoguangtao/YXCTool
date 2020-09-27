@@ -128,6 +128,33 @@
     }
 }
 
++ (void)getAllPhotoAlbums {
+    
+    PHFetchResult *fetchResult1 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                           subtype:PHAssetCollectionSubtypeAlbumRegular
+                                                                           options:nil];
+    [fetchResult1 enumerateObjectsUsingBlock:^(PHAssetCollection *collection, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (collection) {
+            //1.先定义一个过滤器,按照创建时间降序
+            PHFetchOptions *options = [PHFetchOptions new];
+            NSSortDescriptor *createData = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO];
+            options.sortDescriptors = @[createData];
+            
+            PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:collection options:options];
+            [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (asset.mediaType == PHAssetMediaTypeImage) {
+                    YXCLog(@"图片");
+                    
+                } else if (asset.mediaType == PHAssetMediaTypeVideo) {
+                    YXCLog(@"视频");
+                }
+            }];
+        }
+    }];
+    
+    
+}
+
 #pragma mark - Private
 
 

@@ -84,6 +84,8 @@
     
     // 未授权
     if (!authorizationStatus) return;
+    
+    [YXCPhotoHandler getAllPhotoAlbums];
 }
 
 - (void)setupPushModel {

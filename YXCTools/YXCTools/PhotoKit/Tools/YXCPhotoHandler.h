@@ -27,6 +27,8 @@
 /// @param handler 第一次申请权限回调
 + (BOOL)photoAuthorizationStatus:(void(^)(PHAuthorizationStatus status))handler;
 
++ (void)getAllPhotoAlbums;
+
 
 #pragma mark - 注释掉 AssetsLibrary 的方式
 
