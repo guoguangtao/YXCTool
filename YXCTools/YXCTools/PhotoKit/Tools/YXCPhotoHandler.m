@@ -128,31 +128,40 @@
     }
 }
 
-+ (void)getAllPhotoAlbums {
++ (void)getAllPhotoAlbumsComplete:(void (^)(NSArray<NSDictionary *> *))complete {
     
-    PHFetchResult *fetchResult1 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
-                                                                           subtype:PHAssetCollectionSubtypeAlbumRegular
-                                                                           options:nil];
-    [fetchResult1 enumerateObjectsUsingBlock:^(PHAssetCollection *collection, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (collection) {
-            //1.先定义一个过滤器,按照创建时间降序
-            PHFetchOptions *options = [PHFetchOptions new];
-            NSSortDescriptor *createData = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO];
-            options.sortDescriptors = @[createData];
-            
-            PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:collection options:options];
-            [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (asset.mediaType == PHAssetMediaTypeImage) {
-                    YXCLog(@"图片");
-                    
-                } else if (asset.mediaType == PHAssetMediaTypeVideo) {
-                    YXCLog(@"视频");
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableArray<NSDictionary *> *assets = [NSMutableArray array];
+        PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                              subtype:PHAssetCollectionSubtypeAlbumRegular
+                                                                              options:nil];
+        [fetchResult enumerateObjectsUsingBlock:^(PHAssetCollection *collection, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (collection) {
+                // 先定义一个过滤器,按照创建时间降序
+                PHFetchOptions *options = [PHFetchOptions new];
+                NSSortDescriptor *createData = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO];
+                options.sortDescriptors = @[createData];
+                
+                PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:collection options:options];
+                if (result.count) {
+                    // 相册名称
+                    NSString *albumsName = collection.localizedTitle;
+                    [assets addObject:@{@"name" : albumsName, @"collection" : collection}];
                 }
-            }];
-        }
-    }];
-    
-    
+    //            [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+    //                if (asset.mediaType == PHAssetMediaTypeImage) {
+    //                    [assets addObject:asset];
+    //                }
+    //            }];
+            }
+        }];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (complete) {
+                complete([NSArray arrayWithArray:assets]);
+            }
+        });
+    });
 }
 
 #pragma mark - Private

@@ -85,7 +85,10 @@
     // 未授权
     if (!authorizationStatus) return;
     
-    [YXCPhotoHandler getAllPhotoAlbums];
+    [YXCPhotoHandler getAllPhotoAlbumsComplete:^(NSArray<NSDictionary *> *assetArray) {
+        self.dataSources = assetArray;
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)setupPushModel {

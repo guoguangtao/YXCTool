@@ -25,9 +25,11 @@
 
 /// 相册权限
 /// @param handler 第一次申请权限回调
-+ (BOOL)photoAuthorizationStatus:(void(^)(PHAuthorizationStatus status))handler;
++ (BOOL)photoAuthorizationStatus:(void (^)(PHAuthorizationStatus status))handler;
 
-+ (void)getAllPhotoAlbums;
+/// 获取所有图片
+/// @param complete 完成回调
++ (void)getAllPhotoAlbumsComplete:(void (^)(NSArray<NSDictionary *> *photosArray))complete;
 
 
 #pragma mark - 注释掉 AssetsLibrary 的方式
