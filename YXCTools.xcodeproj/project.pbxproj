@@ -49,6 +49,8 @@
 		8AECEC732449926A00537181 /* NSDictionary+Crash.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC722449926A00537181 /* NSDictionary+Crash.m */; };
 		8AECEC782449941600537181 /* UITextField+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC772449941600537181 /* UITextField+Category.m */; };
 		8AECEC7B2449949600537181 /* UITextView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC7A2449949600537181 /* UITextView+Category.m */; };
+		8AEDE5202521D662006C3452 /* YXCTableViewEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDE51F2521D662006C3452 /* YXCTableViewEditController.m */; };
+		8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +163,10 @@
 		8AECEC792449949600537181 /* UITextView+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+Category.h"; sourceTree = "<group>"; };
 		8AECEC7A2449949600537181 /* UITextView+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Category.m"; sourceTree = "<group>"; };
 		8AECEC7C2449972B00537181 /* YXCTool.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTool.pch; sourceTree = "<group>"; };
+		8AEDE51E2521D662006C3452 /* YXCTableViewEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTableViewEditController.h; sourceTree = "<group>"; };
+		8AEDE51F2521D662006C3452 /* YXCTableViewEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTableViewEditController.m; sourceTree = "<group>"; };
+		8AEDE5222521D9B1006C3452 /* YXCTableViewEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTableViewEditCell.h; sourceTree = "<group>"; };
+		8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTableViewEditCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +364,7 @@
 		8AECEC2624497FEA00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				8AEDE51C2521D5C6006C3452 /* UIKit使用 */,
 				8A2B79D9251611A900BB9595 /* Other */,
 				8A2B79D225160CA200BB9595 /* Controller */,
 				8A2B79CE25160A7400BB9595 /* Tools */,
@@ -445,6 +452,34 @@
 				8AECEC74244992F900537181 /* YXCToolHeader.h */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		8AEDE51C2521D5C6006C3452 /* UIKit使用 */ = {
+			isa = PBXGroup;
+			children = (
+				8AEDE5212521D994006C3452 /* View */,
+				8AEDE51D2521D62E006C3452 /* Controller */,
+			);
+			name = "UIKit使用";
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		8AEDE51D2521D62E006C3452 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8AEDE51E2521D662006C3452 /* YXCTableViewEditController.h */,
+				8AEDE51F2521D662006C3452 /* YXCTableViewEditController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8AEDE5212521D994006C3452 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8AEDE5222521D9B1006C3452 /* YXCTableViewEditCell.h */,
+				8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -579,6 +614,7 @@
 			files = (
 				8AECEC732449926A00537181 /* NSDictionary+Crash.m in Sources */,
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
+				8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */,
 				8AECEC6D24498C2200537181 /* UIControl+Category.m in Sources */,
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8A603EAA24D2EE7A008AC9BD /* MASCompositeConstraint.m in Sources */,
@@ -609,6 +645,7 @@
 				8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */,
 				8A2B79D525160CBC00BB9595 /* YXCBaseController.m in Sources */,
 				8A603EAD24D2EE7A008AC9BD /* NSArray+MASAdditions.m in Sources */,
+				8AEDE5202521D662006C3452 /* YXCTableViewEditController.m in Sources */,
 				8A603EA824D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				8A603EA924D2EE7A008AC9BD /* ViewController+MASAdditions.m in Sources */,
 				8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */,
