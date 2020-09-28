@@ -9,6 +9,7 @@
 #import "YXCPhotoListController.h"
 #import "YXCPhotoListImageCell.h"
 #import "YXCPhotoHandler.h"
+#import <PhotosUI/PHPhotoLibrary+PhotosUISupport.h>
 
 @interface YXCPhotoListController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 

@@ -158,11 +158,6 @@
                     NSString *albumsName = collection.localizedTitle;
                     [assets addObject:@{@"name" : albumsName, @"collection" : collection}];
                 }
-    //            [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
-    //                if (asset.mediaType == PHAssetMediaTypeImage) {
-    //                    [assets addObject:asset];
-    //                }
-    //            }];
             }
         }];
         
