@@ -86,13 +86,23 @@
     if (authStatus == PHAuthorizationStatusNotDetermined) {
         // 还未申请权限,申请权限
         dispatch_async(dispatch_get_main_queue(), ^{
-            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                if (handler) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        handler(status);
-                    });
-                }
-            }];
+            if (@available(iOS 14.0, *)) {
+                [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {
+                    if (handler) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            handler(status);
+                        });
+                    }
+                }];
+            } else {
+                [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                    if (handler) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            handler(status);
+                        });
+                    }
+                }];
+            }
         });
     } else if (authStatus != PHAuthorizationStatusAuthorized) {
         // 相机权限未授予
