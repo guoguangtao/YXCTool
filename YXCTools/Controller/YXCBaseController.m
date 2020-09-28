@@ -30,7 +30,7 @@
 
 - (void)dealloc {
     
-    NSLog(@"%s", __func__);
+    YXCLog(@"%s", __func__);
 }
 
 

@@ -30,7 +30,7 @@
 
 - (void)deallocSwizzle {
     
-    NSLog(@"%s", __func__);
+    YXCLog(@"%s", __func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self deallocSwizzle];
 }
