@@ -40,8 +40,12 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.contentView.backgroundColor = [UIColor whiteColor];
-//        self.selectedBackgroundView = [UIView new];
-//        self.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+        
+//        UIBackgroundConfiguration *configuration = [UIBackgroundConfiguration clearConfiguration];
+//        self.backgroundConfiguration = configuration;
+        
+        self.multipleSelectionBackgroundView = [UIView new];
+        self.multipleSelectionBackgroundView.backgroundColor = [UIColor redColor];
         
         [self setupUI];
         [self setupConstraints];
@@ -74,13 +78,11 @@
     self.backgroundColor = color; // 左边选中部分设置颜色
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-//    UIColor *color = UIColor.whiteColor;
-//    self.contentView.backgroundColor = color;
-//    self.backgroundColor = color;
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//
+//    self.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
+//}
 
 
 #pragma mark - IBActions
