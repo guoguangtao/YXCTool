@@ -32,6 +32,7 @@
     if (self = [super initWithFrame:frame]) {
         
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.9f];
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)]];
         
         [self setupUI];
         [self setupConstraints];
@@ -46,14 +47,9 @@
     _imageView.frame = self.bounds;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    [self dismiss];
-}
-
 - (void)dealloc {
     
-    NSLog(@"%s", __func__);
+    YXCLog(@"%s", __func__);
 }
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
