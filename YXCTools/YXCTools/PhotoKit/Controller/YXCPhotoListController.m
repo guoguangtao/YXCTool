@@ -14,11 +14,15 @@
 @interface YXCPhotoListController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray<UIImage *> *dataSources;
+@property (nonatomic, strong) NSArray<YXCAssetModel *> *dataSources;
 
 @end
 
 @implementation YXCPhotoListController
+
+{
+    CGSize _itemSize; // 每个 Item 的宽高
+}
 
 #pragma mark - Lifecycle
 
@@ -29,6 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _itemSize = CGSizeMake(IPHONE_WIDTH * 0.25, IPHONE_WIDTH * 0.25);
     
     [self setupUI];
     [self setupConstraints];
@@ -55,7 +61,7 @@
 - (void)getPhotos {
     
     PHAssetCollection *collection = self.parameter[@"collection"];
-    [YXCPhotoHandler getAlbumsPhotoWithCollection:collection complete:^(NSArray<UIImage *> *photos) {
+    [YXCPhotoHandler getAlbumsPhotoWithCollection:collection complete:^(NSArray<YXCAssetModel *> *photos) {
         self.dataSources = photos;
         [self.collectionView reloadData];
     }];
@@ -75,7 +81,12 @@
     
     YXCPhotoListImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoListImageCellIdentifier
                                                                             forIndexPath:indexPath];
-    cell.image = self.dataSources[indexPath.row];
+    PHAsset *asset = self.dataSources[indexPath.row].asset;
+    PHImageRequestOptions *option = [PHImageRequestOptions new];
+    option.resizeMode = PHImageRequestOptionsResizeModeFast;
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:_itemSize contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.image = result;
+    }];
     
     return cell;
 }
@@ -88,10 +99,8 @@
 
 - (void)setupUI {
     
-    CGFloat width = IPHONE_WIDTH * 0.25;
-    
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-    layout.itemSize = CGSizeMake(width, width);
+    layout.itemSize = _itemSize;
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     

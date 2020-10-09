@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "YXCAssetModel.h"
+
+/// 遍历相册回调
+typedef void(^YXCAlbumsPhotoAssetBlock)(NSArray <YXCAssetModel *> *photos);
 
 /// 相册/相机 访问工具类
 @interface YXCPhotoHandler : NSObject
@@ -32,7 +36,7 @@
 + (void)getAllPhotoAlbumsComplete:(void (^)(NSArray<NSDictionary *> *photosArray))complete;
 
 
-+ (void)getAlbumsPhotoWithCollection:(PHAssetCollection *)collection complete:(void (^)(NSArray<UIImage *> *photos))complete;
++ (void)getAlbumsPhotoWithCollection:(PHAssetCollection *)collection complete:(YXCAlbumsPhotoAssetBlock)complete;
 
 
 #pragma mark - 注释掉 AssetsLibrary 的方式
