@@ -9,7 +9,7 @@
 #import "YXCPhotoListController.h"
 #import "YXCPhotoListImageCell.h"
 #import "YXCPhotoHandler.h"
-#import <PhotosUI/PHPhotoLibrary+PhotosUISupport.h>
+#import "YXCBigPictureView.h"
 
 @interface YXCPhotoListController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -93,6 +93,11 @@
 
 
 #pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [YXCBigPictureView showWithAssetModel:self.dataSources[indexPath.row]];
+}
 
 
 #pragma mark - UI
