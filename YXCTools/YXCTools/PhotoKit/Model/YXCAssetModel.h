@@ -13,6 +13,7 @@
 
 #pragma mark - Property
 
+@property (nonatomic, assign) BOOL selected; /**< 是否被选中 */
 @property (nonatomic, strong) PHAsset *asset; /**< 从相册中获取到的照片信息 */
 
 

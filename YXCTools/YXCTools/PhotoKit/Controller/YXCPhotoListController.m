@@ -11,10 +11,11 @@
 #import "YXCPhotoHandler.h"
 #import "YXCBigPictureView.h"
 
-@interface YXCPhotoListController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface YXCPhotoListController ()<UICollectionViewDataSource, UICollectionViewDelegate, YXCPhotoListImageCellDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray<YXCAssetModel *> *dataSources;
+@property (nonatomic, strong) NSMutableArray<YXCAssetModel *> *selectedArray; /**< 选中照片 */
 
 @end
 
@@ -35,6 +36,7 @@
     [super viewDidLoad];
     
     _itemSize = CGSizeMake(IPHONE_WIDTH * 0.25, IPHONE_WIDTH * 0.25);
+    self.selectedArray = [NSMutableArray array];
     
     [self setupUI];
     [self setupConstraints];
@@ -81,12 +83,15 @@
     
     YXCPhotoListImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoListImageCellIdentifier
                                                                             forIndexPath:indexPath];
-    PHAsset *asset = self.dataSources[indexPath.row].asset;
-    PHImageRequestOptions *option = [PHImageRequestOptions new];
-    option.resizeMode = PHImageRequestOptionsResizeModeFast;
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:_itemSize contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        cell.image = result;
-    }];
+    YXCAssetModel *model = self.dataSources[indexPath.row];
+    cell.assetModel = model;
+    cell.delegate = self;
+    NSInteger index = [self.selectedArray indexOfObject:model];
+    if (index >= 0 && index < self.selectedArray.count) {
+        cell.selectedTitle = [NSString stringWithFormat:@"%ld", index + 1];
+    } else {
+        cell.selectedTitle = nil;
+    }
     
     return cell;
 }
@@ -97,6 +102,20 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     [YXCBigPictureView showWithAssetModel:self.dataSources[indexPath.row]];
+}
+
+
+#pragma mark - YXCPhotoListImageCellDelegate
+
+- (void)listImageCell:(YXCPhotoListImageCell *)cell didSelectedWithAssetModel:(YXCAssetModel *)assetModel {
+    
+    if ([self.selectedArray containsObject:assetModel]) {
+        [self.selectedArray removeObject:assetModel];
+    } else {
+        [self.selectedArray addObject:assetModel];
+    }
+    
+    [self.collectionView reloadData];
 }
 
 
