@@ -11,7 +11,7 @@
 
 @interface YXCPHPickerViewController ()<PHPickerViewControllerDelegate>
 
-
+@property (nonatomic, strong) UILabel *timeLabel;
 
 @end
 
@@ -21,7 +21,9 @@
 
 /// 刷新UI
 - (void)injected {
+    [self.view yxc_removeAllSubView];
     
+    [self setupUI];
 }
 
 - (void)viewDidLoad {
@@ -102,6 +104,18 @@
                action:@selector(choosePhoto)
      forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+    
+    self.timeLabel = [UILabel new];
+    self.timeLabel.width = 200;
+    self.timeLabel.height = 40;
+    self.timeLabel.center = self.view.center;
+    self.timeLabel.top = button.bottom + 40;
+    self.timeLabel.font = [UIFont systemFontOfSize:15.0];
+    self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSString *timeString = [NSDate yxc_dateWithTimeIntervalSince1970:[date timeIntervalSince1970] * 1000];
+    self.timeLabel.text = timeString;
+    [self.view addSubview:self.timeLabel];
 }
 
 

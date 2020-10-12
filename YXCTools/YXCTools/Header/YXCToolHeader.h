@@ -77,6 +77,7 @@ isBangsScreen; \
 #import "YXCImagePickerHandler.h"
 #import "YXCPushHandler.h"
 #import "YXCControllerModel.h"
+#import "NSDate+Category.h"
 
 #pragma mark - UIKit
 
