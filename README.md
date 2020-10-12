@@ -17,14 +17,6 @@
     8. `IPHONE_WIDTH` 当前设备屏幕的宽度
     9. `kIsBangsScreen` 判断当前设备是否是刘海屏幕
 
-#### NSArray+Category 
-
-数组内容打印，主要是为了将数组包含了的中文打印出来
-
-#### NSDictionary+Category
-
-字典内容打印，主要是为了将字典中包含了的中文打印出来
-
 #### NSArray+Crash
 
 主要是对 `NSArray`、`NSMutableArray`一些数据安全做一层判断，降低因为数据异常导致崩溃的概率
@@ -37,17 +29,30 @@
 
 具体使用场景，可以查看[iOS NSDictionary Crash 异常处理](https://www.jianshu.com/p/e56e58821233)
 
+#### YXCImagePickerHandler
+封装 UIImagePickerController 的使用
+
+#### NSDate+Category
+
+封装时间戳、日期、字符串三者之间的转换
+
 #### UIDeviceName
 
 * iPhone 和 iPad 型号定义的字符串常量
 
 #### UIDevice+Handler
 
-/// 点设置
-#define kYXCPT(num) [UIDevice fitWithPt:(num)]
+* 点设置
 
-/// 像素设置
-#define kYXCPX(num) [UIDevice fitWithPx:(num)]
+  ```objective-c
+  #define kYXCPT(num) [UIDevice fitWithPt:(num)]
+  ```
+
+* 像素设置
+
+  ```objective-c
+  #define kYXCPX(num) [UIDevice fitWithPx:(num)]
+  ```
 
 * 获取机型
 
@@ -64,18 +69,18 @@
   ```
 
 * 屏幕适配(px)
-```Objective-c
-/// 根据像素设置实际值
-/// @param px 设计稿具体值
-+ (CGFloat)fitWithPx:(CGFloat)px;
-```
+  ```Objective-c
+  /// 根据像素设置实际值
+  /// @param px 设计稿具体值
+  + (CGFloat)fitWithPx:(CGFloat)px;
+  ```
 
 * 屏幕适配(pt)
-```Objecive-c
-/// 根据点设置实际值
-/// @param pt 点具体值
-+ (CGFloat)fitWithPt:(CGFloat)pt;
-```
+  ```Objecive-c
+  /// 根据点设置实际值
+  /// @param pt 点具体值
+  + (CGFloat)fitWithPt:(CGFloat)pt;
+  ```
 
 #### UIView+Category
 
