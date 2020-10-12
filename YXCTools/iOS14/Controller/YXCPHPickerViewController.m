@@ -112,10 +112,18 @@
     self.timeLabel.top = button.bottom + 40;
     self.timeLabel.font = [UIFont systemFontOfSize:15.0];
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSString *timeString = [NSDate yxc_dateWithTimeIntervalSince1970:[date timeIntervalSince1970] * 1000];
+    NSString *timeString = [NSDate yxc_stringWithDate:[NSDate date]];
     self.timeLabel.text = timeString;
     [self.view addSubview:self.timeLabel];
+    
+    // Date转换成时间戳
+    NSString *dateString = @"2020-10-12 16:52:58";
+    NSDate *date = [NSDate yxc_dateWithDateString:dateString];
+    NSTimeInterval timeInterval = [date timeIntervalSince1970];
+    YXCLog(@"%ld", (long)timeInterval);
+    YXCLog(@"%ld", (long)[NSDate yxc_timeIntervalWithDate:date]);
+    YXCLog(@"%ld", (long)[NSDate yxc_timeIntervalWithDateString:dateString]);
+    
 }
 
 
