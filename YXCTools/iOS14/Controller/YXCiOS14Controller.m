@@ -107,6 +107,7 @@
         _dataSources = @[
             [YXCControllerModel modelWithClassName:@"YXCDatePickerController" title:@"UIDatePicker的使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCUIPageControlController" title:@"UIPageControl" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCPHPickerViewController" title:@"PHPickerViewController的使用" parameter:nil],
         ];
     }
     

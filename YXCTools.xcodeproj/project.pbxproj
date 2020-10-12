@@ -35,6 +35,7 @@
 		8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AADCC1A25184AFC000F7F5F /* YXCUIPageControlController.m */; };
 		8AAEE48A2530621C00B31BC5 /* YXCAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAEE4892530621C00B31BC5 /* YXCAssetModel.m */; };
 		8AAEE48D25306A5000B31BC5 /* YXCBigPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAEE48C25306A5000B31BC5 /* YXCBigPictureView.m */; };
+		8AB2B8032533EB7100A80E7E /* YXCPHPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB2B8022533EB7100A80E7E /* YXCPHPickerViewController.m */; };
 		8ACE134524BC0A4A0048175C /* UIFont+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACE134424BC0A4A0048175C /* UIFont+Extension.m */; };
 		8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2824497FEA00537181 /* AppDelegate.m */; };
 		8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2B24497FEA00537181 /* SceneDelegate.m */; };
@@ -135,6 +136,8 @@
 		8AAEE4892530621C00B31BC5 /* YXCAssetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAssetModel.m; sourceTree = "<group>"; };
 		8AAEE48B25306A5000B31BC5 /* YXCBigPictureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBigPictureView.h; sourceTree = "<group>"; };
 		8AAEE48C25306A5000B31BC5 /* YXCBigPictureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBigPictureView.m; sourceTree = "<group>"; };
+		8AB2B8012533EB7100A80E7E /* YXCPHPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPHPickerViewController.h; sourceTree = "<group>"; };
+		8AB2B8022533EB7100A80E7E /* YXCPHPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPHPickerViewController.m; sourceTree = "<group>"; };
 		8ACE134324BC0A4A0048175C /* UIFont+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Extension.h"; sourceTree = "<group>"; };
 		8ACE134424BC0A4A0048175C /* UIFont+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Extension.m"; sourceTree = "<group>"; };
 		8AECEC2424497FEA00537181 /* YXCTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXCTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +222,8 @@
 				8A2B79D72516111C00BB9595 /* YXCDatePickerController.m */,
 				8AADCC1925184AFC000F7F5F /* YXCUIPageControlController.h */,
 				8AADCC1A25184AFC000F7F5F /* YXCUIPageControlController.m */,
+				8AB2B8012533EB7100A80E7E /* YXCPHPickerViewController.h */,
+				8AB2B8022533EB7100A80E7E /* YXCPHPickerViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -645,6 +650,7 @@
 				8AECEC782449941600537181 /* UITextField+Category.m in Sources */,
 				8A603EAC24D2EE7A008AC9BD /* MASLayoutConstraint.m in Sources */,
 				8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */,
+				8AB2B8032533EB7100A80E7E /* YXCPHPickerViewController.m in Sources */,
 				8AA0FDF0251D8F1E00805E84 /* YXCPhotoListImageCell.m in Sources */,
 				8AECEC702449920B00537181 /* NSArray+Crash.m in Sources */,
 				8AAEE48D25306A5000B31BC5 /* YXCBigPictureView.m in Sources */,
