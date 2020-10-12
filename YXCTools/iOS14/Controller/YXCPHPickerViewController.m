@@ -48,13 +48,12 @@
     
     if (@available(iOS 14, *)) {
         PHPickerConfiguration *configuration = [PHPickerConfiguration new];
-        configuration.filter = [PHPickerFilter imagesFilter];
-        configuration.selectionLimit = 10;
+        configuration.filter = [PHPickerFilter imagesFilter]; // 设置所选的类型,这里设置是图片,默认是 nil,设置成 nil 则代表所有的类型都显示出来(包括 视频/LivePhoto )
+        configuration.selectionLimit = 10; // 设置可选择的最大数,默认为 1
         
         PHPickerViewController *picker = [[PHPickerViewController alloc] initWithConfiguration:configuration];
         picker.delegate = self;
         picker.modalPresentationStyle = UIModalPresentationFullScreen;
-        picker.view.backgroundColor = [UIColor orangeColor];
         
         [self presentViewController:picker animated:YES completion:nil];
     }
@@ -75,12 +74,13 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     if (!results || !results.count) return;
-    
+    // 遍历获取到的结果
     for (PHPickerResult *result in results) {
         NSItemProvider *itemProvider = result.itemProvider;
         if ([itemProvider canLoadObjectOfClass:UIImage.class]) {
             [itemProvider loadObjectOfClass:UIImage.class
                           completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable object, NSError * _Nullable error) {
+                // 取出图片
                 if (!error && object && [object isKindOfClass:UIImage.class]) {
                     NSLog(@"%@", object);
                 }
