@@ -202,7 +202,7 @@
 
 - (CGFloat)yxc_borderWidth {
     
-    return [objc_getAssociatedObject(self, @selector(yxc_borderWidth)) unsignedIntegerValue];
+    return [objc_getAssociatedObject(self, @selector(yxc_borderWidth)) floatValue];
 }
 
 #pragma mark - X 坐标值的重写方法
