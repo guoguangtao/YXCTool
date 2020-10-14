@@ -13,9 +13,9 @@
 
 + (void)load {
     
-    Method system_arrayWithObjectsCountMethod = class_getClassMethod(self, @selector(arrayWithObjects:count:));
-    Method yxc_arrayWithObjectsCountMethod = class_getClassMethod(self, @selector(yxc_arrayWithObjects:count:));
-    method_exchangeImplementations(system_arrayWithObjectsCountMethod, yxc_arrayWithObjectsCountMethod);
+    [self hookMethod:[self class]
+      originSelector:@selector(arrayWithObjects:count:)
+    swizzledSelector:@selector(yxc_arrayWithObjects:count:)];
     
     Method system_objectAtIndexedSubscriptMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndexedSubscript:));
     Method yxc_objectAtIndexedSubscriptMethod = class_getInstanceMethod(self, @selector(yxc_objectAtIndexedSubscript:));
