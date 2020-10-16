@@ -22,12 +22,6 @@
     [self.view yxc_removeAllSubView];
     
     [self setupUI];
-    
-    NSArray *array = @[@1];
-    
-    array = nil;
-    
-    YXCLog(@"数组%@为空", array.isEmpty ? @"不" : @"");
 }
 
 #pragma mark - Lifecycle
@@ -37,6 +31,17 @@
     
     [self setupUI];
     [self setupConstraints];
+    
+    NSArray *array = @[@1, @2, @3];
+    NSArray *arr = @[@4, @5, @6];
+    
+    NSString *(^result)(NSString *separator) = array.joinedByString;
+    NSString *string = result(@",");
+    YXCLog(@"%@", string);
+    
+    string = arr.joinedByString(@",");
+    
+    YXCLog(@"%@", string);
 }
 
 - (void)dealloc {

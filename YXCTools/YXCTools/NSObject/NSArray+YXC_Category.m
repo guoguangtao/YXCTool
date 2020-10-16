@@ -150,4 +150,11 @@
     return strM;
 }
 
+- (NSString * _Nonnull (^)(NSString * _Nonnull))joinedByString {
+    
+    return ^(NSString *separator) {
+        return [self componentsJoinedByString:separator];
+    };
+}
+
 @end

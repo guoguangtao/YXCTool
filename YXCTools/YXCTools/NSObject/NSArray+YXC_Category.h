@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (YXC_Category)
 
+- (NSString *(^)(NSString *separator))joinedByString;
+
 @end
 
 NS_ASSUME_NONNULL_END
