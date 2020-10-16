@@ -72,22 +72,22 @@ isBangsScreen; \
 
 #pragma mark - NSObject
 
-#import "NSArray+Crash.h"
-#import "NSDictionary+Crash.h"
+#import "NSArray+YXC_Category.h"
+#import "NSDictionary+YXC_Category.h"
 #import "YXCImagePickerHandler.h"
 #import "YXCPushHandler.h"
 #import "YXCControllerModel.h"
-#import "NSDate+Category.h"
+#import "NSDate+YXC_Category.h"
 #import "NSObject+YXC_Category.h"
 
 #pragma mark - UIKit
 
-#import "UIView+Category.h"
-#import "UIControl+Category.h"
-#import "UITextField+Category.h"
-#import "UITextView+Category.h"
-#import "UIDevice+Handler.h"
-#import "UIFont+Extension.h"
+#import "UIView+YXC_Category.h"
+#import "UIControl+YXC_Category.h"
+#import "UITextField+YXC_Category.h"
+#import "UITextView+YXC_Category.h"
+#import "UIDevice+YXC_Category.h"
+#import "UIFont+YXC_Category.h"
 #import "YXCButton.h"
 
 #endif /* YXCToolHeader_h */

@@ -1,17 +1,17 @@
 //
-//  UIFont+Extension.m
+//  UIFont+YXC_Category.m
 //  YXCTools
 //
 //  Created by GGT on 2020/7/13.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "UIFont+Extension.h"
+#import "UIFont+YXC_Category.h"
 #import <objc/runtime.h>
 
 #define DESIGN_SCREEN_WIDTH  750
 
-@implementation UIFont (Extension)
+@implementation UIFont (YXC_Category)
 
 + (void)load {
     

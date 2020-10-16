@@ -1,15 +1,15 @@
 //
-//  NSDictionary+Crash.m
+//  NSDictionary+YXC_Category.m
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "NSDictionary+Crash.h"
+#import "NSDictionary+YXC_Category.h"
 #import <objc/runtime.h>
 
-@implementation NSDictionary (Crash)
+@implementation NSDictionary (YXC_Category)
 
 + (void)load {
     

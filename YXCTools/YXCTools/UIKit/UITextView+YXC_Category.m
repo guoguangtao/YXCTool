@@ -1,15 +1,21 @@
 //
-//  UITextField+Category.m
+//  UITextView+YXC_Category.m
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "UITextField+Category.h"
+#import "UITextView+YXC_Category.h"
 #import <objc/runtime.h>
 
-@implementation UITextField (Category)
+@interface UITextView ()
+
+@property (nonatomic, strong) UILabel *placeHolderLabel; /**< 占位文字 */
+
+@end
+
+@implementation UITextView (YXC_Category)
 
 + (void)load {
     Method method1 = class_getInstanceMethod([self class], NSSelectorFromString(@"dealloc"));
@@ -33,8 +39,8 @@
     
     self.textMaxLength = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textFieldTextDidChange)
-                                                 name:UITextFieldTextDidChangeNotification
+                                             selector:@selector(textViewTextDidChange)
+                                                 name:UITextViewTextDidChangeNotification
                                                object:nil];
     
     return [self yxc_initWithFrame:frame];
@@ -44,7 +50,8 @@
     
     NSNumber *number = [NSNumber numberWithInteger:textMaxLength];
     objc_setAssociatedObject(self, @selector(textMaxLength), number, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    if (self.textMaxLength > 0) {
+    
+    if (textMaxLength > 0) {
         [self performDelegate];
     }
 }
@@ -54,7 +61,7 @@
     return [objc_getAssociatedObject(self, @selector(textMaxLength)) integerValue];
 }
 
-- (void)setYxc_delegate:(id<UITextFieldTextMaxLengthDelegate>)yxc_delegate {
+- (void)setYxc_delegate:(id<UITextViewTextMaxLengthDelegate>)yxc_delegate {
     
     objc_setAssociatedObject(self, @selector(yxc_delegate), yxc_delegate, OBJC_ASSOCIATION_ASSIGN);
     if (self.textMaxLength > 0) {
@@ -62,12 +69,56 @@
     }
 }
 
-- (id<UITextFieldTextMaxLengthDelegate>)yxc_delegate {
+- (id<UITextViewTextMaxLengthDelegate>)yxc_delegate {
     
     return objc_getAssociatedObject(self, @selector(yxc_delegate));
 }
 
-- (void)textFieldTextDidChange {
+- (void)setYxc_placeHolder:(NSString *)yxc_placeHolder {
+    
+    if (yxc_placeHolder &&
+        [yxc_placeHolder isKindOfClass:[NSString class]] &&
+        yxc_placeHolder.length) {
+        objc_setAssociatedObject(self, @selector(yxc_placeHolder), yxc_placeHolder, OBJC_ASSOCIATION_COPY);
+        
+        // 创建占位文字
+        if (self.placeHolderLabel == nil) {
+            self.placeHolderLabel = [UILabel new];
+            self.placeHolderLabel.textColor = [UIColor grayColor];
+            self.placeHolderLabel.font = self.font;
+            [self addSubview:self.placeHolderLabel];
+        }
+        
+        if (self.placeHolderLabel) {
+            self.placeHolderLabel.text = yxc_placeHolder;
+            CGSize size = [self.placeHolderLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+            UIEdgeInsets insets = self.textContainerInset;
+            self.placeHolderLabel.frame = CGRectMake(insets.left + 2, insets.top, size.width, size.height);
+        }
+    }
+}
+
+- (NSString *)yxc_placeHolder {
+    
+    return objc_getAssociatedObject(self, @selector(yxc_placeHolder));
+}
+
+- (void)setPlaceHolderLabel:(UILabel *)placeHolderLabel {
+    
+    objc_setAssociatedObject(self, @selector(placeHolderLabel), placeHolderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UILabel *)placeHolderLabel {
+    
+    return objc_getAssociatedObject(self, @selector(placeHolderLabel));
+}
+
+
+- (void)textViewTextDidChange {
+    
+    if (self.placeHolderLabel) {
+        self.placeHolderLabel.hidden = self.text.length;
+    }
     
     if (self.textMaxLength <= 0) return;
     
@@ -80,8 +131,8 @@
         [lang isEqualToString:@"zh-Hant"] ||
         [lang isEqualToString:@"zh-TW"]) {
         
-        // 获取高亮部分
         UITextRange *selectedRange = [self markedTextRange];
+        // 获取高亮部分
         UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
         // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
         if (!position) {
@@ -102,11 +153,15 @@
 
 - (void)performDelegate {
     
-    if ([self.yxc_delegate respondsToSelector:@selector(textField:textDidChange:textLength:textMaxLength:)]) {
-        [self.yxc_delegate textField:self
-                       textDidChange:self.text
-                          textLength:self.text.length
-                       textMaxLength:self.textMaxLength];
+    if (self.placeHolderLabel) {
+        self.placeHolderLabel.hidden = self.text.length;
+    }
+    
+    if ([self.yxc_delegate respondsToSelector:@selector(textView:textDidChange:textLength:textMaxLength:)]) {
+        [self.yxc_delegate textView:self
+                      textDidChange:self.text
+                         textLength:self.text.length
+                      textMaxLength:self.textMaxLength];
     }
 }
 

@@ -1,21 +1,22 @@
 //
-//  NSArray+Crash.m
+//  NSArray+YXC_Category.m
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "NSArray+Crash.h"
+#import "NSArray+YXC_Category.h"
 #import <objc/runtime.h>
 
-@implementation NSArray (Crash)
+@implementation NSArray (YXC_Category)
 
 + (void)load {
     
     [self hookMethod:[self class]
       originSelector:@selector(arrayWithObjects:count:)
-    swizzledSelector:@selector(yxc_arrayWithObjects:count:)];
+    swizzledSelector:@selector(yxc_arrayWithObjects:count:)
+         classMethod:NO];
     
     Method system_objectAtIndexedSubscriptMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndexedSubscript:));
     Method yxc_objectAtIndexedSubscriptMethod = class_getInstanceMethod(self, @selector(yxc_objectAtIndexedSubscript:));

@@ -1,5 +1,5 @@
 //
-//  UIView+Category.h
+//  UIView+YXC_Category.h
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
@@ -20,7 +20,7 @@ typedef NS_OPTIONS(NSUInteger, YXCViewBorder) {
     YXCViewBorderAll    = YXCViewBorderTop | YXCViewBorderLeft | YXCViewBorderBottom | YXCViewBorderRight
 };
 
-@interface UIView (Category)
+@interface UIView (YXC_Category)
 
 #pragma mark - Property
 

@@ -22,6 +22,12 @@
     [self.view yxc_removeAllSubView];
     
     [self setupUI];
+    
+    NSArray *array = @[@1];
+    
+    array = nil;
+    
+    YXCLog(@"数组%@为空", array.isEmpty ? @"不" : @"");
 }
 
 #pragma mark - Lifecycle

@@ -1,5 +1,5 @@
 //
-//  UIDevice+Handler.h
+//  UIDevice+YXC_Category.h
 //  UIDeviceHandler
 //
 //  Created by GGT on 2020/7/2.
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 像素设置
 #define kYXCPX(num) [UIDevice fitWithPx:(num)]
 
-@interface UIDevice (Handler)
+@interface UIDevice (YXC_Category)
 
 /// 获取到机型
 - (NSString *)platform;

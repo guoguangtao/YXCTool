@@ -1,14 +1,14 @@
 //
-//  NSDate+Category.m
+//  NSDate+YXC_Category.m
 //  YXCTools
 //
 //  Created by GGT on 2020/10/12.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "NSDate+Category.h"
+#import "NSDate+YXC_Category.h"
 
-@implementation NSDate (Category)
+@implementation NSDate (YXC_Category)
 
 /// 根据时间戳和当前的区域转换成字符串
 /// @param timeInterval 时间戳(毫秒)

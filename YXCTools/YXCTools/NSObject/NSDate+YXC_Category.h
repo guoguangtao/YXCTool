@@ -1,5 +1,5 @@
 //
-//  NSDate+Category.h
+//  NSDate+YXC_Category.h
 //  YXCTools
 //
 //  Created by GGT on 2020/10/12.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSDate (Category)
+@interface NSDate (YXC_Category)
 
 /// 根据时间戳和当前的区域转换成字符串
 /// @param timeInterval 时间戳(毫秒)

@@ -19,9 +19,32 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param cls 类
 /// @param originSelector 将要 hook 掉的方法
 /// @param swizzledSelector 新的方法
+/// @param clsMethod 是否是类方法
 + (void)hookMethod:(Class)cls
     originSelector:(SEL)originSelector
-  swizzledSelector:(SEL)swizzledSelector;
+  swizzledSelector:(SEL)swizzledSelector
+       classMethod:(BOOL)clsMethod;
+
+/// 检查当前对象,YES-满足条件 NO-不满足条件
+/// 是否为 nil
+/// 是否为 数组
+/// 数组长度是否大于 0
+- (BOOL)checkArray;
+
+/// 检查当前对象,YES-满足条件 NO-不满足条件
+/// 是否为 nil
+/// 是否为 字符串
+/// 长度是否大于 0
+/// 字符串是否包含 null 或者 NULL
+- (BOOL)checkString;
+
+/// 检查当前对象,YES-满足条件 NO-不满足条件
+/// 是否为 nil
+/// 是否为 字典类型
+- (BOOL)checkDictionary;
+
+/// 判断当前对象是否为nil
+- (BOOL)isEmpty;
 
 @end
 

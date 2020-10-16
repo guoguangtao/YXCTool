@@ -1,5 +1,5 @@
 //
-//  UIControl+Category.h
+//  UIControl+YXC_Category.h
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UIControl (Category)
+@interface UIControl (YXC_Category)
 
 @property (nonatomic, assign) CGFloat yxc_eventInterval; /**< 按钮防止重复点击 */
 @property (nonatomic, assign) CGFloat yxc_expandSize; /**< 需要扩大的范围大小 */

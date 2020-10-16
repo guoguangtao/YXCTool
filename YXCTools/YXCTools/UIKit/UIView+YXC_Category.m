@@ -1,12 +1,12 @@
 //
-//  UIView+Category.m
+//  UIView+YXC_Category.m
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "UIView+Category.h"
+#import "UIView+YXC_Category.h"
 #import <objc/runtime.h>
 
 @interface UIView ()
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation UIView (Category)
+@implementation UIView (YXC_Category)
 
 + (void)load {
     

@@ -1,12 +1,12 @@
 //
-//  UIControl+Category.m
+//  UIControl+YXC_Category.m
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "UIControl+Category.h"
+#import "UIControl+YXC_Category.h"
 #import <objc/runtime.h>
 
 @interface UIControl ()
@@ -15,7 +15,7 @@
 
 @end
 
-@implementation UIControl (Category)
+@implementation UIControl (YXC_Category)
 
 + (void)load {
     

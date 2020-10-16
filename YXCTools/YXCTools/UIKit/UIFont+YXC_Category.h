@@ -1,5 +1,5 @@
 //
-//  UIFont+Extension.h
+//  UIFont+YXC_Category.h
 //  YXCTools
 //
 //  Created by GGT on 2020/7/13.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIFont (Extension)
+@interface UIFont (YXC_Category)
 
 @end
 

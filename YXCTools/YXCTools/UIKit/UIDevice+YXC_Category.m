@@ -1,17 +1,17 @@
 //
-//  UIDevice+Handler.m
+//  UIDevice+YXC_Category.m
 //  UIDeviceHandler
 //
 //  Created by GGT on 2020/7/2.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "UIDevice+Handler.h"
+#import "UIDevice+YXC_Category.h"
 #import <sys/utsname.h>
 
 #define kDesignWidth 750
 
-@implementation UIDevice (Handler)
+@implementation UIDevice (YXC_Category)
 
 - (NSString *)platform {
     

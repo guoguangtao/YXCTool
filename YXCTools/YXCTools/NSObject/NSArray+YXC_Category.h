@@ -1,5 +1,5 @@
 //
-//  NSArray+Crash.h
+//  NSArray+YXC_Category.h
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray (Crash)
+@interface NSArray (YXC_Category)
 
 @end
 

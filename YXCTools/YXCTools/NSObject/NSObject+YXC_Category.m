@@ -15,22 +15,81 @@
 /// @param cls 类
 /// @param originSelector 将要 hook 掉的方法
 /// @param swizzledSelector 新的方法
-+ (void)hookMethod:(Class)cls originSelector:(SEL)originSelector swizzledSelector:(SEL)swizzledSelector {
+/// @param clsMethod 类方法
++ (void)hookMethod:(Class)cls originSelector:(SEL)originSelector swizzledSelector:(SEL)swizzledSelector classMethod:(BOOL)clsMethod {
     
-    Method origin_method = class_getInstanceMethod(cls, originSelector);
-    Method swizzled_method = class_getInstanceMethod(cls, swizzledSelector);
+    Method origin_method;
+    Method swizzled_method;
+    
+    if (clsMethod) {
+        // 类方法
+        origin_method = class_getClassMethod(cls, originSelector);
+        swizzled_method = class_getClassMethod(cls, swizzledSelector);
+    } else {
+        // 实例(对象)方法
+        origin_method = class_getInstanceMethod(cls, originSelector);
+        swizzled_method = class_getInstanceMethod(cls, swizzledSelector);
+    }
+    
     BOOL addSuccess = class_addMethod(cls,
                                       originSelector,
                                       method_getImplementation(swizzled_method),
-                                      method_getTypeEncoding(swizzled_method));
+                                      method_getTypeEncoding(swizzled_method)
+                                      );
     if (addSuccess) {
         class_replaceMethod(cls,
                             swizzledSelector,
                             method_getImplementation(origin_method),
-                            method_getTypeEncoding(origin_method));
+                            method_getTypeEncoding(origin_method)
+                            );
     } else {
         method_exchangeImplementations(origin_method, swizzled_method);
     }
+}
+
+/// 检查当前对象,YES-满足条件 NO-不满足条件
+/// 是否为 nil
+/// 是否为 数组
+/// 数组长度是否大于 0
+- (BOOL)checkArray {
+    
+    if (!self || ![self isKindOfClass:[NSArray class]]) return NO;
+    
+    NSArray *array = (NSArray *)self;
+    
+    return array.count;
+}
+
+/// 检查当前对象,YES-满足条件 NO-不满足条件
+/// 是否为 nil
+/// 是否为 字符串
+/// 长度是否大于 0
+/// 字符串是否包含 null 或者 NULL
+- (BOOL)checkString {
+    
+    if (!self || ![self isKindOfClass:[NSString class]]) return NO;
+    
+    NSString *string = (NSString *)self;
+    
+    if (!string.length) return NO;
+    
+    return ![string.lowercaseString containsString:@"null"];
+}
+
+/// 检查当前对象,YES-满足条件 NO-不满足条件
+/// 是否为 nil
+/// 是否为 字典类型
+- (BOOL)checkDictionary {
+    
+    if (!self || ![self isKindOfClass:[NSDictionary class]]) return NO;
+    
+    return YES;
+}
+
+/// 判断当前对象是否为nil
+- (BOOL)isEmpty {
+    
+    return self;
 }
 
 @end

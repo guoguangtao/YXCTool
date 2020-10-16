@@ -1,5 +1,5 @@
 //
-//  UITextField+Category.h
+//  UITextField+YXC_Category.h
 //  YXCTools
 //
 //  Created by GGT on 2020/4/17.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITextField (Category)
+@interface UITextField (YXC_Category)
 
 @property (nonatomic, weak) id<UITextFieldTextMaxLengthDelegate> yxc_delegate; /**< 代理 */
 @property (nonatomic, assign) NSInteger textMaxLength; /**< 文本最大字数限制 */
