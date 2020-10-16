@@ -12,7 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (YXC_Category)
 
-- (NSString *(^)(NSString *separator))joinedByString;
+/// 通过函数式编程,将数组的每个元素,进行拼接
+- (NSString *(^)(NSString *separator))yxc_joinedByString;
+
+/// 通过链式编程,添加另外一个数组
+- (NSArray *(^)(NSArray *array))yxc_addObjects;
 
 @end
 

@@ -35,13 +35,16 @@
     NSArray *array = @[@1, @2, @3];
     NSArray *arr = @[@4, @5, @6];
     
-    NSString *(^result)(NSString *separator) = array.joinedByString;
+    NSString *(^result)(NSString *separator) = array.yxc_joinedByString;
     NSString *string = result(@",");
     YXCLog(@"%@", string);
     
-    string = arr.joinedByString(@",");
+    string = arr.yxc_joinedByString(@",");
     
     YXCLog(@"%@", string);
+    
+    NSArray *arra = @[@0];
+    YXCLog(@"%@", arra.yxc_addObjects(array).yxc_addObjects(arr));
 }
 
 - (void)dealloc {

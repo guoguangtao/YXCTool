@@ -150,10 +150,22 @@
     return strM;
 }
 
-- (NSString * _Nonnull (^)(NSString * _Nonnull))joinedByString {
+/// 将数组的每个元素,进行拼接
+- (NSString * _Nonnull (^)(NSString * _Nonnull))yxc_joinedByString {
     
     return ^(NSString *separator) {
         return [self componentsJoinedByString:separator];
+    };
+}
+
+/// 通过链式编程,添加另外一个数组
+- (NSArray * _Nonnull (^)(NSArray * _Nonnull))yxc_addObjects {
+    
+    return ^(NSArray *array) {
+        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:self];
+        [mutableArray addObjectsFromArray:array];
+        
+        return [NSArray arrayWithArray:mutableArray];
     };
 }
 
