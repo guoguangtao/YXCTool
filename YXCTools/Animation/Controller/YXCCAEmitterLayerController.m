@@ -85,39 +85,39 @@
     // 粒子的内容,设置成图片
     emitterCell.contents = (__bridge id)[UIImage imageNamed:@"snowflake"].CGImage;
     // 粒子产生速度
-    emitterCell.birthRate = 2;
+    emitterCell.birthRate = 4;
     // 粒子的存活时间
     emitterCell.lifetime = 3;
     // y 轴方向的加速度
     emitterCell.yAcceleration = -50;
     // x 轴方向的加速度
-    emitterCell.xAcceleration = -3;
+    emitterCell.xAcceleration = -10;
     // 初始速度
-    emitterCell.velocity = 10;
+    emitterCell.velocity = 20;
     // 粒子发射角度
     emitterCell.emissionRange = -M_PI_2;
     // 缩放比例
     emitterCell.scale = 1.0f;
     // 缩放比例范围
-    emitterCell.scaleRange = 1.2f;
+    emitterCell.scaleRange = 2.0f;
     // 缩放比例速度
     emitterCell.scaleSpeed = 0.05f;
     // 旋转速度
-    emitterCell.spin = 1.0f;
+    emitterCell.spin = 2.0f;
     // 旋转速度范围
-    emitterCell.spinRange = 1.2f;
+    emitterCell.spinRange = 3.0f;
     // red 能改变的范围
     emitterCell.redRange = 1.0f;
     // red 改变速度
-    emitterCell.redSpeed = 0.4f;
+    emitterCell.redSpeed = 0.0f;
     // green 能改变的范围
     emitterCell.greenRange = 1.0f;
     // green 改变速度
-    emitterCell.greenSpeed = 0.8f;
+    emitterCell.greenSpeed = 0.0f;
     // blue 能改变的范围
     emitterCell.blueRange = 1.0f;
     // blue 改变速度
-    emitterCell.blueSpeed = 0.4f;
+    emitterCell.blueSpeed = 0.0f;
     
     emitterLayer.emitterCells = @[emitterCell];
 }
