@@ -1,27 +1,31 @@
 //
-//  ViewController.m
+//  YXCAnimationController.m
 //  YXCTools
 //
-//  Created by GGT on 2020/4/17.
+//  Created by GGT on 2020/10/20.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "YXCAnimationController.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface YXCAnimationController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView; /**< 列表 */
 @property (nonatomic, strong) NSArray<YXCControllerModel *> *dataSources; /**< 数据源 */
 
+
 @end
 
-@implementation ViewController
+@implementation YXCAnimationController
 
 /// 刷新UI
 - (void)injected {
     [self.view yxc_removeAllSubView];
     
+    self.dataSources = nil;
+    
     [self setupUI];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Lifecycle
@@ -108,11 +112,7 @@
     
     if (_dataSources == nil) {
         _dataSources = @[
-            [YXCControllerModel modelWithClassName:@"YXCiOS14Controller" title:@"iOS14适配" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCPhotoAlbumListController" title:@"PhotoKit的使用" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCTableViewEditController" title:@"UITableView多选状态" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCAnimationController" title:@"iOS 动画" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCLaunchImagesController" title:@"启动图制作" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCCAEmitterLayerController" title:@"粒子动画" parameter:nil],
         ];
     }
     
