@@ -16,14 +16,12 @@
 
 @implementation YXCCAEmitterLayerController
 
+CAEmitterLayer *emitterLayer;
+
 #pragma mark - Lifecycle
 
 /// 刷新UI
 - (void)injected {
-    
-    for (CALayer *layer in self.view.layer.sublayers) {
-        [layer removeFromSuperlayer];
-    }
     
     [self setupUI];
 }
@@ -46,21 +44,45 @@
 
 #pragma mark - IBActions
 
+- (void)stopAnimation {
+    [emitterLayer setValue:[NSNumber numberWithInteger:0] forKeyPath:@"emitterCells._myCell.birthRate"]; // new code
+}
+
+- (void)startAnimation {
+    [self particle];
+}
+
 
 #pragma mark - Public
 
 
 #pragma mark - Private
 
+-(void)particle {
+    emitterLayer = [CAEmitterLayer layer];
+    emitterLayer.emitterPosition = CGPointMake(50 ,300);
+    emitterLayer.emitterZPosition = 10;
+    emitterLayer.emitterSize = CGSizeMake(10,10);
+    emitterLayer.emitterShape = kCAEmitterLayerSphere;
 
-#pragma mark - Protocol
+    CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
+    emitterCell.name = @"_myCell";// new code
+    emitterCell.scale = 0.5;
+    emitterCell.scaleRange = 0.8;
+    emitterCell.emissionRange = (CGFloat)M_PI_2;
+    emitterCell.lifetime = 10;
+    emitterCell.birthRate = 5;
+    emitterCell.velocity = 20;
+    emitterCell.velocityRange = 50;
+    emitterCell.yAcceleration = 0;
 
+    emitterCell.contents = (id)[[UIImage imageNamed:@"snowflake"] CGImage];
+    emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell];
 
-#pragma mark - UI
+    [self.view.layer addSublayer:emitterLayer];
+}
 
-- (void)setupUI {
-    
-    self.view.backgroundColor = [UIColor blackColor];
+- (void)cycleEmitter {
     
     // 创建一个粒子发射器
     CAEmitterLayer *emitterLayer = [[CAEmitterLayer alloc] init];
@@ -120,6 +142,27 @@
     emitterCell.blueSpeed = 0.0f;
     
     emitterLayer.emitterCells = @[emitterCell];
+}
+
+
+#pragma mark - Protocol
+
+
+#pragma mark - UI
+
+- (void)setupUI {
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    UIButton *btn1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 100, 50, 30)];
+    btn1.backgroundColor = UIColor.orangeColor;
+    [btn1 addTarget:self action:@selector(startAnimation) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn1];
+    
+    UIButton *btn2 = [[UIButton alloc] initWithFrame:CGRectMake(10, 150, 50, 30)];
+    btn2.backgroundColor = UIColor.orangeColor;
+    [btn2 addTarget:self action:@selector(stopAnimation) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn2];
 }
 
 
