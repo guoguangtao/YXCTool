@@ -48,16 +48,18 @@
 - (void)startFire:(UIButton *)button {
     
     if (button == self.likeLineButton) {
+        // 直线往上升
         self.emitterLayer.emitterShape = kCAEmitterLayerLine;
         self.emitterLayer.birthRate = 0.5;
         self.emitterLayer.emitterPosition = CGPointMake(button.centerX, button.centerY - button.height * 0.5);
     } else if (button == self.circleButton) {
+        // 周围动画
         self.emitterLayer.birthRate = EMITTERLAYER_BIRTHRATE;
         self.emitterLayer.emitterShape = kCAEmitterLayerCircle;
         self.emitterLayer.emitterPosition = CGPointMake(button.centerX, button.centerY);
     }
     self.emitterLayer.beginTime = CACurrentMediaTime();
-    
+    // 3 秒后停止动画
     [self performSelector:@selector(stopFire) withObject:nil afterDelay:3];
     
     YXCLog(@"%@", self.view.layer.sublayers);
