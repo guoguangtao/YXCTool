@@ -42,6 +42,8 @@
 		8AB2B8032533EB7100A80E7E /* YXCPHPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB2B8022533EB7100A80E7E /* YXCPHPickerViewController.m */; };
 		8AB2E68D2534014400A80E7E /* NSDate+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB2E68C2534014400A80E7E /* NSDate+YXC_Category.m */; };
 		8ACE134524BC0A4A0048175C /* UIFont+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACE134424BC0A4A0048175C /* UIFont+YXC_Category.m */; };
+		8AD0C8C42541153100BA2C06 /* YXCEmitterLiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0C8C32541153100BA2C06 /* YXCEmitterLiveController.m */; };
+		8AD0C8C72541167B00BA2C06 /* YXCEmitterLikeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0C8C62541167B00BA2C06 /* YXCEmitterLikeController.m */; };
 		8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2824497FEA00537181 /* AppDelegate.m */; };
 		8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2B24497FEA00537181 /* SceneDelegate.m */; };
 		8AECEC2F24497FEA00537181 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2E24497FEA00537181 /* ViewController.m */; };
@@ -155,6 +157,10 @@
 		8AB2E68C2534014400A80E7E /* NSDate+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+YXC_Category.m"; sourceTree = "<group>"; };
 		8ACE134324BC0A4A0048175C /* UIFont+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+YXC_Category.h"; sourceTree = "<group>"; };
 		8ACE134424BC0A4A0048175C /* UIFont+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+YXC_Category.m"; sourceTree = "<group>"; };
+		8AD0C8C22541153100BA2C06 /* YXCEmitterLiveController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCEmitterLiveController.h; sourceTree = "<group>"; };
+		8AD0C8C32541153100BA2C06 /* YXCEmitterLiveController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCEmitterLiveController.m; sourceTree = "<group>"; };
+		8AD0C8C52541167B00BA2C06 /* YXCEmitterLikeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCEmitterLikeController.h; sourceTree = "<group>"; };
+		8AD0C8C62541167B00BA2C06 /* YXCEmitterLikeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCEmitterLikeController.m; sourceTree = "<group>"; };
 		8AECEC2424497FEA00537181 /* YXCTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXCTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AECEC2724497FEA00537181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8AECEC2824497FEA00537181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -383,6 +389,10 @@
 				8A781697253ED68000A82DF9 /* YXCAnimationController.m */,
 				8A781699253EDB1500A82DF9 /* YXCCAEmitterLayerController.h */,
 				8A78169A253EDB1500A82DF9 /* YXCCAEmitterLayerController.m */,
+				8AD0C8C22541153100BA2C06 /* YXCEmitterLiveController.h */,
+				8AD0C8C32541153100BA2C06 /* YXCEmitterLiveController.m */,
+				8AD0C8C52541167B00BA2C06 /* YXCEmitterLikeController.h */,
+				8AD0C8C62541167B00BA2C06 /* YXCEmitterLikeController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -706,6 +716,7 @@
 				8AA0FDF0251D8F1E00805E84 /* YXCPhotoListImageCell.m in Sources */,
 				8AECEC702449920B00537181 /* NSArray+YXC_Category.m in Sources */,
 				8AAEE48D25306A5000B31BC5 /* YXCBigPictureView.m in Sources */,
+				8AD0C8C72541167B00BA2C06 /* YXCEmitterLikeController.m in Sources */,
 				8AECEC3A24497FED00537181 /* main.m in Sources */,
 				8A2B79D82516111C00BB9595 /* YXCDatePickerController.m in Sources */,
 				8A1FB4642519A06F00825BEA /* YXCPhotoAlbumListController.m in Sources */,
@@ -725,6 +736,7 @@
 				8A603EAD24D2EE7A008AC9BD /* NSArray+MASAdditions.m in Sources */,
 				8AB2E68D2534014400A80E7E /* NSDate+YXC_Category.m in Sources */,
 				8AEDE5202521D662006C3452 /* YXCTableViewEditController.m in Sources */,
+				8AD0C8C42541153100BA2C06 /* YXCEmitterLiveController.m in Sources */,
 				8A603EA824D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				8A603EA924D2EE7A008AC9BD /* ViewController+MASAdditions.m in Sources */,
 				8A78169B253EDB1500A82DF9 /* YXCCAEmitterLayerController.m in Sources */,

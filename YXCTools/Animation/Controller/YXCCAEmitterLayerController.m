@@ -8,9 +8,10 @@
 
 #import "YXCCAEmitterLayerController.h"
 
-@interface YXCCAEmitterLayerController ()
+@interface YXCCAEmitterLayerController ()<UITableViewDelegate, UITableViewDataSource>
 
-
+@property (nonatomic, strong) UITableView *tableView; /**< 列表 */
+@property (nonatomic, strong) NSArray<YXCControllerModel *> *dataSources; /**< 数据源 */
 
 @end
 
@@ -82,87 +83,45 @@ CAEmitterLayer *emitterLayer;
     [self.view.layer addSublayer:emitterLayer];
 }
 
-- (void)cycleEmitter {
+
+#pragma mark - Protocol
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    // 创建一个粒子发射器
-    CAEmitterLayer *emitterLayer = [[CAEmitterLayer alloc] init];
-    // 设置粒子发射器的frame
-    CGRect frame = CGRectMake(0, self.view.height * 0.5f, self.view.width, self.view.height * 0.5f);
-    emitterLayer.frame = frame;
-    // 添加
-    [self.view.layer addSublayer:emitterLayer];
-    // 粒子发射器的形状
-    emitterLayer.emitterShape = kCAEmitterLayerLine;
-    // 粒子发射器的模式
-    emitterLayer.emitterMode = kCAEmitterLayerOutline;
-    // 粒子发射器的中心位置
-    emitterLayer.emitterPosition = CGPointMake(self.view.width - 30, frame.size.height - 30);
-    // 粒子发射器的尺寸
-    emitterLayer.emitterSize = CGSizeMake(20, 0);
-    // 粒子发射器的深度
-    emitterLayer.emitterDepth = 1.0f;
+    return self.dataSources.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // 一个粒子
-    CAEmitterCell *emitterCell = [CAEmitterCell new];
-    // 粒子的内容,设置成图片
-    emitterCell.contents = (__bridge id)[UIImage imageNamed:@"snowflake"].CGImage;
-    // 粒子产生速度
-    emitterCell.birthRate = 4;
-    // 粒子的存活时间
-    emitterCell.lifetime = 3;
-    // y 轴方向的加速度
-    emitterCell.yAcceleration = -50;
-    // x 轴方向的加速度
-    emitterCell.xAcceleration = -10;
-    // 初始速度
-    emitterCell.velocity = 20;
-    // 粒子发射角度
-    emitterCell.emissionRange = -M_PI_2;
-    // 缩放比例
-    emitterCell.scale = 1.0f;
-    // 缩放比例范围
-    emitterCell.scaleRange = 2.0f;
-    // 缩放比例速度
-    emitterCell.scaleSpeed = 0.05f;
-    // 旋转速度
-    emitterCell.spin = 2.0f;
-    // 旋转速度范围
-    emitterCell.spinRange = 3.0f;
-    // red 能改变的范围
-    emitterCell.redRange = 1.0f;
-    // red 改变速度
-    emitterCell.redSpeed = 0.0f;
-    // green 能改变的范围
-    emitterCell.greenRange = 1.0f;
-    // green 改变速度
-    emitterCell.greenSpeed = 0.0f;
-    // blue 能改变的范围
-    emitterCell.blueRange = 1.0f;
-    // blue 改变速度
-    emitterCell.blueSpeed = 0.0f;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
+    YXCControllerModel *model = self.dataSources[indexPath.row];
+    cell.textLabel.text = model.title;
     
-    emitterLayer.emitterCells = @[emitterCell];
+    return cell;
 }
 
 
-#pragma mark - Protocol
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [YXCPushHandler pushController:self model:self.dataSources[indexPath.row]];
+}
 
 
 #pragma mark - UI
 
 - (void)setupUI {
     
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    UIButton *btn1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 100, 50, 30)];
-    btn1.backgroundColor = UIColor.orangeColor;
-    [btn1 addTarget:self action:@selector(startAnimation) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn1];
-    
-    UIButton *btn2 = [[UIButton alloc] initWithFrame:CGRectMake(10, 150, 50, 30)];
-    btn2.backgroundColor = UIColor.orangeColor;
-    [btn2 addTarget:self action:@selector(stopAnimation) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn2];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentifier];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
 }
 
 
@@ -175,5 +134,17 @@ CAEmitterLayer *emitterLayer;
 
 
 #pragma mark - 懒加载
+
+- (NSArray *)dataSources {
+    
+    if (_dataSources == nil) {
+        _dataSources = @[
+            [YXCControllerModel modelWithClassName:@"YXCEmitterLiveController" title:@"直播间冒泡动画" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCEmitterLikeController" title:@"点赞动画" parameter:nil],
+        ];
+    }
+    
+    return _dataSources;
+}
 
 @end
