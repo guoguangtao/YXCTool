@@ -106,7 +106,6 @@
                 self.middlePoint = [window convertPoint:middlePoint toView:self];
                 self.endPoint = [window convertPoint:endPoint toView:self];
                 self.contentView.frame = CGRectMake(0, self.triangleHeight, self.width, self.height - self.triangleHeight);
-                NSLog(@"%s", __func__);
             } else {
                 // 计算三角形的三个点
                 CGPoint middlePoint = CGPointMake(centerX, convertFrame.origin.y - 2);
