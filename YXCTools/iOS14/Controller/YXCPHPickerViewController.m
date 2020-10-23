@@ -8,6 +8,7 @@
 
 #import "YXCPHPickerViewController.h"
 #import <PhotosUI/PhotosUI.h>
+#import "YXCPopOverView.h"
 
 @interface YXCPHPickerViewController ()<PHPickerViewControllerDelegate>
 
@@ -44,8 +45,14 @@
 
 #pragma mark - IBActions
 
-- (void)choosePhoto {
+- (void)choosePhoto:(UIButton *)button {
     
+    YXCPopOverView *overView = [[YXCPopOverView alloc] init];
+    overView.width = 200;
+    overView.height = 400;
+    [overView showForm:button];
+    
+    return;
     if (@available(iOS 14, *)) {
         PHPickerConfiguration *configuration = [PHPickerConfiguration new];
         configuration.filter = [PHPickerFilter imagesFilter]; // 设置所选的类型,这里设置是图片,默认是 nil,设置成 nil 则代表所有的类型都显示出来(包括 视频/LivePhoto )
@@ -101,28 +108,36 @@
     button.backgroundColor = UIColor.orangeColor;
     [button setTitle:@"选择照片" forState:UIControlStateNormal];
     [button addTarget:self
-               action:@selector(choosePhoto)
+               action:@selector(choosePhoto:)
      forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
-    self.timeLabel = [UILabel new];
-    self.timeLabel.width = 200;
-    self.timeLabel.height = 40;
-    self.timeLabel.center = self.view.center;
-    self.timeLabel.top = button.bottom + 40;
-    self.timeLabel.font = [UIFont systemFontOfSize:15.0];
-    self.timeLabel.textAlignment = NSTextAlignmentCenter;
-    NSString *timeString = [NSDate yxc_stringWithDate:[NSDate date]];
-    self.timeLabel.text = timeString;
-    [self.view addSubview:self.timeLabel];
+    UIButton *button1 = [[UIButton alloc] init];
+    button1.width = 50;
+    button1.height = 50;
+    button1.x = 12;
+    button1.y = 100;
+    button1.backgroundColor = [UIColor orangeColor];
+    [button1 addTarget:self action:@selector(choosePhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button1];
     
-    // Date转换成时间戳
-    NSString *dateString = @"2020-10-12 16:52:58";
-    NSDate *date = [NSDate yxc_dateWithDateString:dateString];
-    NSTimeInterval timeInterval = [date timeIntervalSince1970];
-    YXCLog(@"%ld", (long)timeInterval);
-    YXCLog(@"%ld", (long)[NSDate yxc_timeIntervalWithDate:date]);
-    YXCLog(@"%ld", (long)[NSDate yxc_timeIntervalWithDateString:dateString]);
+    UIButton *button2 = [[UIButton alloc] init];
+    button2.width = 50;
+    button2.height = 50;
+    button2.right = IPHONE_WIDTH - 12;
+    button2.y = 100;
+    button2.backgroundColor = [UIColor orangeColor];
+    [button2 addTarget:self action:@selector(choosePhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button2];
+    
+    UIButton *button3 = [[UIButton alloc] init];
+    button3.width = 50;
+    button3.height = 50;
+    button3.right = IPHONE_WIDTH - 50;
+    button3.y = 160;
+    button3.backgroundColor = [UIColor orangeColor];
+    [button3 addTarget:self action:@selector(choosePhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button3];
     
 }
 
