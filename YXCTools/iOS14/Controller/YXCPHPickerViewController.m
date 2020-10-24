@@ -48,8 +48,8 @@
 - (void)choosePhoto:(UIButton *)button {
     
     YXCPopOverView *overView = [[YXCPopOverView alloc] init];
-    overView.width = 200;
-    overView.height = 400;
+    overView.width = 80;
+    overView.height = 100;
     [overView showForm:button];
     
     return;
@@ -133,12 +133,20 @@
     UIButton *button3 = [[UIButton alloc] init];
     button3.width = 50;
     button3.height = 50;
-    button3.right = IPHONE_WIDTH - 50;
-    button3.y = 160;
+    button3.right = IPHONE_WIDTH - 100;
+    button3.y = 100;
     button3.backgroundColor = [UIColor orangeColor];
     [button3 addTarget:self action:@selector(choosePhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button3];
     
+    UIButton *button4 = [[UIButton alloc] init];
+    button4.width = 50;
+    button4.height = 50;
+    button4.right = IPHONE_WIDTH - 2;
+    button4.y = 200;
+    button4.backgroundColor = [UIColor orangeColor];
+    [button4 addTarget:self action:@selector(choosePhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button4];
 }
 
 
