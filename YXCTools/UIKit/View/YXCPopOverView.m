@@ -10,14 +10,14 @@
 
 @interface YXCPopOverView ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *contentView; /**< 真实的黑色部分 view */
 @property (nonatomic, strong) UIColor *yxc_backgroundColor; /**< 背景颜色 */
 @property (nonatomic, assign) CGFloat triangleWidth; /**< 三角形宽度 */
 @property (nonatomic, assign) CGFloat triangleHeight; /**< 三角形高度 */
 @property (nonatomic, assign) CGPoint startPoint; /**< 三角形起始位置 */
 @property (nonatomic, assign) CGPoint middlePoint; /**< 三角形中点位置 */
 @property (nonatomic, assign) CGPoint endPoint; /**< 三角形结束位置 */
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView; /**< tableView */
 
 @end
 
@@ -50,14 +50,19 @@
     
     // 获取当前上下文
     CGContextRef context = UIGraphicsGetCurrentContext();
+    // 起始位置
     CGContextMoveToPoint(context, self.startPoint.x, self.startPoint.y);
+    // 中点位置
     CGContextAddLineToPoint(context, self.middlePoint.x, self.middlePoint.y);
+    // 结束位置
     CGContextAddLineToPoint(context, self.endPoint.x, self.endPoint.y);
     CGContextClosePath(context);
+    // 设置线的颜色
     [self.yxc_backgroundColor setStroke];
+    // 设置填充颜色
     [self.yxc_backgroundColor setFill];
+    // 绘画
     CGContextDrawPath(context, kCGPathFillStroke);
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -80,18 +85,30 @@
 
 - (void)showForm:(UIView *)view {
     
+    // 在这里展示逻辑
+    // 1. self 添加到一个 Windows 上面
+    // 2. contentView 作为实际展示黑色部分
+    // 3. 箭头的中心位置始终对着传入的 view 的中心 x
+    // 4. contentView 的 x 如果超过界线,那么直接设置成界线值
+    // 5. contentView 的 y 如果超过界线,那么将弹窗的方向改变,默认是在上面,如果 y 小于界限值,则弹窗在 view 的下方
     NSArray *windows = [UIApplication sharedApplication].windows;
     for (UIWindow *window in windows) {
         if (window.height == IPHONE_HEIGHT && window.width == IPHONE_WIDTH) {
+            // 先将弹窗的大小,放入中间变量
             CGSize contentSize = self.size;
+            // 将 self 的 frame 直接设置成 window 的 bounds
+            // 为什么要这么做?
+            // 为了实现点击位置在 contentView 外,移除当前界面(在这之前,直接使用一个 view 添加到 windows,然后再将 self 添加到 view 上面,并且给 view 增加了一个点击手势,最后发现 tableView 的点击方法不再调用,所以采用了这种方式)
             self.frame = window.bounds;
+            // 设置 contentView 的 size
             self.contentView.size = CGSizeMake(contentSize.width, contentSize.height - self.triangleHeight);
-            // 坐标系转换
+            // 将传入的 view 进行坐标系转换,转换成相对于 Windows 的坐标
             CGRect convertFrame = [view convertRect:view.bounds toView:window];
+            // 获取到传入的 view 在 Windows 上面的 centerX,作为三角形箭头的 centerX
             CGFloat centerX = convertFrame.size.width * 0.5 + convertFrame.origin.x;
-            // 设置当前 x 和 y 坐标
+            // 获取到 contentView 的 y 值
             CGFloat y = convertFrame.origin.y - contentSize.height - 2;
-            // 设置当前中间对齐
+            // contentView 的 centerX 与 传入的 view 对齐
             self.contentView.centerX = centerX;
             CGFloat xGap = 5;
             // 判断当前 x 是否小于 xGap,如果小于 xGap ,x 直接设置成 xGap;
@@ -120,9 +137,9 @@
             }
             
             [window addSubview:self];
+            return;
         }
         
-        return;
     }
 }
 
@@ -132,65 +149,6 @@
 - (void)dismiss {
     
     [self removeFromSuperview];
-}
-
-- (void)lstMethod:(UIView *)view {
-    
-    NSArray *windows = [UIApplication sharedApplication].windows;
-    for (UIWindow *window in windows) {
-        if (window.height == IPHONE_HEIGHT && window.width == IPHONE_WIDTH) {
-            // 坐标系转换
-            CGRect convertFrame = [view convertRect:view.bounds toView:window];
-            CGFloat centerX = convertFrame.size.width * 0.5 + convertFrame.origin.x;
-            
-            // 设置当前 x 和 y 坐标
-            CGFloat y = convertFrame.origin.y - self.height - 2;
-            // 设置当前中间对齐
-            self.centerX = centerX;
-            // 判断当前 x 是否小于 20,如果小于 20 ,x 直接设置成 20;
-            if (self.x < 20) {
-                self.x = 20;
-            }
-            // 判断当前视图右边是否超过 IPHONE_WIDTH - 20
-            if (self.right > IPHONE_WIDTH - 20) {
-                self.right = IPHONE_WIDTH - 20;
-            }
-            // 设置 Y 值
-            self.y = y;
-            // 判断当前 y 是否小于 10,如果小于 10,在下方显示
-            if (self.y < 10) {
-                y = CGRectGetMaxY(convertFrame) + 2;
-                self.y = y;
-                // 计算三角形的三个点
-                CGPoint middlePoint  = CGPointMake(centerX, CGRectGetMaxY(convertFrame) + 2);
-                CGPoint startPoint = CGPointMake(centerX - self.triangleWidth * 0.5, middlePoint.y + self.triangleHeight);
-                CGPoint endPoint = CGPointMake(centerX + self.triangleWidth * 0.5, middlePoint.y + self.triangleHeight);
-                self.startPoint = [window convertPoint:startPoint toView:self];
-                self.middlePoint = [window convertPoint:middlePoint toView:self];
-                self.endPoint = [window convertPoint:endPoint toView:self];
-                self.contentView.frame = CGRectMake(0, self.triangleHeight, self.width, self.height - self.triangleHeight);
-            } else {
-                // 计算三角形的三个点
-                CGPoint middlePoint = CGPointMake(centerX, convertFrame.origin.y - 2);
-                CGPoint startPoint = CGPointMake(centerX - self.triangleWidth * 0.5, middlePoint.y - self.triangleHeight);
-                CGPoint endPoint = CGPointMake(centerX + self.triangleWidth * 0.5, middlePoint.y - self.triangleHeight);
-                self.startPoint = [window convertPoint:startPoint toView:self];
-                self.middlePoint = [window convertPoint:middlePoint toView:self];
-                self.endPoint = [window convertPoint:endPoint toView:self];
-                // 设置当前内容展示
-                self.contentView.frame = CGRectMake(0, 0, self.width, self.height - self.triangleHeight);
-            }
-            // 设置背景颜色
-            self.backgroundColor = [UIColor clearColor];
-            // 创建一个 View,然后在 View 上添加手势,移除当前视图
-            UIView *view = [[UIView alloc] initWithFrame:window.bounds];
-            view.backgroundColor = [UIColor clearColor];
-            [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)]];
-            [view addSubview:self];
-            [window addSubview:view];
-            return;
-        }
-    }
 }
 
 

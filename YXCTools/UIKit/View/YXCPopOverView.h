@@ -15,6 +15,8 @@
 
 #pragma mark - Method
 
+/// 从 view 展示弹窗
+/// @param view 被点击的 view
 - (void)showForm:(UIView *)view;
 
 @end
