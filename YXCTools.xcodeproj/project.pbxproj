@@ -28,6 +28,8 @@
 		8A603EB024D2EE7A008AC9BD /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603EA624D2EE7A008AC9BD /* MASViewConstraint.m */; };
 		8A603EB124D2EE7A008AC9BD /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603EA724D2EE7A008AC9BD /* MASViewAttribute.m */; };
 		8A603EB424D2F04A008AC9BD /* YXCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A603EB324D2F04A008AC9BD /* YXCButton.m */; };
+		8A633D34254684C400C5B32C /* UIButton+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A633D33254684C400C5B32C /* UIButton+YXC_Category.m */; };
+		8A633D372546853600C5B32C /* UIImage+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A633D362546853600C5B32C /* UIImage+YXC_Category.m */; };
 		8A63E43E2536E2480046D4BE /* NSObject+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A63E43D2536E2480046D4BE /* NSObject+YXC_Category.m */; };
 		8A781698253ED68000A82DF9 /* YXCAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A781697253ED68000A82DF9 /* YXCAnimationController.m */; };
 		8A78169B253EDB1500A82DF9 /* YXCCAEmitterLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A78169A253EDB1500A82DF9 /* YXCCAEmitterLayerController.m */; };
@@ -129,6 +131,10 @@
 		8A603EA724D2EE7A008AC9BD /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		8A603EB224D2F04A008AC9BD /* YXCButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCButton.h; sourceTree = "<group>"; };
 		8A603EB324D2F04A008AC9BD /* YXCButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCButton.m; sourceTree = "<group>"; };
+		8A633D32254684C400C5B32C /* UIButton+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+YXC_Category.h"; sourceTree = "<group>"; };
+		8A633D33254684C400C5B32C /* UIButton+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YXC_Category.m"; sourceTree = "<group>"; };
+		8A633D352546853600C5B32C /* UIImage+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+YXC_Category.h"; sourceTree = "<group>"; };
+		8A633D362546853600C5B32C /* UIImage+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YXC_Category.m"; sourceTree = "<group>"; };
 		8A63E43C2536E2480046D4BE /* NSObject+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YXC_Category.h"; sourceTree = "<group>"; };
 		8A63E43D2536E2480046D4BE /* NSObject+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YXC_Category.m"; sourceTree = "<group>"; };
 		8A781696253ED68000A82DF9 /* YXCAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAnimationController.h; sourceTree = "<group>"; };
@@ -508,6 +514,10 @@
 				8ACE134424BC0A4A0048175C /* UIFont+YXC_Category.m */,
 				8A603EB224D2F04A008AC9BD /* YXCButton.h */,
 				8A603EB324D2F04A008AC9BD /* YXCButton.m */,
+				8A633D32254684C400C5B32C /* UIButton+YXC_Category.h */,
+				8A633D33254684C400C5B32C /* UIButton+YXC_Category.m */,
+				8A633D352546853600C5B32C /* UIImage+YXC_Category.h */,
+				8A633D362546853600C5B32C /* UIImage+YXC_Category.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -703,6 +713,7 @@
 			files = (
 				8AECEC732449926A00537181 /* NSDictionary+YXC_Category.m in Sources */,
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
+				8A633D372546853600C5B32C /* UIImage+YXC_Category.m in Sources */,
 				8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */,
 				8A7F3D4F25426E9500C458C4 /* YXCPopOverView.m in Sources */,
 				8AECEC6D24498C2200537181 /* UIControl+YXC_Category.m in Sources */,
@@ -732,6 +743,7 @@
 				8AA0FDED251D838100805E84 /* YXCPhotoListController.m in Sources */,
 				8ACE134524BC0A4A0048175C /* UIFont+YXC_Category.m in Sources */,
 				8AECEC7B2449949600537181 /* UITextView+YXC_Category.m in Sources */,
+				8A633D34254684C400C5B32C /* UIButton+YXC_Category.m in Sources */,
 				8A8E1AAB251CABC50044205C /* YXCPhotoListCell.m in Sources */,
 				8A1FB4682519A09D00825BEA /* YXCPhotoView.m in Sources */,
 				8A781698253ED68000A82DF9 /* YXCAnimationController.m in Sources */,

@@ -61,6 +61,24 @@
     
     YXCDatePickerView *datePickerView = [[YXCDatePickerView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:datePickerView];
+    
+    UIButton *button = [UIButton new];
+    [button setBackgroundColor:UIColor.orangeColor forState:UIControlStateNormal];
+    [button setBackgroundColor:UIColor.redColor forState:UIControlStateHighlighted];
+    [button setBackgroundColor:UIColor.purpleColor forState:UIControlStateSelected];
+    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(40);
+    }];
+}
+
+
+- (void)buttonClicked:(UIButton *)button {
+    
+    button.selected = !button.isSelected;
 }
 
 
