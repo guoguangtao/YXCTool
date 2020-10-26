@@ -8,9 +8,9 @@
 
 #import "YXCDatePickerController.h"
 #import "YXCDatePickerView.h"
+#import "YXCMarqueeLabel.h"
 
 @interface YXCDatePickerController ()
-
 
 @end
 
@@ -62,24 +62,15 @@
     YXCDatePickerView *datePickerView = [[YXCDatePickerView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:datePickerView];
     
-    UIButton *button = [UIButton new];
-    [button setBackgroundColor:UIColor.orangeColor forState:UIControlStateNormal];
-    [button setBackgroundColor:UIColor.redColor forState:UIControlStateHighlighted];
-    [button setBackgroundColor:UIColor.purpleColor forState:UIControlStateSelected];
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-        make.width.mas_equalTo(100);
-        make.height.mas_equalTo(40);
-    }];
+    YXCMarqueeLabel *marqueeLabel = [YXCMarqueeLabel new];
+    marqueeLabel.width = 250;
+    marqueeLabel.height = 30;
+    marqueeLabel.center = self.view.center;
+    marqueeLabel.backgroundColor = UIColor.redColor;
+    marqueeLabel.text = @"一生一代一双人，争教两处销魂。相思相望不相亲，天为谁春?";
+    [self.view addSubview:marqueeLabel];
 }
 
-
-- (void)buttonClicked:(UIButton *)button {
-    
-    button.selected = !button.isSelected;
-}
 
 
 #pragma mark - Constraints
