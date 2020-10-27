@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UILabel *firstLabel; /**< 第一个 Label */
 @property (nonatomic, strong) UILabel *secondLabel; /**< 第二个 Label */
+@property (nonatomic, assign) BOOL stopScroll; /**< 停止滚动 */
 
 @end
 
@@ -33,6 +34,12 @@
     if (self = [super initWithFrame:frame]) {
         
         self.clipsToBounds = YES;
+        self.duration = 3;
+        self.beginDelay = 3;
+        self.pauseDelay = 0;
+        self.autoScroll = YES;
+        self.animating = NO;
+        self.stopScroll = NO;
         
         [self setupUI];
         [self setupConstraints];
@@ -66,7 +73,20 @@
     self.contentView.y = 0;
     self.contentView.height = self.height;
     self.contentView.width = self.firstLabel.width + self.width + gap;
-    [self changeFrame];
+    
+    self.secondLabel.hidden = self.firstLabel.width <= self.width;
+    
+    if (self.firstLabel.width > self.width) {
+        YXCWeakSelf(self);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.beginDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakself changeFrame];
+        });
+    }
+}
+
+- (void)setScrollVelocity:(CGFloat)scrollVelocity {
+    
+    _scrollVelocity = scrollVelocity;
 }
 
 
@@ -74,6 +94,18 @@
 
 
 #pragma mark - Public
+
+- (void)beginAnimation {
+    
+    [self changeFrame];
+}
+
+- (void)stopAnimation {
+    
+    self.animating = NO;
+    self.stopScroll = YES;
+    [self.contentView.layer removeAllAnimations];
+}
 
 
 #pragma mark - Private
@@ -102,12 +134,40 @@
 
 - (void)changeFrame {
     
+    if (self.scrollVelocity > 0) {
+        self.duration = self.firstLabel.width / self.scrollVelocity;
+    }
+    
+    UIViewAnimationOptions options = UIViewAnimationOptionCurveLinear;
+    if (self.pauseDelay <= 0) {
+        options |= UIViewAnimationOptionRepeat;
+    }
+    
+    self.animating = YES;
+    self.stopScroll = NO;
+    [UIView animateWithDuration:self.duration
+                          delay:self.pauseDelay
+                        options:options
+                     animations:^{
+        self.contentView.x = -(self.firstLabel.width + 20);
+    } completion:^(BOOL finished) {
+        self.animating = NO;
+        self.contentView.x = 0;
+        if (self.pauseDelay > 0 && self.stopScroll == NO) {
+            [self changeFrame];
+        }
+    }];
+}
+
+- (void)setupAnimations {
+    
+    // 此方式,在 iOS 13 开始已被放弃
     [UIView beginAnimations:@"FrameAni" context:nil];
-    [UIView setAnimationDuration:5];
+    [UIView setAnimationDuration:self.duration];
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationWillStartSelector:@selector(startAni:)];
-    [UIView setAnimationDidStopSelector:@selector(stopAni:)];
-    [UIView setAnimationRepeatCount:1];
+//    [UIView setAnimationWillStartSelector:@selector(startAni:)];
+//    [UIView setAnimationDidStopSelector:@selector(stopAni:)];
+    [UIView setAnimationRepeatCount:MAXFLOAT];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     self.contentView.x = -(self.firstLabel.width + 20);
     [UIView commitAnimations];
