@@ -18,26 +18,47 @@
 /// @param clsMethod 类方法
 + (void)hookMethod:(Class)cls originSelector:(SEL)originSelector swizzledSelector:(SEL)swizzledSelector classMethod:(BOOL)clsMethod {
     
+    [self hookOriginClass:cls
+             currentClass:cls
+           originSelector:originSelector
+         swizzledSelector:swizzledSelector
+              classMethod:clsMethod];
+}
+
+/// hook 方法 （主要是为了 hook 某个类的 簇类 方法）
+/// @param originCls 需要 hook 的类
+/// @param currentCls 当前类
+/// @param originSelector 将要 hook 掉的方法
+/// @param swizzledSelector 新的方法
+/// @param clsMethod 是否是类方法
++ (void)hookOriginClass:(Class)originCls
+           currentClass:(Class)currentCls
+         originSelector:(SEL)originSelector
+       swizzledSelector:(SEL)swizzledSelector
+            classMethod:(BOOL)clsMethod {
+    
     Method origin_method;
     Method swizzled_method;
     
     if (clsMethod) {
         // 类方法
-        origin_method = class_getClassMethod(cls, originSelector);
-        swizzled_method = class_getClassMethod(cls, swizzledSelector);
+        origin_method = class_getClassMethod(originCls, originSelector);
+        swizzled_method = class_getClassMethod(currentCls, swizzledSelector);
     } else {
         // 实例(对象)方法
-        origin_method = class_getInstanceMethod(cls, originSelector);
-        swizzled_method = class_getInstanceMethod(cls, swizzledSelector);
+        origin_method = class_getInstanceMethod(originCls, originSelector);
+        swizzled_method = class_getInstanceMethod(currentCls, swizzledSelector);
     }
     
-    BOOL addSuccess = class_addMethod(cls,
+    // 给当前类添加 originSelector 方法，方法实现为 swizzled_method
+    BOOL addSuccess = class_addMethod(currentCls,
                                       originSelector,
                                       method_getImplementation(swizzled_method),
                                       method_getTypeEncoding(swizzled_method)
                                       );
     if (addSuccess) {
-        class_replaceMethod(cls,
+        // 将当前类的 swizzledSelector 的实现替换成 origin_method
+        class_replaceMethod(currentCls,
                             swizzledSelector,
                             method_getImplementation(origin_method),
                             method_getTypeEncoding(origin_method)

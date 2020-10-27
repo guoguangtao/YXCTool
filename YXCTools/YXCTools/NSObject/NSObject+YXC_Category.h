@@ -25,6 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
   swizzledSelector:(SEL)swizzledSelector
        classMethod:(BOOL)clsMethod;
 
+/// hook 方法 （主要是为了 hook 某个类的 簇类 方法）
+/// @param originCls 需要 hook 的类
+/// @param currentCls 当前类
+/// @param originSelector 将要 hook 掉的方法
+/// @param swizzledSelector 新的方法
+/// @param clsMethod 是否是类方法
++ (void)hookOriginClass:(Class)originCls
+           currentClass:(Class)currentCls
+         originSelector:(SEL)originSelector
+       swizzledSelector:(SEL)swizzledSelector
+            classMethod:(BOOL)clsMethod;
+
 /// 检查当前对象,YES-满足条件 NO-不满足条件
 /// 是否为 nil
 /// 是否为 数组
