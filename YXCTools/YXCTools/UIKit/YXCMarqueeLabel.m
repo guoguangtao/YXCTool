@@ -7,13 +7,13 @@
 //
 
 #import "YXCMarqueeLabel.h"
+#import "UIView+YXC_Category.h"
 
 @interface YXCMarqueeLabel ()
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UILabel *firstLabel; /**< 第一个 Label */
 @property (nonatomic, strong) UILabel *secondLabel; /**< 第二个 Label */
-@property (nonatomic, assign) BOOL stopScroll; /**< 停止滚动 */
 
 @end
 
@@ -29,17 +29,27 @@
     [self setupConstraints];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    // 设置 UILabel 的 centerY
+    self.firstLabel.centerY = self.height * 0.5f;
+    self.secondLabel.centerY = self.height * 0.5f;
+    
+    // 设置 contentView 的 高度
+    self.contentView.height = self.height;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     
     if (self = [super initWithFrame:frame]) {
         
         self.clipsToBounds = YES;
-        self.duration = 3;
-        self.beginDelay = 3;
+        self.duration = 5;
+        self.spacingBetweenLabels = 20;
+        self.autoBeginScroll = YES;
+        self.beginDelay = 0;
         self.pauseDelay = 0;
-        self.autoScroll = YES;
-        self.animating = NO;
-        self.stopScroll = NO;
         
         [self setupUI];
         [self setupConstraints];
@@ -59,34 +69,26 @@
     
     _text = text;
     
-    CGFloat gap = 20;
-    
+    // 设置 Label 文本
     self.firstLabel.text = text;
     self.secondLabel.text = text;
+    
+    // 设置 Label 的 frame
     [self.firstLabel sizeToFit];
     [self.secondLabel sizeToFit];
     self.firstLabel.x = 0;
-    self.firstLabel.centerY = self.height * 0.5f;
-    self.secondLabel.x = self.firstLabel.width + gap;
-    self.secondLabel.centerY = self.height * 0.5f;
+    self.secondLabel.x = self.firstLabel.width + self.spacingBetweenLabels;
+    
+    // 设置 contentView 的 frame
     self.contentView.x = 0;
     self.contentView.y = 0;
-    self.contentView.height = self.height;
-    self.contentView.width = self.firstLabel.width + self.width + gap;
     
-    self.secondLabel.hidden = self.firstLabel.width <= self.width;
-    
-    if (self.firstLabel.width > self.width) {
+    if (self.autoBeginScroll) {
         YXCWeakSelf(self);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.beginDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakself changeFrame];
+            [weakself contentViewAnimations];
         });
     }
-}
-
-- (void)setScrollVelocity:(CGFloat)scrollVelocity {
-    
-    _scrollVelocity = scrollVelocity;
 }
 
 
@@ -95,15 +97,13 @@
 
 #pragma mark - Public
 
-- (void)beginAnimation {
+- (void)beginScrolling {
     
-    [self changeFrame];
+    [self contentViewAnimations];
 }
 
-- (void)stopAnimation {
+- (void)stopScrolling {
     
-    self.animating = NO;
-    self.stopScroll = YES;
     [self.contentView.layer removeAllAnimations];
 }
 
@@ -132,56 +132,41 @@
 }
 
 
-- (void)changeFrame {
+- (void)contentViewAnimations {
+    
+    // 设置 contentView
+    self.contentView.width = self.firstLabel.width + self.spacingBetweenLabels;
     
     if (self.scrollVelocity > 0) {
+        // 如果有设置速度，则根据速度计算动画时长
         self.duration = self.firstLabel.width / self.scrollVelocity;
     }
     
+    // 设置动画样式
     UIViewAnimationOptions options = UIViewAnimationOptionCurveLinear;
+    
+    // 如果有设置间隔时间，不设置无限循环模式
     if (self.pauseDelay <= 0) {
         options |= UIViewAnimationOptionRepeat;
     }
     
-    self.animating = YES;
-    self.stopScroll = NO;
+    YXCWeakSelf(self);
     [UIView animateWithDuration:self.duration
-                          delay:self.pauseDelay
+                          delay:0
                         options:options
                      animations:^{
-        self.contentView.x = -(self.firstLabel.width + 20);
+        YXCLog(@"动画 ing");
+        weakself.scrolling = YES;
+        weakself.contentView.x = -(weakself.contentView.width);
     } completion:^(BOOL finished) {
-        self.animating = NO;
-        self.contentView.x = 0;
-        if (self.pauseDelay > 0 && self.stopScroll == NO) {
-            [self changeFrame];
-        }
+        YXCLog(@"动画完成");
+        weakself.scrolling = NO;
+        weakself.contentView.x = 0;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(weakself.pauseDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakself contentViewAnimations];
+        });
     }];
 }
-
-- (void)setupAnimations {
-    
-    // 此方式,在 iOS 13 开始已被放弃
-    [UIView beginAnimations:@"FrameAni" context:nil];
-    [UIView setAnimationDuration:self.duration];
-    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationWillStartSelector:@selector(startAni:)];
-//    [UIView setAnimationDidStopSelector:@selector(stopAni:)];
-    [UIView setAnimationRepeatCount:MAXFLOAT];
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    self.contentView.x = -(self.firstLabel.width + 20);
-    [UIView commitAnimations];
-}
-
-- (void)startAni:(NSString *)aniID {
-    YXCLog(@"%@ start",aniID);
-}
-
-- (void)stopAni:(NSString *)aniID {
-    self.contentView.x = 0;
-    [self changeFrame];
-}
-
 
 #pragma mark - Constraints
 
