@@ -50,6 +50,8 @@
         self.autoBeginScroll = YES;
         self.beginDelay = 0;
         self.pauseDelay = 0;
+        self.fontSize = 14.0f;
+        self.textColor = UIColor.whiteColor;
         
         [self setupUI];
         [self setupConstraints];
@@ -91,46 +93,32 @@
     }
 }
 
+- (void)setTextColor:(UIColor *)textColor {
+    
+    _textColor = textColor;
+    
+    // 设置 Label 的文本颜色
+    self.firstLabel.textColor = self.textColor;
+    self.secondLabel.textColor = self.textColor;
+}
+
+- (void)setFontSize:(CGFloat)fontSize {
+    
+    _fontSize = fontSize;
+    
+    // 设置 Label 的字体大小
+    self.firstLabel.font = [UIFont systemFontOfSize:self.fontSize];
+    self.secondLabel.font = [UIFont systemFontOfSize:self.fontSize];
+}
+
 
 #pragma mark - IBActions
 
 
 #pragma mark - Public
 
-- (void)beginScrolling {
-    
-    [self contentViewAnimations];
-}
-
-- (void)stopScrolling {
-    
-    [self.contentView.layer removeAllAnimations];
-}
-
 
 #pragma mark - Private
-
-
-#pragma mark - Protocol
-
-
-#pragma mark - UI
-
-- (void)setupUI {
-    
-    // contentView
-    self.contentView = [UIView new];
-    [self addSubview:self.contentView];
-    
-    // firstLabel
-    self.firstLabel = [UILabel new];
-    [self.contentView addSubview:self.firstLabel];
-    
-    // secondLabel
-    self.secondLabel = [UILabel new];
-    [self.contentView addSubview:self.secondLabel];
-}
-
 
 - (void)contentViewAnimations {
     
@@ -162,11 +150,44 @@
         YXCLog(@"动画完成");
         weakself.scrolling = NO;
         weakself.contentView.x = 0;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(weakself.pauseDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakself contentViewAnimations];
-        });
+        if (weakself.pauseDelay > 0) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(weakself.pauseDelay * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                [weakself contentViewAnimations];
+            });
+        }
     }];
 }
+
+
+#pragma mark - Protocol
+
+
+#pragma mark - UI
+
+- (void)setupUI {
+    
+    // contentView
+    self.contentView = [UIView new];
+    [self addSubview:self.contentView];
+    
+    // firstLabel
+    self.firstLabel = [self setupLabel];
+    
+    // secondLabel
+    self.secondLabel = [self setupLabel];
+}
+
+- (UILabel *)setupLabel {
+    
+    UILabel *label = [UILabel new];
+    label.font = [UIFont systemFontOfSize:self.fontSize];
+    label.textColor = self.textColor;
+    [self.contentView addSubview:label];
+    
+    return label;
+}
+
 
 #pragma mark - Constraints
 
