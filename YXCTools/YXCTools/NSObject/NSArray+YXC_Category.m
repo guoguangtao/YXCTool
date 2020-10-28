@@ -69,9 +69,25 @@
 
 - (instancetype)yxc_initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt {
     
-    if (!objects) return nil;
+    // 计算不为 nil 的数组元素个数
+    NSUInteger count = 0;
+    for (int i = 0; i < cnt; i++) {
+        if (objects[i] != nil) {
+            count++;
+        }
+    }
+    // 根据统计出来不为 nil 的元素个数创建一个数组
+    id arr[count];
+    // 索引
+    NSUInteger index = 0;
+    for (int i = 0; i < cnt; i++) {
+        if (objects[i] != nil) {
+            // 将不为 nil 的元素添加到新数组中去
+            arr[index] = objects[i];
+        }
+    }
     
-    return [self yxc_initWithObjects:objects count:cnt];
+    return [self yxc_initWithObjects:arr count:count];
 }
 
 /**
