@@ -16,7 +16,9 @@
     [self hookMethod:[self class]
       originSelector:@selector(arrayWithObjects:count:)
     swizzledSelector:@selector(yxc_arrayWithObjects:count:)
-         classMethod:NO];
+         classMethod:YES];
+    
+//    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderArray") currentClass:[self class] originSelector:@selector(initWithObjects:count:) swizzledSelector:@selector(yxc_initWithObjects:count:) classMethod:NO];
     
     Method system_objectAtIndexedSubscriptMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndexedSubscript:));
     Method yxc_objectAtIndexedSubscriptMethod = class_getInstanceMethod(self, @selector(yxc_objectAtIndexedSubscript:));
@@ -63,6 +65,13 @@
     }
     
     return [NSArray arrayWithArray:objectArray];
+}
+
+- (instancetype)yxc_initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt {
+    
+    if (!objects) return nil;
+    
+    return [self yxc_initWithObjects:objects count:cnt];
 }
 
 /**

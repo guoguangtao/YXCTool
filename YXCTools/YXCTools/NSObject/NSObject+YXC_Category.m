@@ -51,14 +51,16 @@
     }
     
     // 给当前类添加 originSelector 方法，方法实现为 swizzled_method
-    BOOL addSuccess = class_addMethod(currentCls,
+    // 如果传入的是一个类方法，在这里需要将 元类对象传进去
+    Class addCls = clsMethod ? object_getClass(currentCls) : currentCls;
+    BOOL addSuccess = class_addMethod(addCls,
                                       originSelector,
                                       method_getImplementation(swizzled_method),
                                       method_getTypeEncoding(swizzled_method)
                                       );
     if (addSuccess) {
         // 将当前类的 swizzledSelector 的实现替换成 origin_method
-        class_replaceMethod(currentCls,
+        class_replaceMethod(addCls,
                             swizzledSelector,
                             method_getImplementation(origin_method),
                             method_getTypeEncoding(origin_method)

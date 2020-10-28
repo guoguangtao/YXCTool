@@ -33,12 +33,7 @@
     [self setupConstraints];
     
     NSString *string = nil;
-    
-//    NSArray *array = @[string];
-    
-    NSMutableArray *mutableArray = [NSMutableArray array];
-    [mutableArray removeObjectAtIndex:10];
-    [mutableArray insertObject:string atIndex:10];
+    NSArray *array = @[string];
 }
 
 - (void)dealloc {
