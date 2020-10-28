@@ -34,6 +34,13 @@
     
     NSString *string = nil;
     NSArray *array = @[string];
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
+    [mutableArray addObject:string];
+    [mutableArray insertObject:string atIndex:12];
+    mutableArray[19];
+    array[17];
+    [array objectAtIndex:15];
+    [mutableArray objectAtIndex:220];
 }
 
 - (void)dealloc {

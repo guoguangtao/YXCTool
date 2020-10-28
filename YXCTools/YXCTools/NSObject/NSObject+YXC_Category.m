@@ -53,11 +53,18 @@
     // 给当前类添加 originSelector 方法，方法实现为 swizzled_method
     // 如果传入的是一个类方法，在这里需要将 元类对象传进去
     Class addCls = clsMethod ? object_getClass(currentCls) : currentCls;
+    
+    BOOL isResponds = [addCls respondsToSelector:originSelector];
+    YXCLog(@"%@对象%@响应%@", clsMethod ? @"元类" : @"类", isResponds ? @"能" : @"不能", NSStringFromSelector(originSelector));
+    
     BOOL addSuccess = class_addMethod(addCls,
                                       originSelector,
                                       method_getImplementation(swizzled_method),
                                       method_getTypeEncoding(swizzled_method)
                                       );
+    
+    YXCLog(@"添加%@%@", NSStringFromSelector(originSelector), addSuccess ? @"成功" : @"失败");
+    
     if (addSuccess) {
         // 将当前类的 swizzledSelector 的实现替换成 origin_method
         class_replaceMethod(addCls,

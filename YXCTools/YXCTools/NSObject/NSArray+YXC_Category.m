@@ -13,37 +13,27 @@
 
 + (void)load {
     
-    [self hookMethod:[self class]
+    [self hookMethod:[NSArray class]
       originSelector:@selector(arrayWithObjects:count:)
     swizzledSelector:@selector(yxc_arrayWithObjects:count:)
          classMethod:YES];
     
-//    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderArray") currentClass:[self class] originSelector:@selector(initWithObjects:count:) swizzledSelector:@selector(yxc_initWithObjects:count:) classMethod:NO];
+    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderArray") currentClass:[NSArray class] originSelector:@selector(initWithObjects:count:) swizzledSelector:@selector(yxc_initWithObjects:count:) classMethod:NO];
     
-    Method system_objectAtIndexedSubscriptMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndexedSubscript:));
-    Method yxc_objectAtIndexedSubscriptMethod = class_getInstanceMethod(self, @selector(yxc_objectAtIndexedSubscript:));
-    method_exchangeImplementations(system_objectAtIndexedSubscriptMethod, yxc_objectAtIndexedSubscriptMethod);
+    [self hookOriginClass:NSClassFromString(@"__NSArrayI") currentClass:[NSArray class] originSelector:@selector(objectAtIndexedSubscript:) swizzledSelector:@selector(yxc_objectAtIndexedSubscript:) classMethod:NO];
     
-    Method system_objectAtIndexMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndex:));
-    Method yxc_objectAtIndexMethod = class_getInstanceMethod(self, @selector(yxc_objectAtIndex:));
-    method_exchangeImplementations(system_objectAtIndexMethod, yxc_objectAtIndexMethod);
+    [self hookOriginClass:NSClassFromString(@"__NSArray0") currentClass:[NSArray class] originSelector:@selector(objectAtIndex:) swizzledSelector:@selector(yxc_objectAtIndex:) classMethod:NO];
     
-    Method system_addObjectMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(addObject:));
-    Method yxc_addObjectMethod = class_getInstanceMethod(self, @selector(yxc_addObject:));
-    method_exchangeImplementations(system_addObjectMethod, yxc_addObjectMethod);
+    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSMutableArray class] originSelector:@selector(addObject:) swizzledSelector:@selector(yxc_addObject:) classMethod:NO];
+
+    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSMutableArray class] originSelector:@selector(insertObject:atIndex:) swizzledSelector:@selector(yxc_insertObject:atIndex:) classMethod:NO];
     
-    Method system_insertObjectAtIndexMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(insertObject:atIndex:));
-    Method yxc_insertObjectAtIndexMethod = class_getInstanceMethod(self, @selector(yxc_insertObject:atIndex:));
-    method_exchangeImplementations(system_insertObjectAtIndexMethod, yxc_insertObjectAtIndexMethod);
-    
-    Method system_removeObjectAtIndexMethod = class_getInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(removeObjectAtIndex:));
-    Method yxc_removeObjectAtIndexMethod = class_getInstanceMethod(self, @selector(yxc_removeObjectAtIndex:));
-    method_exchangeImplementations(system_removeObjectAtIndexMethod, yxc_removeObjectAtIndexMethod);
+    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSMutableArray class] originSelector:@selector(removeObjectAtIndex:) swizzledSelector:@selector(yxc_removeObjectAtIndex:) classMethod:NO];
     
     // 此处是可变数组的取值方法替换
-    Method system_objectAtIndexedSubscriptMethod1 = class_getInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(objectAtIndexedSubscript:));
-    Method yxc_objectAtIndexedSubscriptMethod1 = class_getInstanceMethod(self, @selector(yxc_objectAtIndexedSubscript1:));
-    method_exchangeImplementations(system_objectAtIndexedSubscriptMethod1, yxc_objectAtIndexedSubscriptMethod1);
+    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSArray class] originSelector:@selector(objectAtIndexedSubscript:) swizzledSelector:@selector(yxc_objectAtIndexedSubscript1:) classMethod:NO];
+    
+    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSArray class] originSelector:@selector(objectAtIndex:) swizzledSelector:@selector(yxc_mutableObjectAtIndex:) classMethod:NO];
 }
 
 /**
@@ -83,7 +73,7 @@
     for (int i = 0; i < cnt; i++) {
         if (objects[i] != nil) {
             // 将不为 nil 的元素添加到新数组中去
-            arr[index] = objects[i];
+            arr[index++] = objects[i];
         }
     }
     
@@ -135,6 +125,13 @@
     if (index >= self.count) return nil;
     
     return [self yxc_objectAtIndex:index];
+}
+
+- (id)yxc_mutableObjectAtIndex:(NSUInteger)index {
+    
+    if (index >= self.count) return nil;
+    
+    return [self yxc_mutableObjectAtIndex:index];
 }
 
 /**
