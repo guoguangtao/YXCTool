@@ -31,16 +31,6 @@
     
     [self setupUI];
     [self setupConstraints];
-    
-    NSString *string = nil;
-    NSArray *array = @[string];
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
-    [mutableArray addObject:string];
-    [mutableArray insertObject:string atIndex:12];
-    mutableArray[19];
-    array[17];
-    [array objectAtIndex:15];
-    [mutableArray objectAtIndex:220];
 }
 
 - (void)dealloc {
@@ -123,6 +113,7 @@
             [YXCControllerModel modelWithClassName:@"YXCTableViewEditController" title:@"UITableView多选状态" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCAnimationController" title:@"iOS 动画" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCLaunchImagesController" title:@"启动图制作" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCUIBezierPathController" title:@"UIBezierPath的使用" parameter:Nil],
         ];
     }
     

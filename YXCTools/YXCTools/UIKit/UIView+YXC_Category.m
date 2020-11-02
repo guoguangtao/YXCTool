@@ -179,6 +179,18 @@
     return objc_getAssociatedObject(self, @selector(yxc_borderColor));
 }
 
+#pragma mark - yxc_cornerRadius
+
+- (void)setYxc_cornerRadius:(CGFloat)yxc_cornerRadius {
+    
+    objc_setAssociatedObject(self, @selector(yxc_cornerRadius), @(yxc_cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)yxc_cornerRadius {
+    
+    return [objc_getAssociatedObject(self, @selector(yxc_cornerRadius)) floatValue];
+}
+
 #pragma mark - yxc_border
 
 - (void)setYxc_border:(YXCViewBorder)yxc_border {
