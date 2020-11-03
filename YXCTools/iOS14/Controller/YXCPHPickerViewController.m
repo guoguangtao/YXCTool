@@ -13,6 +13,7 @@
 @interface YXCPHPickerViewController ()<PHPickerViewControllerDelegate>
 
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 
@@ -47,12 +48,6 @@
 
 - (void)choosePhoto:(UIButton *)button {
     
-    YXCPopOverView *overView = [[YXCPopOverView alloc] init];
-    overView.width = 80;
-    overView.height = 100;
-    [overView showForm:button];
-    
-    return;
     if (@available(iOS 14, *)) {
         PHPickerConfiguration *configuration = [PHPickerConfiguration new];
         configuration.filter = [PHPickerFilter imagesFilter]; // 设置所选的类型,这里设置是图片,默认是 nil,设置成 nil 则代表所有的类型都显示出来(包括 视频/LivePhoto )
@@ -89,7 +84,19 @@
                           completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable object, NSError * _Nullable error) {
                 // 取出图片
                 if (!error && object && [object isKindOfClass:UIImage.class]) {
-                    NSLog(@"%@", object);
+                    NSData *imgData = UIImageJPEGRepresentation(object, 1);
+                    YXCLog(@"imgData - %ld", imgData.length);
+                    UIImage *image = (UIImage *)object;
+                    [image compressWithMaxLengthKB:5120 complete:^(NSData * _Nonnull imageData) {
+                        YXCLog(@"imageData - %ld", imageData.length);
+                    }];
+                    
+                    YXCLog(@"imageSize - %@", NSStringFromCGSize(image.size));
+                    UIImage *resultImage = [image compressWithSize:CGSizeMake(50, 50)];
+                    YXCLog(@"resultImage - %@", NSStringFromCGSize(resultImage.size));
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.imageView.image = resultImage;
+                    });
                 }
             }];
         }
@@ -147,6 +154,13 @@
     button4.backgroundColor = [UIColor orangeColor];
     [button4 addTarget:self action:@selector(choosePhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button4];
+    
+    self.imageView = [UIImageView new];
+    self.imageView.size = CGSizeMake(100, 100);
+    self.imageView.centerX = self.view.centerX;
+    self.imageView.centerY = self.view.centerY + 50;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:self.imageView];
 }
 
 
