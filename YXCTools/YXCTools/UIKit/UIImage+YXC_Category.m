@@ -8,7 +8,71 @@
 
 #import "UIImage+YXC_Category.h"
 
+const UICornerInset UICornerInsetZero = {0.0f, 0.0f, 0.0f, 0.0f};
+
 @implementation UIImage (YXC_Category)
+
++ (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size {
+    return [self imageWithColor:color size:size cornerInset:UICornerInsetZero];
+}
+
++ (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius {
+    return [self imageWithColor:color
+                           size:size
+                    cornerInset:UICornerInsetMake(cornerRadius, cornerRadius, cornerRadius, cornerRadius)];
+}
+
++ (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size cornerInset:(UICornerInset)cornerInset {
+    return [self _imageWithColor:color size:size cornerInset:cornerInset saveInCache:YES];
+}
+
++ (UIImage *)_imageWithColor:(UIColor*)color size:(CGSize)size cornerInset:(UICornerInset)cornerInset saveInCache:(BOOL)save {
+    
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    CGRect rect = CGRectMake(0.0f, 0.0f, scale*size.width, scale*size.height);
+    
+    cornerInset.topRight *= scale;
+    cornerInset.topLeft *= scale;
+    cornerInset.bottomLeft *= scale;
+    cornerInset.bottomRight *= scale;
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(NULL, rect.size.width, rect.size.height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
+    
+    CGColorSpaceRelease(colorSpace);
+    
+    if (context == NULL)
+        return nil;
+    
+    CGFloat minx = CGRectGetMinX(rect), midx = CGRectGetMidX(rect), maxx = CGRectGetMaxX(rect);
+    CGFloat miny = CGRectGetMinY(rect), midy = CGRectGetMidY(rect), maxy = CGRectGetMaxY(rect);
+    
+    CGContextBeginPath(context);
+    CGContextSetGrayFillColor(context, 1.0, 0.0); // <-- Alpha color in background
+    CGContextAddRect(context, rect);
+    CGContextClosePath(context);
+    CGContextDrawPath(context, kCGPathFill);
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]); // <-- Color to fill
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, minx, midy);
+    CGContextAddArcToPoint(context, minx, miny, midx, miny, cornerInset.bottomLeft);
+    CGContextAddArcToPoint(context, maxx, miny, maxx, midy, cornerInset.bottomRight);
+    CGContextAddArcToPoint(context, maxx, maxy, midx, maxy, cornerInset.topRight);
+    CGContextAddArcToPoint(context, minx, maxy, minx, midy, cornerInset.topLeft);
+    CGContextClosePath(context);
+    CGContextDrawPath(context, kCGPathFill);
+    
+    CGImageRef bitmapContext = CGBitmapContextCreateImage(context);
+    
+    CGContextRelease(context);
+    
+    UIImage *theImage = [UIImage imageWithCGImage:bitmapContext scale:scale orientation:UIImageOrientationUp];
+    
+    CGImageRelease(bitmapContext);
+    
+    return theImage;
+}
 
 /// 根据颜色创建一个 UIImage
 /// @param color 颜色

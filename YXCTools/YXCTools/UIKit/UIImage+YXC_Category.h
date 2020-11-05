@@ -8,6 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+typedef struct __UICornerInset {
+    CGFloat topLeft;
+    CGFloat topRight;
+    CGFloat bottomLeft;
+    CGFloat bottomRight;
+} UICornerInset;
+
+UIKIT_EXTERN const UICornerInset UICornerInsetZero;
+
+UIKIT_STATIC_INLINE UICornerInset UICornerInsetMake(CGFloat topLeft, CGFloat topRight, CGFloat bottomLeft, CGFloat bottomRight)
+{
+    UICornerInset cornerInset = {topLeft, topRight, bottomLeft, bottomRight};
+    return cornerInset;
+}
+
+UIKIT_STATIC_INLINE UICornerInset UICornerInsetMakeWithRadius(CGFloat radius) {
+    UICornerInset cornerInset = {radius, radius, radius, radius};
+    return cornerInset;
+}
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (YXC_Category)
@@ -24,6 +44,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (UIImage *)compressWithSize:(CGSize)size;
+
+
+
+/// 根据颜色创建图片
+/// @param color 颜色值
+/// @param size 大小
++ (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size;
++ (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius;
++ (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size cornerInset:(UICornerInset)cornerInset;
 
 
 @end

@@ -156,11 +156,20 @@
     [self.view addSubview:button4];
     
     self.imageView = [UIImageView new];
-    self.imageView.size = CGSizeMake(100, 100);
+    self.imageView.size = CGSizeMake(50, 50);
     self.imageView.centerX = self.view.centerX;
     self.imageView.centerY = self.view.centerY + 50;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView.image = [UIImage imageWithColor:UIColor.redColor size:self.imageView.size cornerRadius:10];
     [self.view addSubview:self.imageView];
+    
+    UIImageView *imageView1 = [UIImageView new];
+    imageView1.size = CGSizeMake(50, 50);
+    imageView1.centerX = self.view.centerX;
+    imageView1.centerY = self.view.centerY + 150;
+    imageView1.contentMode = UIViewContentModeScaleAspectFit;
+    imageView1.image = [UIImage imageWithColor:UIColor.purpleColor size:self.imageView.size cornerInset:UICornerInsetMake(5, 10, 15, 20)];
+    [self.view addSubview:imageView1];
 }
 
 
