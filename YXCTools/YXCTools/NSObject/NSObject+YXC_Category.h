@@ -58,6 +58,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 判断当前对象是否为nil
 - (BOOL)isEmpty;
 
+/// 查看两个类的某个同名方法的实现是否一致
+/// @param originCls 父类
+/// @param targetCls 当前类
+/// @param selector 方法
++ (void)printfMethodOriginCls:(Class)originCls targetCls:(Class)targetCls selector:(SEL)selector;
+
 @end
 
 NS_ASSUME_NONNULL_END

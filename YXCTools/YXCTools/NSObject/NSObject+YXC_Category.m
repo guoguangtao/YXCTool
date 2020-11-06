@@ -117,4 +117,21 @@
     return self;
 }
 
+/// 查看两个类的某个同名方法的实现是否一致
+/// @param originCls 父类
+/// @param targetCls 当前类
+/// @param selector 方法
++ (void)printfMethodOriginCls:(Class)originCls targetCls:(Class)targetCls selector:(SEL)selector {
+    
+    Method originMethod = class_getInstanceMethod(originCls, selector);
+    Method targetMethod = class_getInstanceMethod(targetCls, selector);
+    
+    IMP originIMP = class_getMethodImplementation(originCls, selector);
+    IMP targetIMP = class_getMethodImplementation(targetCls, selector);
+    
+    BOOL isSame = originMethod == targetMethod && originIMP == targetIMP;
+    
+    YXCLog(@"%@  -- 方法 --- %@：{\n originMethod : %p, originIMP : %p\n targetMethod : %p, targetIMP : %p\n}", NSStringFromSelector(selector), isSame ? @"一致" : @"不一致", originMethod, originIMP, targetMethod, targetIMP);
+}
+
 @end
