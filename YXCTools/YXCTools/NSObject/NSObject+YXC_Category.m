@@ -131,7 +131,7 @@
     
     BOOL isSame = originMethod == targetMethod && originIMP == targetIMP;
     
-    YXCLog(@"%@  -- 方法 --- %@：{\n originMethod : %p, originIMP : %p\n targetMethod : %p, targetIMP : %p\n}", NSStringFromSelector(selector), isSame ? @"一致" : @"不一致", originMethod, originIMP, targetMethod, targetIMP);
+    YXCLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), isSame ? @"一致" : @"不一致", originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
 }
 
 @end
