@@ -13,61 +13,74 @@
 
 + (void)load {
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // 获取系统 initWithObjects:forKeys:count: 方法，这里是获取一个实例方法利用 class_getInstanceMethod 去获取
-        // class_getInstanceMethod(Class _Nullable cls, SEL _Nonnull name) 这里 cls 是所需要替换方法的类， name 是需要替换方法的 SEL
-        Method system_initWithObjectsForKeysCountMethod = class_getInstanceMethod(NSClassFromString(@"__NSPlaceholderDictionary"), @selector(initWithObjects:forKeys:count:));
-        // 拿到自己所写的 yxc_initWithObjects:forKeys:count:
-        Method yxc_initWithObjectsForKeysCountMethod = class_getInstanceMethod(self, @selector(yxc_initWithObjects:forKeys:count:));
-        // 将系统方法和自己所写的方法进行替换
-        // method_exchangeImplementations(Method _Nonnull m1, Method _Nonnull m2) 需要替换的方法
-        method_exchangeImplementations(system_initWithObjectsForKeysCountMethod, yxc_initWithObjectsForKeysCountMethod);
-        
-        Method system_setObjectForKeyMethod = class_getInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKey:));
-        Method yxc_setObjectForKeyMethod = class_getInstanceMethod(self, @selector(yxc_setObject:forKey:));
-        method_exchangeImplementations(system_setObjectForKeyMethod, yxc_setObjectForKeyMethod);
-        
-        Method system_setValueForKeyMethod = class_getInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setValue:forKey:));
-        Method yxc_setValueForKeyMethod = class_getInstanceMethod(self, @selector(yxc_setValue:forKey:));
-        method_exchangeImplementations(system_setValueForKeyMethod, yxc_setValueForKeyMethod);
-    });
+    // @{} 字面量初始化
+    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderDictionary")
+             currentClass:[self class]
+           originSelector:@selector(initWithObjects:forKeys:count:)
+         swizzledSelector:@selector(yxc_NSPlaceholderDictionary_initWithObjects:forKeys:count:)
+              classMethod:NO];
+    
+    [self hookMethod:[self class]
+      originSelector:@selector(initWithObjects:forKeys:)
+    swizzledSelector:@selector(yxc_initWithObjects:forKeys:)
+         classMethod:NO];
     
 }
 
-- (instancetype)yxc_initWithObjects:(id  _Nonnull const [])objects forKeys:(id<NSCopying>  _Nonnull const [])keys count:(NSUInteger)cnt {
+/// 字面量初始化
+/// 1. +[NSDictionary dictionaryWithObjects:forKeys:count:]
+/// 2. -[__NSPlaceholderDictionary initWithObjects:forKeys:count:]
+/// *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[__NSPlaceholderDictionary initWithObjects:forKeys:count:]: attempt to insert nil object from objects[3]'
+/// @param objects 内容数组
+/// @param keys key 数组
+/// @param cnt 内容个数
+- (instancetype)yxc_NSPlaceholderDictionary_initWithObjects:(id  _Nonnull const [])objects
+                                                    forKeys:(id<NSCopying>  _Nonnull const [])keys
+                                                      count:(NSUInteger)cnt {
     
-    // 此处因为传入的参数是 C 语言数组，所以这里也通过 C 语言数组操作
-    NSUInteger index = 0; // 数组下标，用于将数据存入正确的位置
-    id objectsArray[cnt]; // 值 数组
-    id<NSCopying> keysArray[cnt]; // 键 数组
+    NSUInteger count = 0;
     
-    // 遍历传入的参数数组，对正常的数据放入新创建的数组中
+    NSMutableArray *keysArray = [NSMutableArray array];
+    NSMutableArray *valuesArray = [NSMutableArray array];
+
     for (int i = 0; i < cnt; i++) {
-        if (objects[i] != nil && keys[i] != nil) {
-            objectsArray[index] = objects[i];
-            keysArray[index] = keys[i];
-            index++;
+        id key = keys[i];
+        id value = objects[i];
+        if (key == nil || value == nil) continue;
+        [keysArray addObject:key];
+        [valuesArray addObject:value];
+        count++;
+    }
+
+    id objs[count];
+    id keysArr[count];
+
+    for (int i = 0; i < count; i++) {
+        objs[i] = valuesArray[i];
+        keysArr[i] = keysArray[i];
+    }
+    
+    return [self yxc_NSPlaceholderDictionary_initWithObjects:objs forKeys:keysArr count:count];
+}
+
+/// 当 value 和 key 数量不一致时进行处理
+/// @param objects 对象数组
+/// @param keys key 数组
+- (instancetype)yxc_initWithObjects:(NSArray *)objects forKeys:(NSArray<id<NSCopying>> *)keys {
+    
+    if (objects.count != keys.count) {
+        // *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[NSDictionary initWithObjects:forKeys:]: count of objects (1) differs from count of keys (0)'
+        NSMutableArray *objectsArray = [NSMutableArray array];
+        NSMutableArray *keysArray = [NSMutableArray array];
+        NSUInteger count = MIN(objects.count, keys.count);
+        for (int i = 0; i < count; i++) {
+            [objectsArray addObject:objects[i]];
+            [keysArray addObject:keys[i]];
         }
+        return [self yxc_initWithObjects:objectsArray forKeys:keysArray];
     }
     
-    // 调用系统方法，这里一定是 yxc_initWithObjects:forKeys:count: 方法，因为已经方法替换了，调用这个方法实际上是调用系统原来的方法
-    // 将处理好的健值数组作为新的健值数组传入
-    return [self yxc_initWithObjects:objectsArray forKeys:keysArray count:index];
-}
-
-- (void)yxc_setObject:(id)anObject forKey:(id <NSCopying>)aKey {
-
-    if (anObject != nil && aKey != nil) {
-        [self yxc_setObject:anObject forKey:aKey];
-    }
-}
-
-- (void)yxc_setValue:(id)value forKey:(NSString *)key {
-    
-    if (key != nil && ![key isKindOfClass:[NSNull class]]) {
-        [self yxc_setValue:value forKey:key];
-    }
+    return [self yxc_initWithObjects:objects forKeys:keys];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
