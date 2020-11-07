@@ -13,51 +13,59 @@
 
 + (void)load {
     
-    [self hookMethod:[NSArray class]
-      originSelector:@selector(arrayWithObjects:count:)
-    swizzledSelector:@selector(yxc_arrayWithObjects:count:)
-         classMethod:YES];
+    // NSArray @[] 字面量
+    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderArray")
+             currentClass:[self class]
+           originSelector:@selector(initWithObjects:count:)
+         swizzledSelector:@selector(yxc_NSPlaceholderArray_initWithObjects:count:)
+              classMethod:NO];
     
-    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderArray") currentClass:[NSArray class] originSelector:@selector(initWithObjects:count:) swizzledSelector:@selector(yxc_initWithObjects:count:) classMethod:NO];
+    // 当数组为空数组时，数组的类型为 __NSArray0，内部重新实现了 objectAtIndex: 方法，需要对 __NSArray0 类进行 hook 操作
+    [self hookOriginClass:NSClassFromString(@"__NSArray0")
+             currentClass:[self class]
+           originSelector:@selector(objectAtIndex:)
+         swizzledSelector:@selector(yxc_NSArray0_objectAtIndex:)
+              classMethod:NO];
     
-    [self hookOriginClass:NSClassFromString(@"__NSArrayI") currentClass:[NSArray class] originSelector:@selector(objectAtIndexedSubscript:) swizzledSelector:@selector(yxc_objectAtIndexedSubscript:) classMethod:NO];
+    // 当数组元素为 1 个时，数组的类型为 __NSSingleObjectArrayI，内部重新实现了 objectAtIndex: 方法，需要对 __NSSingleObjectArrayI 类进行 hook 操作
+    [self hookOriginClass:NSClassFromString(@"__NSSingleObjectArrayI")
+             currentClass:[self class]
+           originSelector:@selector(objectAtIndex:)
+         swizzledSelector:@selector(yxc_NSSingleObjectArrayI_objectAtIndex:)
+              classMethod:NO];
     
-    [self hookOriginClass:NSClassFromString(@"__NSArray0") currentClass:[NSArray class] originSelector:@selector(objectAtIndex:) swizzledSelector:@selector(yxc_objectAtIndex:) classMethod:NO];
+    // 当数组元素为多个时，数组的类型为 __NSArrayI，内部重新实现了 objectAtIndexedSubscript: 方法，使用该方法对系统方法进行 hook
+    [self hookOriginClass:NSClassFromString(@"__NSArrayI")
+             currentClass:[self class]
+           originSelector:@selector(objectAtIndexedSubscript:)
+         swizzledSelector:@selector(yxc_NSArrayI_objectAtIndexedSubscript:)
+              classMethod:NO];
     
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSMutableArray class] originSelector:@selector(addObject:) swizzledSelector:@selector(yxc_addObject:) classMethod:NO];
-
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSMutableArray class] originSelector:@selector(insertObject:atIndex:) swizzledSelector:@selector(yxc_insertObject:atIndex:) classMethod:NO];
+    // 当数组元素为多个时，数组的类型为 __NSArrayI，内部重新实现了 objectAtIndex: 方法，使用该方法对系统方法进行 hook
+    [self hookOriginClass:NSClassFromString(@"__NSArrayI")
+             currentClass:[self class]
+           originSelector:@selector(objectAtIndex:)
+         swizzledSelector:@selector(yxc_NSArrayI_objectAtIndex:)
+              classMethod:NO];
     
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSMutableArray class] originSelector:@selector(removeObjectAtIndex:) swizzledSelector:@selector(yxc_removeObjectAtIndex:) classMethod:NO];
+    // 不可变数组，根据某个对象和范围获取索引值，在这不区分 __NSArray0、__NSSingleObjectArrayI、__NSArrayI 类型
+    [self hookMethod:[self class]
+      originSelector:@selector(indexOfObject:inRange:)
+    swizzledSelector:@selector(yxc_indexOfObject:inRange:)
+         classMethod:NO];
     
-    // 此处是可变数组的取值方法替换
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSArray class] originSelector:@selector(objectAtIndexedSubscript:) swizzledSelector:@selector(yxc_objectAtIndexedSubscript1:) classMethod:NO];
-    
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM") currentClass:[NSArray class] originSelector:@selector(objectAtIndex:) swizzledSelector:@selector(yxc_mutableObjectAtIndex:) classMethod:NO];
+    // 不可变数组，根据 indexSet 获取某个元素,在这不区分 __NSArray0、__NSSingleObjectArrayI、__NSArrayI 类型
+    [self hookMethod:[self class]
+      originSelector:@selector(objectsAtIndexes:)
+    swizzledSelector:@selector(yxc_objectsAtIndexes:)
+         classMethod:NO];
 }
 
-/**
- @[] 字面量初始化调用方法
- 
- @param objects 对象
- @param cnt 数组个数
- @return 数组
- */
-+ (instancetype)yxc_arrayWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt {
-    
-    NSMutableArray *objectArray = [NSMutableArray array];
-    
-    for (int i = 0; i < cnt; i++) {
-        id object = objects[i];
-        if (object && ![object isKindOfClass:[NSNull class]]) {
-            [objectArray addObject:object];
-        }
-    }
-    
-    return [NSArray arrayWithArray:objectArray];
-}
-
-- (instancetype)yxc_initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt {
+/// @[] 字面量初始化数组
+/// @param objects 数组
+/// @param cnt 数组个数
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[__NSArray0 objectAtIndex:]: index 12 beyond bounds for empty NSArray'
+- (instancetype)yxc_NSPlaceholderArray_initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt {
     
     // 计算不为 nil 的数组元素个数
     NSUInteger count = 0;
@@ -77,85 +85,110 @@
         }
     }
     
-    return [self yxc_initWithObjects:arr count:count];
+    return [self yxc_NSPlaceholderArray_initWithObjects:arr count:count];
 }
 
-/**
- 数组添加一个对象
- */
-- (void)yxc_addObject:(id)anObject {
+/// 根据某个索引获取到数组元素
+/// 当数组为空数组时，数组的类型为 __NSArray0，内部重新实现了 objectAtIndex: 方法，使用该方法对系统方法进行 hook
+/// @param index 索引
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[__NSArray0 objectAtIndex:]: index 12 beyond bounds for empty NSArray'
+- (id)yxc_NSArray0_objectAtIndex:(NSUInteger)index {
     
-    if (!anObject) return;
-    [self yxc_addObject:anObject];
+    // 判断当前数组是否为空数组
+    if (self.count <= 0) return nil;
+    
+    if (index >= self.count) {
+        index = self.count - 1;
+    }
+    
+    return [self yxc_NSArray0_objectAtIndex:index];
 }
 
-/**
- 数组插入一个对象
- 
- @param anObject 对象
- @param index 待插入的下标
- */
-- (void)yxc_insertObject:(id)anObject atIndex:(NSUInteger)index {
+/// 根据某个索引获取到数组元素
+/// 当数组元素为 1 个时，数组的类型为 __NSSingleObjectArrayI，内部重新实现了 objectAtIndex: 方法，使用该方法对系统方法进行 hook
+/// @param index 索引
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[__NSSingleObjectArrayI objectAtIndex:]: index 12 beyond bounds [0 .. 0]'
+- (id)yxc_NSSingleObjectArrayI_objectAtIndex:(NSUInteger)index {
     
-    if (!anObject) return;
-    if (index > self.count) return; // 数组可以插入下标为0这个位置，如果此处 >= 会有问题
+    // 判断当前数组是否为空数组
+    if (self.count <= 0) return nil;
     
-    [self yxc_insertObject:anObject atIndex:index];
+    if (index >= self.count) {
+        index = self.count - 1;
+    }
+    
+    return [self yxc_NSSingleObjectArrayI_objectAtIndex:index];
 }
 
-/**
- 根据下标移除某个对象
- 
- @param index 需要移除的下标
- */
-- (void)yxc_removeObjectAtIndex:(NSUInteger)index {
+/// 根据某个索引获取到数组元素，此处是使用字面量([]) 的方式获取
+/// 当数组元素为多个时，数组的类型为 __NSArrayI，内部重新实现了 objectAtIndex: 方法，使用该方法对系统方法进行 hook
+/// @param idx 索引
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[__NSArrayI objectAtIndexedSubscript:]: index 12 beyond bounds [0 .. 1]'
+- (id)yxc_NSArrayI_objectAtIndexedSubscript:(NSUInteger)idx {
     
-    if (index >= self.count) return;
+    if (self.count <= 0) return nil;
     
-    [self yxc_removeObjectAtIndex:index];
+    if (idx >= self.count) {
+        idx = self.count - 1;
+    }
+    
+    return [self yxc_NSArrayI_objectAtIndexedSubscript:idx];
 }
 
-/**
- 通过 index 获取对象
- 
- @param index 数组下标
- */
-- (id)yxc_objectAtIndex:(NSUInteger)index {
+/// 根据索引获取数组某个元素（数组元素为多个），使用 objectAtIndex: 方法的方式获取
+/// @param index 索引
+- (id)yxc_NSArrayI_objectAtIndex:(NSUInteger)index {
     
-    if (index >= self.count) return nil;
+    if (self.count <= 0) return nil;
     
-    return [self yxc_objectAtIndex:index];
+    if (index >= self.count) {
+        index = self.count - 1;
+    }
+    
+    return [self yxc_NSArrayI_objectAtIndex:index];
 }
 
-- (id)yxc_mutableObjectAtIndex:(NSUInteger)index {
+/// 不可变数组，根据某个对象和范围获取索引值，在这不区分 __NSArray0、__NSSingleObjectArrayI、__NSArrayI 类型
+/// 1. 当数组为空时
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[NSArray indexOfObject:inRange:]: range {0, 120} extends beyond bounds for empty array'
+/// 2. 当数组不为空时
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[NSArray indexOfObject:inRange:]: range {0, 120} extends beyond bounds [0 .. 0]'
+/// @param anObject 搜索的对象
+/// @param range 搜索范围
+- (NSUInteger)yxc_indexOfObject:(id)anObject inRange:(NSRange)range {
     
-    if (index >= self.count) return nil;
+    // 判断搜索范围是否在数组界线
+    if (range.location > (NSUInteger)self.count ||
+        range.length > ((NSUInteger)self.count - range.location)) {
+        return NSNotFound;
+    }
     
-    return [self yxc_mutableObjectAtIndex:index];
+    return [self yxc_indexOfObject:anObject inRange:range];
 }
 
-/**
- @[] 形式获取数组对象
- 
- @param idx 数组下标
- */
-- (id)yxc_objectAtIndexedSubscript:(NSUInteger)idx {
-    
-    if (idx >= self.count) return nil;
-    
-    return [self objectAtIndex:idx];
-}
 
-/**
- @[] 形式获取数组对象
- 
- @param idx 数组下标
- */
-- (id)yxc_objectAtIndexedSubscript1:(NSUInteger)idx {
+/// 不可变数组，根据 indexSet 获取某个元素
+/// 1. 当数组为空时
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[NSArray objectsAtIndexes:]: index 14 in index set beyond bounds for empty array'
+/// 2. 当数组不为空时
+/// *** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[NSArray objectsAtIndexes:]: index 14 in index set beyond bounds [0 .. 0]'
+/// @param indexes 搜索范围
+- (NSArray *)yxc_objectsAtIndexes:(NSIndexSet *)indexes {
     
-    if (idx >= self.count) return nil;
+    if (self.count <= 0) return nil;
     
-    return [self objectAtIndex:idx];
+    // 判断搜索范围是否在数组界线
+    NSRange range = NSMakeRange(indexes.firstIndex, indexes.count);
+    // range.location 大于数组元素个数，直接返回 nil
+    if (range.location > (NSUInteger)self.count) return nil;
+    
+    // range.length 大于 数组元素个数 - range.location，直接取 range.location 开始，到数组的最后一个元素
+    if (range.length > ((NSUInteger)self.count - range.location)) {
+        range.length = self.count - range.location;
+        indexes = [NSIndexSet indexSetWithIndexesInRange:range];
+    }
+    
+    return [self yxc_objectsAtIndexes:indexes];
 }
 
 /// 打印数组
