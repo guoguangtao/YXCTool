@@ -73,7 +73,9 @@ isBangsScreen; \
 #pragma mark - NSObject
 
 #import "NSArray+YXC_Category.h"
+#import "NSMutableArray+YXC_Category.h"
 #import "NSDictionary+YXC_Category.h"
+#import "NSMutableDictionary+YXC_Category.h"
 #import "YXCImagePickerHandler.h"
 #import "YXCPushHandler.h"
 #import "YXCControllerModel.h"

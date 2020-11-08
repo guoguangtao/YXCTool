@@ -215,6 +215,9 @@ static YXCImagePickerHandler *_instance;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     
+    // 防止多次点击重复走代理
+    picker.delegate = nil;
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
     
     // 不允许裁剪获取 UIImagePickerControllerOriginalImage
