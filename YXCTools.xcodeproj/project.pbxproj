@@ -37,6 +37,11 @@
 		8A78169B253EDB1500A82DF9 /* YXCCAEmitterLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A78169A253EDB1500A82DF9 /* YXCCAEmitterLayerController.m */; };
 		8A7816A7253EE0FE00A82DF9 /* YXCLaunchImagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7816A6253EE0FE00A82DF9 /* YXCLaunchImagesController.m */; };
 		8A7F3D4F25426E9500C458C4 /* YXCPopOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F3D4E25426E9500C458C4 /* YXCPopOverView.m */; };
+		8A81CA492563C48E00BE03D4 /* YXCMultithreadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA482563C48E00BE03D4 /* YXCMultithreadingController.m */; };
+		8A81CA4C2563C55B00BE03D4 /* YXCPthreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA4B2563C55B00BE03D4 /* YXCPthreadController.m */; };
+		8A81CA4F2563CE4100BE03D4 /* YXCNSThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA4E2563CE4100BE03D4 /* YXCNSThreadController.m */; };
+		8A81CA522563D13800BE03D4 /* YXCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA512563D13800BE03D4 /* YXCThread.m */; };
+		8A81CA552563FBFC00BE03D4 /* YXCGCDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA542563FBFC00BE03D4 /* YXCGCDController.m */; };
 		8A8890F924AD944300217E14 /* UIDevice+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8890F624AD944300217E14 /* UIDevice+YXC_Category.m */; };
 		8A8E1AAB251CABC50044205C /* YXCPhotoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8E1AAA251CABC50044205C /* YXCPhotoListCell.m */; };
 		8AA0FDED251D838100805E84 /* YXCPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA0FDEC251D838100805E84 /* YXCPhotoListController.m */; };
@@ -154,6 +159,16 @@
 		8A7816A6253EE0FE00A82DF9 /* YXCLaunchImagesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCLaunchImagesController.m; sourceTree = "<group>"; };
 		8A7F3D4D25426E9500C458C4 /* YXCPopOverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPopOverView.h; sourceTree = "<group>"; };
 		8A7F3D4E25426E9500C458C4 /* YXCPopOverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPopOverView.m; sourceTree = "<group>"; };
+		8A81CA472563C48E00BE03D4 /* YXCMultithreadingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCMultithreadingController.h; sourceTree = "<group>"; };
+		8A81CA482563C48E00BE03D4 /* YXCMultithreadingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCMultithreadingController.m; sourceTree = "<group>"; };
+		8A81CA4A2563C55B00BE03D4 /* YXCPthreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPthreadController.h; sourceTree = "<group>"; };
+		8A81CA4B2563C55B00BE03D4 /* YXCPthreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPthreadController.m; sourceTree = "<group>"; };
+		8A81CA4D2563CE4100BE03D4 /* YXCNSThreadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCNSThreadController.h; sourceTree = "<group>"; };
+		8A81CA4E2563CE4100BE03D4 /* YXCNSThreadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCNSThreadController.m; sourceTree = "<group>"; };
+		8A81CA502563D13800BE03D4 /* YXCThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCThread.h; sourceTree = "<group>"; };
+		8A81CA512563D13800BE03D4 /* YXCThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCThread.m; sourceTree = "<group>"; };
+		8A81CA532563FBFC00BE03D4 /* YXCGCDController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCGCDController.h; sourceTree = "<group>"; };
+		8A81CA542563FBFC00BE03D4 /* YXCGCDController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCGCDController.m; sourceTree = "<group>"; };
 		8A8890F624AD944300217E14 /* UIDevice+YXC_Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+YXC_Category.m"; sourceTree = "<group>"; };
 		8A8890F724AD944300217E14 /* UIDevice+YXC_Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+YXC_Category.h"; sourceTree = "<group>"; };
 		8A8890F824AD944300217E14 /* UIDeviceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceName.h; sourceTree = "<group>"; };
@@ -421,6 +436,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		8A81CA462563C44F00BE03D4 /* Multithreading(多线程) */ = {
+			isa = PBXGroup;
+			children = (
+				8A81CA472563C48E00BE03D4 /* YXCMultithreadingController.h */,
+				8A81CA482563C48E00BE03D4 /* YXCMultithreadingController.m */,
+				8A81CA4A2563C55B00BE03D4 /* YXCPthreadController.h */,
+				8A81CA4B2563C55B00BE03D4 /* YXCPthreadController.m */,
+				8A81CA4D2563CE4100BE03D4 /* YXCNSThreadController.h */,
+				8A81CA4E2563CE4100BE03D4 /* YXCNSThreadController.m */,
+				8A81CA532563FBFC00BE03D4 /* YXCGCDController.h */,
+				8A81CA542563FBFC00BE03D4 /* YXCGCDController.m */,
+				8A81CA502563D13800BE03D4 /* YXCThread.h */,
+				8A81CA512563D13800BE03D4 /* YXCThread.m */,
+			);
+			name = "Multithreading(多线程)";
+			path = Multithreading;
+			sourceTree = "<group>";
+		};
 		8A8E1AA8251CA1DB0044205C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +497,7 @@
 		8AECEC2624497FEA00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				8A81CA462563C44F00BE03D4 /* Multithreading(多线程) */,
 				8A781693253ED62E00A82DF9 /* Animation(动画) */,
 				8AEDE51C2521D5C6006C3452 /* UIKit使用 */,
 				8A2B79D9251611A900BB9595 /* Other */,
@@ -762,17 +796,22 @@
 				8AA0FDF0251D8F1E00805E84 /* YXCPhotoListImageCell.m in Sources */,
 				8AECEC702449920B00537181 /* NSArray+YXC_Category.m in Sources */,
 				8AAEE48D25306A5000B31BC5 /* YXCBigPictureView.m in Sources */,
+				8A81CA4C2563C55B00BE03D4 /* YXCPthreadController.m in Sources */,
 				8AD0C8C72541167B00BA2C06 /* YXCEmitterLikeController.m in Sources */,
 				8AECEC3A24497FED00537181 /* main.m in Sources */,
+				8A81CA552563FBFC00BE03D4 /* YXCGCDController.m in Sources */,
 				8A2B79D82516111C00BB9595 /* YXCDatePickerController.m in Sources */,
 				8A1FB4642519A06F00825BEA /* YXCPhotoAlbumListController.m in Sources */,
 				8A002E9E24F8BB29000F9CBC /* YXCImagePickerHandler.m in Sources */,
 				8A633D422546EE6600C5B32C /* YXCMarqueeLabel.m in Sources */,
 				8A603EB024D2EE7A008AC9BD /* MASViewConstraint.m in Sources */,
+				8A81CA522563D13800BE03D4 /* YXCThread.m in Sources */,
 				8A1FB46C2519A25400825BEA /* YXCPhotoHandler.m in Sources */,
 				8AA0FDED251D838100805E84 /* YXCPhotoListController.m in Sources */,
 				8ACE134524BC0A4A0048175C /* UIFont+YXC_Category.m in Sources */,
 				8AECEC7B2449949600537181 /* UITextView+YXC_Category.m in Sources */,
+				8A81CA492563C48E00BE03D4 /* YXCMultithreadingController.m in Sources */,
+				8A81CA4F2563CE4100BE03D4 /* YXCNSThreadController.m in Sources */,
 				8A633D34254684C400C5B32C /* UIButton+YXC_Category.m in Sources */,
 				8A8E1AAB251CABC50044205C /* YXCPhotoListCell.m in Sources */,
 				8A1FB4682519A09D00825BEA /* YXCPhotoView.m in Sources */,

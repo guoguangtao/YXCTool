@@ -1,30 +1,28 @@
 //
-//  ViewController.m
+//  YXCMultithreadingController.m
 //  YXCTools
 //
-//  Created by GGT on 2020/4/17.
+//  Created by GGT on 2020/11/17.
 //  Copyright © 2020 GGT. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "YXCMultithreadingController.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface YXCMultithreadingController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView; /**< 列表 */
 @property (nonatomic, strong) NSArray<YXCControllerModel *> *dataSources; /**< 数据源 */
 
 @end
 
-@implementation ViewController
+@implementation YXCMultithreadingController
+
+#pragma mark - Lifecycle
 
 /// 刷新UI
 - (void)injected {
-    [self.view yxc_removeAllSubView];
     
-    [self setupUI];
 }
-
-#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -108,13 +106,8 @@
     
     if (_dataSources == nil) {
         _dataSources = @[
-            [YXCControllerModel modelWithClassName:@"YXCiOS14Controller" title:@"iOS14适配" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCPhotoAlbumListController" title:@"PhotoKit的使用" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCTableViewEditController" title:@"UITableView多选状态" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCAnimationController" title:@"iOS 动画" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCLaunchImagesController" title:@"启动图制作" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCUIBezierPathController" title:@"UIBezierPath的使用" parameter:Nil],
-            [YXCControllerModel modelWithClassName:@"YXCMultithreadingController" title:@"多线程" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCPthreadController" title:@"Pthread" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCNSThreadController" title:@"NSThread" parameter:nil]
         ];
     }
     
