@@ -31,6 +31,8 @@
     
     [self setupUI];
     [self setupConstraints];
+    
+    YXCLog(@"%d", [self isMute]);
 }
 
 - (void)dealloc {
@@ -40,6 +42,35 @@
 
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
+
+- (BOOL)isMute {
+    
+    __block BOOL result = YES;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    [self test:^{
+        YXCLog(@"Test 调用完成");
+        result = NO;
+        dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    YXCLog(@"返回结果");
+    
+    
+    return result;
+}
+
+- (void)test:(void (^)(void))completion {
+    
+    YXCLog(@"Test ---");
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (completion) {
+            completion();
+        }
+    });
+    
+}
 
 
 #pragma mark - IBActions

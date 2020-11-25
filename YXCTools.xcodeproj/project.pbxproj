@@ -569,6 +569,8 @@
 				8A633D362546853600C5B32C /* UIImage+YXC_Category.m */,
 				8A633D402546EE6600C5B32C /* YXCMarqueeLabel.h */,
 				8A633D412546EE6600C5B32C /* YXCMarqueeLabel.m */,
+				8A7F3D4D25426E9500C458C4 /* YXCPopOverView.h */,
+				8A7F3D4E25426E9500C458C4 /* YXCPopOverView.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -631,8 +633,6 @@
 			children = (
 				8AEDE5222521D9B1006C3452 /* YXCTableViewEditCell.h */,
 				8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */,
-				8A7F3D4D25426E9500C458C4 /* YXCPopOverView.h */,
-				8A7F3D4E25426E9500C458C4 /* YXCPopOverView.m */,
 				8AA37E35254FE21000622B5A /* YXCBezierPathView.h */,
 				8AA37E36254FE21000622B5A /* YXCBezierPathView.m */,
 			);
