@@ -45,6 +45,7 @@
 + (NSString *)yxc_stringWithDate:(NSDate *)date dateFormat:(NSString *)dateFormat {
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.timeZone = [NSTimeZone systemTimeZone];
     dateFormatter.dateFormat = [self dateFormatter:dateFormat];
     
     return [dateFormatter stringFromDate:date];
@@ -64,6 +65,7 @@
                         dateFormat:(nullable NSString *)dateFormat {
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.timeZone = [NSTimeZone systemTimeZone];
     dateFormatter.dateFormat = [self dateFormatter:dateFormat];
     return [dateFormatter dateFromString:dateString];
 }

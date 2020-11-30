@@ -37,7 +37,7 @@
 
 - (void)dealloc {
     
-    YXCLog(@"%s", __func__);
+    YXCDebugLogMethod();
 }
 
 
