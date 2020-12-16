@@ -14,17 +14,15 @@
 + (void)load {
     
     // @{} 字面量初始化
-    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderDictionary")
-             currentClass:[self class]
-           originSelector:@selector(initWithObjects:forKeys:count:)
-         swizzledSelector:@selector(yxc_NSPlaceholderDictionary_initWithObjects:forKeys:count:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSPlaceholderDictionary")
+                               currentCls:[self class]
+                           targetSelector:@selector(initWithObjects:forKeys:count:)
+                          currentSelector:@selector(yxc_NSPlaceholderDictionary_initWithObjects:forKeys:count:)];
     
-    [self hookMethod:[self class]
-      originSelector:@selector(initWithObjects:forKeys:)
-    swizzledSelector:@selector(yxc_initWithObjects:forKeys:)
-         classMethod:NO];
-    
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(initWithObjects:forKeys:)
+                          currentSelector:@selector(yxc_initWithObjects:forKeys:)];
 }
 
 /// 字面量初始化

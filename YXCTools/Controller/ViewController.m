@@ -32,7 +32,8 @@
     [self setupUI];
     [self setupConstraints];
     
-    YXCLog(@"%d", [self isMute]);
+    [NSArray printfMethodWithSelector:@selector(init) isClassMethod:NO];
+    [NSNumber printfMethodWithSelector:@selector(init) isClassMethod:NO];
 }
 
 - (void)dealloc {

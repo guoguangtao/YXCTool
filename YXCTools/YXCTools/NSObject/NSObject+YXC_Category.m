@@ -11,64 +11,88 @@
 
 @implementation NSObject (YXC_Category)
 
-/// hook 方法
-/// @param cls 类
-/// @param originSelector 将要 hook 掉的方法
-/// @param swizzledSelector 新的方法
-/// @param clsMethod 类方法
-+ (void)hookMethod:(Class)cls originSelector:(SEL)originSelector swizzledSelector:(SEL)swizzledSelector classMethod:(BOOL)clsMethod {
+/// hook 实例方法
+/// @param targetCls 需要被 hook 的类
+/// @param currentCls 自己的实现方法所在的类
+/// @param targetSelector 目标方法
+/// @param currentSelector 准备替换目标方法
++ (void)hookInstanceMethodWithTargetCls:(Class)targetCls
+                             currentCls:(Class)currentCls
+                         targetSelector:(SEL)targetSelector
+                        currentSelector:(SEL)currentSelector {
     
-    [self hookOriginClass:cls
-             currentClass:cls
-           originSelector:originSelector
-         swizzledSelector:swizzledSelector
-              classMethod:clsMethod];
+    [self hookMethodWithTargetCls:targetCls
+                       currentCls:currentCls
+                   targetSelector:targetSelector
+                  currentSelector:currentSelector
+                    isClassMethod:NO];
 }
 
-/// hook 方法 （主要是为了 hook 某个类的 簇类 方法）
-/// @param originCls 需要 hook 的类
-/// @param currentCls 当前类
-/// @param originSelector 将要 hook 掉的方法
-/// @param swizzledSelector 新的方法
-/// @param clsMethod 是否是类方法
-+ (void)hookOriginClass:(Class)originCls
-           currentClass:(Class)currentCls
-         originSelector:(SEL)originSelector
-       swizzledSelector:(SEL)swizzledSelector
-            classMethod:(BOOL)clsMethod {
+/// hook 类方法
+/// @param targetCls 需要被 hook 的类
+/// @param currentCls 自己的实现方法所在的类
+/// @param targetSelector 目标方法
+/// @param currentSelector 准备替换目标方法
++ (void)hookClassMethodWithTargetCls:(Class)targetCls
+                          currentCls:(Class)currentCls
+                      targetSelector:(SEL)targetSelector
+                     currentSelector:(SEL)currentSelector {
     
-    Method origin_method;
-    Method swizzled_method;
+    [self hookMethodWithTargetCls:targetCls
+                       currentCls:currentCls
+                   targetSelector:targetSelector
+                  currentSelector:currentSelector
+                    isClassMethod:YES];
+}
+
+/// hook 方法
+/// @param targetCls 需要被 hook 的类
+/// @param currentCls 自己的实现方法所在的类
+/// @param targetSelector 目标方法
+/// @param currentSelector 准备替换目标方法
+/// @param isClassMethod 是否是类方法
++ (void)hookMethodWithTargetCls:(Class)targetCls
+                     currentCls:(Class)currentCls
+                 targetSelector:(SEL)targetSelector
+                currentSelector:(SEL)currentSelector
+                  isClassMethod:(BOOL)isClassMethod {
     
-    if (clsMethod) {
-        // 类方法
-        origin_method = class_getClassMethod(originCls, originSelector);
-        swizzled_method = class_getClassMethod(currentCls, swizzledSelector);
+    Method targetMethod, currentMethod;
+    if (isClassMethod) {
+        // 获取类方法
+        targetMethod = class_getClassMethod(targetCls, targetSelector);
+        currentMethod = class_getClassMethod(currentCls, currentSelector);
     } else {
-        // 实例(对象)方法
-        origin_method = class_getInstanceMethod(originCls, originSelector);
-        swizzled_method = class_getInstanceMethod(currentCls, swizzledSelector);
+        // 获取实例方法
+        targetMethod = class_getInstanceMethod(targetCls, targetSelector);
+        currentMethod = class_getInstanceMethod(currentCls, currentSelector);
     }
     
-    // 给当前类添加 originSelector 方法，方法实现为 swizzled_method
-    // 如果传入的是一个类方法，在这里需要将 元类对象传进去
-    Class addCls = clsMethod ? object_getClass(currentCls) : currentCls;
+    // 如果当前需要 hook 的方法是一个类方法
+    // 使用 object_getClass 获取元类对象
+    Class addCls = isClassMethod ? object_getClass(targetCls) : targetCls;
     
-    BOOL addSuccess = class_addMethod(addCls,
-                                      originSelector,
-                                      method_getImplementation(swizzled_method),
-                                      method_getTypeEncoding(swizzled_method)
-                                      );
+    // cls 类传入需要被 hook 的类
+    // name 传入需要被 hook 的方法，如果 cls 类本身有该方法，返回结果为 NO，如果没有返回结果为 YES 代表添加该方法成功
+    // imp 传入当前我们自己的方法具体实现
+    // types 传入 imp 参数的方法编码字符串
+    // 这一步主要的目的两点：
+    // 1. 判断目标类本身是否有目标方法
+    // 2. 没有目标方法，给目标类本身添加一个目标方法，并且将自己的方法具体实现赋值给目标方法
+    BOOL addMethodSuccess = class_addMethod(addCls,
+                                            targetSelector,
+                                            method_getImplementation(currentMethod),
+                                            method_getTypeEncoding(currentMethod));
     
-    if (addSuccess) {
-        // 将当前类的 swizzledSelector 的实现替换成 origin_method
+    if (addMethodSuccess) {
+        // 添加成功，目标类本身并没有这个方法，接下来就要将我们自己方法的实现替换成目标方法的实现
         class_replaceMethod(addCls,
-                            swizzledSelector,
-                            method_getImplementation(origin_method),
-                            method_getTypeEncoding(origin_method)
-                            );
+                            currentSelector,
+                            method_getImplementation(targetMethod),
+                            method_getTypeEncoding(targetMethod));
     } else {
-        method_exchangeImplementations(origin_method, swizzled_method);
+        // 目标类本身就有这个方法，直接将方法的实现进行交换
+        method_exchangeImplementations(targetMethod, currentMethod);
     }
 }
 
@@ -133,5 +157,36 @@
     
     YXCLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), isSame ? @"一致" : @"不一致", originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
 }
+
+/// 查询一个类本身是否拥有某个方法
+/// @param selector 方法选择器
+/// @param isClassMethod 需要查询的方法是否是类方法
++ (void)printfMethodWithSelector:(SEL)selector isClassMethod:(BOOL)isClassMethod {
+    
+    Class cls = [self class];
+    if (isClassMethod) {
+        cls = object_getClass(cls);
+    }
+    while (cls) {
+        unsigned int count;
+        BOOL hasMethod = NO;
+        Method *methodList = class_copyMethodList(cls, &count);
+        for (int i = 0; i < count; i++) {
+            Method m = methodList[i];
+            // 选择器地址始终唯一，就算两个不同的类相同的方法名所对应的选择器地址
+            if (selector == method_getName(m)) {
+                hasMethod = YES;
+                NSLog(@"%@ 查找到 %@，方法具体实现地址：%p", cls, NSStringFromSelector(selector), method_getImplementation(m));
+                break;
+            }
+        }
+        if (!hasMethod) {
+            NSLog(@"%@ 未查找到 %@", cls, NSStringFromSelector(selector));
+        }
+        cls = [cls superclass];
+        free(methodList);
+    }
+}
+
 
 @end

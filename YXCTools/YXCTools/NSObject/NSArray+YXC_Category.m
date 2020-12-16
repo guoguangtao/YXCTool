@@ -14,51 +14,46 @@
 + (void)load {
     
     // NSArray @[] 字面量
-    [self hookOriginClass:NSClassFromString(@"__NSPlaceholderArray")
-             currentClass:[self class]
-           originSelector:@selector(initWithObjects:count:)
-         swizzledSelector:@selector(yxc_NSPlaceholderArray_initWithObjects:count:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSPlaceholderArray")
+                               currentCls:[self class]
+                           targetSelector:@selector(initWithObjects:count:)
+                          currentSelector:@selector(yxc_NSPlaceholderArray_initWithObjects:count:)];
     
     // 当数组为空数组时，数组的类型为 __NSArray0，内部重新实现了 objectAtIndex: 方法，需要对 __NSArray0 类进行 hook 操作
-    [self hookOriginClass:NSClassFromString(@"__NSArray0")
-             currentClass:[self class]
-           originSelector:@selector(objectAtIndex:)
-         swizzledSelector:@selector(yxc_NSArray0_objectAtIndex:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSArray0")
+                               currentCls:[self class]
+                           targetSelector:@selector(objectAtIndex:)
+                          currentSelector:@selector(yxc_NSArray0_objectAtIndex:)];
     
     // 当数组元素为 1 个时，数组的类型为 __NSSingleObjectArrayI，内部重新实现了 objectAtIndex: 方法，需要对 __NSSingleObjectArrayI 类进行 hook 操作
-    [self hookOriginClass:NSClassFromString(@"__NSSingleObjectArrayI")
-             currentClass:[self class]
-           originSelector:@selector(objectAtIndex:)
-         swizzledSelector:@selector(yxc_NSSingleObjectArrayI_objectAtIndex:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSSingleObjectArrayI")
+                               currentCls:[self class]
+                           targetSelector:@selector(objectAtIndex:)
+                          currentSelector:@selector(yxc_NSSingleObjectArrayI_objectAtIndex:)];
     
     // 当数组元素为多个时，数组的类型为 __NSArrayI，内部重新实现了 objectAtIndexedSubscript: 方法，使用该方法对系统方法进行 hook
-    [self hookOriginClass:NSClassFromString(@"__NSArrayI")
-             currentClass:[self class]
-           originSelector:@selector(objectAtIndexedSubscript:)
-         swizzledSelector:@selector(yxc_NSArrayI_objectAtIndexedSubscript:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSArrayI")
+                               currentCls:[self class]
+                           targetSelector:@selector(objectAtIndexedSubscript:)
+                          currentSelector:@selector(yxc_NSArrayI_objectAtIndexedSubscript:)];
     
     // 当数组元素为多个时，数组的类型为 __NSArrayI，内部重新实现了 objectAtIndex: 方法，使用该方法对系统方法进行 hook
-    [self hookOriginClass:NSClassFromString(@"__NSArrayI")
-             currentClass:[self class]
-           originSelector:@selector(objectAtIndex:)
-         swizzledSelector:@selector(yxc_NSArrayI_objectAtIndex:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSArrayI")
+                               currentCls:[self class]
+                           targetSelector:@selector(objectAtIndex:)
+                          currentSelector:@selector(yxc_NSArrayI_objectAtIndex:)];
     
     // 不可变数组，根据某个对象和范围获取索引值，在这不区分 __NSArray0、__NSSingleObjectArrayI、__NSArrayI 类型
-    [self hookMethod:[self class]
-      originSelector:@selector(indexOfObject:inRange:)
-    swizzledSelector:@selector(yxc_indexOfObject:inRange:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(indexOfObject:inRange:)
+                          currentSelector:@selector(yxc_indexOfObject:inRange:)];
     
     // 不可变数组，根据 indexSet 获取某个元素,在这不区分 __NSArray0、__NSSingleObjectArrayI、__NSArrayI 类型
-    [self hookMethod:[self class]
-      originSelector:@selector(objectsAtIndexes:)
-    swizzledSelector:@selector(yxc_objectsAtIndexes:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(objectsAtIndexes:)
+                          currentSelector:@selector(yxc_objectsAtIndexes:)];
 }
 
 /// @[] 字面量初始化数组

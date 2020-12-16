@@ -13,67 +13,64 @@
 + (void)load {
     
     // 可变数组插入对象
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM")
-             currentClass:[self class]
-           originSelector:@selector(insertObject:atIndex:)
-         swizzledSelector:@selector(yxc_NSArrayM_insertObject:atIndex:) classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSArrayM")
+                               currentCls:[self class]
+                           targetSelector:@selector(insertObject:atIndex:)
+                          currentSelector:@selector(yxc_NSArrayM_insertObject:atIndex:)];
     
     // 可变数组 根据 indexSet 插入一些数据
-    [self hookMethod:[self class]
-      originSelector:@selector(insertObjects:atIndexes:)
-    swizzledSelector:@selector(yxc_insertObjects:atIndexes:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(insertObjects:atIndexes:)
+                          currentSelector:@selector(yxc_insertObjects:atIndexes:)];
     
     // 可变数组根据索引移除某个元素
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM")
-             currentClass:[self class]
-           originSelector:@selector(removeObjectsInRange:)
-         swizzledSelector:@selector(yxc_NSArrayM_removeObjectsInRange:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSArrayM")
+                               currentCls:[self class]
+                           targetSelector:@selector(removeObjectsInRange:)
+                          currentSelector:@selector(yxc_NSArrayM_removeObjectsInRange:)];
     
     // 可变数组，在某个范围移除所有与元素 isEqual 相等的元素
-    [self hookMethod:[self class]
-      originSelector:@selector(removeObject:inRange:)
-    swizzledSelector:@selector(yxc_removeObject:inRange:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(removeObject:inRange:)
+                          currentSelector:@selector(yxc_removeObject:inRange:)];
     
     // 可变数组，在某个范围移除所有与元素 地址相同的元素
-    [self hookMethod:[self class]
-      originSelector:@selector(removeObjectIdenticalTo:inRange:)
-    swizzledSelector:@selector(yxc_removeObjectIdenticalTo:inRange:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(removeObjectIdenticalTo:inRange:)
+                          currentSelector:@selector(yxc_removeObjectIdenticalTo:inRange:)];
     
     // 可变数组，根据 indexSet 移除某些元素
-    [self hookMethod:[self class]
-      originSelector:@selector(removeObjectsAtIndexes:)
-    swizzledSelector:@selector(yxc_removeObjectsAtIndexes:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(removeObjectsAtIndexes:)
+                          currentSelector:@selector(yxc_removeObjectsAtIndexes:)];
     
     // 可变数组，利用下标索引替换某个元素
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM")
-             currentClass:[self class]
-           originSelector:@selector(replaceObjectAtIndex:withObject:)
-         swizzledSelector:@selector(yxc_NSArrayM_replaceObjectAtIndex:withObject:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSArrayM")
+                               currentCls:[self class]
+                           targetSelector:@selector(replaceObjectAtIndex:withObject:)
+                          currentSelector:@selector(yxc_NSArrayM_replaceObjectAtIndex:withObject:)];
     
     // 可变数组，利用下标索引交换两个元素
-    [self hookOriginClass:NSClassFromString(@"__NSArrayM")
-             currentClass:[self class]
-           originSelector:@selector(exchangeObjectAtIndex:withObjectAtIndex:)
-         swizzledSelector:@selector(yxc_NSArrayM_exchangeObjectAtIndex:withObjectAtIndex:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSArrayM")
+                               currentCls:[self class]
+                           targetSelector:@selector(exchangeObjectAtIndex:withObjectAtIndex:)
+                          currentSelector:@selector(yxc_NSArrayM_exchangeObjectAtIndex:withObjectAtIndex:)];
     
     // 可变数组，根据 indexSet 替换一些元素
-    [self hookMethod:[self class]
-      originSelector:@selector(replaceObjectsAtIndexes:withObjects:)
-    swizzledSelector:@selector(yxc_replaceObjectsAtIndexes:withObjects:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(replaceObjectsAtIndexes:withObjects:)
+                          currentSelector:@selector(yxc_replaceObjectsAtIndexes:withObjects:)];
     
     // 可变数组根据 NSRange 替换一些元素
-    [self hookMethod:[self class]
-      originSelector:@selector(replaceObjectsInRange:withObjectsFromArray:)
-    swizzledSelector:@selector(yxc_replaceObjectsInRange:withObjectsFromArray:)
-         classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(replaceObjectsInRange:withObjectsFromArray:)
+                          currentSelector:@selector(yxc_replaceObjectsInRange:withObjectsFromArray:)];
 }
 
 /// 根据索引插入一个元素

@@ -13,29 +13,41 @@ NS_ASSUME_NONNULL_BEGIN
 /// NSObject 分类
 @interface NSObject (YXC_Category)
 
+@property (nonatomic, strong, class, readonly) NSOperationQueue *searchQueue;
+
 #pragma mark - Method
 
-/// hook 方法
-/// @param cls 类
-/// @param originSelector 将要 hook 掉的方法
-/// @param swizzledSelector 新的方法
-/// @param clsMethod 是否是类方法
-+ (void)hookMethod:(Class)cls
-    originSelector:(SEL)originSelector
-  swizzledSelector:(SEL)swizzledSelector
-       classMethod:(BOOL)clsMethod;
+/// hook 实例方法
+/// @param targetCls 需要被 hook 的类
+/// @param currentCls 自己的实现方法所在的类
+/// @param targetSelector 目标方法
+/// @param currentSelector 准备替换目标方法
++ (void)hookInstanceMethodWithTargetCls:(Class)targetCls
+                             currentCls:(Class)currentCls
+                         targetSelector:(SEL)targetSelector
+                        currentSelector:(SEL)currentSelector;
 
-/// hook 方法 （主要是为了 hook 某个类的 簇类 方法）
-/// @param originCls 需要 hook 的类
-/// @param currentCls 当前类
-/// @param originSelector 将要 hook 掉的方法
-/// @param swizzledSelector 新的方法
-/// @param clsMethod 是否是类方法
-+ (void)hookOriginClass:(Class)originCls
-           currentClass:(Class)currentCls
-         originSelector:(SEL)originSelector
-       swizzledSelector:(SEL)swizzledSelector
-            classMethod:(BOOL)clsMethod;
+/// hook 类方法
+/// @param targetCls 需要被 hook 的类
+/// @param currentCls 自己的实现方法所在的类
+/// @param targetSelector 目标方法
+/// @param currentSelector 准备替换目标方法
++ (void)hookClassMethodWithTargetCls:(Class)targetCls
+                          currentCls:(Class)currentCls
+                      targetSelector:(SEL)targetSelector
+                     currentSelector:(SEL)currentSelector;
+
+/// hook 方法
+/// @param targetCls 需要被 hook 的类
+/// @param currentCls 自己的实现方法所在的类
+/// @param targetSelector 目标方法
+/// @param currentSelector 准备替换目标方法
+/// @param isClassMethod 是否是类方法
++ (void)hookMethodWithTargetCls:(Class)targetCls
+                     currentCls:(Class)currentCls
+                 targetSelector:(SEL)targetSelector
+                currentSelector:(SEL)currentSelector
+                  isClassMethod:(BOOL)isClassMethod;
 
 /// 检查当前对象,YES-满足条件 NO-不满足条件
 /// 是否为 nil
@@ -63,6 +75,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param targetCls 当前类
 /// @param selector 方法
 + (void)printfMethodOriginCls:(Class)originCls targetCls:(Class)targetCls selector:(SEL)selector;
+
+/// 查询一个类本身是否拥有某个方法
+/// @param selector 方法选择器
+/// @param isClassMethod 需要查询的方法是否是类方法
++ (void)printfMethodWithSelector:(SEL)selector isClassMethod:(BOOL)isClassMethod;
 
 @end
 

@@ -12,17 +12,15 @@
 
 + (void)load {
     
-    [self hookOriginClass:NSClassFromString(@"__NSDictionaryM")
-             currentClass:[self class]
-           originSelector:@selector(setObject:forKey:)
-         swizzledSelector:@selector(yxc_setObject:forKey:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSDictionaryM")
+                               currentCls:[self class]
+                           targetSelector:@selector(setObject:forKey:)
+                          currentSelector:@selector(yxc_setObject:forKey:)];
     
-    [self hookOriginClass:NSClassFromString(@"__NSDictionaryM")
-             currentClass:[self class]
-           originSelector:@selector(removeObjectForKey:)
-         swizzledSelector:@selector(yxc_NSDictionaryM_removeObjectForKey:)
-              classMethod:NO];
+    [self hookInstanceMethodWithTargetCls:NSClassFromString(@"__NSDictionaryM")
+                               currentCls:[self class]
+                           targetSelector:@selector(removeObjectForKey:)
+                          currentSelector:@selector(yxc_NSDictionaryM_removeObjectForKey:)];
 }
 
 - (void)yxc_setObject:(id)anObject forKey:(id<NSCopying>)aKey {
