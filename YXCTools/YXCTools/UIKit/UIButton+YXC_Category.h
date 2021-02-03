@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, YXCButtonImagePosition) {
+    YXCButtonImagePositionLeft = 0,
+    YXCButtonImagePositionTop,
+    YXCButtonImagePositionRight,
+    YXCButtonImagePositionBottom,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (YXC_Category)
@@ -16,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param color 颜色
 /// @param state 状态
 - (void)setBackgroundColor:(UIColor *)color forState:(UIControlState)state;
+
+/// 根据图片位置更新图片和文字的位置
+/// @param imagePosition 图片位置
+- (void)updateImagePosition:(YXCButtonImagePosition)imagePosition;
 
 @end
 

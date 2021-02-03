@@ -22,14 +22,15 @@
 
 + (void)load {
     
-    Method system_layoutSubviews_method = class_getInstanceMethod([self class], @selector(layoutSubviews));
-    Method my_layoutSubviews_method = class_getInstanceMethod([self class], @selector(yxc_layoutSubviews));
-    method_exchangeImplementations(system_layoutSubviews_method, my_layoutSubviews_method);
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(layoutSubviews)
+                          currentSelector:@selector(yxc_view_layoutSubviews)];
 }
 
-- (void)yxc_layoutSubviews {
+- (void)yxc_view_layoutSubviews {
     
-    [self yxc_layoutSubviews];
+    [self yxc_view_layoutSubviews];
     
     [self setupBorder];
 }

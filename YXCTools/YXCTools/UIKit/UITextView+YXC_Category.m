@@ -18,24 +18,19 @@
 @implementation UITextView (YXC_Category)
 
 + (void)load {
-    Method method1 = class_getInstanceMethod([self class], NSSelectorFromString(@"dealloc"));
-    Method method2 = class_getInstanceMethod([self class], @selector(deallocSwizzle));
-    method_exchangeImplementations(method1, method2);
+    [self hookInstanceMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:NSSelectorFromString(@"dealloc") currentSelector:@selector(yxc_textView_deallocSwizzle)];
 
-    
-    Method system_init_method = class_getInstanceMethod([self class], @selector(initWithFrame:));
-    Method my_init_method = class_getInstanceMethod([self class], @selector(yxc_initWithFrame:));
-    method_exchangeImplementations(system_init_method, my_init_method);
+    [self hookInstanceMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:@selector(initWithFrame:) currentSelector:@selector(yxc_textView_initWithFrame:)];
 }
 
-- (void)deallocSwizzle {
+- (void)yxc_textView_deallocSwizzle {
     
     YXCLog(@"%s", __func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self deallocSwizzle];
+    [self yxc_textView_deallocSwizzle];
 }
 
-- (instancetype)yxc_initWithFrame:(CGRect)frame {
+- (instancetype)yxc_textView_initWithFrame:(CGRect)frame {
     
     self.textMaxLength = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -43,7 +38,7 @@
                                                  name:UITextViewTextDidChangeNotification
                                                object:nil];
     
-    return [self yxc_initWithFrame:frame];
+    return [self yxc_textView_initWithFrame:frame];
 }
 
 - (void)setTextMaxLength:(NSInteger)textMaxLength {

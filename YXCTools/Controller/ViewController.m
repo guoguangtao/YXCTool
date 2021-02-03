@@ -162,6 +162,7 @@
             [YXCControllerModel modelWithClassName:@"YXCLaunchImagesController" title:@"启动图制作" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCUIBezierPathController" title:@"UIBezierPath的使用" parameter:Nil],
             [YXCControllerModel modelWithClassName:@"YXCMultithreadingController" title:@"多线程" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCTestController" title:@"测试界面" parameter:nil],
         ];
     }
     

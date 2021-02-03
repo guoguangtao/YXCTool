@@ -15,19 +15,9 @@
 
 + (void)load {
     
-    Method system_systemFontOfSize_method = class_getClassMethod([self class],
-                                                                 @selector(systemFontOfSize:));
-    Method my_systemFontOfSize_method = class_getInstanceMethod([self class],
-                                                                @selector(yxc_systemFontOfSize:));
-    method_exchangeImplementations(system_systemFontOfSize_method,
-                                   my_systemFontOfSize_method);
+    [self hookClassMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:@selector(systemFontOfSize:) currentSelector:@selector(yxc_systemFontOfSize:)];
     
-    Method system_systemFontOfSizeWeight_method = class_getClassMethod([self class],
-                                                                       @selector(systemFontOfSize:weight:));
-    Method my_systemFontOfSizeWeight_method = class_getClassMethod([self class],
-                                                                   @selector(yxc_systemFontOfSize:weight:));
-    method_exchangeImplementations(system_systemFontOfSizeWeight_method,
-                                   my_systemFontOfSizeWeight_method);
+    [self hookClassMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:@selector(systemFontOfSize:weight:) currentSelector:@selector(yxc_systemFontOfSize:weight:)];
 }
 
 + (UIFont *)yxc_systemFontOfSize:(CGFloat)fontSize {

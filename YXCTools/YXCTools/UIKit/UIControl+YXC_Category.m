@@ -23,20 +23,20 @@
     [self hookInstanceMethodWithTargetCls:[self class]
                                currentCls:[self class]
                            targetSelector:@selector(sendAction:to:forEvent:)
-                          currentSelector:@selector(yxc_sendAction:to:forEvent:)];
+                          currentSelector:@selector(yxc_control_sendAction:to:forEvent:)];
 }
 
-- (void)yxc_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
+- (void)yxc_control_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
     
     // 在这里只做 UIButton 的拦截
     if ([self isKindOfClass:[UIButton class]]) {
         if (self.eventUnavailable == NO) {
             self.eventUnavailable = YES;
-            [self yxc_sendAction:action to:target forEvent:event];
+            [self yxc_control_sendAction:action to:target forEvent:event];
             [self performSelector:@selector(setEventUnavailable:) withObject:@(NO) afterDelay:self.yxc_eventInterval];
         }
     } else {
-        [self yxc_sendAction:action to:target forEvent:event];
+        [self yxc_control_sendAction:action to:target forEvent:event];
     }
 }
 
