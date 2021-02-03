@@ -57,6 +57,7 @@
 		8AD0C8C42541153100BA2C06 /* YXCEmitterLiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0C8C32541153100BA2C06 /* YXCEmitterLiveController.m */; };
 		8AD0C8C72541167B00BA2C06 /* YXCEmitterLikeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0C8C62541167B00BA2C06 /* YXCEmitterLikeController.m */; };
 		8AE02B3025CA7EA3005A0D99 /* YXCTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE02B2F25CA7EA3005A0D99 /* YXCTestController.m */; };
+		8AE02C0F25CAA95E005A0D99 /* UIImageView+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE02C0E25CAA95E005A0D99 /* UIImageView+YXC_Category.m */; };
 		8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2824497FEA00537181 /* AppDelegate.m */; };
 		8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2B24497FEA00537181 /* SceneDelegate.m */; };
 		8AECEC2F24497FEA00537181 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC2E24497FEA00537181 /* ViewController.m */; };
@@ -200,6 +201,8 @@
 		8AD0C8C62541167B00BA2C06 /* YXCEmitterLikeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCEmitterLikeController.m; sourceTree = "<group>"; };
 		8AE02B2E25CA7EA3005A0D99 /* YXCTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTestController.h; sourceTree = "<group>"; };
 		8AE02B2F25CA7EA3005A0D99 /* YXCTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTestController.m; sourceTree = "<group>"; };
+		8AE02C0D25CAA95E005A0D99 /* UIImageView+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+YXC_Category.h"; sourceTree = "<group>"; };
+		8AE02C0E25CAA95E005A0D99 /* UIImageView+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+YXC_Category.m"; sourceTree = "<group>"; };
 		8AECEC2424497FEA00537181 /* YXCTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXCTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AECEC2724497FEA00537181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8AECEC2824497FEA00537181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 				8A633D412546EE6600C5B32C /* YXCMarqueeLabel.m */,
 				8A7F3D4D25426E9500C458C4 /* YXCPopOverView.h */,
 				8A7F3D4E25426E9500C458C4 /* YXCPopOverView.m */,
+				8AE02C0D25CAA95E005A0D99 /* UIImageView+YXC_Category.h */,
+				8AE02C0E25CAA95E005A0D99 /* UIImageView+YXC_Category.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -792,6 +797,7 @@
 				8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */,
 				8A8890F924AD944300217E14 /* UIDevice+YXC_Category.m in Sources */,
 				8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */,
+				8AE02C0F25CAA95E005A0D99 /* UIImageView+YXC_Category.m in Sources */,
 				8A603EAF24D2EE7A008AC9BD /* MASConstraint.m in Sources */,
 				8A63E43E2536E2480046D4BE /* NSObject+YXC_Category.m in Sources */,
 				8A0137FF255689420011B9CE /* NSMutableArray+YXC_Category.m in Sources */,

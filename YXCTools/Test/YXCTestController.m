@@ -65,19 +65,10 @@
 - (void)setupUI {
     
     self.leftImageButton = [UIButton new];
-    [self.leftImageButton setTitleColor:UIColor.purpleColor forState:UIControlStateNormal];
-    [self.leftImageButton setImage:[UIImage imageNamed:@"emitter_like"] forState:UIControlStateNormal];
+    self.leftImageButton.backgroundColor = UIColor.orangeColor;
     [self.leftImageButton setTitle:@"左图右文" forState:UIControlStateNormal];
-    [self.leftImageButton setBackgroundColor:UIColor.orangeColor forState:UIControlStateNormal];
+    [self.leftImageButton yxc_setImage:@"emitter_like" forState:UIControlStateNormal];
     [self.view addSubview:self.leftImageButton];
-    
-    self.topImageButton = [UIButton new];
-    [self.topImageButton setTitleColor:UIColor.purpleColor forState:UIControlStateNormal];
-    [self.topImageButton setImage:[UIImage imageNamed:@"emitter_like"] forState:UIControlStateNormal];
-    [self.topImageButton setTitle:@"上图下文" forState:UIControlStateNormal];
-    [self.topImageButton setBackgroundColor:UIColor.orangeColor forState:UIControlStateNormal];
-    [self.view addSubview:self.topImageButton];
-    [self.topImageButton updateImagePosition:YXCButtonImagePositionTop];
 }
 
 
@@ -87,11 +78,6 @@
     
     [self.leftImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(UIDevice.navigationAndStatusHeight + 20);
-        make.centerX.equalTo(self.view);
-    }];
-    
-    [self.topImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.leftImageButton.mas_bottom).offset(20);
         make.centerX.equalTo(self.view);
     }];
 }

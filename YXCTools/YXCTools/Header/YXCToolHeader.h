@@ -94,5 +94,6 @@ isBangsScreen; \
 #import "UIFont+YXC_Category.h"
 #import "UIButton+YXC_Category.h"
 #import "UIImage+YXC_Category.h"
+#import "UIImageView+YXC_Category.h"
 
 #endif /* YXCToolHeader_h */
