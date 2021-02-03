@@ -8,6 +8,19 @@
 
 #import "ViewController.h"
 
+#if !SUPPORT_TAGGED_POINTERS  ||  (TARGET_OS_OSX || TARGET_OS_IOSMAC)
+#   define SUPPORT_MSB_TAGGED_POINTERS 0
+#else
+#   define SUPPORT_MSB_TAGGED_POINTERS 1
+#endif
+
+#if !SUPPORT_INDEXED_ISA  &&  !SUPPORT_PACKED_ISA
+#   define SUPPORT_NONPOINTER_ISA 0
+#else
+#   define SUPPORT_NONPOINTER_ISA 1
+#endif
+
+
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView; /**< 列表 */
@@ -34,6 +47,8 @@
     
     [NSArray printfMethodWithSelector:@selector(init) isClassMethod:NO];
     [NSNumber printfMethodWithSelector:@selector(init) isClassMethod:NO];
+    
+    YXCLog(@"SUPPORT_NONPOINTER_ISA : %d", SUPPORT_NONPOINTER_ISA);
 }
 
 - (void)dealloc {

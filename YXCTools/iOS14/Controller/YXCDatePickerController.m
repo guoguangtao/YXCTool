@@ -12,6 +12,8 @@
 
 @interface YXCDatePickerController ()
 
+@property (nonatomic, strong) UIView *orangeView;
+
 @end
 
 @implementation YXCDatePickerController

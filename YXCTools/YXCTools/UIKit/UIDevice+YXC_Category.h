@@ -19,6 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIDevice (YXC_Category)
 
+@property (nonatomic, assign, readonly, class, getter=isBangsScreen) BOOL bangsScreen;      /**< 是否是刘海屏 */
+@property (nonatomic, assign, readonly, class) CGFloat statusBarHeight;                     /**< 状态栏高度 */
+@property (nonatomic, assign, readonly, class) CGFloat navigationBarHeight;                 /**< 导航栏高度 */
+@property (nonatomic, assign, readonly, class) CGFloat navigationAndStatusHeight;           /**< 导航栏和状态栏高度 */
+@property (nonatomic, assign, readonly, class) CGFloat bottomBarHeight;                     /**< 底部栏高度 */
+@property (nonatomic, assign, readonly, class) CGFloat tabbarHeight;                        /**< tabbar 高度 */
+@property (nonatomic, assign, readonly, class) CGFloat navigationBarCenterY;                /**< 导航栏 CenterY */
+
+
 /// 获取到机型
 - (NSString *)platform;
 

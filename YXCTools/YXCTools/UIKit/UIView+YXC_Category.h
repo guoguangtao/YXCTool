@@ -49,6 +49,12 @@ typedef NS_OPTIONS(NSUInteger, YXCViewBorder) {
 /// 将 view 转成图片保存到相册中
 - (void)saveToAlbum;
 
+/// 将当前 view 转成 图片
+- (UIImage *)convertViewToImage;
+
+/// 设置背景图片
+- (void)yxc_setBackgroundImage:(UIImage *)image;
+
 @end
 
 NS_ASSUME_NONNULL_END

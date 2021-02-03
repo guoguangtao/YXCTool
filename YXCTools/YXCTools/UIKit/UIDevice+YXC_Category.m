@@ -13,6 +13,72 @@
 
 @implementation UIDevice (YXC_Category)
 
++ (BOOL)isBangsScreen {
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = [self appdelegateWindow];
+        if (window && [window isKindOfClass:[UIWindow class]]) {
+            return window.safeAreaInsets.bottom > 0;
+        }
+    }
+    
+    return NO;
+}
+
+/// 状态栏高度
++ (CGFloat)statusBarHeight {
+
+    if (@available(iOS 11.0, *)) {
+        return [self appdelegateWindow].safeAreaInsets.top;
+    }
+    
+    return 20;
+}
+
+/// 导航栏高度
++ (CGFloat)navigationBarHeight {
+
+    return 44;
+}
+
+/// 导航栏+状态栏高度
++ (CGFloat)navigationAndStatusHeight {
+
+    return [self statusBarHeight] + [self navigationBarHeight];
+}
+
+/// 导航栏 CenterY
++ (CGFloat)navigationBarCenterY {
+    
+    return [self statusBarHeight] + [self navigationBarHeight] * 0.5f;
+}
+
+/// 底部高度
++ (CGFloat)bottomBarHeight {
+
+    if (@available(iOS 11.0, *)) {
+        return [self appdelegateWindow].safeAreaInsets.bottom;
+    }
+    
+    return 0;
+}
+
+///  tabbar 高度
++ (CGFloat)tabbarHeight {
+
+    CGFloat height = 49;
+    if (@available(iOS 11.0, *)) {
+        height += [self appdelegateWindow].safeAreaInsets.bottom;
+    }
+    
+    return height;
+}
+
+/// 获取 window
++ (UIWindow *)appdelegateWindow {
+    
+    return [[UIApplication sharedApplication].windows firstObject];
+}
+
 - (NSString *)platform {
     
     struct utsname systemInfo;

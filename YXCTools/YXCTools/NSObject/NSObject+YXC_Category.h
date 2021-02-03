@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// NSObject 分类
 @interface NSObject (YXC_Category)
 
-@property (nonatomic, strong, class, readonly) NSOperationQueue *searchQueue;
-
 #pragma mark - Method
 
 /// hook 实例方法

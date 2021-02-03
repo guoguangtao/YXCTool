@@ -474,4 +474,13 @@
     
 }
 
+- (void)yxc_setBackgroundImage:(UIImage *)image {
+    UIGraphicsBeginImageContext(self.frame.size);
+    [image drawInRect:self.bounds];
+    UIImage *bgImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+}
+
 @end

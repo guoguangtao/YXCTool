@@ -54,6 +54,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius;
 + (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size cornerInset:(UICornerInset)cornerInset;
 
+/*
+ * tint只对里面的图案作更改颜色操作
+ */
+- (UIImage *)yxc_imageWithTintColor:(UIColor *)tintColor;
+- (UIImage *)yxc_imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode;
+- (UIImage *)yxc_imageWithGradientTintColor:(UIColor *)tintColor;
+
 
 @end
 
