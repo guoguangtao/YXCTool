@@ -19,6 +19,9 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 
 @interface UIButton (YXC_Category)
 
+@property (nonatomic, assign) CGFloat yxc_imageTitleSpace;          /**< 图片文字间距 */
+@property (nonatomic, assign) YXCButtomImage yxc_imagePosition;     /**< 图片位置枚举 */
+
 /// 设置背景颜色
 /// @param color 颜色
 /// @param state 状态

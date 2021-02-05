@@ -64,11 +64,27 @@
 
 - (void)setupUI {
     
-    self.leftImageButton = [UIButton new];
-    self.leftImageButton.backgroundColor = UIColor.orangeColor;
-    [self.leftImageButton setTitle:@"左图右文" forState:UIControlStateNormal];
-    [self.leftImageButton yxc_setImage:@"emitter_like" forState:UIControlStateNormal];
-    [self.view addSubview:self.leftImageButton];
+    self.topImageButton = [self createdButtonWithTitle:@"上图下文" imagePosition:YXCButtomImageTop];
+    
+    self.leftImageButton = [self createdButtonWithTitle:@"左图下文" imagePosition:YXCButtomImageLeft];
+    
+    self.bottomImageButton = [self createdButtonWithTitle:@"底图上文" imagePosition:YXCButtomImageBottom];
+    
+    self.rightImageButton = [self createdButtonWithTitle:@"右图左文" imagePosition:YXCButtomImageRight];
+}
+
+- (UIButton *)createdButtonWithTitle:(NSString *)title imagePosition:(YXCButtomImage)imagePosition {
+    
+    UIButton *button = [UIButton new];
+    button.backgroundColor = UIColor.orangeColor;
+    button.yxc_imagePosition = imagePosition;
+    button.yxc_imageTitleSpace = 10;
+    [button setTitleColor:UIColor.redColor forState:UIControlStateNormal];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button yxc_setImage:@"emitter_like" forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    
+    return button;
 }
 
 
@@ -76,9 +92,26 @@
 
 - (void)setupConstraints {
     
-    [self.leftImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.topImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(UIDevice.navigationAndStatusHeight + 20);
         make.centerX.equalTo(self.view);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(60);
+    }];
+    
+    [self.leftImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.topImageButton.mas_bottom).offset(20);
+        make.centerX.width.height.equalTo(self.topImageButton);
+    }];
+    
+    [self.bottomImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.leftImageButton.mas_bottom).offset(20);
+        make.centerX.width.height.equalTo(self.topImageButton);
+    }];
+    
+    [self.rightImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.bottomImageButton.mas_bottom).offset(20);
+        make.centerX.width.height.equalTo(self.topImageButton);
     }];
 }
 
