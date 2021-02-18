@@ -11,9 +11,6 @@
 @interface YXCPopOverView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIView *contentView; /**< 真实的黑色部分 view */
-@property (nonatomic, strong) UIColor *yxc_backgroundColor; /**< 背景颜色 */
-@property (nonatomic, assign) CGFloat triangleWidth; /**< 三角形宽度 */
-@property (nonatomic, assign) CGFloat triangleHeight; /**< 三角形高度 */
 @property (nonatomic, assign) CGPoint startPoint; /**< 三角形起始位置 */
 @property (nonatomic, assign) CGPoint middlePoint; /**< 三角形中点位置 */
 @property (nonatomic, assign) CGPoint endPoint; /**< 三角形结束位置 */
@@ -31,6 +28,10 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    
+    if (CGRectEqualToRect(frame, CGRectZero)) {
+        frame = CGRectMake(0, 0, 50, 100);
+    }
     
     if (self = [super initWithFrame:frame]) {
         
@@ -77,13 +78,20 @@
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
 
+- (void)setYxc_backgroundColor:(UIColor *)yxc_backgroundColor {
+    
+    _yxc_backgroundColor = yxc_backgroundColor;
+    
+    self.contentView.backgroundColor = self.yxc_backgroundColor;
+}
+
 
 #pragma mark - IBActions
 
 
 #pragma mark - Public
 
-- (void)showForm:(UIView *)view {
+- (void)showFrom:(UIView *)view {
     
     // 在这里展示逻辑
     // 1. self 添加到一个 Windows 上面

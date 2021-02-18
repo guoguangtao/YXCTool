@@ -7,6 +7,7 @@
 //
 
 #import "YXCTestController.h"
+#import "YXCPopOverView.h"
 
 @interface YXCTestController ()
 
@@ -62,6 +63,14 @@
 
 #pragma mark - IBActions
 
+- (void)buttonClicked:(UIButton *)button {
+    
+    YXCPopOverView *overView = [YXCPopOverView new];
+    overView.triangleWidth = 20;
+    overView.triangleHeight = 10;
+    [overView showFrom:button];
+}
+
 
 #pragma mark - Public
 
@@ -94,6 +103,7 @@
     [button setTitleColor:UIColor.redColor forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
     [button yxc_setImage:@"emitter_like" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     return button;

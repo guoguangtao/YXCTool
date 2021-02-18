@@ -12,11 +12,15 @@
 
 #pragma mark - Property
 
+@property (nonatomic, strong) UIColor *yxc_backgroundColor; /**< 背景颜色 */
+@property (nonatomic, assign) CGFloat triangleWidth; /**< 三角形宽度 */
+@property (nonatomic, assign) CGFloat triangleHeight; /**< 三角形高度 */
+
 
 #pragma mark - Method
 
 /// 从 view 展示弹窗
 /// @param view 被点击的 view
-- (void)showForm:(UIView *)view;
+- (void)showFrom:(UIView *)view;
 
 @end
