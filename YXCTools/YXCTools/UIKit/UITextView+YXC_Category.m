@@ -18,9 +18,15 @@
 @implementation UITextView (YXC_Category)
 
 + (void)load {
-    [self hookInstanceMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:NSSelectorFromString(@"dealloc") currentSelector:@selector(yxc_textView_deallocSwizzle)];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:NSSelectorFromString(@"dealloc")
+                          currentSelector:@selector(yxc_textView_deallocSwizzle)];
 
-    [self hookInstanceMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:@selector(initWithFrame:) currentSelector:@selector(yxc_textView_initWithFrame:)];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(initWithFrame:)
+                          currentSelector:@selector(yxc_textView_initWithFrame:)];
 }
 
 - (void)yxc_textView_deallocSwizzle {

@@ -35,6 +35,10 @@ static NSString *const iPhone11 = @"iPhone 11";
 static NSString *const iPhone11Pro = @"iPhone 11 Pro";
 static NSString *const iPhone11ProMax = @"iPhone 11 Pro Max";
 static NSString *const iPhoneSE2 = @"iPhone SE (2nd generation)";
+static NSString *const iPhone12Mini = @"iPhone 12 mini";
+static NSString *const iPhone12 = @"iPhone 12";
+static NSString *const iPhone12Pro = @"iPhone 12 Pro";
+static NSString *const iPhone12ProMax = @"iPhone 12 Pro Max";
 static NSString *const simulator = @"Simulator";
 
 // iPad
@@ -45,9 +49,11 @@ static NSString *const iPad4 = @"iPad (4th generation)";
 static NSString *const iPad5 = @"iPad (5th generation)";
 static NSString *const iPad6 = @"iPad (6th generation)";
 static NSString *const iPad7 = @"iPad (7th generation)";
+static NSString *const iPad8 = @"iPad (8th generation)";
 static NSString *const iPadAir = @"iPad Air";
 static NSString *const iPadAir2 = @"iPad Air 2";
 static NSString *const iPadAir3 = @"iPad Air (3rd generation)";
+static NSString *const iPadAir4 = @"iPad Air (4th generation)";
 static NSString *const iPadPro12_9_inch = @"iPad Pro (12.9-inch)";
 static NSString *const iPadPro9_7_inch = @"iPad Pro (9.7-inch)";
 static NSString *const iPadPro12_9_inch2 = @"iPad Pro (12.9-inch) (2nd generation)";

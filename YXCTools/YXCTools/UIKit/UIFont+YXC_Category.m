@@ -15,9 +15,15 @@
 
 + (void)load {
     
-    [self hookClassMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:@selector(systemFontOfSize:) currentSelector:@selector(yxc_systemFontOfSize:)];
+    [self hookClassMethodWithTargetCls:[self class]
+                            currentCls:[self class]
+                        targetSelector:@selector(systemFontOfSize:)
+                       currentSelector:@selector(yxc_systemFontOfSize:)];
     
-    [self hookClassMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:@selector(systemFontOfSize:weight:) currentSelector:@selector(yxc_systemFontOfSize:weight:)];
+    [self hookClassMethodWithTargetCls:[self class]
+                            currentCls:[self class]
+                        targetSelector:@selector(systemFontOfSize:weight:)
+                       currentSelector:@selector(yxc_systemFontOfSize:weight:)];
 }
 
 + (UIFont *)yxc_systemFontOfSize:(CGFloat)fontSize {
