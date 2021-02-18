@@ -141,7 +141,7 @@
     
     if (![imageName checkString]) return;
     
-    [self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [self setImage:[UIImage imageNamed:imageName] forState:state];
 }
 
 /// 设置图片和文字间距

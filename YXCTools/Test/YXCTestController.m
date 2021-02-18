@@ -107,9 +107,7 @@
     .yxc_setBackgroundColor(UIColor.blueColor, UIControlStateHighlighted)
     .yxc_setBackgroundColor(UIColor.systemPurpleColor, UIControlStateNormal)
     .yxc_setImage(@"emitter_like", UIControlStateNormal)
-    .yxc_setImage(@"emitter_like", UIControlStateHighlighted)
-    .yxc_setImage(@"emitter_like", UIControlStateNormal | UIControlStateHighlighted)
-    .yxc_setImage(@"emitter_like", UIControlStateHighlighted | UIControlStateNormal);
+    .yxc_setImage(@"emitter_like", UIControlStateHighlighted);
 }
 
 
