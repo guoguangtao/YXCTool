@@ -96,17 +96,20 @@
 
 - (UIButton *)createdButtonWithTitle:(NSString *)title imagePosition:(YXCButtomImage)imagePosition {
     
-    UIButton *button = [UIButton new];
-    button.backgroundColor = UIColor.orangeColor;
-    button.yxc_imagePosition = imagePosition;
-    button.yxc_imageTitleSpace = 10;
-    [button setTitleColor:UIColor.redColor forState:UIControlStateNormal];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button yxc_setImage:@"emitter_like" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    
-    return button;
+    return [UIButton new]
+    .yxc_setTitle(title, UIControlStateNormal)
+    .yxc_setImagePosition(imagePosition)
+    .yxc_setTitleColor(UIColor.orangeColor, UIControlStateNormal)
+    .yxc_setImageTitleSpace(5)
+    .yxc_addAction(self, @selector(buttonClicked:), UIControlEventTouchUpInside)
+    .yxc_addForSuperView(self.view)
+    .yxc_setFontSize(50)
+    .yxc_setBackgroundColor(UIColor.blueColor, UIControlStateHighlighted)
+    .yxc_setBackgroundColor(UIColor.systemPurpleColor, UIControlStateNormal)
+    .yxc_setImage(@"emitter_like", UIControlStateNormal)
+    .yxc_setImage(@"emitter_like", UIControlStateHighlighted)
+    .yxc_setImage(@"emitter_like", UIControlStateNormal | UIControlStateHighlighted)
+    .yxc_setImage(@"emitter_like", UIControlStateHighlighted | UIControlStateNormal);
 }
 
 

@@ -36,6 +36,39 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 /// 更新 size
 - (void)yxc_sizeToFit;
 
+/// 设置标题
+- (UIButton *(^)(NSString *title, UIControlState state))yxc_setTitle;
+
+/// 设置背景颜色
+- (UIButton *(^)(UIColor *color, UIControlState state))yxc_setBackgroundColor;
+
+/// 设置文字颜色
+- (UIButton *(^)(UIColor *color, UIControlState state))yxc_setTitleColor;
+
+/// 设置图片
+- (UIButton *(^)(NSString *imageName, UIControlState state))yxc_setImage;
+
+/// 设置图片的位置
+- (UIButton *(^)(YXCButtomImage imagePosition))yxc_setImagePosition;
+
+/// 设置图片和文字之间的间距
+- (UIButton *(^)(CGFloat imageTitleSpace))yxc_setImageTitleSpace;
+
+/// 添加事件
+- (UIButton *(^)(id target, SEL action, UIControlEvents controlEvents))yxc_addAction;
+
+/// 添加到父视图
+- (UIButton *(^)(UIView *superView))yxc_addForSuperView;
+
+/// 设置系统字体大小
+- (UIButton *(^)(UIFont *font))yxc_setSystemFontOfSize;
+
+/// 设置系统字体大小
+- (UIButton *(^)(CGFloat fontSize, UIFontWeight weight))yxc_setFont;
+
+/// 设置系统字体大小
+- (UIButton *(^)(CGFloat fontSize))yxc_setFontSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

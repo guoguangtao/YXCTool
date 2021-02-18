@@ -24,6 +24,17 @@
                                currentCls:[self class]
                            targetSelector:@selector(layoutSubviews)
                           currentSelector:@selector(yxc_layoutSubviews)];
+    
+//    [self hookInstanceMethodWithTargetCls:[self class]
+//                               currentCls:[self class]
+//                           targetSelector:NSSelectorFromString(@"dealloc")
+//                          currentSelector:@selector(yxc_dealloc)];
+}
+
+- (void)yxc_dealloc {
+    
+    NSLog(@"%s", __func__);
+    [self yxc_dealloc];
 }
 
 - (void)yxc_layoutSubviews {
@@ -180,6 +191,107 @@
     CGPoint center = self.center;
     self.size = self.yxc_buttonSize;
     self.center = center;
+}
+
+/// 设置标题
+- (UIButton * _Nonnull (^)(NSString * _Nonnull, UIControlState))yxc_setTitle {
+    
+    return ^(NSString *title, UIControlState state){
+        [self setTitle:title forState:state];
+        return self;
+    };
+}
+
+/// 设置背景颜色
+- (UIButton * _Nonnull (^)(UIColor * _Nonnull, UIControlState))yxc_setBackgroundColor {
+    
+    return ^(UIColor *color, UIControlState state){
+        [self setBackgroundColor:color forState:state];
+        return self;
+    };
+}
+
+/// 设置文字颜色
+- (UIButton * _Nonnull (^)(UIColor * _Nonnull, UIControlState))yxc_setTitleColor {
+    
+    return ^(UIColor *color, UIControlState state){
+        [self setTitleColor:color forState:state];
+        return self;
+    };
+}
+
+/// 设置图片
+- (UIButton * _Nonnull (^)(NSString * _Nonnull, UIControlState))yxc_setImage {
+    
+    return ^(NSString *imageName, UIControlState state){
+        [self yxc_setImage:imageName forState:state];
+        return self;
+    };
+}
+
+/// 设置图片的位置
+- (UIButton * _Nonnull (^)(YXCButtomImage))yxc_setImagePosition {
+    
+    return ^(YXCButtomImage imagePosition){
+        self.yxc_imagePosition = imagePosition;
+        return self;
+    };
+}
+
+/// 设置图片和文字之间的间距
+- (UIButton * _Nonnull (^)(CGFloat))yxc_setImageTitleSpace {
+    
+    return ^(CGFloat imageTitleSpace){
+        self.yxc_imageTitleSpace = imageTitleSpace;
+        return self;
+    };
+}
+
+/// 添加事件
+- (UIButton * _Nonnull (^)(id _Nonnull, SEL _Nonnull, UIControlEvents))yxc_addAction {
+    
+    return ^(id target, SEL action, UIControlEvents controlEvents){
+        [self addTarget:target action:action forControlEvents:controlEvents];
+        return self;
+    };
+}
+
+/// 添加到父视图
+- (UIButton * _Nonnull (^)(UIView * _Nonnull))yxc_addForSuperView {
+    
+    return ^(UIView *superView){
+        if (superView) {
+            [superView addSubview:self];
+        }
+        return self;
+    };
+}
+
+/// 设置系统字体大小
+- (UIButton * _Nonnull (^)(CGFloat, UIFontWeight))yxc_setFont {
+    
+    return ^(CGFloat fontSize, UIFontWeight weight){
+        self.titleLabel.font = [UIFont systemFontOfSize:fontSize weight:weight];
+        return self;
+    };
+}
+
+/// 设置系统字体大小
+- (UIButton * _Nonnull (^)(UIFont * _Nonnull))yxc_setSystemFontOfSize {
+    
+    return ^(UIFont *font){
+        self.titleLabel.font = font;
+        return self;
+    };
+}
+
+/// 设置系统字体大小
+- (UIButton * _Nonnull (^)(CGFloat))yxc_setFontSize {
+    
+    return ^(CGFloat fontSize){
+        self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+        return self;
+    };
 }
 
 @end
