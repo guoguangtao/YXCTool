@@ -193,6 +193,10 @@
     self.center = center;
 }
 
+
+
+#pragma mark - 链式编程函数
+
 /// 设置标题
 - (UIButton * _Nonnull (^)(NSString * _Nonnull, UIControlState))yxc_setTitle {
     

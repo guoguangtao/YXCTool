@@ -36,6 +36,9 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 /// 更新 size
 - (void)yxc_sizeToFit;
 
+
+#pragma mark - 链式编程函数
+
 /// 设置标题
 - (UIButton *(^)(NSString *title, UIControlState state))yxc_setTitle;
 
