@@ -30,6 +30,15 @@
     [self setupConstraints];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self.leftImageButton yxc_sizeToFit];
+    [self.topImageButton yxc_sizeToFit];
+    [self.bottomImageButton yxc_sizeToFit];
+    [self.rightImageButton yxc_sizeToFit];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -37,6 +46,9 @@
     
     [self setupUI];
     [self setupConstraints];
+    
+    [UIButton printfMethodWithSelector:@selector(layoutSubviews) isClassMethod:NO];
+    [UIView printfMethodWithSelector:@selector(layoutSubviews) isClassMethod:NO];
 }
 
 - (void)dealloc {
@@ -95,8 +107,6 @@
     [self.topImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(UIDevice.navigationAndStatusHeight + 20);
         make.centerX.equalTo(self.view);
-        make.width.mas_equalTo(100);
-        make.height.mas_equalTo(60);
     }];
     
     [self.leftImageButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 
 @property (nonatomic, assign) CGFloat yxc_imageTitleSpace;          /**< 图片文字间距 */
 @property (nonatomic, assign) YXCButtomImage yxc_imagePosition;     /**< 图片位置枚举 */
+@property (nonatomic, assign, readonly) CGSize yxc_buttonSize;      /**< 最终按钮的最适合 size */
 
 /// 设置背景颜色
 /// @param color 颜色
@@ -31,6 +32,9 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 /// @param imageName 图片名称
 /// @param state 状态
 - (void)yxc_setImage:(NSString *)imageName forState:(UIControlState)state;
+
+/// 更新 size
+- (void)yxc_sizeToFit;
 
 @end
 

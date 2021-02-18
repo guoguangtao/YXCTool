@@ -10,6 +10,12 @@
 #import "UIImage+YXC_Category.h"
 #import <objc/runtime.h>
 
+@interface UIButton ()
+
+@property (nonatomic, assign, readwrite) CGSize yxc_buttonSize;      /**< 最终按钮的最适合 size */
+
+@end
+
 @implementation UIButton (YXC_Category)
 
 + (void)load {
@@ -23,10 +29,6 @@
 - (void)yxc_layoutSubviews {
     [self yxc_layoutSubviews];
     
-    self.imageView.backgroundColor = UIColor.purpleColor;
-    self.titleLabel.backgroundColor = UIColor.greenColor;
-    self.backgroundColor = UIColor.orangeColor;
-    
     switch (self.yxc_imagePosition) {
         case YXCButtomImageLeft: [self setupImageLeft]; break;
         case YXCButtomImageBottom: [self setupImageBottom]; break;
@@ -35,6 +37,7 @@
     }
 }
 
+/// 设置图片居上
 - (void)setupImageTop {
     
     [self.titleLabel sizeToFit];
@@ -51,8 +54,12 @@
     self.titleLabel.centerX = self.width * 0.5f;
     self.titleLabel.y = self.imageView.bottom + self.yxc_imageTitleSpace;
     [self.titleLabel sizeToFit];
+    
+    CGFloat width = MAX(self.imageView.width, self.titleLabel.width);
+    self.yxc_buttonSize = CGSizeMake(width, height);
 }
 
+/// 设置图片居左
 - (void)setupImageLeft {
     
     [self.titleLabel sizeToFit];
@@ -65,8 +72,12 @@
     
     self.titleLabel.x = self.imageView.right + self.yxc_imageTitleSpace;
     [self.titleLabel sizeToFit];
+    
+    CGFloat height = MAX(self.imageView.height, self.titleLabel.height);
+    self.yxc_buttonSize = CGSizeMake(width, height);
 }
 
+/// 设置图片居下
 - (void)setupImageBottom {
     
     [self.titleLabel sizeToFit];
@@ -81,8 +92,12 @@
     self.imageView.centerX = self.width * 0.5f;
     self.imageView.y = self.titleLabel.bottom + self.yxc_imageTitleSpace;
     [self.imageView sizeToFit];
+    
+    CGFloat width = MAX(self.imageView.width, self.titleLabel.width);
+    self.yxc_buttonSize = CGSizeMake(width, height);
 }
 
+/// 设置图片居右
 - (void)setupImageRight {
     
     [self.titleLabel sizeToFit];
@@ -95,6 +110,9 @@
     
     self.imageView.x = self.titleLabel.right + self.yxc_imageTitleSpace;
     [self.imageView sizeToFit];
+    
+    CGFloat height = MAX(self.imageView.height, self.titleLabel.height);
+    self.yxc_buttonSize = CGSizeMake(width, height);
 }
 
 /// 设置背景颜色
@@ -139,6 +157,29 @@
 - (YXCButtomImage)yxc_imagePosition {
     
     return [objc_getAssociatedObject(self, @selector(yxc_imagePosition)) integerValue];
+}
+
+/// 设置按钮的实际大小
+/// @param yxc_buttonSize 按钮的实际 size
+- (void)setYxc_buttonSize:(CGSize)yxc_buttonSize {
+    
+    objc_setAssociatedObject(self, @selector(yxc_buttonSize), NSStringFromCGSize(yxc_buttonSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+/// 获取按钮的实际 size
+- (CGSize)yxc_buttonSize {
+    
+    NSString *sizeString = objc_getAssociatedObject(self, @selector(yxc_buttonSize));
+    CGSize size = CGSizeFromString(sizeString);
+    return size;
+}
+
+/// 更新按钮size
+- (void)yxc_sizeToFit {
+    
+    CGPoint center = self.center;
+    self.size = self.yxc_buttonSize;
+    self.center = center;
 }
 
 @end
