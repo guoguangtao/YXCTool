@@ -83,6 +83,7 @@ isBangsScreen; \
 #import "YXCControllerModel.h"
 #import "NSDate+YXC_Category.h"
 #import "NSObject+YXC_Category.h"
+#import "NSAttributedString+YXC_Category.h"
 
 #pragma mark - UIKit
 

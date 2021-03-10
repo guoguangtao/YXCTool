@@ -85,13 +85,20 @@
 
 - (void)setupUI {
     
-    self.topImageButton = [self createdButtonWithTitle:@"上图下文" imagePosition:YXCButtomImageTop];
-    
-    self.leftImageButton = [self createdButtonWithTitle:@"左图下文" imagePosition:YXCButtomImageLeft];
-    
-    self.bottomImageButton = [self createdButtonWithTitle:@"底图上文" imagePosition:YXCButtomImageBottom];
-    
-    self.rightImageButton = [self createdButtonWithTitle:@"右图左文" imagePosition:YXCButtomImageRight];
+    UILabel *label = [UILabel new];
+    label.numberOfLines = 0;
+    NSAttributedString *attributedString = [NSAttributedString new];
+    attributedString = attributedString
+    .yxc_appendAttributedString(@"123", @{NSForegroundColorAttributeName : UIColor.redColor})
+    .yxc_appendAttributedString(@"\n456", @{NSForegroundColorAttributeName : UIColor.orangeColor, NSFontAttributeName : [UIFont systemFontOfSize:50]})
+    .yxc_appendAttributedString(nil, @{NSForegroundColorAttributeName : UIColor.blueColor})
+    .yxc_appendAttributedString(@"\n987", nil);
+    label.attributedText = attributedString;
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (UIButton *)createdButtonWithTitle:(NSString *)title imagePosition:(YXCButtomImage)imagePosition {
