@@ -10,8 +10,8 @@
 
 @implementation NSAttributedString (YXC_Category)
 
-/// 属性字符串拼接
-- (NSAttributedString *(^)(NSString * _Nullable string, NSDictionary<NSAttributedStringKey, id> * _Nullable attributes))yxc_appendAttributedString {
+/// 属性字符串拼接字符串
+- (NSAttributedString *(^)(NSString * _Nullable string, NSDictionary<NSAttributedStringKey, id> * _Nullable attributes))yxc_appendString {
     
     return ^(NSString *string, NSDictionary<NSAttributedStringKey, id> *attributes) {
         
@@ -19,8 +19,21 @@
             return self;
         }
         
-        NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self];
         NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
+        return self.yxc_appendAttributedString(attributedString);
+    };
+}
+
+/// 属性字符串拼接属性字符串
+- (NSAttributedString * _Nonnull (^)(NSAttributedString * _Nullable))yxc_appendAttributedString {
+    
+    return ^(NSAttributedString *attributedString) {
+        
+        if (attributedString == nil || ![attributedString isKindOfClass:[NSAttributedString class]] || !attributedString.length) {
+            return self;
+        }
+        
+        NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self];
         [mutableAttributedString appendAttributedString:attributedString];
         
         return (NSAttributedString *)[mutableAttributedString copy];

@@ -12,8 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSAttributedString (YXC_Category)
 
-/// 属性字符串拼接
-- (NSAttributedString *(^)(NSString * _Nullable string, NSDictionary<NSAttributedStringKey, id> * _Nullable attributes))yxc_appendAttributedString;
+/// 属性字符串拼接字符串
+- (NSAttributedString *(^)(NSString * _Nullable string, NSDictionary<NSAttributedStringKey, id> * _Nullable attributes))yxc_appendString;
+
+/// 属性字符串拼接属性字符串
+- (NSAttributedString *(^)(NSAttributedString * _Nullable attributedString))yxc_appendAttributedString;
 
 @end
 

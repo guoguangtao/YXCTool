@@ -89,10 +89,11 @@
     label.numberOfLines = 0;
     NSAttributedString *attributedString = [NSAttributedString new];
     attributedString = attributedString
-    .yxc_appendAttributedString(@"123", @{NSForegroundColorAttributeName : UIColor.redColor})
-    .yxc_appendAttributedString(@"\n456", @{NSForegroundColorAttributeName : UIColor.orangeColor, NSFontAttributeName : [UIFont systemFontOfSize:50]})
-    .yxc_appendAttributedString(nil, @{NSForegroundColorAttributeName : UIColor.blueColor})
-    .yxc_appendAttributedString(@"\n987", nil);
+    .yxc_appendString(@"123", @{NSForegroundColorAttributeName : UIColor.redColor})
+    .yxc_appendString(@"\n456", @{NSForegroundColorAttributeName : UIColor.orangeColor, NSFontAttributeName : [UIFont systemFontOfSize:50]})
+    .yxc_appendString(nil, @{NSForegroundColorAttributeName : UIColor.blueColor})
+    .yxc_appendString(@"\n987", nil)
+    .yxc_appendAttributedString([[NSAttributedString alloc] initWithString:@"\n😁哈哈哈" attributes:nil]);
     label.attributedText = attributedString;
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
