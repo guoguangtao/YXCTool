@@ -144,6 +144,8 @@
                 self.endPoint = CGPointMake(centerX + self.triangleWidth * 0.5, self.middlePoint.y - self.triangleHeight);
             }
             
+            self.tableView.frame = self.contentView.bounds;
+            
             [window addSubview:self];
             return;
         }
@@ -213,9 +215,6 @@
 
 - (void)setupConstraints {
     
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
-    }];
 }
 
 
