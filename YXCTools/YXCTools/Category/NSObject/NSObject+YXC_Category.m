@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+YXC_Category.h"
+#import "YXCToolHeader.h"
 #import <objc/runtime.h>
 
 @implementation NSObject (YXC_Category)

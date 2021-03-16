@@ -7,6 +7,7 @@
 //
 
 #import "NSMutableArray+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
 
 @implementation NSMutableArray (YXC_Category)
 

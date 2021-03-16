@@ -7,6 +7,7 @@
 //
 
 #import "UIFont+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
 #import <objc/runtime.h>
 
 #define DESIGN_SCREEN_WIDTH  750

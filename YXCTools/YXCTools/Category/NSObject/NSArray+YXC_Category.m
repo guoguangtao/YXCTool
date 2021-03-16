@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
 #import <objc/runtime.h>
 
 @implementation NSArray (YXC_Category)

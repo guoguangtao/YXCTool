@@ -7,6 +7,7 @@
 //
 
 #import "UITextField+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
 #import <objc/runtime.h>
 
 @implementation UITextField (YXC_Category)
@@ -19,7 +20,6 @@
 
 - (void)yxc_textField_deallocSwizzle {
     
-    YXCLog(@"%s", __func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self yxc_textField_deallocSwizzle];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "UIControl+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
 #import <objc/runtime.h>
 
 @interface UIControl ()

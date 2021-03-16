@@ -8,6 +8,7 @@
 
 #import "YXCMarqueeLabel.h"
 #import "UIView+YXC_Category.h"
+#import "YXCToolHeader.h"
 
 @interface YXCMarqueeLabel ()
 
@@ -60,10 +61,6 @@
     return self;
 }
 
-- (void)dealloc {
-    
-    YXCLog(@"%s", __func__);
-}
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
 

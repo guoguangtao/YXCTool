@@ -9,6 +9,7 @@
 #import "YXCImagePickerHandler.h"
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
+#import "YXCToolHeader.h"
 
 @interface YXCImagePickerHandler ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -46,11 +47,6 @@ static YXCImagePickerHandler *_instance;
     });
     
     return _instance;
-}
-
-- (void)dealloc {
-    
-    YXCLog(@"%s", __func__);
 }
 
 

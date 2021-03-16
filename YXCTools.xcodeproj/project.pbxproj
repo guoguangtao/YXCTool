@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A1FB4642519A06F00825BEA /* YXCPhotoAlbumListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FB4632519A06F00825BEA /* YXCPhotoAlbumListController.m */; };
-		8A1FB4682519A09D00825BEA /* YXCPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FB4672519A09D00825BEA /* YXCPhotoView.m */; };
-		8A1FB46C2519A25400825BEA /* YXCPhotoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FB46B2519A25400825BEA /* YXCPhotoHandler.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
 		8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79CC2516092200BB9595 /* YXCiOS14Controller.m */; };
 		8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D025160A9D00BB9595 /* YXCPushHandler.m */; };
@@ -34,14 +31,9 @@
 		8A81CA4F2563CE4100BE03D4 /* YXCNSThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA4E2563CE4100BE03D4 /* YXCNSThreadController.m */; };
 		8A81CA522563D13800BE03D4 /* YXCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA512563D13800BE03D4 /* YXCThread.m */; };
 		8A81CA552563FBFC00BE03D4 /* YXCGCDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA542563FBFC00BE03D4 /* YXCGCDController.m */; };
-		8A8E1AAB251CABC50044205C /* YXCPhotoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8E1AAA251CABC50044205C /* YXCPhotoListCell.m */; };
-		8AA0FDED251D838100805E84 /* YXCPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA0FDEC251D838100805E84 /* YXCPhotoListController.m */; };
-		8AA0FDF0251D8F1E00805E84 /* YXCPhotoListImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA0FDEF251D8F1E00805E84 /* YXCPhotoListImageCell.m */; };
 		8AA37E34254FDC0600622B5A /* YXCUIBezierPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA37E33254FDC0600622B5A /* YXCUIBezierPathController.m */; };
 		8AA37E37254FE21000622B5A /* YXCBezierPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA37E36254FE21000622B5A /* YXCBezierPathView.m */; };
 		8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AADCC1A25184AFC000F7F5F /* YXCUIPageControlController.m */; };
-		8AAEE48A2530621C00B31BC5 /* YXCAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAEE4892530621C00B31BC5 /* YXCAssetModel.m */; };
-		8AAEE48D25306A5000B31BC5 /* YXCBigPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAEE48C25306A5000B31BC5 /* YXCBigPictureView.m */; };
 		8AB2B8032533EB7100A80E7E /* YXCPHPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB2B8022533EB7100A80E7E /* YXCPHPickerViewController.m */; };
 		8AB4C8ED26003DF300596D17 /* UITextView+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB4C8C726003DF300596D17 /* UITextView+YXC_Category.m */; };
 		8AB4C8EE26003DF300596D17 /* UIButton+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB4C8C926003DF300596D17 /* UIButton+YXC_Category.m */; };
@@ -76,6 +68,14 @@
 		8AECEC4F24497FED00537181 /* YXCToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC4E24497FED00537181 /* YXCToolsUITests.m */; };
 		8AEDE5202521D662006C3452 /* YXCTableViewEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDE51F2521D662006C3452 /* YXCTableViewEditController.m */; };
 		8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */; };
+		8AF3A98D26008CD700F2AFC2 /* YXCPhotoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A97B26008CD700F2AFC2 /* YXCPhotoHandler.m */; };
+		8AF3A98E26008CD700F2AFC2 /* YXCPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A97F26008CD700F2AFC2 /* YXCPhotoListController.m */; };
+		8AF3A98F26008CD700F2AFC2 /* YXCPhotoAlbumListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A98026008CD700F2AFC2 /* YXCPhotoAlbumListController.m */; };
+		8AF3A99026008CD700F2AFC2 /* YXCAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A98226008CD700F2AFC2 /* YXCAssetModel.m */; };
+		8AF3A99126008CD700F2AFC2 /* YXCPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A98526008CD700F2AFC2 /* YXCPhotoView.m */; };
+		8AF3A99226008CD700F2AFC2 /* YXCPhotoListImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A98826008CD700F2AFC2 /* YXCPhotoListImageCell.m */; };
+		8AF3A99326008CD700F2AFC2 /* YXCPhotoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A98A26008CD700F2AFC2 /* YXCPhotoListCell.m */; };
+		8AF3A99426008CD700F2AFC2 /* YXCBigPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A98C26008CD700F2AFC2 /* YXCBigPictureView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,12 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8A1FB4622519A06F00825BEA /* YXCPhotoAlbumListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoAlbumListController.h; sourceTree = "<group>"; };
-		8A1FB4632519A06F00825BEA /* YXCPhotoAlbumListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoAlbumListController.m; sourceTree = "<group>"; };
-		8A1FB4662519A09D00825BEA /* YXCPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoView.h; sourceTree = "<group>"; };
-		8A1FB4672519A09D00825BEA /* YXCPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoView.m; sourceTree = "<group>"; };
-		8A1FB46A2519A25400825BEA /* YXCPhotoHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoHandler.h; sourceTree = "<group>"; };
-		8A1FB46B2519A25400825BEA /* YXCPhotoHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoHandler.m; sourceTree = "<group>"; };
 		8A2B79C82516070A00BB9595 /* YXCControllerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCControllerModel.h; sourceTree = "<group>"; };
 		8A2B79C92516070A00BB9595 /* YXCControllerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCControllerModel.m; sourceTree = "<group>"; };
 		8A2B79CB2516092200BB9595 /* YXCiOS14Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCiOS14Controller.h; sourceTree = "<group>"; };
@@ -155,22 +149,12 @@
 		8A81CA512563D13800BE03D4 /* YXCThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCThread.m; sourceTree = "<group>"; };
 		8A81CA532563FBFC00BE03D4 /* YXCGCDController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCGCDController.h; sourceTree = "<group>"; };
 		8A81CA542563FBFC00BE03D4 /* YXCGCDController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCGCDController.m; sourceTree = "<group>"; };
-		8A8E1AA9251CABC50044205C /* YXCPhotoListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoListCell.h; sourceTree = "<group>"; };
-		8A8E1AAA251CABC50044205C /* YXCPhotoListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoListCell.m; sourceTree = "<group>"; };
-		8AA0FDEB251D838100805E84 /* YXCPhotoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoListController.h; sourceTree = "<group>"; };
-		8AA0FDEC251D838100805E84 /* YXCPhotoListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoListController.m; sourceTree = "<group>"; };
-		8AA0FDEE251D8F1E00805E84 /* YXCPhotoListImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPhotoListImageCell.h; sourceTree = "<group>"; };
-		8AA0FDEF251D8F1E00805E84 /* YXCPhotoListImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoListImageCell.m; sourceTree = "<group>"; };
 		8AA37E32254FDC0600622B5A /* YXCUIBezierPathController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCUIBezierPathController.h; sourceTree = "<group>"; };
 		8AA37E33254FDC0600622B5A /* YXCUIBezierPathController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCUIBezierPathController.m; sourceTree = "<group>"; };
 		8AA37E35254FE21000622B5A /* YXCBezierPathView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBezierPathView.h; sourceTree = "<group>"; };
 		8AA37E36254FE21000622B5A /* YXCBezierPathView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBezierPathView.m; sourceTree = "<group>"; };
 		8AADCC1925184AFC000F7F5F /* YXCUIPageControlController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCUIPageControlController.h; sourceTree = "<group>"; };
 		8AADCC1A25184AFC000F7F5F /* YXCUIPageControlController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCUIPageControlController.m; sourceTree = "<group>"; };
-		8AAEE4882530621C00B31BC5 /* YXCAssetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAssetModel.h; sourceTree = "<group>"; };
-		8AAEE4892530621C00B31BC5 /* YXCAssetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAssetModel.m; sourceTree = "<group>"; };
-		8AAEE48B25306A5000B31BC5 /* YXCBigPictureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBigPictureView.h; sourceTree = "<group>"; };
-		8AAEE48C25306A5000B31BC5 /* YXCBigPictureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBigPictureView.m; sourceTree = "<group>"; };
 		8AB2B8012533EB7100A80E7E /* YXCPHPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCPHPickerViewController.h; sourceTree = "<group>"; };
 		8AB2B8022533EB7100A80E7E /* YXCPHPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPHPickerViewController.m; sourceTree = "<group>"; };
 		8AB4C8C526003DF300596D17 /* UIFont+YXC_Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+YXC_Category.h"; sourceTree = "<group>"; };
@@ -242,6 +226,22 @@
 		8AEDE51F2521D662006C3452 /* YXCTableViewEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTableViewEditController.m; sourceTree = "<group>"; };
 		8AEDE5222521D9B1006C3452 /* YXCTableViewEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTableViewEditCell.h; sourceTree = "<group>"; };
 		8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTableViewEditCell.m; sourceTree = "<group>"; };
+		8AF3A97A26008CD700F2AFC2 /* YXCPhotoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoHandler.h; sourceTree = "<group>"; };
+		8AF3A97B26008CD700F2AFC2 /* YXCPhotoHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoHandler.m; sourceTree = "<group>"; };
+		8AF3A97D26008CD700F2AFC2 /* YXCPhotoAlbumListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoAlbumListController.h; sourceTree = "<group>"; };
+		8AF3A97E26008CD700F2AFC2 /* YXCPhotoListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoListController.h; sourceTree = "<group>"; };
+		8AF3A97F26008CD700F2AFC2 /* YXCPhotoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoListController.m; sourceTree = "<group>"; };
+		8AF3A98026008CD700F2AFC2 /* YXCPhotoAlbumListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoAlbumListController.m; sourceTree = "<group>"; };
+		8AF3A98226008CD700F2AFC2 /* YXCAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCAssetModel.m; sourceTree = "<group>"; };
+		8AF3A98326008CD700F2AFC2 /* YXCAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCAssetModel.h; sourceTree = "<group>"; };
+		8AF3A98526008CD700F2AFC2 /* YXCPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoView.m; sourceTree = "<group>"; };
+		8AF3A98626008CD700F2AFC2 /* YXCPhotoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoListCell.h; sourceTree = "<group>"; };
+		8AF3A98726008CD700F2AFC2 /* YXCBigPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCBigPictureView.h; sourceTree = "<group>"; };
+		8AF3A98826008CD700F2AFC2 /* YXCPhotoListImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoListImageCell.m; sourceTree = "<group>"; };
+		8AF3A98926008CD700F2AFC2 /* YXCPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoView.h; sourceTree = "<group>"; };
+		8AF3A98A26008CD700F2AFC2 /* YXCPhotoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoListCell.m; sourceTree = "<group>"; };
+		8AF3A98B26008CD700F2AFC2 /* YXCPhotoListImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoListImageCell.h; sourceTree = "<group>"; };
+		8AF3A98C26008CD700F2AFC2 /* YXCBigPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCBigPictureView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,41 +292,6 @@
 				8AB2B8022533EB7100A80E7E /* YXCPHPickerViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		8A1FB4612519A03300825BEA /* PhotoKit */ = {
-			isa = PBXGroup;
-			children = (
-				8AAEE487253061E200B31BC5 /* Model */,
-				8A8E1AA8251CA1DB0044205C /* Controller */,
-				8A1FB4692519A23500825BEA /* Tools */,
-				8A1FB4652519A08500825BEA /* View */,
-			);
-			path = PhotoKit;
-			sourceTree = "<group>";
-		};
-		8A1FB4652519A08500825BEA /* View */ = {
-			isa = PBXGroup;
-			children = (
-				8A1FB4662519A09D00825BEA /* YXCPhotoView.h */,
-				8A1FB4672519A09D00825BEA /* YXCPhotoView.m */,
-				8A8E1AA9251CABC50044205C /* YXCPhotoListCell.h */,
-				8A8E1AAA251CABC50044205C /* YXCPhotoListCell.m */,
-				8AA0FDEE251D8F1E00805E84 /* YXCPhotoListImageCell.h */,
-				8AA0FDEF251D8F1E00805E84 /* YXCPhotoListImageCell.m */,
-				8AAEE48B25306A5000B31BC5 /* YXCBigPictureView.h */,
-				8AAEE48C25306A5000B31BC5 /* YXCBigPictureView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		8A1FB4692519A23500825BEA /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				8A1FB46A2519A25400825BEA /* YXCPhotoHandler.h */,
-				8A1FB46B2519A25400825BEA /* YXCPhotoHandler.m */,
-			);
-			path = Tools;
 			sourceTree = "<group>";
 		};
 		8A2B79C7251606EE00BB9595 /* Model */ = {
@@ -460,26 +425,6 @@
 			path = Multithreading;
 			sourceTree = "<group>";
 		};
-		8A8E1AA8251CA1DB0044205C /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				8A1FB4622519A06F00825BEA /* YXCPhotoAlbumListController.h */,
-				8A1FB4632519A06F00825BEA /* YXCPhotoAlbumListController.m */,
-				8AA0FDEB251D838100805E84 /* YXCPhotoListController.h */,
-				8AA0FDEC251D838100805E84 /* YXCPhotoListController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		8AAEE487253061E200B31BC5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				8AAEE4882530621C00B31BC5 /* YXCAssetModel.h */,
-				8AAEE4892530621C00B31BC5 /* YXCAssetModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		8AB4C8C326003DF300596D17 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +520,8 @@
 		8AECEC2624497FEA00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				8AECEC7C2449972B00537181 /* YXCTool.pch */,
+				8AF3A97826008CD700F2AFC2 /* PhotoKit */,
 				8AE02B2D25CA7E5B005A0D99 /* Test(测试界面) */,
 				8A81CA462563C44F00BE03D4 /* Multithreading(多线程) */,
 				8A781693253ED62E00A82DF9 /* Animation(动画) */,
@@ -617,7 +564,6 @@
 			isa = PBXGroup;
 			children = (
 				8AB4C8C326003DF300596D17 /* Category */,
-				8A1FB4612519A03300825BEA /* PhotoKit */,
 				8AECEC75244993E400537181 /* Header */,
 			);
 			path = YXCTools;
@@ -626,7 +572,6 @@
 		8AECEC75244993E400537181 /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				8AECEC7C2449972B00537181 /* YXCTool.pch */,
 				8AECEC74244992F900537181 /* YXCToolHeader.h */,
 			);
 			path = Header;
@@ -662,6 +607,61 @@
 				8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */,
 				8AA37E35254FE21000622B5A /* YXCBezierPathView.h */,
 				8AA37E36254FE21000622B5A /* YXCBezierPathView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8AF3A97826008CD700F2AFC2 /* PhotoKit */ = {
+			isa = PBXGroup;
+			children = (
+				8AF3A97926008CD700F2AFC2 /* Tools */,
+				8AF3A97C26008CD700F2AFC2 /* Controller */,
+				8AF3A98126008CD700F2AFC2 /* Model */,
+				8AF3A98426008CD700F2AFC2 /* View */,
+			);
+			path = PhotoKit;
+			sourceTree = "<group>";
+		};
+		8AF3A97926008CD700F2AFC2 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8AF3A97A26008CD700F2AFC2 /* YXCPhotoHandler.h */,
+				8AF3A97B26008CD700F2AFC2 /* YXCPhotoHandler.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		8AF3A97C26008CD700F2AFC2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8AF3A97D26008CD700F2AFC2 /* YXCPhotoAlbumListController.h */,
+				8AF3A97E26008CD700F2AFC2 /* YXCPhotoListController.h */,
+				8AF3A97F26008CD700F2AFC2 /* YXCPhotoListController.m */,
+				8AF3A98026008CD700F2AFC2 /* YXCPhotoAlbumListController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8AF3A98126008CD700F2AFC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8AF3A98226008CD700F2AFC2 /* YXCAssetModel.m */,
+				8AF3A98326008CD700F2AFC2 /* YXCAssetModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8AF3A98426008CD700F2AFC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8AF3A98526008CD700F2AFC2 /* YXCPhotoView.m */,
+				8AF3A98626008CD700F2AFC2 /* YXCPhotoListCell.h */,
+				8AF3A98726008CD700F2AFC2 /* YXCBigPictureView.h */,
+				8AF3A98826008CD700F2AFC2 /* YXCPhotoListImageCell.m */,
+				8AF3A98926008CD700F2AFC2 /* YXCPhotoView.h */,
+				8AF3A98A26008CD700F2AFC2 /* YXCPhotoListCell.m */,
+				8AF3A98B26008CD700F2AFC2 /* YXCPhotoListImageCell.h */,
+				8AF3A98C26008CD700F2AFC2 /* YXCBigPictureView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -802,10 +802,12 @@
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
 				8AB4C8FB26003DF300596D17 /* NSDate+YXC_Category.m in Sources */,
 				8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */,
+				8AF3A98D26008CD700F2AFC2 /* YXCPhotoHandler.m in Sources */,
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8A603EAA24D2EE7A008AC9BD /* MASCompositeConstraint.m in Sources */,
 				8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */,
 				8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */,
+				8AF3A98F26008CD700F2AFC2 /* YXCPhotoAlbumListController.m in Sources */,
 				8A603EAF24D2EE7A008AC9BD /* MASConstraint.m in Sources */,
 				8A603EAE24D2EE7A008AC9BD /* View+MASAdditions.m in Sources */,
 				8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */,
@@ -815,33 +817,30 @@
 				8AB4C8EF26003DF300596D17 /* UIImageView+YXC_Category.m in Sources */,
 				8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */,
 				8AB2B8032533EB7100A80E7E /* YXCPHPickerViewController.m in Sources */,
-				8AA0FDF0251D8F1E00805E84 /* YXCPhotoListImageCell.m in Sources */,
-				8AAEE48D25306A5000B31BC5 /* YXCBigPictureView.m in Sources */,
 				8A81CA4C2563C55B00BE03D4 /* YXCPthreadController.m in Sources */,
 				8AD0C8C72541167B00BA2C06 /* YXCEmitterLikeController.m in Sources */,
 				8AECEC3A24497FED00537181 /* main.m in Sources */,
 				8A81CA552563FBFC00BE03D4 /* YXCGCDController.m in Sources */,
 				8A2B79D82516111C00BB9595 /* YXCDatePickerController.m in Sources */,
+				8AF3A99226008CD700F2AFC2 /* YXCPhotoListImageCell.m in Sources */,
 				8AB4C8F926003DF300596D17 /* NSMutableDictionary+YXC_Category.m in Sources */,
 				8AB4C8FE26003DF300596D17 /* NSAttributedString+YXC_Category.m in Sources */,
-				8A1FB4642519A06F00825BEA /* YXCPhotoAlbumListController.m in Sources */,
 				8A603EB024D2EE7A008AC9BD /* MASViewConstraint.m in Sources */,
 				8AB4C8F126003DF300596D17 /* UITextField+YXC_Category.m in Sources */,
+				8AF3A99326008CD700F2AFC2 /* YXCPhotoListCell.m in Sources */,
 				8AB4C8F426003DF300596D17 /* YXCMarqueeLabel.m in Sources */,
 				8A81CA522563D13800BE03D4 /* YXCThread.m in Sources */,
-				8A1FB46C2519A25400825BEA /* YXCPhotoHandler.m in Sources */,
 				8AB4C8F326003DF300596D17 /* UIFont+YXC_Category.m in Sources */,
-				8AA0FDED251D838100805E84 /* YXCPhotoListController.m in Sources */,
 				8A81CA492563C48E00BE03D4 /* YXCMultithreadingController.m in Sources */,
 				8A81CA4F2563CE4100BE03D4 /* YXCNSThreadController.m in Sources */,
 				8AB4C8FF26003DF300596D17 /* YXCImagePickerHandler.m in Sources */,
-				8A8E1AAB251CABC50044205C /* YXCPhotoListCell.m in Sources */,
-				8A1FB4682519A09D00825BEA /* YXCPhotoView.m in Sources */,
 				8A781698253ED68000A82DF9 /* YXCAnimationController.m in Sources */,
 				8AB4C8ED26003DF300596D17 /* UITextView+YXC_Category.m in Sources */,
 				8AB4C8F526003DF300596D17 /* UIDevice+YXC_Category.m in Sources */,
+				8AF3A98E26008CD700F2AFC2 /* YXCPhotoListController.m in Sources */,
 				8AB4C8FD26003DF300596D17 /* NSArray+YXC_Category.m in Sources */,
 				8A2B79DE2516127400BB9595 /* YXCDatePickerView.m in Sources */,
+				8AF3A99426008CD700F2AFC2 /* YXCBigPictureView.m in Sources */,
 				8AB4C8FC26003DF300596D17 /* NSDictionary+YXC_Category.m in Sources */,
 				8AB4C8F626003DF300596D17 /* UIControl+YXC_Category.m in Sources */,
 				8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */,
@@ -850,6 +849,7 @@
 				8A603EAD24D2EE7A008AC9BD /* NSArray+MASAdditions.m in Sources */,
 				8AEDE5202521D662006C3452 /* YXCTableViewEditController.m in Sources */,
 				8AD0C8C42541153100BA2C06 /* YXCEmitterLiveController.m in Sources */,
+				8AF3A99126008CD700F2AFC2 /* YXCPhotoView.m in Sources */,
 				8AB4C8F726003DF300596D17 /* UIImage+YXC_Category.m in Sources */,
 				8A603EA824D2EE7A008AC9BD /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				8AB4C8F826003DF300596D17 /* NSObject+YXC_Category.m in Sources */,
@@ -860,7 +860,7 @@
 				8AB4C8EE26003DF300596D17 /* UIButton+YXC_Category.m in Sources */,
 				8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */,
 				8A603EB124D2EE7A008AC9BD /* MASViewAttribute.m in Sources */,
-				8AAEE48A2530621C00B31BC5 /* YXCAssetModel.m in Sources */,
+				8AF3A99026008CD700F2AFC2 /* YXCAssetModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,7 +1035,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = T6K9Y5H6C4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCTools/YXCTools/Header/YXCTool.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCTools/YXCTool.pch";
 				INFOPLIST_FILE = YXCTools/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1060,7 +1060,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = T6K9Y5H6C4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCTools/YXCTools/Header/YXCTool.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCTools/YXCTool.pch";
 				INFOPLIST_FILE = YXCTools/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (

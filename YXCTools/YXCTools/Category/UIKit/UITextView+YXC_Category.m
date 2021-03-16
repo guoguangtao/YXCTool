@@ -7,6 +7,7 @@
 //
 
 #import "UITextView+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
 #import <objc/runtime.h>
 
 @interface UITextView ()
@@ -31,7 +32,6 @@
 
 - (void)yxc_textView_deallocSwizzle {
     
-    YXCLog(@"%s", __func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self yxc_textView_deallocSwizzle];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "NSMutableDictionary+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
 
 @implementation NSMutableDictionary (YXC_Category)
 

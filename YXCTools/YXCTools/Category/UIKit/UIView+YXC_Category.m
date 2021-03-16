@@ -7,6 +7,8 @@
 //
 
 #import "UIView+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
+#import "YXCToolHeader.h"
 #import <objc/runtime.h>
 
 @interface UIView ()

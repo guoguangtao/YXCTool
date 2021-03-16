@@ -8,6 +8,8 @@
 
 #import "UIButton+YXC_Category.h"
 #import "UIImage+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
+#import "UIView+YXC_Category.h"
 #import <objc/runtime.h>
 
 @interface UIButton ()
@@ -33,7 +35,6 @@
 
 - (void)yxc_dealloc {
     
-    NSLog(@"%s", __func__);
     [self yxc_dealloc];
 }
 

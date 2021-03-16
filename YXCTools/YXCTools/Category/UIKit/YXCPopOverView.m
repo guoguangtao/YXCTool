@@ -7,6 +7,8 @@
 //
 
 #import "YXCPopOverView.h"
+#import "YXCToolHeader.h"
+#import "UIView+YXC_Category.h"
 
 @interface YXCPopOverView ()<UITableViewDataSource, UITableViewDelegate>
 
