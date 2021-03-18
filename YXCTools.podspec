@@ -2,9 +2,9 @@ Pod::Spec.new do |spec|
 
   spec.name         = "YXCTools"
   spec.version      = "1.0.0"
-  spec.summary      = "Some tools and methods used in daily development."
+  spec.summary      = "Some tools and methods"
   spec.description  = <<-DESC
-			Some tools and methods used in daily development.
+			Some tools and methods used in daily development
                    	DESC
   spec.homepage     = "https://github.com/guoguangtao/YXCTool"
   spec.license      = "MIT"
