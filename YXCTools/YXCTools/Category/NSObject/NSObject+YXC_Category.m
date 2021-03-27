@@ -139,7 +139,7 @@
 /// 判断当前对象是否为nil
 - (BOOL)isEmpty {
     
-    return self;
+    return self == nil;
 }
 
 /// 查看两个类的某个同名方法的实现是否一致
@@ -156,7 +156,12 @@
     
     BOOL isSame = originMethod == targetMethod && originIMP == targetIMP;
     
-    YXCLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), isSame ? @"一致" : @"不一致", originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
+    NSString *string = @"不一致";
+    if (isSame) {
+        string = @"一致";
+    }
+    
+    YXCLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), string, originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
 }
 
 /// 查询一个类本身是否拥有某个方法
