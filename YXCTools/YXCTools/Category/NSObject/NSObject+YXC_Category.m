@@ -136,32 +136,26 @@
     return YES;
 }
 
-/// 判断当前对象是否为nil
-- (BOOL)isEmpty {
-    
-    return self == nil;
-}
-
 /// 查看两个类的某个同名方法的实现是否一致
 /// @param originCls 父类
 /// @param targetCls 当前类
 /// @param selector 方法
 + (void)printfMethodOriginCls:(Class)originCls targetCls:(Class)targetCls selector:(SEL)selector {
     
-    Method originMethod = class_getInstanceMethod(originCls, selector);
-    Method targetMethod = class_getInstanceMethod(targetCls, selector);
-    
-    IMP originIMP = class_getMethodImplementation(originCls, selector);
-    IMP targetIMP = class_getMethodImplementation(targetCls, selector);
-    
-    BOOL isSame = originMethod == targetMethod && originIMP == targetIMP;
-    
-    NSString *string = @"不一致";
-    if (isSame) {
-        string = @"一致";
-    }
-    
-    YXCLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), string, originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
+//    Method originMethod = class_getInstanceMethod(originCls, selector);
+//    Method targetMethod = class_getInstanceMethod(targetCls, selector);
+//    
+//    IMP originIMP = class_getMethodImplementation(originCls, selector);
+//    IMP targetIMP = class_getMethodImplementation(targetCls, selector);
+//    
+//    BOOL isSame = originMethod == targetMethod && originIMP == targetIMP;
+//    
+//    NSString *string = @"不一致";
+//    if (isSame) {
+//        string = @"一致";
+//    }
+//    
+//    YXCLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), string, originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
 }
 
 /// 查询一个类本身是否拥有某个方法

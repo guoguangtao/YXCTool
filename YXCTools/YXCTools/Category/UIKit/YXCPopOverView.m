@@ -176,7 +176,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", @(indexPath.row)];
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = UIColor.whiteColor;
     
