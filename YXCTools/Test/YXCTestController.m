@@ -85,21 +85,15 @@
 
 - (void)setupUI {
     
-    UILabel *label = [UILabel new];
-    label.numberOfLines = 0;
-    NSAttributedString *attributedString = [NSAttributedString new];
-    attributedString = attributedString
-    .yxc_appendString(@"123", @{NSForegroundColorAttributeName : UIColor.redColor})
-    .yxc_appendString(@"\n456", @{NSForegroundColorAttributeName : UIColor.orangeColor, NSFontAttributeName : [UIFont systemFontOfSize:50]})
-    .yxc_appendString(nil, @{NSForegroundColorAttributeName : UIColor.blueColor})
-    .yxc_appendString(@"\n987", nil)
-    .yxc_appendAttributedString([[NSAttributedString alloc] initWithString:@"\n😁哈哈哈" attributes:nil]);
-    label.attributedText = attributedString;
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
+    [UIButton new]
+    .yxc_setBorder(UIColor.redColor, 1.0f)
+    .yxc_setCornerRadius(15.0f)
+    .yxc_addForSuperView(self.view)
+    .yxc_setSize(150, 30)
+    .yxc_setCenterByPoint(self.view.center)
+    .yxc_setBackgroundColor(UIColor.orangeColor, UIControlStateNormal)
+    .yxc_setTitle(@"按钮", UIControlStateNormal)
+    .yxc_setFontSize(13);
 }
 
 - (UIButton *)createdButtonWithTitle:(NSString *)title imagePosition:(YXCButtomImage)imagePosition {

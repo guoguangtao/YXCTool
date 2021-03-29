@@ -72,6 +72,27 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 /// 设置系统字体大小
 - (UIButton *(^)(CGFloat fontSize))yxc_setFontSize;
 
+/// 设置 Tag
+- (UIButton *(^)(NSInteger tag))yxc_setTag;
+
+/// 设置圆角
+- (UIButton *(^)(CGFloat cornerRadius))yxc_setCornerRadius;
+
+/// 设置边框
+- (UIButton *(^)(UIColor *borderColor, CGFloat borderWidth))yxc_setBorder;
+
+/// 设置 Frame
+- (UIButton *(^)(CGFloat x, CGFloat y, CGFloat width, CGFloat height))yxc_setFrame;
+
+/// 设置 size
+- (UIButton *(^)(CGFloat width, CGFloat height))yxc_setSize;
+
+/// 设置 center
+- (UIButton *(^)(CGFloat centerX, CGFloat centerY))yxc_setCenter;
+
+/// 通过 CGPoint 设置 center
+- (UIButton *(^)(CGPoint center))yxc_setCenterByPoint;
+
 @end
 
 NS_ASSUME_NONNULL_END

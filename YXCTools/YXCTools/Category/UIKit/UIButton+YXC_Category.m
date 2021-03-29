@@ -26,16 +26,6 @@
                                currentCls:[self class]
                            targetSelector:@selector(layoutSubviews)
                           currentSelector:@selector(yxc_layoutSubviews)];
-    
-//    [self hookInstanceMethodWithTargetCls:[self class]
-//                               currentCls:[self class]
-//                           targetSelector:NSSelectorFromString(@"dealloc")
-//                          currentSelector:@selector(yxc_dealloc)];
-}
-
-- (void)yxc_dealloc {
-    
-    [self yxc_dealloc];
 }
 
 - (void)yxc_layoutSubviews {
@@ -295,6 +285,71 @@
     
     return ^(CGFloat fontSize){
         self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+        return self;
+    };
+}
+
+/// 设置 Tag
+- (UIButton *(^)(NSInteger tag))yxc_setTag {
+    
+    return ^(NSInteger tag) {
+        self.tag = tag;
+        return self;
+    };
+}
+
+/// 设置圆角
+- (UIButton *(^)(CGFloat cornerRadius))yxc_setCornerRadius {
+    
+    return ^(CGFloat cornerRadius) {
+        self.layer.cornerRadius = cornerRadius;
+        self.layer.masksToBounds = YES;
+        return self;
+    };
+}
+
+/// 设置边框
+- (UIButton *(^)(UIColor *borderColor, CGFloat borderWidth))yxc_setBorder {
+    
+    return ^(UIColor *borderColor, CGFloat borderWidth) {
+        self.layer.borderColor = borderColor.CGColor;
+        self.layer.borderWidth = borderWidth;
+        return self;
+    };
+}
+
+/// 设置 Frame
+- (UIButton *(^)(CGFloat x, CGFloat y, CGFloat width, CGFloat height))yxc_setFrame {
+    
+    return ^(CGFloat x, CGFloat y, CGFloat width, CGFloat height) {
+        self.frame = CGRectMake(x, y, width, height);
+        return self;
+    };
+}
+
+/// 设置 size
+- (UIButton *(^)(CGFloat width, CGFloat height))yxc_setSize {
+    
+    return ^(CGFloat width, CGFloat height) {
+        self.size = CGSizeMake(width, height);
+        return self;
+    };
+}
+
+/// 设置 center
+- (UIButton *(^)(CGFloat centerX, CGFloat centerY))yxc_setCenter {
+    
+    return ^(CGFloat centerX, CGFloat centerY) {
+        self.center = CGPointMake(centerX, centerY);
+        return self;
+    };
+}
+
+/// 通过 CGPoint 设置 center
+- (UIButton *(^)(CGPoint center))yxc_setCenterByPoint {
+    
+    return ^(CGPoint center) {
+        self.center = center;
         return self;
     };
 }
