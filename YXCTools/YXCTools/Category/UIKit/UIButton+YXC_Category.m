@@ -216,10 +216,39 @@
 }
 
 /// 设置图片
-- (UIButton * _Nonnull (^)(NSString * _Nonnull, UIControlState))yxc_setImage {
+- (UIButton * _Nonnull (^)(NSString * _Nonnull, UIControlState))yxc_setImageName {
     
     return ^(NSString *imageName, UIControlState state){
         [self yxc_setImage:imageName forState:state];
+        return self;
+    };
+}
+
+/// 设置图片
+- (UIButton * _Nonnull (^)(UIImage * _Nonnull, UIControlState))yxc_setImage {
+    
+    return ^(UIImage *image, UIControlState state) {
+        [self setImage:image forState:UIControlStateNormal];
+        return self;
+    };
+}
+
+/// 设置背景图片
+- (UIButton * _Nonnull (^)(UIImage * _Nonnull, UIControlState))yxc_setBackgroundImage {
+    
+    return ^(UIImage *image, UIControlState state) {
+        [self setBackgroundImage:image forState:state];
+        return self;
+    };
+}
+
+/// 设置背景图片
+- (UIButton * _Nonnull (^)(NSString * _Nonnull, UIControlState))yxc_setBackgroundImageName {
+    
+    return ^(NSString *imageName, UIControlState state) {
+        if ([imageName checkString]) {
+            [self setBackgroundImage:[UIImage imageNamed:imageName] forState:state];            
+        }
         return self;
     };
 }

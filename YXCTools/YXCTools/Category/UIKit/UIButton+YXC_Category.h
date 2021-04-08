@@ -49,7 +49,16 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 - (UIButton *(^)(UIColor *color, UIControlState state))yxc_setTitleColor;
 
 /// 设置图片
-- (UIButton *(^)(NSString *imageName, UIControlState state))yxc_setImage;
+- (UIButton *(^)(NSString *imageName, UIControlState state))yxc_setImageName;
+
+/// 设置图片
+- (UIButton *(^)(UIImage *image, UIControlState state))yxc_setImage;
+
+/// 设置背景图片
+- (UIButton *(^)(UIImage *image, UIControlState state))yxc_setBackgroundImage;
+
+/// 设置背景图片
+- (UIButton *(^)(NSString *imageName, UIControlState state))yxc_setBackgroundImageName;
 
 /// 设置图片的位置
 - (UIButton *(^)(YXCButtomImage imagePosition))yxc_setImagePosition;
