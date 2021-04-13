@@ -76,6 +76,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param isClassMethod 需要查询的方法是否是类方法
 + (void)printfMethodWithSelector:(SEL)selector isClassMethod:(BOOL)isClassMethod;
 
+/// 打印一个类的所有属性
+- (void)printfAllProperty;
+
+/// 打印一个类的所有成员变量
+- (void)printfAllVar;
+
+/// 打印一个类的所有方法
+- (void)printfAllMethod;
+
 @end
 
 NS_ASSUME_NONNULL_END

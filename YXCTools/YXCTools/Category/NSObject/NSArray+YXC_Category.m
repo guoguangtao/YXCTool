@@ -172,19 +172,15 @@
 - (NSArray *)yxc_objectsAtIndexes:(NSIndexSet *)indexes {
     
     if (self.count <= 0) return nil;
-    
-    // 判断搜索范围是否在数组界线
-    NSRange range = NSMakeRange(indexes.firstIndex, indexes.count);
-    // range.location 大于数组元素个数，直接返回 nil
-    if (range.location > (NSUInteger)self.count) return nil;
-    
-    // range.length 大于 数组元素个数 - range.location，直接取 range.location 开始，到数组的最后一个元素
-    if (range.length > ((NSUInteger)self.count - range.location)) {
-        range.length = self.count - range.location;
-        indexes = [NSIndexSet indexSetWithIndexesInRange:range];
-    }
-    
-    return [self yxc_objectsAtIndexes:indexes];
+
+    __block NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx < self.count && idx >= 0) {
+            [indexSets addIndex:idx];
+        }
+    }];
+
+    return [self yxc_objectsAtIndexes:indexSets];
 }
 
 /// 打印数组

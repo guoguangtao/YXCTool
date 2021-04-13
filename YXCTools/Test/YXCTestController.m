@@ -47,9 +47,6 @@
     
     [self setupUI];
     [self setupConstraints];
-    
-    [UIButton printfMethodWithSelector:@selector(layoutSubviews) isClassMethod:NO];
-    [UIView printfMethodWithSelector:@selector(layoutSubviews) isClassMethod:NO];
 }
 
 - (void)dealloc {
@@ -65,10 +62,16 @@
 
 - (void)buttonClicked:(UIButton *)button {
     
+    NSLog(@"%s", __func__);
     YXCPopOverView *overView = [YXCPopOverView new];
     overView.triangleWidth = 20;
     overView.triangleHeight = 10;
     [overView showFrom:button];
+}
+
+- (void)buttonClicked1:(UIButton *)button {
+    
+    NSLog(@"%s", __func__);
 }
 
 
@@ -93,6 +96,8 @@
     .yxc_setCenterByPoint(self.view.center)
     .yxc_setBackgroundColor(UIColor.orangeColor, UIControlStateNormal)
     .yxc_setTitle(@"按钮", UIControlStateNormal)
+    .yxc_addAction(self, @selector(buttonClicked:), UIControlEventTouchUpInside)
+    .yxc_addAction(self, @selector(buttonClicked1:), UIControlEventTouchUpOutside)
     .yxc_setFontSize(13);
 }
 
@@ -108,8 +113,8 @@
     .yxc_setFontSize(50)
     .yxc_setBackgroundColor(UIColor.blueColor, UIControlStateHighlighted)
     .yxc_setBackgroundColor(UIColor.systemPurpleColor, UIControlStateNormal)
-    .yxc_setImage(@"emitter_like", UIControlStateNormal)
-    .yxc_setImage(@"emitter_like", UIControlStateHighlighted);
+    .yxc_setImageName(@"emitter_like", UIControlStateNormal)
+    .yxc_setImageName(@"emitter_like", UIControlStateHighlighted);
 }
 
 

@@ -38,7 +38,6 @@
                           currentCls:(Class)currentCls
                       targetSelector:(SEL)targetSelector
                      currentSelector:(SEL)currentSelector {
-    
     [self hookMethodWithTargetCls:targetCls
                        currentCls:currentCls
                    targetSelector:targetSelector
@@ -186,6 +185,73 @@
         cls = [cls superclass];
         free(methodList);
     }
+}
+
+- (void)printfAllMethod {
+    
+    Class cls = [self class];
+    
+    while (cls) {
+        NSLog(@"cls = %@ 方法列表", cls);
+        unsigned int count;
+        Method *methodList = class_copyMethodList(cls, &count);
+        
+        for (int i = 0; i < count; i++) {
+            Method method = methodList[i];
+            NSLog(@"%@", NSStringFromSelector(method_getName(method)));
+        }
+        cls = [cls superclass];
+        free(methodList);
+    }
+    
+    
+}
+
+- (void)printfAllProperty {
+    
+    Class cls = [self class];
+    
+    while (cls) {
+        NSLog(@"cls = %@ 属性", cls);
+        unsigned int count;
+        objc_property_t *propertyList = class_copyPropertyList(cls, &count);
+        for (int i = 0; i < count; i++) {
+            objc_property_t property = propertyList[i];
+            NSString *propertyName = [NSString stringWithCString:property_getName(property)
+                                                        encoding:NSUTF8StringEncoding];
+            id value = [self valueForKeyPath:propertyName];
+            NSLog(@"%@ : %@", propertyName, value);
+        }
+        cls = [cls superclass];
+        free(propertyList);
+    }
+    
+}
+
+- (void)printfAllVar {
+    
+    Class cls = [self class];
+    
+    while (cls) {
+        NSLog(@"cls = %@ 成员变量", cls);
+        unsigned int count;
+        Ivar *ivarList = class_copyIvarList(cls, &count);
+        for (int i = 0; i < count; i++) {
+            Ivar ivar = ivarList[i];
+            NSString *ivarName = [NSString stringWithCString:ivar_getName(ivar)
+                                                    encoding:NSUTF8StringEncoding];
+            id value = [self valueForKeyPath:ivarName];
+            NSLog(@"%@ - %@", ivarName, value);
+        }
+        cls = [cls superclass];
+        free(ivarList);
+    }
+    
+}
+
+- (id)valueForUndefinedKey:(NSString *)key {
+    
+    return nil;
 }
 
 

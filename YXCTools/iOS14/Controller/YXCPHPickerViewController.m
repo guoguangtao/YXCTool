@@ -33,9 +33,6 @@
     
     [self setupUI];
     [self setupConstraints];
-    
-    [NSObject printfMethodOriginCls:[NSObject class] targetCls:[NSArray class] selector:@selector(init)];
-    [NSObject printfMethodOriginCls:[NSArray class] targetCls:[NSString class] selector:@selector(init)];
 }
 
 - (void)dealloc {
