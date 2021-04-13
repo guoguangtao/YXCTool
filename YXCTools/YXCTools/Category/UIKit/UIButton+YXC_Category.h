@@ -69,9 +69,6 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 /// 添加事件
 - (UIButton *(^)(id target, SEL action, UIControlEvents controlEvents))yxc_addAction;
 
-/// 添加到父视图
-- (UIButton *(^)(UIView *superView))yxc_addForSuperView;
-
 /// 设置系统字体大小
 - (UIButton *(^)(UIFont *font))yxc_setSystemFontOfSize;
 
@@ -80,6 +77,9 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 
 /// 设置系统字体大小
 - (UIButton *(^)(CGFloat fontSize))yxc_setFontSize;
+
+/// 添加到父视图
+- (UIButton *(^)(UIView *superView))yxc_addForSuperView;
 
 /// 设置 Tag
 - (UIButton *(^)(NSInteger tag))yxc_setTag;

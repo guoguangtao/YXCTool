@@ -280,17 +280,6 @@
     };
 }
 
-/// 添加到父视图
-- (UIButton * _Nonnull (^)(UIView * _Nonnull))yxc_addForSuperView {
-    
-    return ^(UIView *superView){
-        if (superView) {
-            [superView addSubview:self];
-        }
-        return self;
-    };
-}
-
 /// 设置系统字体大小
 - (UIButton * _Nonnull (^)(CGFloat, UIFontWeight))yxc_setFont {
     
@@ -314,6 +303,17 @@
     
     return ^(CGFloat fontSize){
         self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+        return self;
+    };
+}
+
+/// 添加到父视图
+- (UIButton * _Nonnull (^)(UIView * _Nonnull))yxc_addForSuperView {
+    
+    return ^(UIView *superView){
+        if (superView) {
+            [superView addSubview:self];
+        }
         return self;
     };
 }
