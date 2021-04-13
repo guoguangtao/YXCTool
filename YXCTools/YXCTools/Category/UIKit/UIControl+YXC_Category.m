@@ -31,10 +31,14 @@
     
     // 在这里只做 UIButton 的拦截
     if ([self isKindOfClass:[UIButton class]]) {
-        if (self.eventUnavailable == NO) {
-            self.eventUnavailable = YES;
+        if (self.yxc_eventInterval > 0) {
+            if (self.eventUnavailable == NO) {
+                self.eventUnavailable = YES;
+                [self yxc_control_sendAction:action to:target forEvent:event];
+                [self performSelector:@selector(setEventUnavailable:) withObject:@(NO) afterDelay:self.yxc_eventInterval];
+            }
+        } else {
             [self yxc_control_sendAction:action to:target forEvent:event];
-            [self performSelector:@selector(setEventUnavailable:) withObject:@(NO) afterDelay:self.yxc_eventInterval];
         }
     } else {
         [self yxc_control_sendAction:action to:target forEvent:event];
