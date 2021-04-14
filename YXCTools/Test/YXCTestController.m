@@ -7,14 +7,10 @@
 //
 
 #import "YXCTestController.h"
-#import "YXCPopOverView.h"
 
 @interface YXCTestController ()
 
-@property (nonatomic, strong) UIButton *leftImageButton;
-@property (nonatomic, strong) UIButton *topImageButton;
-@property (nonatomic, strong) UIButton *bottomImageButton;
-@property (nonatomic, strong) UIButton *rightImageButton;
+@property (nonatomic, strong) UILabel *label;
 
 @end
 
@@ -34,10 +30,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    [self.leftImageButton yxc_sizeToFit];
-    [self.topImageButton yxc_sizeToFit];
-    [self.bottomImageButton yxc_sizeToFit];
-    [self.rightImageButton yxc_sizeToFit];
+
 }
 
 - (void)viewDidLoad {
@@ -60,20 +53,6 @@
 
 #pragma mark - IBActions
 
-- (void)buttonClicked:(UIButton *)button {
-    
-    NSLog(@"%s", __func__);
-    YXCPopOverView *overView = [YXCPopOverView new];
-    overView.triangleWidth = 20;
-    overView.triangleHeight = 10;
-    [overView showFrom:button];
-}
-
-- (void)buttonClicked1:(UIButton *)button {
-    
-    NSLog(@"%s", __func__);
-}
-
 
 #pragma mark - Public
 
@@ -88,33 +67,14 @@
 
 - (void)setupUI {
     
-    [UIButton new]
-    .yxc_setBackgroundColor(UIColor.orangeColor, UIControlStateNormal)
-    .yxc_setTitle(@"按钮", UIControlStateNormal)
-    .yxc_addAction(self, @selector(buttonClicked:), UIControlEventTouchUpInside)
-    .yxc_addAction(self, @selector(buttonClicked1:), UIControlEventTouchUpOutside)
-    .yxc_setFontSize(13)
-    .yxc_setCenterByPoint(self.view.center)
-    .yxc_setBorder(UIColor.redColor, 1.0f)
-    .yxc_setCornerRadius(15.0f)
-    .yxc_addForSuperView(self.view)
-    .yxc_setSize(150, 30);
-}
-
-- (UIButton *)createdButtonWithTitle:(NSString *)title imagePosition:(YXCButtomImage)imagePosition {
-    
-    return [UIButton new]
-    .yxc_setTitle(title, UIControlStateNormal)
-    .yxc_setImagePosition(imagePosition)
-    .yxc_setTitleColor(UIColor.orangeColor, UIControlStateNormal)
-    .yxc_setImageTitleSpace(5)
-    .yxc_addAction(self, @selector(buttonClicked:), UIControlEventTouchUpInside)
-    .yxc_setFontSize(50)
-    .yxc_setBackgroundColor(UIColor.blueColor, UIControlStateHighlighted)
-    .yxc_setBackgroundColor(UIColor.systemPurpleColor, UIControlStateNormal)
-    .yxc_setImageName(@"emitter_like", UIControlStateNormal)
-    .yxc_setImageName(@"emitter_like", UIControlStateHighlighted)
-    .yxc_addForSuperView(self.view);
+    self.label = [UILabel new];
+    self.label.textAlignment = NSTextAlignmentCenter;
+    self.label.attributedText = [NSMutableAttributedString new]
+    .yxc_appendString(@"123", @{NSForegroundColorAttributeName : UIColor.redColor, NSFontAttributeName : [UIFont systemFontOfSize:20]})
+    .yxc_appendAttributedString([NSMutableAttributedString new].yxc_appendString(@"456", @{NSForegroundColorAttributeName : UIColor.orangeColor, NSFontAttributeName : [UIFont systemFontOfSize:40]}))
+    .yxc_appendString(@"789", @{NSForegroundColorAttributeName : UIColor.purpleColor})
+    .yxc_modifyAttributedString(@"456", @{NSForegroundColorAttributeName : UIColor.blueColor});
+    [self.view addSubview:self.label];
 }
 
 
@@ -122,24 +82,10 @@
 
 - (void)setupConstraints {
     
-    [self.topImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(UIDevice.navigationAndStatusHeight + 20);
-        make.centerX.equalTo(self.view);
-    }];
-    
-    [self.leftImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.topImageButton.mas_bottom).offset(20);
-        make.centerX.width.height.equalTo(self.topImageButton);
-    }];
-    
-    [self.bottomImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.leftImageButton.mas_bottom).offset(20);
-        make.centerX.width.height.equalTo(self.topImageButton);
-    }];
-    
-    [self.rightImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bottomImageButton.mas_bottom).offset(20);
-        make.centerX.width.height.equalTo(self.topImageButton);
+    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.view);
+        make.left.equalTo(self.view).offset(20);
+        make.right.equalTo(self.view).offset(-20);
     }];
 }
 
