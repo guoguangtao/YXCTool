@@ -35,7 +35,11 @@
             if (self.eventUnavailable == NO) {
                 self.eventUnavailable = YES;
                 [self yxc_control_sendAction:action to:target forEvent:event];
-                [self performSelector:@selector(setEventUnavailable:) withObject:@(NO) afterDelay:self.yxc_eventInterval];
+                
+                __weak typeof(self) wkSelf = self;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.yxc_eventInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    wkSelf.eventUnavailable = NO;
+                });
             }
         } else {
             [self yxc_control_sendAction:action to:target forEvent:event];

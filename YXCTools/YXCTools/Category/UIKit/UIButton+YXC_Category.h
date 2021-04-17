@@ -78,6 +78,9 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 /// 设置系统字体大小
 - (UIButton *(^)(CGFloat fontSize))yxc_setFontSize;
 
+/// 设置防止重复点击时长
+- (UIButton *(^)(CGFloat eventInterval))yxc_setEventInterval;
+
 /// 添加到父视图
 - (UIButton *(^)(UIView *superView))yxc_addForSuperView;
 

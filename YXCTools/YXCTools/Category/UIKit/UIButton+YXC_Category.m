@@ -307,6 +307,15 @@
     };
 }
 
+/// 设置防止重复点击时长
+- (UIButton * _Nonnull (^)(CGFloat))yxc_setEventInterval {
+    
+    return ^(CGFloat eventInterval) {
+        self.yxc_eventInterval = eventInterval;
+        return self;
+    };
+}
+
 /// 添加到父视图
 - (UIButton * _Nonnull (^)(UIView * _Nonnull))yxc_addForSuperView {
     

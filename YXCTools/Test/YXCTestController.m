@@ -10,7 +10,7 @@
 
 @interface YXCTestController ()
 
-@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UIButton *button;
 
 @end
 
@@ -53,6 +53,14 @@
 
 #pragma mark - IBActions
 
+- (void)buttonClicked {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"结果" message:@"按钮被点击了" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:action];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 
 #pragma mark - Public
 
@@ -67,25 +75,23 @@
 
 - (void)setupUI {
     
-    self.label = [UILabel new];
-    self.label.textAlignment = NSTextAlignmentCenter;
-    self.label.attributedText = [NSMutableAttributedString new]
-    .yxc_appendString(@"123", @{NSForegroundColorAttributeName : UIColor.redColor, NSFontAttributeName : [UIFont systemFontOfSize:20]})
-    .yxc_appendAttributedString([NSMutableAttributedString new].yxc_appendString(@"456", @{NSForegroundColorAttributeName : UIColor.orangeColor, NSFontAttributeName : [UIFont systemFontOfSize:40]}))
-    .yxc_appendString(@"789", @{NSForegroundColorAttributeName : UIColor.purpleColor})
-    .yxc_modifyAttributedString(@"456", @{NSForegroundColorAttributeName : UIColor.blueColor});
-    [self.view addSubview:self.label];
+    self.button = [UIButton new]
+    .yxc_setTitle(@"按钮", UIControlStateNormal)
+    .yxc_setBackgroundColor(UIColor.orangeColor, UIControlStateNormal)
+    .yxc_addForSuperView(self.view)
+    .yxc_setEventInterval(3.0f)
+    .yxc_addAction(self, @selector(buttonClicked), UIControlEventTouchUpInside);
 }
 
 
 #pragma mark - Constraints
 
 - (void)setupConstraints {
-    
-    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.view);
-        make.left.equalTo(self.view).offset(20);
-        make.right.equalTo(self.view).offset(-20);
+
+    [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.mas_equalTo(150);
+        make.height.mas_equalTo(50);
     }];
 }
 
