@@ -30,22 +30,24 @@
 - (void)yxc_control_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
     
     // 在这里只做 UIButton 的拦截
-    if ([self isKindOfClass:[UIButton class]]) {
-        if (self.yxc_eventInterval > 0) {
-            if (self.eventUnavailable == NO) {
-                self.eventUnavailable = YES;
+    if ([target respondsToSelector:action]) {
+        if ([self isKindOfClass:[UIButton class]]) {
+            if (self.yxc_eventInterval > 0) {
+                if (self.eventUnavailable == NO) {
+                    self.eventUnavailable = YES;
+                    [self yxc_control_sendAction:action to:target forEvent:event];
+                    
+                    __weak typeof(self) wkSelf = self;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.yxc_eventInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        wkSelf.eventUnavailable = NO;
+                    });
+                }
+            } else {
                 [self yxc_control_sendAction:action to:target forEvent:event];
-                
-                __weak typeof(self) wkSelf = self;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.yxc_eventInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    wkSelf.eventUnavailable = NO;
-                });
             }
         } else {
             [self yxc_control_sendAction:action to:target forEvent:event];
         }
-    } else {
-        [self yxc_control_sendAction:action to:target forEvent:event];
     }
 }
 
