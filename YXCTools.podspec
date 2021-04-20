@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "YXCTools"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "Some tools and methods"
   spec.description  = <<-DESC
                         Some tools and methods used in daily development
