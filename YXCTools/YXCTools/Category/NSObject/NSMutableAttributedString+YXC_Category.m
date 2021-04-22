@@ -68,4 +68,49 @@
     };
 }
 
+- (NSMutableAttributedString * _Nonnull (^)(UIImage * _Nonnull, UIFont * _Nonnull))yxc_addImageAttributedAndFont {
+    
+    return ^(UIImage *image, UIFont *font) {
+        if (image == nil) return self;
+        
+        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        attachment.image = image;
+        CGSize imageSize = image.size;
+        CGFloat imageHeight = font.pointSize;
+        CGFloat imageWidth = imageSize.width / imageSize.height * imageHeight;
+        CGFloat paddingTop = (font.lineHeight - font.pointSize) * 0.5f;
+        attachment.bounds = CGRectMake(0, -paddingTop, imageWidth, imageHeight);
+        NSAttributedString *imageAtt = [NSAttributedString attributedStringWithAttachment:attachment];
+        self.yxc_appendAttributedString(imageAtt);
+        
+        return self;
+    };
+}
+
+- (NSMutableAttributedString * _Nonnull (^)(UIImage * _Nonnull, CGFloat))yxc_addImageAttributedAndFontSize {
+    
+    return ^(UIImage *image, CGFloat fontSize) {
+        return self.yxc_addImageAttributedAndFont(image, [UIFont systemFontOfSize:fontSize]);
+    };
+}
+
+- (NSMutableAttributedString * _Nonnull (^)(NSString * _Nonnull, UIFont * _Nonnull))yxc_addImageAttributedWithNameAndFont {
+    
+    return ^(NSString *imageName, UIFont *font) {
+        
+        if (imageName == nil || ![imageName isKindOfClass:[NSString class]] || !imageName.length) {
+            return self;
+        }
+        return self.yxc_addImageAttributedAndFont([UIImage imageNamed:imageName], font);
+    };
+}
+
+- (NSMutableAttributedString * _Nonnull (^)(NSString * _Nonnull, CGFloat))yxc_addImageAttributedWithNameAndFontSize {
+    
+    return ^(NSString *imageName, CGFloat fontSize) {
+        
+        return self.yxc_addImageAttributedWithNameAndFont(imageName, [UIFont systemFontOfSize:fontSize]);
+    };
+}
+
 @end

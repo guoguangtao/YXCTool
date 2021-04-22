@@ -24,6 +24,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 给整个属性字符串增加属性
 - (NSMutableAttributedString *(^)(NSDictionary<NSAttributedStringKey, id> * _Nullable attributes))yxc_addAttributed;
 
+/// 通过图片名称和字体大小设置图片
+- (NSMutableAttributedString *(^)(NSString *imageName, UIFont *font))yxc_addImageAttributedWithNameAndFont;
+
+/// 通过图片名称和字体大小设置图片
+- (NSMutableAttributedString *(^)(NSString *imageName, CGFloat fontSize))yxc_addImageAttributedWithNameAndFontSize;
+
+/// 通过图片和字体大小设置图片
+- (NSMutableAttributedString *(^)(UIImage *image, UIFont *font))yxc_addImageAttributedAndFont;
+
+/// 通过图片名称和字体大小设置图片
+- (NSMutableAttributedString *(^)(UIImage *image, CGFloat fontSize))yxc_addImageAttributedAndFontSize;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

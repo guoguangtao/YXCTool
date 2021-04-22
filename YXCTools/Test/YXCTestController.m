@@ -10,7 +10,6 @@
 
 @interface YXCTestController ()
 
-@property (nonatomic, strong) UIButton *button;
 
 @end
 
@@ -75,12 +74,22 @@
 
 - (void)setupUI {
     
-    self.button = [UIButton new]
-    .yxc_setTitle(@"按钮", UIControlStateNormal)
-    .yxc_setBackgroundColor(UIColor.orangeColor, UIControlStateNormal)
-    .yxc_addForSuperView(self.view)
-    .yxc_setEventInterval(3.0f)
-    .yxc_addAction(self, @selector(buttonClicked), UIControlEventTouchUpInside);
+    CGFloat fontSize = 50;
+    UILabel *label = [UILabel new];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = 0;
+    label.attributedText = [NSMutableAttributedString new]
+    .yxc_addImageAttributedAndFont([UIImage imageNamed:@"page_currentImage"], [UIFont systemFontOfSize:fontSize])
+    .yxc_appendString(@"123", @{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName : UIColor.orangeColor})
+    .yxc_addImageAttributedWithNameAndFontSize(@"calendar", fontSize)
+    .yxc_addImageAttributedWithNameAndFontSize(@"green_pop", fontSize);
+    [self.view addSubview:label];
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.view);
+        make.left.equalTo(self.view).offset(20);
+        make.right.equalTo(self.view).offset(-20);
+    }];
 }
 
 
@@ -88,11 +97,7 @@
 
 - (void)setupConstraints {
 
-    [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-        make.width.mas_equalTo(150);
-        make.height.mas_equalTo(50);
-    }];
+    
 }
 
 
