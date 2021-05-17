@@ -13,9 +13,15 @@
 @implementation UITextField (YXC_Category)
 
 + (void)load {
-    [self hookInstanceMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:NSSelectorFromString(@"dealloc") currentSelector:@selector(yxc_textField_deallocSwizzle)];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:NSSelectorFromString(@"dealloc")
+                          currentSelector:@selector(yxc_textField_deallocSwizzle)];
 
-    [self hookInstanceMethodWithTargetCls:[self class] currentCls:[self class] targetSelector:@selector(initWithFrame:) currentSelector:@selector(yxc_textField_initWithFrame:)];
+    [self hookInstanceMethodWithTargetCls:[self class]
+                               currentCls:[self class]
+                           targetSelector:@selector(initWithFrame:)
+                          currentSelector:@selector(yxc_textField_initWithFrame:)];
 }
 
 - (void)yxc_textField_deallocSwizzle {

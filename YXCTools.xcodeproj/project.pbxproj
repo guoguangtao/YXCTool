@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A13F0232611EFB300340E31 /* UILabel+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A13F0222611EFB300340E31 /* UILabel+YXC_Category.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
 		8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79CC2516092200BB9595 /* YXCiOS14Controller.m */; };
 		8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D025160A9D00BB9595 /* YXCPushHandler.m */; };
@@ -97,8 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8A13F0212611EFB300340E31 /* UILabel+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+YXC_Category.h"; sourceTree = "<group>"; };
-		8A13F0222611EFB300340E31 /* UILabel+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+YXC_Category.m"; sourceTree = "<group>"; };
 		8A2B79C82516070A00BB9595 /* YXCControllerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCControllerModel.h; sourceTree = "<group>"; };
 		8A2B79C92516070A00BB9595 /* YXCControllerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCControllerModel.m; sourceTree = "<group>"; };
 		8A2B79CB2516092200BB9595 /* YXCiOS14Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCiOS14Controller.h; sourceTree = "<group>"; };
@@ -463,8 +460,6 @@
 				8AB4C8D426003DF300596D17 /* YXCMarqueeLabel.m */,
 				8AB4C8C626003DF300596D17 /* YXCPopOverView.h */,
 				8AB4C8D126003DF300596D17 /* YXCPopOverView.m */,
-				8A13F0212611EFB300340E31 /* UILabel+YXC_Category.h */,
-				8A13F0222611EFB300340E31 /* UILabel+YXC_Category.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -807,7 +802,6 @@
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
 				8AB4C8FB26003DF300596D17 /* NSDate+YXC_Category.m in Sources */,
 				8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */,
-				8A13F0232611EFB300340E31 /* UILabel+YXC_Category.m in Sources */,
 				8AF3A98D26008CD700F2AFC2 /* YXCPhotoHandler.m in Sources */,
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8A603EAA24D2EE7A008AC9BD /* MASCompositeConstraint.m in Sources */,
