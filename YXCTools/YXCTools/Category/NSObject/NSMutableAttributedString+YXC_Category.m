@@ -77,9 +77,12 @@
         attachment.image = image;
         CGSize imageSize = image.size;
         CGFloat imageHeight = font.pointSize;
+        if (imageSize.height < imageHeight) {
+            imageHeight = imageSize.height;
+        }
         CGFloat imageWidth = imageSize.width / imageSize.height * imageHeight;
-        CGFloat paddingTop = (font.lineHeight - font.pointSize) * 0.5f;
-        attachment.bounds = CGRectMake(0, -paddingTop, imageWidth, imageHeight);
+        CGFloat paddingTop = roundf(font.capHeight - imageHeight) / 2.0f;
+        attachment.bounds = CGRectMake(0, paddingTop, imageWidth, imageHeight);
         NSAttributedString *imageAtt = [NSAttributedString attributedStringWithAttachment:attachment];
         self.yxc_appendAttributedString(imageAtt);
         

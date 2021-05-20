@@ -26,12 +26,6 @@
     [self setupConstraints];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    
-
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -74,14 +68,15 @@
 
 - (void)setupUI {
     
-    CGFloat fontSize = 50;
+    CGFloat fontSize = 30;
     UILabel *label = [UILabel new];
+    label.backgroundColor = UIColor.purpleColor;
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
     label.attributedText = [NSMutableAttributedString new]
     .yxc_addImageAttributedAndFont([UIImage imageNamed:@"page_currentImage"], [UIFont systemFontOfSize:fontSize])
-    .yxc_appendString(@"123", @{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName : UIColor.orangeColor})
-    .yxc_addImageAttributedWithNameAndFontSize(@"calendar", fontSize)
+    .yxc_appendString(@"jEh", @{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName : UIColor.orangeColor})
+    .yxc_addImageAttributedWithNameAndFontSize(@"emitter_like", fontSize)
     .yxc_addImageAttributedWithNameAndFontSize(@"green_pop", fontSize);
     [self.view addSubview:label];
     

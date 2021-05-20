@@ -26,11 +26,11 @@
     [self hookInstanceMethodWithTargetCls:[self class]
                                currentCls:[self class]
                            targetSelector:@selector(layoutSubviews)
-                          currentSelector:@selector(yxc_layoutSubviews)];
+                          currentSelector:@selector(yxc_button_layoutSubviews)];
 }
 
-- (void)yxc_layoutSubviews {
-    [self yxc_layoutSubviews];
+- (void)yxc_button_layoutSubviews {
+    [self yxc_button_layoutSubviews];
     
     switch (self.yxc_imagePosition) {
         case YXCButtomImageLeft: [self setupImageLeft]; break;
