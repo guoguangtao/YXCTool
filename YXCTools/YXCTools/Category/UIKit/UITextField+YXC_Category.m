@@ -73,41 +73,15 @@
     if (self.textMaxLength <= 0) return;
     
     NSString *toBeString = self.text;
-
-//    // 获取键盘输入模式
-//    NSString *lang = [[UIApplication sharedApplication] textInputMode].primaryLanguage;
-//
-//    if ([lang isEqualToString:@"zh-Hans"] ||
-//        [lang isEqualToString:@"zh-Hant"] ||
-//        [lang isEqualToString:@"zh-TW"]) {
-//
-//        // 获取高亮部分
-//        UITextRange *selectedRange = [self markedTextRange];
-//        UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
-//        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
-//        if (!position) {
-//            if (toBeString.length > self.textMaxLength) {
-//                // 超出限制则截取最大限制的文本
-//                self.text = [toBeString substringToIndex:self.textMaxLength];
-//            }
-//            [self performDelegate];
-//        }
-//    } else {
-//        // 中文输入法以外的直接统计
-//        if (toBeString.length > self.textMaxLength) {
-//            self.text = [toBeString substringToIndex:self.textMaxLength];
-//        }
-//        [self performDelegate];
-//    }
     
     UITextRange *selectedRange = [self markedTextRange];
-    UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
-    if (!position) {
-        if (toBeString.length > self.textMaxLength) {
-            self.text = [toBeString substringToIndex:self.textMaxLength];
-        }
-        [self performDelegate];
+    if (selectedRange && !selectedRange.isEmpty) {
+        return;
     }
+    if (toBeString.length > self.textMaxLength) {
+        self.text = [toBeString substringToIndex:self.textMaxLength];
+    }
+    [self performDelegate];
 }
 
 - (void)performDelegate {

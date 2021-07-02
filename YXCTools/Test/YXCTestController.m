@@ -8,7 +8,7 @@
 
 #import "YXCTestController.h"
 
-@interface YXCTestController ()<UITextFieldTextMaxLengthDelegate>
+@interface YXCTestController ()<UITextFieldTextMaxLengthDelegate, UITextFieldDelegate>
 
 
 @end
@@ -59,7 +59,7 @@
 
 - (void)textField:(UITextField *)textField textDidChange:(NSString *)text textLength:(NSInteger)textLength textMaxLength:(NSInteger)textMaxLength {
     
-//    YXCLog(@"文本:%@, 文本长度:%ld", text, textLength);
+    YXCLog(@"文本:%@, 文本长度:%ld", text, textLength);
 }
 
 
@@ -72,6 +72,7 @@
     textFiled.backgroundColor = UIColor.orangeColor;
     textFiled.textMaxLength = 10;
     textFiled.yxc_delegate = self;
+    textFiled.delegate = self;
     [self.view addSubview:textFiled];
     
     [textFiled mas_makeConstraints:^(MASConstraintMaker *make) {
