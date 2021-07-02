@@ -8,7 +8,7 @@
 
 #import "YXCTestController.h"
 
-@interface YXCTestController ()
+@interface YXCTestController ()<UITextFieldTextMaxLengthDelegate>
 
 
 @end
@@ -46,14 +46,6 @@
 
 #pragma mark - IBActions
 
-- (void)buttonClicked {
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"结果" message:@"按钮被点击了" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-    [alertController addAction:action];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
 
 #pragma mark - Public
 
@@ -63,27 +55,29 @@
 
 #pragma mark - Protocol
 
+#pragma mark - UITextFieldTextMaxLengthDelegate
+
+- (void)textField:(UITextField *)textField textDidChange:(NSString *)text textLength:(NSInteger)textLength textMaxLength:(NSInteger)textMaxLength {
+    
+//    YXCLog(@"文本:%@, 文本长度:%ld", text, textLength);
+}
+
 
 #pragma mark - UI
 
 - (void)setupUI {
     
-    CGFloat fontSize = 30;
-    UILabel *label = [UILabel new];
-    label.backgroundColor = UIColor.purpleColor;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.numberOfLines = 0;
-    label.attributedText = [NSMutableAttributedString new]
-    .yxc_addImageAttributedAndFont([UIImage imageNamed:@"page_currentImage"], [UIFont systemFontOfSize:fontSize])
-    .yxc_appendString(@"jEh", @{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName : UIColor.orangeColor})
-    .yxc_addImageAttributedWithNameAndFontSize(@"emitter_like", fontSize)
-    .yxc_addImageAttributedWithNameAndFontSize(@"green_pop", fontSize);
-    [self.view addSubview:label];
+    UITextField *textFiled = [[UITextField alloc] init];
+    textFiled.borderStyle = UITextBorderStyleRoundedRect;
+    textFiled.backgroundColor = UIColor.orangeColor;
+    textFiled.textMaxLength = 10;
+    textFiled.yxc_delegate = self;
+    [self.view addSubview:textFiled];
     
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.view);
-        make.left.equalTo(self.view).offset(20);
-        make.right.equalTo(self.view).offset(-20);
+    [textFiled mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.mas_equalTo(250);
+        make.height.mas_equalTo(30);
     }];
 }
 
