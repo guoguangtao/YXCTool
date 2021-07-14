@@ -45,7 +45,6 @@ void UncaughtExceptionHandler(NSException *exception) {
 shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier
 {
     if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
-        YXCLog(@"yxc_globalUsingSystemKeyboard = %@", @(UITextField.yxc_globalUsingSystemKeyboard).stringValue);
         if (UITextField.yxc_globalUsingSystemKeyboard) {
             return NO;
         }
