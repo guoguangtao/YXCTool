@@ -36,17 +36,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldTextDidChange)
                                                  name:UITextFieldTextDidChangeNotification
-                                               object:nil];
+                                               object:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldDidBeginEdit:)
                                                  name:UITextFieldTextDidBeginEditingNotification
-                                               object:nil];
+                                               object:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldDidEndEdit:)
                                                  name:UITextFieldTextDidEndEditingNotification
-                                               object:nil];
+                                               object:self];
     
     return [self yxc_textField_initWithFrame:frame];
 }
@@ -118,18 +118,12 @@
 
 - (void)textFieldDidBeginEdit:(NSNotification *)notification {
     
-    UITextField *textFiled = (UITextField *)notification.object;
-    if (self == textFiled) {
-        UITextField.yxc_globalUsingSystemKeyboard = self.yxc_usingSystemKeyboard;
-    }
+    UITextField.yxc_globalUsingSystemKeyboard = self.yxc_usingSystemKeyboard;
 }
 
 - (void)textFieldDidEndEdit:(NSNotification *)notification {
     
-    UITextField *textFiled = (UITextField *)notification.object;
-    if (self == textFiled) {
-        UITextField.yxc_globalUsingSystemKeyboard = NO;
-    }
+    UITextField.yxc_globalUsingSystemKeyboard = NO;
 }
 
 - (void)performDelegate {
