@@ -48,7 +48,6 @@ shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier
         if (UITextField.yxc_globalUsingSystemKeyboard) {
             return NO;
         }
-        return YES;
     }
     return YES;
 }
