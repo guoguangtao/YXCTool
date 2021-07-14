@@ -41,6 +41,19 @@ void UncaughtExceptionHandler(NSException *exception) {
 }
 
 
+- (BOOL)application:(UIApplication *)application
+shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier
+{
+    if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
+        YXCLog(@"yxc_globalUsingSystemKeyboard = %@", @(UITextField.yxc_globalUsingSystemKeyboard).stringValue);
+        if (UITextField.yxc_globalUsingSystemKeyboard) {
+            return NO;
+        }
+        return YES;
+    }
+    return YES;
+}
+
 #pragma mark - UISceneSession lifecycle
 
 

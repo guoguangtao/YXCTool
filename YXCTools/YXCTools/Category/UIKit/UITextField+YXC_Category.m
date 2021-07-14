@@ -38,6 +38,16 @@
                                                  name:UITextFieldTextDidChangeNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldDidBeginEdit:)
+                                                 name:UITextFieldTextDidBeginEditingNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldDidEndEdit:)
+                                                 name:UITextFieldTextDidEndEditingNotification
+                                               object:nil];
+    
     return [self yxc_textField_initWithFrame:frame];
 }
 
@@ -68,6 +78,28 @@
     return objc_getAssociatedObject(self, @selector(yxc_delegate));
 }
 
+- (void)setYxc_usingSystemKeyboard:(BOOL)yxc_usingSystemKeyboard {
+    
+    objc_setAssociatedObject(self, @selector(yxc_usingSystemKeyboard), @(yxc_usingSystemKeyboard), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)yxc_usingSystemKeyboard {
+    
+    NSNumber *yxc_usingSystemKeyboard = objc_getAssociatedObject(self, @selector(yxc_usingSystemKeyboard));
+    return [yxc_usingSystemKeyboard boolValue];
+}
+
++ (void)setYxc_globalUsingSystemKeyboard:(BOOL)yxc_globalUsingSystemKeyboard {
+    
+    objc_setAssociatedObject(self, @selector(yxc_globalUsingSystemKeyboard), @(yxc_globalUsingSystemKeyboard), OBJC_ASSOCIATION_ASSIGN);
+}
+
++ (BOOL)yxc_globalUsingSystemKeyboard {
+    
+    NSNumber *yxc_globalUsingSystemKeyboard = objc_getAssociatedObject(self, @selector(yxc_globalUsingSystemKeyboard));
+    return [yxc_globalUsingSystemKeyboard boolValue];
+}
+
 - (void)textFieldTextDidChange {
     
     if (self.textMaxLength <= 0) return;
@@ -82,6 +114,22 @@
         self.text = [toBeString substringToIndex:self.textMaxLength];
     }
     [self performDelegate];
+}
+
+- (void)textFieldDidBeginEdit:(NSNotification *)notification {
+    
+    UITextField *textFiled = (UITextField *)notification.object;
+    if (self == textFiled) {
+        UITextField.yxc_globalUsingSystemKeyboard = self.yxc_usingSystemKeyboard;
+    }
+}
+
+- (void)textFieldDidEndEdit:(NSNotification *)notification {
+    
+    UITextField *textFiled = (UITextField *)notification.object;
+    if (self == textFiled) {
+        UITextField.yxc_globalUsingSystemKeyboard = NO;
+    }
 }
 
 - (void)performDelegate {

@@ -73,12 +73,25 @@
     textFiled.textMaxLength = 10;
     textFiled.yxc_delegate = self;
     textFiled.delegate = self;
+    textFiled.yxc_usingSystemKeyboard = YES;
+    textFiled.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:textFiled];
     
     [textFiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
         make.width.mas_equalTo(250);
         make.height.mas_equalTo(30);
+    }];
+    
+    UITextField *textFiled1 = [UITextField new];
+    textFiled1.borderStyle = UITextBorderStyleRoundedRect;
+    textFiled1.backgroundColor = UIColor.orangeColor;
+    [self.view addSubview:textFiled1];
+
+    [textFiled1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.width.height.mas_equalTo(textFiled);
+        make.bottom.equalTo(textFiled.mas_top).offset(-50);
     }];
 }
 
