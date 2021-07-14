@@ -17,7 +17,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<UITextFieldTextMaxLengthDelegate> yxc_delegate; /**< 代理 */
 @property (nonatomic, assign) NSInteger textMaxLength; /**< 文本最大字数限制 */
 @property (nonatomic, assign) BOOL yxc_usingSystemKeyboard;  /**< 使用系统键盘 */
-@property (nonatomic, assign, class) BOOL yxc_globalUsingSystemKeyboard;   /**< 全局是否使用系统键盘 */
+/**
+ * 在 AppDelegate 中实现
+ *
+ * - (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(UIApplicationExtensionPointIdentifier)extensionPointIdentifier {
+ *
+ *  if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
+ *       if (UITextField.yxc_globalUsingSystemKeyboard) {
+ *         return NO;
+ *       }
+ *    }
+ *    return YES;
+ * }
+ */
+@property (nonatomic, assign, class) BOOL yxc_globalUsingSystemKeyboard;   /**< 全局是否使用系统键盘，主动设置无效 */
 
 @end
 
