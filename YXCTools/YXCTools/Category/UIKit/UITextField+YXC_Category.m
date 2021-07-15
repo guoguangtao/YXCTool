@@ -10,6 +10,26 @@
 #import "NSObject+YXC_Category.h"
 #import <objc/runtime.h>
 
+@interface UITextField ()
+
+/**
+ * 在 AppDelegate 中实现
+ *
+ * - (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(UIApplicationExtensionPointIdentifier)extensionPointIdentifier {
+ *
+ *  if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
+ *       if (UITextField.yxc_globalUsingSystemKeyboard) {
+ *         return NO;
+ *       }
+ *    }
+ *    return YES;
+ * }
+ */
+@property (nonatomic, assign, class) BOOL yxc_globalUsingSystemKeyboard;   /**< 全局是否使用系统键盘，主动设置无效 */
+
+@end
+
+
 @implementation UITextField (YXC_Category)
 
 + (void)load {
@@ -134,6 +154,16 @@
                           textLength:self.text.length
                        textMaxLength:self.textMaxLength];
     }
+}
+
++ (BOOL)yxc_shouldAllowExtensionPointIdentifier:(UIApplicationExtensionPointIdentifier)extensionPointIdentifier {
+    
+    if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
+        if (self.yxc_globalUsingSystemKeyboard) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end
