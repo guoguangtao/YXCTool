@@ -100,7 +100,7 @@
 
 - (void)setYxc_usingSystemKeyboard:(BOOL)yxc_usingSystemKeyboard {
     
-    objc_setAssociatedObject(self, @selector(yxc_usingSystemKeyboard), @(yxc_usingSystemKeyboard), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(yxc_usingSystemKeyboard), @(yxc_usingSystemKeyboard), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)yxc_usingSystemKeyboard {
@@ -111,7 +111,7 @@
 
 + (void)setYxc_globalUsingSystemKeyboard:(BOOL)yxc_globalUsingSystemKeyboard {
     
-    objc_setAssociatedObject(self, @selector(yxc_globalUsingSystemKeyboard), @(yxc_globalUsingSystemKeyboard), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(yxc_globalUsingSystemKeyboard), @(yxc_globalUsingSystemKeyboard), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 + (BOOL)yxc_globalUsingSystemKeyboard {

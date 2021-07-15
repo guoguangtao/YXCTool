@@ -16,6 +16,7 @@
 @interface UIButton ()
 
 @property (nonatomic, assign, readwrite) CGSize yxc_buttonSize;      /**< 最终按钮的最适合 size */
+@property (nonatomic, strong) CAGradientLayer *gradientLayer;       /**< 渐变色 */
 
 @end
 
@@ -31,6 +32,8 @@
 
 - (void)yxc_button_layoutSubviews {
     [self yxc_button_layoutSubviews];
+    
+    [self setupGradientLayer];
     
     switch (self.yxc_imagePosition) {
         case YXCButtomImageLeft: [self setupImageLeft]; break;
@@ -118,6 +121,28 @@
     self.yxc_buttonSize = CGSizeMake(width, height);
 }
 
+/// 设置渐变色
+- (void)setupGradientLayer {
+    
+    if (self.yxc_colors) {
+        // 设置渐变色
+        if (self.gradientLayer == nil) {
+            self.gradientLayer = [CAGradientLayer new];
+            [self.layer insertSublayer:self.gradientLayer atIndex:0];
+        }
+        self.gradientLayer.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        self.gradientLayer.colors = self.yxc_colors;
+        self.gradientLayer.startPoint = self.yxc_startPoint;
+        if (CGPointEqualToPoint(self.yxc_endPoint, CGPointMake(0, 0))) {
+            self.yxc_endPoint = CGPointMake(0, 1);
+        }
+        self.gradientLayer.endPoint = self.yxc_endPoint;
+        if (self.yxc_locations) {
+            self.gradientLayer.locations = self.yxc_locations;
+        }
+    }
+}
+
 /// 设置背景颜色
 /// @param color 颜色
 /// @param state 状态
@@ -177,6 +202,70 @@
     return size;
 }
 
+/// 设置渐变色开始位置
+- (void)setYxc_startPoint:(CGPoint)yxc_startPoint {
+    
+    NSString *startPoint = NSStringFromCGPoint(yxc_startPoint);
+    objc_setAssociatedObject(self, @selector(yxc_startPoint), startPoint, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+/// 获取渐变色开始位置
+- (CGPoint)yxc_startPoint {
+    
+    NSString *startPoint = objc_getAssociatedObject(self, @selector(yxc_startPoint));
+    return CGPointFromString(startPoint);
+}
+
+/// 设置渐变色结束位置
+- (void)setYxc_endPoint:(CGPoint)yxc_endPoint {
+    
+    NSString *endPoint = NSStringFromCGPoint(yxc_endPoint);
+    objc_setAssociatedObject(self, @selector(yxc_endPoint), endPoint, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+/// 获取渐变色结束位置
+- (CGPoint)yxc_endPoint {
+    
+    NSString *endPoint = objc_getAssociatedObject(self, @selector(yxc_endPoint));
+    return CGPointFromString(endPoint);
+}
+
+/// 设置渐变色数组
+- (void)setYxc_colors:(NSArray *)yxc_colors {
+    
+    objc_setAssociatedObject(self, @selector(yxc_colors), yxc_colors, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+/// 获取渐变色数组
+- (NSArray *)yxc_colors {
+    
+    return objc_getAssociatedObject(self, @selector(yxc_colors));
+}
+
+/// 设置渐变色 Layer
+- (void)setGradientLayer:(CAGradientLayer *)gradientLayer {
+    
+    objc_setAssociatedObject(self, @selector(gradientLayer), gradientLayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+/// 获取渐变色 Layer
+- (CAGradientLayer *)gradientLayer {
+    
+    return objc_getAssociatedObject(self, @selector(gradientLayer));
+}
+
+/// 设置渐变色位置
+- (void)setYxc_locations:(NSArray<NSNumber *> *)yxc_locations {
+    
+    objc_setAssociatedObject(self, @selector(yxc_locations), yxc_locations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+/// 获取渐变色位置
+- (NSArray<NSNumber *> *)yxc_locations {
+    
+    return objc_getAssociatedObject(self, @selector(yxc_locations));
+}
+
 /// 更新按钮size
 - (void)yxc_sizeToFit {
     
@@ -184,8 +273,6 @@
     self.size = self.yxc_buttonSize;
     self.center = center;
 }
-
-
 
 #pragma mark - 链式编程函数
 

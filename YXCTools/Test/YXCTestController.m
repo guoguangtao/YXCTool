@@ -55,44 +55,23 @@
 
 #pragma mark - Protocol
 
-#pragma mark - UITextFieldTextMaxLengthDelegate
-
-- (void)textField:(UITextField *)textField textDidChange:(NSString *)text textLength:(NSInteger)textLength textMaxLength:(NSInteger)textMaxLength {
-    
-    YXCLog(@"文本:%@, 文本长度:%ld", text, textLength);
-}
-
 
 #pragma mark - UI
 
 - (void)setupUI {
     
-    UITextField *textFiled = [[UITextField alloc] init];
-    textFiled.borderStyle = UITextBorderStyleRoundedRect;
-    textFiled.backgroundColor = UIColor.orangeColor;
-    textFiled.textMaxLength = 10;
-    textFiled.yxc_delegate = self;
-    textFiled.delegate = self;
-    textFiled.yxc_usingSystemKeyboard = YES;
-    textFiled.keyboardType = UIKeyboardTypeNumberPad;
-    [self.view addSubview:textFiled];
-    
-    [textFiled mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-        make.width.mas_equalTo(250);
-        make.height.mas_equalTo(30);
-    }];
-    
-    UITextField *textFiled1 = [UITextField new];
-    textFiled1.borderStyle = UITextBorderStyleRoundedRect;
-    textFiled1.backgroundColor = UIColor.orangeColor;
-    [self.view addSubview:textFiled1];
-
-    [textFiled1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.width.height.mas_equalTo(textFiled);
-        make.bottom.equalTo(textFiled.mas_top).offset(-50);
-    }];
+    UIButton *button = [UIButton new];
+    button.yxc_colors = @[(__bridge id)UIColor.redColor.CGColor,
+                          (__bridge id)UIColor.purpleColor.CGColor,
+                          (__bridge id)UIColor.blueColor.CGColor];
+    button.yxc_endPoint = CGPointMake(1, 0);
+    button.yxc_locations = @[@0.3, @0.6];
+    button.layer.cornerRadius = 5.0f;
+    button.layer.masksToBounds = YES;
+    [self.view addSubview:button];
+    button.width = 300;
+    button.height = 40;
+    button.center = self.view.center;
 }
 
 
