@@ -16,7 +16,6 @@
 @interface UIButton ()
 
 @property (nonatomic, assign, readwrite) CGSize yxc_buttonSize;      /**< 最终按钮的最适合 size */
-@property (nonatomic, strong) CAGradientLayer *gradientLayer;       /**< 渐变色 */
 
 @end
 
@@ -33,7 +32,16 @@
 - (void)yxc_button_layoutSubviews {
     [self yxc_button_layoutSubviews];
     
-    [self setupGradientLayer];
+    // 调用 UIView 分类方法，UIButton 有自己实现 layoutSubViews 方法
+    if ([self respondsToSelector:NSSelectorFromString(@"setupGradientLayer")]) {
+        SEL selector = NSSelectorFromString(@"setupGradientLayer");
+        YXCCancelPerformSelectorLeakWarning([self performSelector:selector]);
+    }
+    
+    if ([self respondsToSelector:NSSelectorFromString(@"setupBorder")]) {
+        SEL selector = NSSelectorFromString(@"setupBorder");
+        YXCCancelPerformSelectorLeakWarning([self performSelector:selector]);
+    }
     
     switch (self.yxc_imagePosition) {
         case YXCButtomImageLeft: [self setupImageLeft]; break;
@@ -119,28 +127,6 @@
     
     CGFloat height = MAX(self.imageView.height, self.titleLabel.height);
     self.yxc_buttonSize = CGSizeMake(width, height);
-}
-
-/// 设置渐变色
-- (void)setupGradientLayer {
-    
-    if (self.yxc_colors) {
-        // 设置渐变色
-        if (self.gradientLayer == nil) {
-            self.gradientLayer = [CAGradientLayer new];
-            [self.layer insertSublayer:self.gradientLayer atIndex:0];
-        }
-        self.gradientLayer.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-        self.gradientLayer.colors = self.yxc_colors;
-        self.gradientLayer.startPoint = self.yxc_startPoint;
-        if (CGPointEqualToPoint(self.yxc_endPoint, CGPointMake(0, 0))) {
-            self.yxc_endPoint = CGPointMake(0, 1);
-        }
-        self.gradientLayer.endPoint = self.yxc_endPoint;
-        if (self.yxc_locations) {
-            self.gradientLayer.locations = self.yxc_locations;
-        }
-    }
 }
 
 /// 设置背景颜色

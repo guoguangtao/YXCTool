@@ -22,10 +22,6 @@ typedef NS_ENUM(NSInteger, YXCButtomImage) {
 @property (nonatomic, assign) CGFloat yxc_imageTitleSpace;          /**< 图片文字间距 */
 @property (nonatomic, assign) YXCButtomImage yxc_imagePosition;     /**< 图片位置枚举 */
 @property (nonatomic, assign, readonly) CGSize yxc_buttonSize;      /**< 最终按钮的最适合 size */
-@property (nonatomic, assign) CGPoint yxc_startPoint;               /**< 渐变色开始位置 */
-@property (nonatomic, assign) CGPoint yxc_endPoint;                 /**< 渐变色结束位置 */
-@property (nullable, copy) NSArray *yxc_colors;                     /**< 渐变色 */
-@property (nullable, copy) NSArray<NSNumber *> * yxc_locations;     /**< 渐变色位置 */
 
 /// 设置背景颜色
 /// @param color 颜色

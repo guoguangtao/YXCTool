@@ -39,6 +39,11 @@ typedef NS_OPTIONS(NSUInteger, YXCViewBorder) {
 @property (nonatomic, assign) YXCViewBorder yxc_border; /**< UIView 边框 */
 @property (nonatomic, assign) CGFloat yxc_borderWidth; /**< UIView 边框宽度 */
 @property (nonatomic, strong) UIColor *yxc_borderColor; /**< UIView 边框颜色 */
+@property (nonatomic, assign) CGPoint yxc_startPoint;               /**< 渐变色开始位置 */
+@property (nonatomic, assign) CGPoint yxc_endPoint;                 /**< 渐变色结束位置 */
+@property (nullable, copy) NSArray *yxc_colors;                     /**< 渐变色 */
+@property (nullable, copy) NSArray<NSNumber *> * yxc_locations;     /**< 渐变色位置 */
+@property (nonatomic, strong, readonly) CAGradientLayer *gradientLayer; /**< 渐变色 */
 
 
 #pragma mark - Method

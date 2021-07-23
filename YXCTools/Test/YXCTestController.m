@@ -68,10 +68,29 @@
     button.yxc_locations = @[@0.3, @0.6];
     button.layer.cornerRadius = 5.0f;
     button.layer.masksToBounds = YES;
+    [button setTitle:@"设置渐变颜色 UIButton" forState:UIControlStateNormal];
     [self.view addSubview:button];
     button.width = 300;
     button.height = 40;
     button.center = self.view.center;
+    button.yxc_border = YXCViewBorderBottom;
+    button.yxc_borderColor = UIColor.orangeColor;
+    button.yxc_borderWidth = 3.0f;
+
+    UILabel *label = [UILabel new];
+    label.text = @"设置渐变颜色 Label";
+    label.textColor = UIColor.orangeColor;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.yxc_colors = @[(__bridge id)UIColor.grayColor.CGColor,
+                         (__bridge id)UIColor.lightTextColor.CGColor,
+                          (__bridge id)UIColor.lightGrayColor.CGColor];
+    label.yxc_endPoint = CGPointMake(1, 0);
+    label.yxc_locations = @[@0.3, @0.6];
+    [self.view addSubview:label];
+    label.width = 300;
+    label.height = 40;
+    label.centerX = self.view.centerX;
+    label.top = button.bottom + 30;
 }
 
 

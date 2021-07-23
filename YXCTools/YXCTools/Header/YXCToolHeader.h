@@ -66,4 +66,13 @@ isBangsScreen = window.safeAreaInsets.bottom > 0; \
 isBangsScreen; \
 })
 
+/// 取消调用未知 selector 警告
+#define YXCCancelPerformSelectorLeakWarning(Stuff) \
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+Stuff; \
+_Pragma("clang diagnostic pop") \
+} while (0)
+
 #endif /* YXCToolHeader_h */
