@@ -31,6 +31,7 @@
 		8A81CA4F2563CE4100BE03D4 /* YXCNSThreadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA4E2563CE4100BE03D4 /* YXCNSThreadController.m */; };
 		8A81CA522563D13800BE03D4 /* YXCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA512563D13800BE03D4 /* YXCThread.m */; };
 		8A81CA552563FBFC00BE03D4 /* YXCGCDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA542563FBFC00BE03D4 /* YXCGCDController.m */; };
+		8A8344C326AF9EC1007D09B7 /* YXCRunLoopHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8344C226AF9EC1007D09B7 /* YXCRunLoopHandler.m */; };
 		8AA37E34254FDC0600622B5A /* YXCUIBezierPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA37E33254FDC0600622B5A /* YXCUIBezierPathController.m */; };
 		8AA37E37254FE21000622B5A /* YXCBezierPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA37E36254FE21000622B5A /* YXCBezierPathView.m */; };
 		8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AADCC1A25184AFC000F7F5F /* YXCUIPageControlController.m */; };
@@ -149,6 +150,8 @@
 		8A81CA512563D13800BE03D4 /* YXCThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCThread.m; sourceTree = "<group>"; };
 		8A81CA532563FBFC00BE03D4 /* YXCGCDController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCGCDController.h; sourceTree = "<group>"; };
 		8A81CA542563FBFC00BE03D4 /* YXCGCDController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCGCDController.m; sourceTree = "<group>"; };
+		8A8344C126AF9EC1007D09B7 /* YXCRunLoopHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCRunLoopHandler.h; sourceTree = "<group>"; };
+		8A8344C226AF9EC1007D09B7 /* YXCRunLoopHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCRunLoopHandler.m; sourceTree = "<group>"; };
 		8AA37E32254FDC0600622B5A /* YXCUIBezierPathController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCUIBezierPathController.h; sourceTree = "<group>"; };
 		8AA37E33254FDC0600622B5A /* YXCUIBezierPathController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCUIBezierPathController.m; sourceTree = "<group>"; };
 		8AA37E35254FE21000622B5A /* YXCBezierPathView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBezierPathView.h; sourceTree = "<group>"; };
@@ -425,6 +428,28 @@
 			path = Multithreading;
 			sourceTree = "<group>";
 		};
+		8A8344C426AFA024007D09B7 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				8AB4C8DF26003DF300596D17 /* YXCImagePickerHandler.h */,
+				8AB4C8EA26003DF300596D17 /* YXCImagePickerHandler.m */,
+				8A8344C126AF9EC1007D09B7 /* YXCRunLoopHandler.h */,
+				8A8344C226AF9EC1007D09B7 /* YXCRunLoopHandler.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		8A8344C526AFA02C007D09B7 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				8AB4C8CA26003DF300596D17 /* YXCMarqueeLabel.h */,
+				8AB4C8D426003DF300596D17 /* YXCMarqueeLabel.m */,
+				8AB4C8C626003DF300596D17 /* YXCPopOverView.h */,
+				8AB4C8D126003DF300596D17 /* YXCPopOverView.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		8AB4C8C326003DF300596D17 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,7 +468,6 @@
 				8AB4C8DA26003DF300596D17 /* UIControl+YXC_Category.m */,
 				8AB4C8C826003DF300596D17 /* UIDevice+YXC_Category.h */,
 				8AB4C8D626003DF300596D17 /* UIDevice+YXC_Category.m */,
-				8AB4C8D826003DF300596D17 /* UIDeviceName.h */,
 				8AB4C8C526003DF300596D17 /* UIFont+YXC_Category.h */,
 				8AB4C8D226003DF300596D17 /* UIFont+YXC_Category.m */,
 				8AB4C8CD26003DF300596D17 /* UIImage+YXC_Category.h */,
@@ -456,10 +480,6 @@
 				8AB4C8C726003DF300596D17 /* UITextView+YXC_Category.m */,
 				8AB4C8D726003DF300596D17 /* UIView+YXC_Category.h */,
 				8AB4C8CC26003DF300596D17 /* UIView+YXC_Category.m */,
-				8AB4C8CA26003DF300596D17 /* YXCMarqueeLabel.h */,
-				8AB4C8D426003DF300596D17 /* YXCMarqueeLabel.m */,
-				8AB4C8C626003DF300596D17 /* YXCPopOverView.h */,
-				8AB4C8D126003DF300596D17 /* YXCPopOverView.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -481,8 +501,6 @@
 				8AB4C8E126003DF300596D17 /* NSMutableDictionary+YXC_Category.m */,
 				8AB4C8E526003DF300596D17 /* NSObject+YXC_Category.h */,
 				8AB4C8DE26003DF300596D17 /* NSObject+YXC_Category.m */,
-				8AB4C8DF26003DF300596D17 /* YXCImagePickerHandler.h */,
-				8AB4C8EA26003DF300596D17 /* YXCImagePickerHandler.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -563,6 +581,8 @@
 		8AECEC5C2449808B00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				8A8344C526AFA02C007D09B7 /* UIKit */,
+				8A8344C426AFA024007D09B7 /* NSObject */,
 				8AB4C8C326003DF300596D17 /* Category */,
 				8AECEC75244993E400537181 /* Header */,
 			);
@@ -572,6 +592,7 @@
 		8AECEC75244993E400537181 /* Header */ = {
 			isa = PBXGroup;
 			children = (
+				8AB4C8D826003DF300596D17 /* UIDeviceName.h */,
 				8AECEC74244992F900537181 /* YXCToolHeader.h */,
 			);
 			path = Header;
@@ -832,6 +853,7 @@
 				8A81CA522563D13800BE03D4 /* YXCThread.m in Sources */,
 				8AB4C8F326003DF300596D17 /* UIFont+YXC_Category.m in Sources */,
 				8A81CA492563C48E00BE03D4 /* YXCMultithreadingController.m in Sources */,
+				8A8344C326AF9EC1007D09B7 /* YXCRunLoopHandler.m in Sources */,
 				8A81CA4F2563CE4100BE03D4 /* YXCNSThreadController.m in Sources */,
 				8AB4C8FF26003DF300596D17 /* YXCImagePickerHandler.m in Sources */,
 				8A781698253ED68000A82DF9 /* YXCAnimationController.m in Sources */,
@@ -918,15 +940,6 @@
 		8AECEC5124497FED00537181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-                OTHER_LDFLAGS = (
-                    "-Xlinker",
-                    "-interposable",
-                    "-Xlinker",
-                    "-undefined",
-                    "-Xlinker",
-                    dynamic_lookup,
-                );
-                ENABLE_BITCODE = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -958,6 +971,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -978,6 +992,14 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+					"-Xlinker",
+					"-undefined",
+					"-Xlinker",
+					dynamic_lookup,
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1037,21 +1059,13 @@
 		8AECEC5424497FED00537181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-                OTHER_LDFLAGS = (
-                    "-Xlinker",
-                    "-interposable",
-                    "-Xlinker",
-                    "-undefined",
-                    "-Xlinker",
-                    dynamic_lookup,
-                );
-                ENABLE_BITCODE = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_TEAM = T6K9Y5H6C4;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCTools/YXCTool.pch";
 				INFOPLIST_FILE = YXCTools/Info.plist;
@@ -1061,6 +1075,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+					"-Xlinker",
+					"-undefined",
+					"-Xlinker",
+					dynamic_lookup,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = com_dev;
@@ -1096,23 +1118,23 @@
 		8AECEC5724497FED00537181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-                OTHER_LDFLAGS = (
-                    "-Xlinker",
-                    "-interposable",
-                    "-Xlinker",
-                    "-undefined",
-                    "-Xlinker",
-                    dynamic_lookup,
-                );
-                ENABLE_BITCODE = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YXCToolsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+					"-Xlinker",
+					"-undefined",
+					"-Xlinker",
+					dynamic_lookup,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCToolsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1143,21 +1165,21 @@
 		8AECEC5A24497FED00537181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-                OTHER_LDFLAGS = (
-                    "-Xlinker",
-                    "-interposable",
-                    "-Xlinker",
-                    "-undefined",
-                    "-Xlinker",
-                    dynamic_lookup,
-                );
-                ENABLE_BITCODE = NO;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YXCToolsUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+					"-Xlinker",
+					"-undefined",
+					"-Xlinker",
+					dynamic_lookup,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCToolsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
