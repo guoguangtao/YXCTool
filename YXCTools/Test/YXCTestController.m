@@ -7,9 +7,11 @@
 //
 
 #import "YXCTestController.h"
+#import "YXCRunLoopHandler.h"
 
 @interface YXCTestController ()<UITextFieldTextMaxLengthDelegate, UITextFieldDelegate>
 
+@property (nonatomic, strong) YXCRunLoopHandler *runLoopHandler;
 
 @end
 
