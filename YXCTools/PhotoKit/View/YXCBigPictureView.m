@@ -8,17 +8,15 @@
 
 #import "YXCBigPictureView.h"
 #import "YXCAssetModel.h"
+#import "YXCBigPictureCell.h"
 
-@interface YXCBigPictureView ()
+@interface YXCBigPictureView ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
 
 @implementation YXCBigPictureView
-
-{
-    UIImageView *_imageView;
-}
 
 #pragma mark - Lifecycle
 
@@ -41,28 +39,26 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    _imageView.frame = self.bounds;
-}
-
 - (void)dealloc {
     
-    YXCLog(@"%s", __func__);
+    
 }
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
 
-- (void)setModel:(YXCAssetModel *)model {
+- (void)setPhotos:(NSArray<YXCAssetModel *> *)photos {
     
-    _model = model;
+    _photos = photos;
     
-    PHImageRequestOptions *option = [PHImageRequestOptions new];
-    YXCWeakSelf(_imageView)
-    [[PHImageManager defaultManager] requestImageForAsset:model.asset targetSize:_imageView.bounds.size contentMode:PHImageContentModeDefault options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        weak_imageView.image = result;
-    }];
+    [self.collectionView reloadData];
+}
+
+- (void)setSelectedIndex:(NSInteger)selectedIndex {
+    
+    _selectedIndex = selectedIndex;
+    
+    CGFloat offsetX = selectedIndex * IPHONE_WIDTH;
+    self.collectionView.contentOffset = CGPointMake(offsetX, 0);
 }
 
 
@@ -71,10 +67,12 @@
 
 #pragma mark - Public
 
-+ (instancetype)showWithAssetModel:(YXCAssetModel *)model {
++ (instancetype)showWithAssetModels:(NSArray<YXCAssetModel *> *)photos
+                      selectedIndex:(NSInteger)selectedIndex {
     
     YXCBigPictureView *bigPicView = [YXCBigPictureView new];
-    bigPicView.model = model;
+    bigPicView.photos = photos;
+    bigPicView.selectedIndex = selectedIndex;
     
     NSArray *windows = [UIApplication sharedApplication].windows;
     
@@ -100,14 +98,40 @@
 
 #pragma mark - Protocol
 
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return self.photos.count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    YXCBigPictureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:YXCBigPictureCellIdentifier
+                                                                        forIndexPath:indexPath];
+    cell.assetModel = self.photos[indexPath.row];
+    return cell;
+}
+
 
 #pragma mark - UI
 
 - (void)setupUI {
     
-    _imageView = [UIImageView new];
-    _imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self addSubview:_imageView];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.itemSize = CGSizeMake(IPHONE_WIDTH, IPHONE_HEIGHT);
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.minimumLineSpacing = 0.0f;
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT)
+                                             collectionViewLayout:flowLayout];
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    self.collectionView.pagingEnabled = YES;
+    [self.collectionView registerClass:[YXCBigPictureCell class]
+            forCellWithReuseIdentifier:YXCBigPictureCellIdentifier];
+    [self addSubview:self.collectionView];
 }
 
 

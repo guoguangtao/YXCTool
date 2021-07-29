@@ -69,6 +69,7 @@
 		8AECEC4F24497FED00537181 /* YXCToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AECEC4E24497FED00537181 /* YXCToolsUITests.m */; };
 		8AEDE5202521D662006C3452 /* YXCTableViewEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDE51F2521D662006C3452 /* YXCTableViewEditController.m */; };
 		8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */; };
+		8AF10FBF26B25103006CFFB7 /* YXCBigPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF10FBE26B25103006CFFB7 /* YXCBigPictureCell.m */; };
 		8AF3A98D26008CD700F2AFC2 /* YXCPhotoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A97B26008CD700F2AFC2 /* YXCPhotoHandler.m */; };
 		8AF3A98E26008CD700F2AFC2 /* YXCPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A97F26008CD700F2AFC2 /* YXCPhotoListController.m */; };
 		8AF3A98F26008CD700F2AFC2 /* YXCPhotoAlbumListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3A98026008CD700F2AFC2 /* YXCPhotoAlbumListController.m */; };
@@ -229,6 +230,8 @@
 		8AEDE51F2521D662006C3452 /* YXCTableViewEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTableViewEditController.m; sourceTree = "<group>"; };
 		8AEDE5222521D9B1006C3452 /* YXCTableViewEditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTableViewEditCell.h; sourceTree = "<group>"; };
 		8AEDE5232521D9B1006C3452 /* YXCTableViewEditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTableViewEditCell.m; sourceTree = "<group>"; };
+		8AF10FBD26B25103006CFFB7 /* YXCBigPictureCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBigPictureCell.h; sourceTree = "<group>"; };
+		8AF10FBE26B25103006CFFB7 /* YXCBigPictureCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBigPictureCell.m; sourceTree = "<group>"; };
 		8AF3A97A26008CD700F2AFC2 /* YXCPhotoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoHandler.h; sourceTree = "<group>"; };
 		8AF3A97B26008CD700F2AFC2 /* YXCPhotoHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCPhotoHandler.m; sourceTree = "<group>"; };
 		8AF3A97D26008CD700F2AFC2 /* YXCPhotoAlbumListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCPhotoAlbumListController.h; sourceTree = "<group>"; };
@@ -656,9 +659,9 @@
 			isa = PBXGroup;
 			children = (
 				8AF3A97D26008CD700F2AFC2 /* YXCPhotoAlbumListController.h */,
+				8AF3A98026008CD700F2AFC2 /* YXCPhotoAlbumListController.m */,
 				8AF3A97E26008CD700F2AFC2 /* YXCPhotoListController.h */,
 				8AF3A97F26008CD700F2AFC2 /* YXCPhotoListController.m */,
-				8AF3A98026008CD700F2AFC2 /* YXCPhotoAlbumListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -675,14 +678,16 @@
 		8AF3A98426008CD700F2AFC2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8AF3A98526008CD700F2AFC2 /* YXCPhotoView.m */,
-				8AF3A98626008CD700F2AFC2 /* YXCPhotoListCell.h */,
 				8AF3A98726008CD700F2AFC2 /* YXCBigPictureView.h */,
-				8AF3A98826008CD700F2AFC2 /* YXCPhotoListImageCell.m */,
-				8AF3A98926008CD700F2AFC2 /* YXCPhotoView.h */,
+				8AF3A98C26008CD700F2AFC2 /* YXCBigPictureView.m */,
+				8AF10FBD26B25103006CFFB7 /* YXCBigPictureCell.h */,
+				8AF10FBE26B25103006CFFB7 /* YXCBigPictureCell.m */,
+				8AF3A98626008CD700F2AFC2 /* YXCPhotoListCell.h */,
 				8AF3A98A26008CD700F2AFC2 /* YXCPhotoListCell.m */,
 				8AF3A98B26008CD700F2AFC2 /* YXCPhotoListImageCell.h */,
-				8AF3A98C26008CD700F2AFC2 /* YXCBigPictureView.m */,
+				8AF3A98826008CD700F2AFC2 /* YXCPhotoListImageCell.m */,
+				8AF3A98926008CD700F2AFC2 /* YXCPhotoView.h */,
+				8AF3A98526008CD700F2AFC2 /* YXCPhotoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 				8AB4C8FC26003DF300596D17 /* NSDictionary+YXC_Category.m in Sources */,
 				8AB4C8F626003DF300596D17 /* UIControl+YXC_Category.m in Sources */,
 				8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */,
+				8AF10FBF26B25103006CFFB7 /* YXCBigPictureCell.m in Sources */,
 				8AB4C8FA26003DF300596D17 /* NSMutableArray+YXC_Category.m in Sources */,
 				8A2B79D525160CBC00BB9595 /* YXCBaseController.m in Sources */,
 				8A603EAD24D2EE7A008AC9BD /* NSArray+MASAdditions.m in Sources */,

@@ -51,7 +51,7 @@
 
 - (void)dealloc {
     
-    YXCLog(@"%s", __func__);
+    
 }
 
 

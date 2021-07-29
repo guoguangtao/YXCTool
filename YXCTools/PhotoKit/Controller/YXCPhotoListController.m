@@ -79,7 +79,8 @@
     return self.dataSources.count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     YXCPhotoListImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoListImageCellIdentifier
                                                                             forIndexPath:indexPath];
@@ -101,7 +102,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    [YXCBigPictureView showWithAssetModel:self.dataSources[indexPath.row]];
+    [YXCBigPictureView showWithAssetModels:self.dataSources
+                             selectedIndex:indexPath.row];
 }
 
 
@@ -109,13 +111,26 @@
 
 - (void)listImageCell:(YXCPhotoListImageCell *)cell didSelectedWithAssetModel:(YXCAssetModel *)assetModel {
     
+    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
     if ([self.selectedArray containsObject:assetModel]) {
         [self.selectedArray removeObject:assetModel];
+        NSInteger index = [self.dataSources indexOfObject:assetModel];
+        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
     } else {
         [self.selectedArray addObject:assetModel];
     }
     
-    [self.collectionView reloadData];
+    // 刷新 CollectionView
+    for (YXCAssetModel *model in self.selectedArray) {
+        NSInteger index = [self.dataSources indexOfObject:model];
+        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+    }
+    @try {
+        [self.collectionView reloadItemsAtIndexPaths:indexPaths];
+    } @catch (NSException *exception) {
+        [self.collectionView reloadData];
+        YXCLog(@"相册列表刷新异常");
+    }
 }
 
 
@@ -132,7 +147,8 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    [self.collectionView registerClass:[YXCPhotoListImageCell class] forCellWithReuseIdentifier:kPhotoListImageCellIdentifier];
+    [self.collectionView registerClass:[YXCPhotoListImageCell class]
+            forCellWithReuseIdentifier:kPhotoListImageCellIdentifier];
     [self.view addSubview:self.collectionView];
 }
 

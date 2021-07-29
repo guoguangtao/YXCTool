@@ -109,6 +109,8 @@
 - (void)setupUI {
     
     self.imageView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
+    self.imageView.contentMode = UIViewContentModeCenter;
+    self.imageView.clipsToBounds = YES;
     [self.contentView addSubview:self.imageView];
     
     CGFloat buttonWH = 20;
@@ -120,6 +122,7 @@
     self.selectedButton.layer.borderColor = UIColor.whiteColor.CGColor;
     self.selectedButton.layer.masksToBounds = YES;
     self.selectedButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.selectedButton.yxc_expandSize = 10;
     [self.selectedButton addTarget:self
                             action:@selector(selectedButtonClicked)
                   forControlEvents:UIControlEventTouchUpInside];
