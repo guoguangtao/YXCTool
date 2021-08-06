@@ -68,7 +68,7 @@
     [self.view addSubview:self.contentView];
     
     self.imageView = [[UIImageView alloc] init];
-    self.imageView.image = [UIImage imageNamed:@"tools"];
+    self.imageView.image = [UIImage imageNamed:@"atten"];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView.width = self.view.width - 250;
     self.imageView.height = self.view.height - 200;
@@ -78,7 +78,7 @@
     
     UILabel *label = [UILabel new];
     label.font = [UIFont systemFontOfSize:20.0f];
-    label.text = @"YXCTools";
+    label.text = @"考勤记录每一天";
     label.textColor = kColorFromHexCode(0x3DC69D);
     label.size = [label sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     label.centerX = self.view.centerX;

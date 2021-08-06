@@ -32,6 +32,30 @@
     return [dateFormatter stringFromDate:date];
 }
 
+/// 将时间字符串转换成字符串
+/// @param timeString 时间字符串
+/// @param targetDataFormat 当前传入的时间字符串格式
++ (NSString *)yxc_stringWithTimeString:(NSString *)timeString
+                      targetDateFormat:(nonnull NSString *)targetDataFormat {
+    
+    return [self yxc_stringWithTimeString:timeString
+                         targetDateFormat:targetDataFormat
+                               dateFormat:nil];
+}
+
+/// 将时间字符串转换成字符串
+/// @param timeString 时间字符串
+/// @param targetDataFormat 当前传入的时间字符串格式
+/// @param dateFormat 时间格式
++ (NSString *)yxc_stringWithTimeString:(NSString *)timeString
+                      targetDateFormat:(nonnull NSString *)targetDataFormat
+                            dateFormat:(nullable NSString *)dateFormat {
+    
+    NSDate *date = [self yxc_dateWithDateString:timeString
+                                     dateFormat:targetDataFormat];
+    return [self yxc_stringWithDate:date dateFormat:dateFormat];
+}
+
 /// 根据日期转成字符串
 /// @param date 日期
 + (NSString *)yxc_stringWithDate:(NSDate *)date {
