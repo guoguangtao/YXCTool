@@ -13,31 +13,7 @@
 
 #import "YXCToolHeader.h"
 #import "Masonry.h"
-
-
-#pragma mark - NSObject
-
-#import "NSArray+YXC_Category.h"
-#import "NSMutableArray+YXC_Category.h"
-#import "NSDictionary+YXC_Category.h"
-#import "NSMutableDictionary+YXC_Category.h"
-#import "YXCImagePickerHandler.h"
 #import "YXCPushHandler.h"
 #import "YXCControllerModel.h"
-#import "NSDate+YXC_Category.h"
-#import "NSObject+YXC_Category.h"
-#import "NSMutableAttributedString+YXC_Category.h"
-
-#pragma mark - UIKit
-
-#import "UIView+YXC_Category.h"
-#import "UIControl+YXC_Category.h"
-#import "UITextField+YXC_Category.h"
-#import "UITextView+YXC_Category.h"
-#import "UIDevice+YXC_Category.h"
-#import "UIFont+YXC_Category.h"
-#import "UIButton+YXC_Category.h"
-#import "UIImage+YXC_Category.h"
-#import "UIImageView+YXC_Category.h"
 
 #endif /* YXCTool_pch */

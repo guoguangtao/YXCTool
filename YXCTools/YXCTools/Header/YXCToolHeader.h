@@ -75,4 +75,40 @@ Stuff; \
 _Pragma("clang diagnostic pop") \
 } while (0)
 
+
+/// 屏幕底部距离
+#define kBottomBarHeight (kIsBangsScreen ? 34 : 0)
+/// 导航栏高度不包括状态栏
+#define kNavigationBarHeight 44
+/// 导航栏高度包括状态栏
+#define kTopBarHeight (kIsBangsScreen ? 88 : 64)
+/// 状态栏高度
+#define kStatusBarHeight (kIsBangsScreen ? 44 : 20)
+/// 底部 tabbar 高度
+#define kTabbarHeight (kIsBangsScreen ? 83 : 49)
+
+
+#pragma mark - NSObject
+
+#import "NSArray+YXC_Category.h"
+#import "NSMutableArray+YXC_Category.h"
+#import "NSDictionary+YXC_Category.h"
+#import "NSMutableDictionary+YXC_Category.h"
+#import "YXCImagePickerHandler.h"
+#import "NSDate+YXC_Category.h"
+#import "NSObject+YXC_Category.h"
+#import "NSMutableAttributedString+YXC_Category.h"
+
+#pragma mark - UIKit
+
+#import "UIView+YXC_Category.h"
+#import "UIControl+YXC_Category.h"
+#import "UITextField+YXC_Category.h"
+#import "UITextView+YXC_Category.h"
+#import "UIDevice+YXC_Category.h"
+#import "UIFont+YXC_Category.h"
+#import "UIButton+YXC_Category.h"
+#import "UIImage+YXC_Category.h"
+#import "UIImageView+YXC_Category.h"
+
 #endif /* YXCToolHeader_h */
