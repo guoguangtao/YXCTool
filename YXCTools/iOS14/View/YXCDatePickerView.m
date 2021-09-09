@@ -41,7 +41,7 @@
 
 - (void)dealloc {
     
-    YXCLog(@"%s", __func__);
+    YXCLog(@"被释放");
 }
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
