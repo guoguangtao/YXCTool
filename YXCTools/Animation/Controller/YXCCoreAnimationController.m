@@ -90,7 +90,7 @@
     }
     
     _dataSources = @[
-        [YXCControllerModel modelWithClassName:@"YXCLeBoHomeAnimationController" title:@"乐播投屏首页动画" parameter:nil],
+        [YXCControllerModel modelWithClassName:@"YXCLeBoHomeAnimationController" title:@"首页动画" parameter:nil],
     ];
     
     return _dataSources;

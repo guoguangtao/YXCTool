@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		873928EA26EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 873928E926EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m */; };
 		8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */; };
-		8798359126EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798359026EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
 		8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79CC2516092200BB9595 /* YXCiOS14Controller.m */; };
 		8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D025160A9D00BB9595 /* YXCPushHandler.m */; };
@@ -100,10 +100,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		873928E826EB02C70046D6B8 /* YXCLeBoHomeAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCLeBoHomeAnimationController.h; sourceTree = "<group>"; };
+		873928E926EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCLeBoHomeAnimationController.m; sourceTree = "<group>"; };
 		8798358C26EAEC4A006E1CFE /* YXCCoreAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCCoreAnimationController.h; sourceTree = "<group>"; };
 		8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCoreAnimationController.m; sourceTree = "<group>"; };
-		8798358F26EAEE55006E1CFE /* YXCLeBoHomeAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCLeBoHomeAnimationController.h; sourceTree = "<group>"; };
-		8798359026EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCLeBoHomeAnimationController.m; sourceTree = "<group>"; };
 		8A2B79C82516070A00BB9595 /* YXCControllerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCControllerModel.h; sourceTree = "<group>"; };
 		8A2B79C92516070A00BB9595 /* YXCControllerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCControllerModel.m; sourceTree = "<group>"; };
 		8A2B79CB2516092200BB9595 /* YXCiOS14Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCiOS14Controller.h; sourceTree = "<group>"; };
@@ -411,14 +411,14 @@
 				8A781697253ED68000A82DF9 /* YXCAnimationController.m */,
 				8798358C26EAEC4A006E1CFE /* YXCCoreAnimationController.h */,
 				8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */,
-				8798358F26EAEE55006E1CFE /* YXCLeBoHomeAnimationController.h */,
-				8798359026EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m */,
 				8A781699253EDB1500A82DF9 /* YXCCAEmitterLayerController.h */,
 				8A78169A253EDB1500A82DF9 /* YXCCAEmitterLayerController.m */,
 				8AD0C8C22541153100BA2C06 /* YXCEmitterLiveController.h */,
 				8AD0C8C32541153100BA2C06 /* YXCEmitterLiveController.m */,
 				8AD0C8C52541167B00BA2C06 /* YXCEmitterLikeController.h */,
 				8AD0C8C62541167B00BA2C06 /* YXCEmitterLikeController.m */,
+				873928E826EB02C70046D6B8 /* YXCLeBoHomeAnimationController.h */,
+				873928E926EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -837,7 +837,7 @@
 				8AA37E37254FE21000622B5A /* YXCBezierPathView.m in Sources */,
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
 				8AB4C8FB26003DF300596D17 /* NSDate+YXC_Category.m in Sources */,
-				8798359126EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m in Sources */,
+				873928EA26EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m in Sources */,
 				8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */,
 				8AF3A98D26008CD700F2AFC2 /* YXCPhotoHandler.m in Sources */,
 				8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */,
@@ -1081,10 +1081,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_TEAM = T6K9Y5H6C4;
+				DEVELOPMENT_TEAM = 7R34852FKA;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCTools/YXCTool.pch";
@@ -1105,7 +1105,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = com_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1115,10 +1115,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEVELOPMENT_TEAM = T6K9Y5H6C4;
+				DEVELOPMENT_TEAM = 7R34852FKA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCTools/YXCTool.pch";
 				INFOPLIST_FILE = YXCTools/Info.plist;
@@ -1130,7 +1130,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = com_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

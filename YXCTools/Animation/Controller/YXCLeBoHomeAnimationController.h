@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXCLeBoHomeAnimationController : YXCBaseController
 
+#pragma mark - Property
+
+
+#pragma mark - Method
+
 @end
 
 NS_ASSUME_NONNULL_END
