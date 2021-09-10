@@ -112,8 +112,6 @@
                                                                         forIndexPath:indexPath];
     cell.assetModel = self.photos[indexPath.row];
     return cell;
-    
-    collectionView dequeueReusableSupplementaryViewOfKind:<#(nonnull NSString *)#> withReuseIdentifier:<#(nonnull NSString *)#> forIndexPath:<#(nonnull NSIndexPath *)#>
 }
 
 
