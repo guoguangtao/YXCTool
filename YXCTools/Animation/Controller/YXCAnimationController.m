@@ -113,6 +113,7 @@
     if (_dataSources == nil) {
         _dataSources = @[
             [YXCControllerModel modelWithClassName:@"YXCCAEmitterLayerController" title:@"粒子动画" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCCoreAnimationController" title:@"Core Animation" parameter:nil],
         ];
     }
     

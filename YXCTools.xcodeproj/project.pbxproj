@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */; };
+		8798359126EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798359026EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
 		8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79CC2516092200BB9595 /* YXCiOS14Controller.m */; };
 		8A2B79D125160A9D00BB9595 /* YXCPushHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79D025160A9D00BB9595 /* YXCPushHandler.m */; };
@@ -98,6 +100,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8798358C26EAEC4A006E1CFE /* YXCCoreAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCCoreAnimationController.h; sourceTree = "<group>"; };
+		8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCoreAnimationController.m; sourceTree = "<group>"; };
+		8798358F26EAEE55006E1CFE /* YXCLeBoHomeAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCLeBoHomeAnimationController.h; sourceTree = "<group>"; };
+		8798359026EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCLeBoHomeAnimationController.m; sourceTree = "<group>"; };
 		8A2B79C82516070A00BB9595 /* YXCControllerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCControllerModel.h; sourceTree = "<group>"; };
 		8A2B79C92516070A00BB9595 /* YXCControllerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCControllerModel.m; sourceTree = "<group>"; };
 		8A2B79CB2516092200BB9595 /* YXCiOS14Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCiOS14Controller.h; sourceTree = "<group>"; };
@@ -403,6 +409,10 @@
 			children = (
 				8A781696253ED68000A82DF9 /* YXCAnimationController.h */,
 				8A781697253ED68000A82DF9 /* YXCAnimationController.m */,
+				8798358C26EAEC4A006E1CFE /* YXCCoreAnimationController.h */,
+				8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */,
+				8798358F26EAEE55006E1CFE /* YXCLeBoHomeAnimationController.h */,
+				8798359026EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m */,
 				8A781699253EDB1500A82DF9 /* YXCCAEmitterLayerController.h */,
 				8A78169A253EDB1500A82DF9 /* YXCCAEmitterLayerController.m */,
 				8AD0C8C22541153100BA2C06 /* YXCEmitterLiveController.h */,
@@ -827,8 +837,10 @@
 				8AA37E37254FE21000622B5A /* YXCBezierPathView.m in Sources */,
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
 				8AB4C8FB26003DF300596D17 /* NSDate+YXC_Category.m in Sources */,
+				8798359126EAEE55006E1CFE /* YXCLeBoHomeAnimationController.m in Sources */,
 				8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */,
 				8AF3A98D26008CD700F2AFC2 /* YXCPhotoHandler.m in Sources */,
+				8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */,
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8A603EAA24D2EE7A008AC9BD /* MASCompositeConstraint.m in Sources */,
 				8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */,
