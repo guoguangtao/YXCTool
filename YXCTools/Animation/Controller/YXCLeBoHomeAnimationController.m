@@ -126,9 +126,6 @@ static CGFloat const AnimationViewWidth = 200; /**< 动画View的宽度 */
         self.animationBackgroundView.width = MAX(width, AnimationViewWidth);
         // 计算centerX值
         self.animationBackgroundView.centerX = self.navigationView.centerX;
-        
-        // 计算 connectButton 的 X 值
-        
     } else {
         self.animationBackgroundView.y = CGRectGetMinY(self.navigationView.frame);
         self.animationBackgroundView.height = CGRectGetHeight(self.navigationView.frame);
