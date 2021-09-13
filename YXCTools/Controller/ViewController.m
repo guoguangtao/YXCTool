@@ -145,6 +145,7 @@
             [YXCControllerModel modelWithClassName:@"YXCUIBezierPathController" title:@"UIBezierPath的使用" parameter:Nil],
             [YXCControllerModel modelWithClassName:@"YXCMultithreadingController" title:@"多线程" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCTestController" title:@"测试界面" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCBannerController" title:@"仿照华为音乐Banner" parameter:nil],
         ];
     }
     

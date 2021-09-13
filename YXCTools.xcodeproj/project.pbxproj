@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		871AC00126EEFAF8003E93AA /* YXCCABasicAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00026EEFAF8003E93AA /* YXCCABasicAnimationController.m */; };
 		871AC00426EF199C003E93AA /* YXCBasicAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00326EF199C003E93AA /* YXCBasicAnimation.m */; };
+		871AC00726EF48A0003E93AA /* YXCBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00626EF48A0003E93AA /* YXCBannerController.m */; };
+		871AC00B26EF4A6C003E93AA /* YXCBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00A26EF4A6C003E93AA /* YXCBannerCell.m */; };
+		871AC00E26EF4F78003E93AA /* UIScrollView+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00D26EF4F78003E93AA /* UIScrollView+YXC_Category.m */; };
 		873928EA26EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 873928E926EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m */; };
 		8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
@@ -106,6 +109,12 @@
 		871AC00026EEFAF8003E93AA /* YXCCABasicAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCABasicAnimationController.m; sourceTree = "<group>"; };
 		871AC00226EF199C003E93AA /* YXCBasicAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBasicAnimation.h; sourceTree = "<group>"; };
 		871AC00326EF199C003E93AA /* YXCBasicAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBasicAnimation.m; sourceTree = "<group>"; };
+		871AC00526EF48A0003E93AA /* YXCBannerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBannerController.h; sourceTree = "<group>"; };
+		871AC00626EF48A0003E93AA /* YXCBannerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBannerController.m; sourceTree = "<group>"; };
+		871AC00926EF4A6C003E93AA /* YXCBannerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBannerCell.h; sourceTree = "<group>"; };
+		871AC00A26EF4A6C003E93AA /* YXCBannerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBannerCell.m; sourceTree = "<group>"; };
+		871AC00C26EF4F78003E93AA /* UIScrollView+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YXC_Category.h"; sourceTree = "<group>"; };
+		871AC00D26EF4F78003E93AA /* UIScrollView+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YXC_Category.m"; sourceTree = "<group>"; };
 		873928E826EB02C70046D6B8 /* YXCLeBoHomeAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCLeBoHomeAnimationController.h; sourceTree = "<group>"; };
 		873928E926EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCLeBoHomeAnimationController.m; sourceTree = "<group>"; };
 		8798358C26EAEC4A006E1CFE /* YXCCoreAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCCoreAnimationController.h; sourceTree = "<group>"; };
@@ -287,6 +296,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		871AC00826EF4A53003E93AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				871AC00926EF4A6C003E93AA /* YXCBannerCell.h */,
+				871AC00A26EF4A6C003E93AA /* YXCBannerCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8A1E82A6251605880016627D /* iOS14(iOS 14 适配) */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +521,8 @@
 				8AB4C8C726003DF300596D17 /* UITextView+YXC_Category.m */,
 				8AB4C8D726003DF300596D17 /* UIView+YXC_Category.h */,
 				8AB4C8CC26003DF300596D17 /* UIView+YXC_Category.m */,
+				871AC00C26EF4F78003E93AA /* UIScrollView+YXC_Category.h */,
+				871AC00D26EF4F78003E93AA /* UIScrollView+YXC_Category.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -531,8 +551,11 @@
 		8AE02B2D25CA7E5B005A0D99 /* Test(测试界面) */ = {
 			isa = PBXGroup;
 			children = (
+				871AC00826EF4A53003E93AA /* View */,
 				8AE02B2E25CA7EA3005A0D99 /* YXCTestController.h */,
 				8AE02B2F25CA7EA3005A0D99 /* YXCTestController.m */,
+				871AC00526EF48A0003E93AA /* YXCBannerController.h */,
+				871AC00626EF48A0003E93AA /* YXCBannerController.m */,
 			);
 			name = "Test(测试界面)";
 			path = Test;
@@ -847,6 +870,7 @@
 				8AA37E37254FE21000622B5A /* YXCBezierPathView.m in Sources */,
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
 				8AB4C8FB26003DF300596D17 /* NSDate+YXC_Category.m in Sources */,
+				871AC00B26EF4A6C003E93AA /* YXCBannerCell.m in Sources */,
 				873928EA26EB02C70046D6B8 /* YXCLeBoHomeAnimationController.m in Sources */,
 				8AEDE5242521D9B1006C3452 /* YXCTableViewEditCell.m in Sources */,
 				8AF3A98D26008CD700F2AFC2 /* YXCPhotoHandler.m in Sources */,
@@ -877,6 +901,7 @@
 				8AB4C8F126003DF300596D17 /* UITextField+YXC_Category.m in Sources */,
 				8AF3A99326008CD700F2AFC2 /* YXCPhotoListCell.m in Sources */,
 				8AB4C8F426003DF300596D17 /* YXCMarqueeLabel.m in Sources */,
+				871AC00E26EF4F78003E93AA /* UIScrollView+YXC_Category.m in Sources */,
 				871AC00426EF199C003E93AA /* YXCBasicAnimation.m in Sources */,
 				8A81CA522563D13800BE03D4 /* YXCThread.m in Sources */,
 				8AB4C8F326003DF300596D17 /* UIFont+YXC_Category.m in Sources */,
@@ -911,6 +936,7 @@
 				8A7816A7253EE0FE00A82DF9 /* YXCLaunchImagesController.m in Sources */,
 				8AB4C8EE26003DF300596D17 /* UIButton+YXC_Category.m in Sources */,
 				8AECEC2C24497FEA00537181 /* SceneDelegate.m in Sources */,
+				871AC00726EF48A0003E93AA /* YXCBannerController.m in Sources */,
 				8A603EB124D2EE7A008AC9BD /* MASViewAttribute.m in Sources */,
 				8AF3A99026008CD700F2AFC2 /* YXCAssetModel.m in Sources */,
 			);
