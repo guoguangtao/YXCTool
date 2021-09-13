@@ -91,6 +91,7 @@
     
     _dataSources = @[
         [YXCControllerModel modelWithClassName:@"YXCLeBoHomeAnimationController" title:@"首页动画" parameter:nil],
+        [YXCControllerModel modelWithClassName:@"YXCCABasicAnimationController" title:@"CABasicAnimation" parameter:nil],
     ];
     
     return _dataSources;
