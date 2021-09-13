@@ -103,125 +103,142 @@
     }
     
     CGPoint offset = self.scrollView.contentOffset;
-    offset.x = [self computeWithTimingFunction:self.timingFunction t:self.runTime b:self.startOffset.x c:self.destinationOffset.x - self.startOffset.x d:self.duration];
-    offset.y = [self computeWithTimingFunction:self.timingFunction t:self.runTime b:self.startOffset.y c:self.destinationOffset.y - self.startOffset.y d:self.duration];
+    offset.x = [self computeWithTimingFunction:self.timingFunction
+                                       runTime:self.runTime
+                                   startOffset:self.startOffset.x
+                                        offset:self.destinationOffset.x - self.startOffset.x
+                                      duration:self.duration];
+    offset.y = [self computeWithTimingFunction:self.timingFunction
+                                       runTime:self.runTime
+                                   startOffset:self.startOffset.y
+                                        offset:self.destinationOffset.y - self.startOffset.y
+                                      duration:self.duration];
     [self.scrollView setContentOffset:offset animated:NO];
 }
 
-- (CGFloat)computeWithTimingFunction:(YXCScrollTimingFunction)timingFunction t:(CGFloat)t b:(CGFloat)b c:(CGFloat)c d:(CGFloat)d {
+/// 计算偏移量
+/// @param timingFunction 当前动画模式
+/// @param runTime 当前 runTime
+/// @param startOffset 一开始滚动的偏移量
+/// @param offset 需要滚动多少范围 = 最终偏移量 - 一开始的偏移量
+/// @param duration 动画时长
+- (CGFloat)computeWithTimingFunction:(YXCScrollTimingFunction)timingFunction
+                             runTime:(CGFloat)runTime
+                         startOffset:(CGFloat)startOffset
+                              offset:(CGFloat)offset duration:(CGFloat)duration {
     
     switch (timingFunction) {
         case YXCScrollTimingFunctionLinear: {
-            return c * t / d + b;
+            return offset * runTime / duration + startOffset;
         } break;
         case YXCScrollTimingFunctionQuadIn: {
-            t /= d;
-            return c * t * t + b;
+            runTime /= duration;
+            return offset * runTime * runTime + startOffset;
         } break;
         case YXCScrollTimingFunctionQuadOut: {
-            t /= d;
-            return -c * t * (t - 2) + b;
+            runTime /= duration;
+            return -offset * runTime * (runTime - 2) + startOffset;
         } break;
         case YXCScrollTimingFunctionQuadInOut: {
-            t /= d / 2;
-            if (t < 1) {
-                return c / 2 * t * t + b;
+            runTime /= duration / 2;
+            if (runTime < 1) {
+                return offset / 2 * runTime * runTime + startOffset;
             }
-            t -= 1;
-            return -c / 2 * (t * (t - 2) - 1) + b;
+            runTime -= 1;
+            return -offset / 2 * (runTime * (runTime - 2) - 1) + startOffset;
         } break;
         case YXCScrollTimingFunctionCubicIn: {
-            t /= d;
-            return c * t * t * t + b;
+            runTime /= duration;
+            return offset * runTime * runTime * runTime + startOffset;
         } break;
         case YXCScrollTimingFunctionCubicOut: {
-            t = t / d - 1;
-            return c * (t * t * t + 1) + b;
+            runTime = runTime / duration - 1;
+            return offset * (runTime * runTime * runTime + 1) + startOffset;
         } break;
         case YXCScrollTimingFunctionCubicInOut: {
-            t /= d / 2;
-            if (t < 1) {
-                return c / 2 * t * t * t + b;
+            runTime /= duration / 2;
+            if (runTime < 1) {
+                return offset / 2 * runTime * runTime * runTime + startOffset;
             }
-            t -= 2;
-            return c / 2 * (t * t * t + 2) + b;
+            runTime -= 2;
+            return offset / 2 * (runTime * runTime * runTime + 2) + startOffset;
         } break;
         case YXCScrollTimingFunctionQuartIn: {
-            t /= d;
-            return c * t * t * t * t + b;
+            runTime /= duration;
+            return offset * runTime * runTime * runTime * runTime + startOffset;
         } break;
         case YXCScrollTimingFunctionQuartOut: {
-            t = t / d - 1;
-            return -c * (t * t * t * t - 1) + b;
+            runTime = runTime / duration - 1;
+            return -offset * (runTime * runTime * runTime * runTime - 1) + startOffset;
         } break;
         case YXCScrollTimingFunctionQuartInOut: {
-            t /= d / 2;
-            if (t < 1) {
-                return c / 2 * t * t * t * t + b;
+            runTime /= duration / 2;
+            if (runTime < 1) {
+                return offset / 2 * runTime * runTime * runTime * runTime + startOffset;
             }
-            t -= 2;
-            return -c / 2 * (t * t * t * t - 2) + b;
+            runTime -= 2;
+            return -offset / 2 * (runTime * runTime * runTime * runTime - 2) + startOffset;
         } break;
         case YXCScrollTimingFunctionQuintIn: {
-            t /= d;
-            return c * t * t * t * t * t + b;
+            runTime /= duration;
+            return offset * runTime * runTime * runTime * runTime * runTime + startOffset;
         } break;
         case YXCScrollTimingFunctionQuintOut: {
-            t = t / d - 1;
-            return c * ( t * t * t * t * t + 1) + b;
+            runTime = runTime / duration - 1;
+            return offset * ( runTime * runTime * runTime * runTime * runTime + 1) + startOffset;
         } break;
         case YXCScrollTimingFunctionQuintInOut: {
-            t /= d / 2;
-            if (t < 1) {
-                return c / 2 * t * t * t * t * t + b;
+            runTime /= duration / 2;
+            if (runTime < 1) {
+                return offset / 2 * runTime * runTime * runTime * runTime * runTime + startOffset;
             }
-            t -= 2;
-            return c / 2 * (t * t * t * t * t + 2) + b;
+            runTime -= 2;
+            return offset / 2 * (runTime * runTime * runTime * runTime * runTime + 2) + startOffset;
         } break;
         case YXCScrollTimingFunctionSineIn: {
-            return -c * cos(t / d * (self.pi / 2)) + c + b;
+            return -offset * cos(runTime / duration * (self.pi / 2)) + offset + startOffset;
         } break;
         case YXCScrollTimingFunctionSineOut: {
-            return c * sin(t / d * (self.pi / 2)) + b;
+            return offset * sin(runTime / duration * (self.pi / 2)) + startOffset;
         } break;
         case YXCScrollTimingFunctionSineInOut: {
-            return -c / 2 * (cos(self.pi * t / d) - 1) + b;
+            return -offset / 2 * (cos(self.pi * runTime / duration) - 1) + startOffset;
         } break;
         case YXCScrollTimingFunctionExpoIn: {
-            return (t == 0) ? b : c * pow(2, 10 * (t / d - 1)) + b;
+            return (runTime == 0) ? startOffset : offset * pow(2, 10 * (runTime / duration - 1)) + startOffset;
         } break;
         case YXCScrollTimingFunctionExpoOut: {
-            return (t == d) ? b + c : c * (-pow(2, -10 * t / d) + 1) + b;
+            return (runTime == duration) ? startOffset + offset : offset * (-pow(2, -10 * runTime / duration) + 1) + startOffset;
         } break;
         case YXCScrollTimingFunctionExpoInOut: {
-            if (t == 0) {
-                return b;
+            if (runTime == 0) {
+                return startOffset;
             }
-            if (t == d) {
-                return b + c;
+            if (runTime == duration) {
+                return startOffset + offset;
             }
-            t /= d / 2;
-            if (t < 1) {
-                return c / 2 * pow(2, 10 * (t - 1)) + b;
+            runTime /= duration / 2;
+            if (runTime < 1) {
+                return offset / 2 * pow(2, 10 * (runTime - 1)) + startOffset;
             }
-            t -= 1;
-            return c / 2 * (-pow(2, -10 * t) + 2) + b;
+            runTime -= 1;
+            return offset / 2 * (-pow(2, -10 * runTime) + 2) + startOffset;
         } break;
         case YXCScrollTimingFunctionCircleIn: {
-            t /= d;
-            return -c * (sqrt(1 - t * t) - 1) + b;
+            runTime /= duration;
+            return -offset * (sqrt(1 - runTime * runTime) - 1) + startOffset;
         } break;
         case YXCScrollTimingFunctionCircleOut: {
-            t = t / d - 1;
-            return c * sqrt(1 - t * t) + b;
+            runTime = runTime / duration - 1;
+            return offset * sqrt(1 - runTime * runTime) + startOffset;
         } break;
         case YXCScrollTimingFunctionCircleInOut: {
-            t /= d / 2;
-            if (t < 1) {
-                return -c / 2 * (sqrt(1 - t * t) - 1) + b;
+            runTime /= duration / 2;
+            if (runTime < 1) {
+                return -offset / 2 * (sqrt(1 - runTime * runTime) - 1) + startOffset;
             }
-            t -= 2;
-            return c / 2 * (sqrt(1 - t * t) + 1) + b;
+            runTime -= 2;
+            return offset / 2 * (sqrt(1 - runTime * runTime) + 1) + startOffset;
         } break;
     }
 }
@@ -254,7 +271,10 @@
 /// @param duration 动画时长
 /// @param timingFunction 动画样式
 /// @param completion 完成回调
-- (void)ycx_setContentOffset:(CGPoint)contentOffset duration:(NSTimeInterval)duration timingFunction:(YXCScrollTimingFunction)timingFunction completion:(dispatch_block_t _Nullable)completion {
+- (void)ycx_setContentOffset:(CGPoint)contentOffset
+                    duration:(NSTimeInterval)duration
+              timingFunction:(YXCScrollTimingFunction)timingFunction
+                  completion:(dispatch_block_t _Nullable)completion {
     
     if (self.yxc_animator == nil) {
         self.yxc_animator = [YXCScrollViewAnimator animatorWithScrollView:self timingFunction:timingFunction];
