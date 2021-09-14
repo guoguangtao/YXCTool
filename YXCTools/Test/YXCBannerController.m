@@ -56,7 +56,7 @@
     CGFloat offsetX = width + self.collectionView.contentOffset.x;
     CGPoint point = CGPointMake(offsetX, 0);
     
-    [self.collectionView yxc_setContentOffset:point duration:0.75f timingFunction:YXCScrollTimingFunctionSineInOut completion:nil];
+    [self.collectionView yxc_setContentOffset:point duration:1.0f timingFunction:YXCScrollTimingFunctionSineInOut completion:nil];
 }
 
 
@@ -83,59 +83,21 @@
     return cell;
 }
 
+#pragma mark - UICollectionViewDelegate
+
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    NSLog(@"page : %lf", scrollView.contentOffset.x / (self.layout.itemSize.width + self.layout.minimumLineSpacing));
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-}
-
-// called on start of dragging (may require some time and or distance to move)
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-}
-// called on finger up if the user dragged. velocity is in points/millisecond. targetContentOffset may be changed to adjust where the scroll view comes to rest
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    NSLog(@"%s", __func__);
-}
-// called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSLog(@"%s", __func__);
-}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-}
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-}
-
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view {
-    NSLog(@"%s", __func__);
-}
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale {
-    NSLog(@"%s", __func__);
-}
-
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-    return YES;
-}
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-}
-
-- (void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
+    if (self.collectionView != scrollView) {
+        return;
+    }
+    
+    NSArray *visibleCells = [self.collectionView visibleCells];
+    for (YXCBannerCell *cell in visibleCells) {
+        [cell yxc_animationWithScrollView:scrollView layout:self.layout];
+    }
 }
 
 

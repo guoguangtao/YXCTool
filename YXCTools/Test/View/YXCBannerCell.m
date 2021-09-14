@@ -8,6 +8,8 @@
 
 #import "YXCBannerCell.h"
 
+#define kContentViewMidWidth (IPHONE_WIDTH - 20) * 0.5f
+
 @interface YXCBannerCell ()
 
 @property (nonatomic, strong) UILabel *textLabel;
@@ -49,6 +51,21 @@
 
 #pragma mark - Public
 
+- (void)yxc_animationWithScrollView:(UIScrollView *)scrollView layout:(nonnull UICollectionViewFlowLayout *)layout {
+    
+    // 坐标转换
+    CGPoint point = [self.contentView convertPoint:self.contentView.origin toView:[UIApplication sharedApplication].keyWindow];
+    CGFloat x = point.x;
+    if (x >= IPHONE_WIDTH * 0.5f) {
+        self.textLabel.x = kContentViewMidWidth;
+    } else {
+        if (self.textLabel.x <= 20) {
+            return;
+        }
+        self.textLabel.x = x;
+    }
+}
+
 
 #pragma mark - Private
 
@@ -61,7 +78,7 @@
 - (void)setupUI {
     
     self.textLabel = [UILabel new];
-    self.textLabel.textColor = UIColor.orangeColor;
+    self.textLabel.textColor = UIColor.whiteColor;
     [self.contentView addSubview:self.textLabel];
 }
 
@@ -71,7 +88,8 @@
 - (void)setupConstraints {
     
     [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.contentView);
+        make.centerY.equalTo(self.contentView);
+        make.left.equalTo(self.contentView).offset(20);
     }];
 }
 

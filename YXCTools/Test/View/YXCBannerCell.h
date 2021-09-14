@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Method
 
+/// 动画
+- (void)yxc_animationWithScrollView:(UIScrollView *)scrollView layout:(UICollectionViewFlowLayout *)layout;
+
 
 @end
 
