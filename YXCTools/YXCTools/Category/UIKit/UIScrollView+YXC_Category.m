@@ -271,7 +271,7 @@
 /// @param duration 动画时长
 /// @param timingFunction 动画样式
 /// @param completion 完成回调
-- (void)ycx_setContentOffset:(CGPoint)contentOffset
+- (void)yxc_setContentOffset:(CGPoint)contentOffset
                     duration:(NSTimeInterval)duration
               timingFunction:(YXCScrollTimingFunction)timingFunction
                   completion:(dispatch_block_t _Nullable)completion {

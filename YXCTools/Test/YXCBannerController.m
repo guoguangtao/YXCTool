@@ -10,7 +10,7 @@
 #import "YXCBannerCell.h"
 #import "UIScrollView+YXC_Category.h"
 
-@interface YXCBannerController ()<UICollectionViewDataSource>
+@interface YXCBannerController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;   /**< CollectionView layout */
 @property (nonatomic, strong) UICollectionView *collectionView;     /**< CollectionView */
@@ -56,7 +56,7 @@
     CGFloat offsetX = width + self.collectionView.contentOffset.x;
     CGPoint point = CGPointMake(offsetX, 0);
     
-    [self.collectionView ycx_setContentOffset:point duration:0.75f timingFunction:YXCScrollTimingFunctionSineInOut completion:nil];
+    [self.collectionView yxc_setContentOffset:point duration:0.75f timingFunction:YXCScrollTimingFunctionSineInOut completion:nil];
 }
 
 
@@ -72,7 +72,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return 10000;
+    return MAXINTERP;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,6 +81,61 @@
     cell.text = @(indexPath.row).stringValue;
     
     return cell;
+}
+
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    NSLog(@"page : %lf", scrollView.contentOffset.x / (self.layout.itemSize.width + self.layout.minimumLineSpacing));
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+}
+
+// called on start of dragging (may require some time and or distance to move)
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+}
+// called on finger up if the user dragged. velocity is in points/millisecond. targetContentOffset may be changed to adjust where the scroll view comes to rest
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    NSLog(@"%s", __func__);
+}
+// called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    NSLog(@"%s", __func__);
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+}
+
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view {
+    NSLog(@"%s", __func__);
+}
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale {
+    NSLog(@"%s", __func__);
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+    return YES;
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+}
+
+- (void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
 }
 
 
@@ -96,6 +151,7 @@
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
     self.collectionView.backgroundColor = UIColor.whiteColor;
     self.collectionView.pagingEnabled = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
