@@ -26,6 +26,7 @@
     
     [self setupUI];
     [self setupConstraints];
+    [self performSelectorTest];
 }
 
 - (void)viewDidLoad {
@@ -35,6 +36,7 @@
     
     [self setupUI];
     [self setupConstraints];
+    [self performSelectorTest];
 }
 
 - (void)dealloc {
@@ -53,6 +55,19 @@
 
 
 #pragma mark - Private
+
+- (void)performSelectorTest {
+    
+    NSLog(@"%s", __func__);
+    [self performSelector:@selector(performSelectorResponseMethod:) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(performSelectorResponseMethod:) withObject:nil afterDelay:5.0];
+    [[NSObject class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSelectorResponseMethod:) object:nil];
+}
+
+- (void)performSelectorResponseMethod:(NSString *)string {
+    
+    NSLog(@"%@", string);
+}
 
 
 #pragma mark - Protocol
