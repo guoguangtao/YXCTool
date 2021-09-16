@@ -8,10 +8,12 @@
 
 #import "YXCTestController.h"
 #import "YXCRunLoopHandler.h"
+#import "YXCTestViewModel.h"
 
 @interface YXCTestController ()<UITextFieldTextMaxLengthDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) YXCRunLoopHandler *runLoopHandler;
+@property (nonatomic, strong) YXCTestViewModel *viewModel;
 
 @end
 
@@ -37,6 +39,10 @@
     [self setupUI];
     [self setupConstraints];
     [self performSelectorTest];
+    
+    [self.viewModel requestData:^{
+        NSLog(@"数据请求成功，刷新UI");
+    }];
 }
 
 - (void)dealloc {
