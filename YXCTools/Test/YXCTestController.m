@@ -59,20 +59,16 @@
 - (void)performSelectorTest {
     
     NSLog(@"%s", __func__);
-    [self performSelector:@selector(performSelectorResponseMethod:) withObject:@"第二个" afterDelay:5.0];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self performSelector:@selector(performSelectorResponseMethod:) withObject:@"第一个" afterDelay:3.0];
-        [[NSObject class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSelectorResponseMethod:) object:@"第一个"];
-//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
-        [[NSRunLoop currentRunLoop] run];
+        [self performSelectorOnMainThread:@selector(performSelectorResponseMethod:) withObject:@"第一个参数" waitUntilDone:NO modes:@[NSRunLoopCommonModes, NSDefaultRunLoopMode]];
     });
-    
-    [self performSelector:@selector(performSelectorResponseMethod:) withObject:@"第三个"];
+    [self performSelectorResponseMethod:@"主线程调用"];
 }
 
 - (void)performSelectorResponseMethod:(NSString *)string {
     
-    NSLog(@"%@", string);
+    NSLog(@"currentThread : %@", [NSThread currentThread]);
+    NSLog(@"argument_01 : %@", string);
 }
 
 
