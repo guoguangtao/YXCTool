@@ -98,6 +98,7 @@ _Pragma("clang diagnostic pop") \
 #import "NSDate+YXC_Category.h"
 #import "NSObject+YXC_Category.h"
 #import "NSMutableAttributedString+YXC_Category.h"
+#import "NSObject+YXCObserver.h"
 
 #pragma mark - UIKit
 
