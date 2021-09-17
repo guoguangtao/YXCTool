@@ -32,18 +32,16 @@
     [self setupConstraints];
     
     self.person = [YXCPerson new];
-    [self.person yxc_addObserver:self forKeyPath:@"name" changeNewOldHandler:^(NSString *newValue, NSString *oldValue) {
-        NSLog(@"Person内部监听name:新值-%@, 旧值-%@", newValue, oldValue);
-    }];
-    self.person.name = @"Jack";
+    
     YXCWeakSelf(self);
+    [self.person addObserver:weakself forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+    
+    
+    self.person.name = @"Jack";
+    self.person = nil;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         weakself.person.name = @"Tom";
     });
-    
-    [self.tableView yxc_addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil changeHandler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-        NSLog(@"chage : %@", change);
-    }];
 }
 
 - (void)dealloc {
@@ -62,6 +60,10 @@
 
 
 #pragma mark - Private
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    NSLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
+}
 
 
 #pragma mark - Protocol
