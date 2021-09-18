@@ -8,6 +8,7 @@
 
 #import "YXCObserverController.h"
 #import "YXCPerson.h"
+#import "YXCObserverHandler.h"
 
 @interface YXCObserverController ()<UITableViewDataSource>
 
@@ -32,16 +33,15 @@
     [self setupConstraints];
     
     self.person = [YXCPerson new];
-    
-    YXCWeakSelf(self);
-    [self.person addObserver:weakself forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
-    
-    
-    self.person.name = @"Jack";
-    self.person = nil;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        weakself.person.name = @"Tom";
+    [self.person yxc_addObserver:self forKeyPath:@"name" changeNewOldHandler:^(NSString *newValue, NSString *oldValue) {
+        NSLog(@"Person外部监听name:%@", newValue);
+    }];
+    self.person.name = @"第一次设置Name";
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.person.name = @"第二次设置Name";
     });
+    self.person = nil;
+    NSLog(@"%@", self.person);
 }
 
 - (void)dealloc {
