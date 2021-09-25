@@ -59,10 +59,12 @@
     if (x >= IPHONE_WIDTH * 0.5f) {
         self.textLabel.x = kContentViewMidWidth;
     } else {
-        if (self.textLabel.x <= 20) {
+        if (x <= layout.sectionInset.left || self.textLabel.left < 20) {
+            self.textLabel.x = 20;
             return;
         }
-        self.textLabel.x = x;
+        
+        self.textLabel.x = MAX(20, x - layout.sectionInset.left);
     }
 }
 
