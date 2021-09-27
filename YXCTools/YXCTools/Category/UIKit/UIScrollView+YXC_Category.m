@@ -13,7 +13,7 @@
 
 
 /// 动画管理类
-@interface YXCScrollViewAnimator : NSObject
+@interface __YXCScrollViewAnimator : NSObject
 
 @property (nonatomic, copy) dispatch_block_t completion;
 
@@ -25,7 +25,7 @@
 
 @end
 
-@interface YXCScrollViewAnimator ()
+@interface __YXCScrollViewAnimator ()
 
 @property (nonatomic, weak) UIScrollView *scrollView;   /**< ScrollView */
 @property (nonatomic, assign) YXCScrollTimingFunction timingFunction;   /**< 动画样式 */
@@ -39,7 +39,7 @@
 
 @end
 
-@implementation YXCScrollViewAnimator
+@implementation __YXCScrollViewAnimator
 
 + (instancetype)animatorWithScrollView:(UIScrollView *)scrollView timingFunction:(YXCScrollTimingFunction)timingFunction {
     
@@ -249,18 +249,18 @@
 
 @interface UIScrollView ()
 
-@property (nonatomic, strong) YXCScrollViewAnimator *yxc_animator; /**< 动画管理类 */
+@property (nonatomic, strong) __YXCScrollViewAnimator *yxc_animator; /**< 动画管理类 */
 
 @end
 
 @implementation UIScrollView (YXC_Category)
 
-- (void)setYxc_animator:(YXCScrollViewAnimator *)yxc_animator {
+- (void)setYxc_animator:(__YXCScrollViewAnimator *)yxc_animator {
     
     objc_setAssociatedObject(self, @selector(yxc_animator), yxc_animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (YXCScrollViewAnimator *)yxc_animator {
+- (__YXCScrollViewAnimator *)yxc_animator {
     
     return objc_getAssociatedObject(self, @selector(yxc_animator));
 }
@@ -277,7 +277,7 @@
                   completion:(dispatch_block_t _Nullable)completion {
     
     if (self.yxc_animator == nil) {
-        self.yxc_animator = [YXCScrollViewAnimator animatorWithScrollView:self timingFunction:timingFunction];
+        self.yxc_animator = [__YXCScrollViewAnimator animatorWithScrollView:self timingFunction:timingFunction];
     }
     
     self.yxc_animator.completion = ^{
