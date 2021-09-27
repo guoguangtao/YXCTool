@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = UIColor.systemBackgroundColor;
     
     [self setupUI];
     [self setupConstraints];
@@ -114,7 +114,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.collectionView.backgroundColor = UIColor.whiteColor;
+    self.collectionView.backgroundColor = UIColor.systemBackgroundColor;
     self.collectionView.pagingEnabled = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;

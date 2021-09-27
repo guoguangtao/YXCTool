@@ -54,7 +54,7 @@
 - (void)yxc_animationWithScrollView:(UIScrollView *)scrollView layout:(nonnull UICollectionViewFlowLayout *)layout {
     
     // 坐标转换
-    CGPoint point = [self.contentView convertPoint:self.contentView.origin toView:[UIApplication sharedApplication].keyWindow];
+    CGPoint point = [self.contentView convertPoint:self.contentView.origin toView:[UIApplication sharedApplication].windows.firstObject];
     CGFloat x = point.x;
     if (x >= IPHONE_WIDTH * 0.5f) {
         self.textLabel.x = kContentViewMidWidth;
