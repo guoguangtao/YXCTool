@@ -21,9 +21,13 @@
 - (instancetype)init {
     
     if (self = [super init]) {
-//        [self yxc_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil changeHandler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-//            NSLog(@"Person内部监听name:%@", change[NSKeyValueChangeNewKey]);
-//        }];
+        [self yxc_addOberserForKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
+            NSLog(@"Person内部监听name:%@", change[NSKeyValueChangeNewKey]);
+        }];
+        
+        [self yxc_addOberserForKeyPath:@"age" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
+            NSLog(@"Person内部监听age:%@", change[NSKeyValueChangeNewKey]);
+        }];
     }
     
     return self;
