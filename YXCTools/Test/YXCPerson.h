@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Method
 
++ (instancetype)shareInstance;
+
 @end
 
 NS_ASSUME_NONNULL_END

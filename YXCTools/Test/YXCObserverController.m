@@ -33,24 +33,15 @@
     [self setupConstraints];
     
     self.person = [YXCPerson new];
-    [self.person yxc_addOberserForKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-        NSLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
-    }];
-    [self.person yxc_addOberserForKeyPath:@"age" newOldChange:^(NSObject * _Nullable object, id  _Nullable newValue, id  _Nullable oldValue) {
-        NSLog(@"Person外部监听 -- age:%@", newValue);
+    [self.person yxc_addOberser:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
+        NSLog(@"Controller 监听 name:%@", change[NSKeyValueChangeNewKey]);
     }];
     self.person.name = @"第一次设置Name";
-    self.person.age = 10;
+    __weak typeof(self) wkSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.person.name = @"第二次设置Name";
-        self.person.age = 20;
+        wkSelf.person.name = @"第二次设置Name";
     });
-    
-    YXCPerson *person1 = [YXCPerson new];
-    [person1 yxc_addOberserForKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-        NSLog(@"Person1外部监听name:%@", change[NSKeyValueChangeNewKey]);
-    }];
-    person1.name = @"person1";
+    self.person = nil;
 }
 
 - (void)dealloc {

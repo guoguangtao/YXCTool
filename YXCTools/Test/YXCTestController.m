@@ -9,6 +9,7 @@
 #import "YXCTestController.h"
 #import "YXCRunLoopHandler.h"
 #import "YXCTestViewModel.h"
+#import "YXCPerson.h"
 
 @interface YXCTestController ()<UITextFieldTextMaxLengthDelegate, UITextFieldDelegate>
 
@@ -38,11 +39,13 @@
     
     [self setupUI];
     [self setupConstraints];
-    [self performSelectorTest];
+//    [self performSelectorTest];
     
     [self.viewModel requestData:^{
         NSLog(@"数据请求成功，刷新UI");
     }];
+    
+    [YXCPerson shareInstance].name = @"Test";
 }
 
 - (void)dealloc {

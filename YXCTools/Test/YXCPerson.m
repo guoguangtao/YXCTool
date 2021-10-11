@@ -13,6 +13,32 @@
 
 #pragma mark - Lifecycle
 
+static YXCPerson *_instance;
+
++ (instancetype)shareInstance {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (_instance == nil) {
+            _instance = [[self alloc] init];
+        }
+    });
+    
+    return _instance;
+}
+
+//+ (instancetype)allocWithZone:(struct _NSZone *)zone {
+//
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        if (_instance == nil) {
+//            _instance = [super allocWithZone:zone];
+//        }
+//    });
+//
+//    return _instance;
+//}
+
 - (void)dealloc {
     
     NSLog(@"%s", __func__);
@@ -21,12 +47,8 @@
 - (instancetype)init {
     
     if (self = [super init]) {
-        [self yxc_addOberserForKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-            NSLog(@"Person内部监听name:%@", change[NSKeyValueChangeNewKey]);
-        }];
-        
-        [self yxc_addOberserForKeyPath:@"age" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-            NSLog(@"Person内部监听age:%@", change[NSKeyValueChangeNewKey]);
+        [self yxc_addOberser:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
+            NSLog(@"Person 内部监听 name : %@", change[NSKeyValueChangeNewKey]);
         }];
     }
     

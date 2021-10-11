@@ -16,9 +16,25 @@ NS_ASSUME_NONNULL_BEGIN
 /// 观察者模式
 @interface NSObject (YXCObserver)
 
-- (void)yxc_addOberserForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options change:(YXCKVOChangeBlock)hanlder;
+/// 添加监听
+/// @param observer 监听对象
+/// @param keyPath 被监听的对象
+/// @param options 监听回调属性
+/// @param handler 监听回调
+- (void)yxc_addOberser:(NSObject *)observer
+            forKeyPath:(NSString *)keyPath
+               options:(NSKeyValueObservingOptions)options
+                change:(YXCKVOChangeBlock)handler;
 
-- (void)yxc_addOberserForKeyPath:(NSString *)keyPath newOldChange:(YXCKVONewOldChangeBlock)hanlder;
+/// 添加监听
+/// @param observer 监听对象
+/// @param keyPath 被监听的对象
+/// @param options 监听回调属性
+/// @param handler 监听回调
+- (void)yxc_addOberser:(NSObject *)observer
+            forKeyPath:(NSString *)keyPath
+               options:(NSKeyValueObservingOptions)options
+          newOldChange:(YXCKVONewOldChangeBlock)handler;
 
 @end
 
