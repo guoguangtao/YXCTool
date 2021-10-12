@@ -176,11 +176,9 @@
 /// 添加监听
 /// @param observer 监听对象
 /// @param keyPath 被监听的对象
-/// @param options 监听回调属性
 /// @param handler 监听回调
 - (void)yxc_addOberser:(NSObject *)observer
             forKeyPath:(NSString *)keyPath
-               options:(NSKeyValueObservingOptions)options
           newOldChange:(YXCKVONewOldChangeBlock)handler {
     
     @synchronized (self) {
@@ -199,7 +197,7 @@
         __YXCAutoRemoveObserver *autoRemoveTarget = [__YXCAutoRemoveObserver new];
         autoRemoveTarget.object = autoRemoveObserver;
         autoRemoveObserver.object = autoRemoveTarget;
-        __YXCKVOObserver *kvoObserver = [[__YXCKVOObserver alloc] initWithTarget:self observer:observer forKeyPath:keyPath options:options newOldChange:handler];
+        __YXCKVOObserver *kvoObserver = [[__YXCKVOObserver alloc] initWithTarget:self observer:observer forKeyPath:keyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld newOldChange:handler];
         autoRemoveObserver.kvoObserver = kvoObserver;
         autoRemoveTarget.kvoObserver = kvoObserver;
         
