@@ -47,9 +47,9 @@ static YXCPerson *_instance;
 - (instancetype)init {
     
     if (self = [super init]) {
-        [self yxc_addOberser:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-            NSLog(@"Person 内部监听 name : %@", change[NSKeyValueChangeNewKey]);
-        }];
+//        [self yxc_addOberser:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
+//            NSLog(@"Person 内部监听 name : %@", change[NSKeyValueChangeNewKey]);
+//        }];
     }
     
     return self;

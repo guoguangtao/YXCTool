@@ -56,7 +56,9 @@
 }
 
 - (void)dealloc {
+    NSLog(@"%s - %@", __func__, self);
 }
+
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey,id> *)change context:(nullable void *)context {
     if (self.changeBlock) {
         self.changeBlock(object, change);
@@ -86,7 +88,9 @@
 @implementation __YXCAutoRemoveObserver
 
 - (void)dealloc {
+    NSLog(@"%s - %@", __func__, self);
     if (self.object) {
+        NSLog(@"移除观察者");
         [self.object.kvoObserver.target removeObserver:self.object.kvoObserver forKeyPath:self.object.kvoObserver.keyPath];
         if (self.deallocBlock) {
             self.deallocBlock();
@@ -170,6 +174,7 @@
             __strong typeof(wkAutoRemoveTarget) autoRemoveTarget = wkAutoRemoveTarget;
             objc_setAssociatedObject(wkSelf, &autoRemoveTarget->_key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         };
+        NSLog(@"添加观察者 %@ - %@ = %@", autoRemoveTarget, autoRemoveObserver, kvoObserver);
     }
 }
 
@@ -217,6 +222,7 @@
             __strong typeof(wkAutoRemoveTarget) autoRemoveTarget = wkAutoRemoveTarget;
             objc_setAssociatedObject(wkSelf, &autoRemoveTarget->_key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         };
+        NSLog(@"添加观察者 %@ - %@ = %@", autoRemoveTarget, autoRemoveObserver, kvoObserver);
     }
 }
 
