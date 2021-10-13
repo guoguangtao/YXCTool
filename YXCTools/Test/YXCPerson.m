@@ -15,17 +15,17 @@
 
 static YXCPerson *_instance;
 
-+ (instancetype)shareInstance {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (_instance == nil) {
-            _instance = [[self alloc] init];
-        }
-    });
-    
-    return _instance;
-}
+//+ (instancetype)shareInstance {
+//    
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        if (_instance == nil) {
+//            _instance = [[self alloc] init];
+//        }
+//    });
+//    
+//    return _instance;
+//}
 
 //+ (instancetype)allocWithZone:(struct _NSZone *)zone {
 //
@@ -41,7 +41,7 @@ static YXCPerson *_instance;
 
 - (void)dealloc {
     
-    NSLog(@"%s", __func__);
+    NSLog(@"%s - %@ retainCount : %ld", __func__, self, CFGetRetainCount((__bridge CFTypeRef)self));
 }
 
 - (instancetype)init {

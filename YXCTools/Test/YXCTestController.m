@@ -45,7 +45,7 @@
         NSLog(@"数据请求成功，刷新UI");
     }];
     
-    [YXCPerson shareInstance].name = @"Test";
+//    [YXCPerson shareInstance].name = @"Test";
 }
 
 - (void)dealloc {
