@@ -13,11 +13,11 @@
 
 @interface __YXCKVOObserver : NSObject
 
-@property (nonatomic, unsafe_unretained) NSObject *target;
-@property (nonatomic, unsafe_unretained) NSObject *observer;
-@property (nonatomic, copy) NSString *keyPath;
-@property (nonatomic, copy) YXCKVOChangeBlock changeBlock;
-@property (nonatomic, copy) YXCKVONewOldChangeBlock newOldChangeBlock;
+@property (nonatomic, unsafe_unretained) NSObject *target; /**< 被观察的对象 */
+@property (nonatomic, unsafe_unretained) NSObject *observer; /**< 观察者 */
+@property (nonatomic, copy) NSString *keyPath; /**< 被监听的属性 */
+@property (nonatomic, copy) YXCKVOChangeBlock changeBlock; /**< 监听回调 */
+@property (nonatomic, copy) YXCKVONewOldChangeBlock newOldChangeBlock; /**< 监听回调，只回调 newValue和oldValue */
 
 @end
 
@@ -95,7 +95,7 @@
 
 @interface NSObject (YXCObserver)
 
-@property (nonatomic, strong) NSMutableSet<NSString *> *keyPathHashSet;
+@property (nonatomic, strong) NSMutableSet<NSString *> *keyPathHashSet; /**< 根据hash值去重 */
 
 @end
 
@@ -163,26 +163,34 @@
         }
         [self.keyPathHashSet addObject:hashstr];
         
+        // 给 observer 创建一个 __YXCAutoRemoveObserver 对象
         __YXCAutoRemoveObserver *autoRemoveObserver = [__YXCAutoRemoveObserver new];
+        // 给 target 创建一个 __YXCAutoRemoveObserver 对象
         __YXCAutoRemoveObserver *autoRemoveTarget = [__YXCAutoRemoveObserver new];
+        // 两者互相弱引用
         autoRemoveTarget.object = autoRemoveObserver;
         autoRemoveObserver.object = autoRemoveTarget;
+        // 创建一个监听对象
         __YXCKVOObserver *kvoObserver = [[__YXCKVOObserver alloc] initWithTarget:self observer:observer forKeyPath:keyPath options:options change:changeHandler newOldChange:newOldChangeHanlder];
+        // 给两个 __YXCAutoRemoveObserver 对象 强引用监听对象
         autoRemoveObserver.kvoObserver = kvoObserver;
         autoRemoveTarget.kvoObserver = kvoObserver;
-        
+        // 将一个 __YXCAutoRemoveObserver 关联到 target，self 就是 target
         objc_setAssociatedObject(self, &autoRemoveTarget->_key, autoRemoveTarget, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        // 将一个 __YXCAutoRemoveObserver 关联到 observer
         objc_setAssociatedObject(observer, &autoRemoveObserver->_key, autoRemoveObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         __weak typeof(self) wkSelf = self;
         __weak typeof(observer) wkObserver = observer;
         __weak typeof(autoRemoveTarget) wkAutoRemoveTarget = autoRemoveTarget;
         __weak typeof(autoRemoveObserver) wkAutoRemoveObserver = autoRemoveObserver;
         NSLog(@"self = %@, self.recount = %ld", self, CFGetRetainCount((__bridge CFTypeRef)(self)));
+        // target 的 __YXCAutoRemoveObserver 对象实现block回调，里面进行通知 observer 的 __YXCAutoRemoveObserver 对象要进行释放了
         autoRemoveTarget.deallocBlock = ^{
             [wkSelf.keyPathHashSet removeObject:hashstr];
             __strong typeof(wkAutoRemoveObserver) autoRemoveObserver = wkAutoRemoveObserver;
             objc_setAssociatedObject(wkObserver, &autoRemoveObserver->_key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         };
+        // observer 的 __YXCAutoRemoveObserver 对象实现 block 回调，里面进行通知 target 的 __YXCAutoRemoveObserver 对象要进行释放了
         autoRemoveObserver.deallocBlock = ^{
             [wkSelf.keyPathHashSet removeObject:hashstr];
             __strong typeof(wkAutoRemoveTarget) autoRemoveTarget = wkAutoRemoveTarget;
