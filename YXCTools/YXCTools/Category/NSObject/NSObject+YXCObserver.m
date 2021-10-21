@@ -74,10 +74,7 @@
 @implementation __YXCAutoRemoveObserver
 
 - (void)dealloc {
-    NSLog(@"%s - %@", __func__, self);
     if (self.object) {
-        NSLog(@"移除观察者");
-        NSLog(@"target : %@, target.recount = %ld", self.object.kvoObserver.target, CFGetRetainCount((__bridge CFTypeRef)(self.object.kvoObserver.target)));
         [self.object.kvoObserver.target removeObserver:self.object.kvoObserver forKeyPath:self.object.kvoObserver.keyPath];
         if (self.deallocBlock) {
             self.deallocBlock();
@@ -183,7 +180,6 @@
         __weak typeof(observer) wkObserver = observer;
         __weak typeof(autoRemoveTarget) wkAutoRemoveTarget = autoRemoveTarget;
         __weak typeof(autoRemoveObserver) wkAutoRemoveObserver = autoRemoveObserver;
-        NSLog(@"self = %@, self.recount = %ld", self, CFGetRetainCount((__bridge CFTypeRef)(self)));
         // target 的 __YXCAutoRemoveObserver 对象实现block回调，里面进行通知 observer 的 __YXCAutoRemoveObserver 对象要进行释放了
         autoRemoveTarget.deallocBlock = ^{
             [wkSelf.keyPathHashSet removeObject:hashstr];
@@ -196,7 +192,6 @@
             __strong typeof(wkAutoRemoveTarget) autoRemoveTarget = wkAutoRemoveTarget;
             objc_setAssociatedObject(wkSelf, &autoRemoveTarget->_key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         };
-        NSLog(@"添加观察者 %@ - %@ = %@", autoRemoveTarget, autoRemoveObserver, kvoObserver);
     }
 }
 
