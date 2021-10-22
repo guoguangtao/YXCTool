@@ -13,6 +13,12 @@
 #import "YXCSlider.h"
 #import "UIImageView+WebCache.h"
 
+typedef NS_ENUM(NSInteger, YXCPlayMode) {
+    YXCPlayModeList = 0, /**< 列表循环模式 */
+    YXCPlayModeRandom = 1, /**< 随机模式 */
+    YXCPlayModeSingle = 2, /**< 单曲循环模式 */
+};
+
 @interface YXCAirPlayAudioController ()
 
 @property (nonatomic, strong) NSArray<YXCAudioModel *> *musics; /**< 音乐资源数组 */
@@ -31,6 +37,7 @@
 @property (nonatomic, strong) AVPlayerItem *playerItem; /**< 播放节目 */
 @property (nonatomic, assign) NSInteger index; /**< 下标 */
 @property (nonatomic, assign) BOOL sliderValueChange; /**< 进度条被拖拽 */
+@property (nonatomic, assign) YXCPlayMode playModel; /**< 播放模式 */
 
 @end
 
@@ -50,6 +57,7 @@
     
     self.view.backgroundColor = kColorFromHexCode(0xEEEEEE);
     self.index = 0;
+    self.playModel = YXCPlayModeList;
     
     [self setupUI];
     [self setupConstraints];
@@ -78,7 +86,17 @@
 }
 
 - (void)playModelButtonClicked {
-    
+    self.playModel++;
+    if (self.playModel > YXCPlayModeSingle) {
+        self.playModel = YXCPlayModeList;
+    }
+    NSString *imageName = @"player_listCirculation_btn";
+    switch (self.playModel) {
+        case YXCPlayModeList: imageName = @"player_listCirculation_btn"; break;
+        case YXCPlayModeRandom: imageName = @"player_randomPlay_btn"; break;
+        case YXCPlayModeSingle: imageName = @"player_singleCycle_btn"; break;
+    }
+    [self.playModeButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
 - (void)musicListButtonClicked {
@@ -214,6 +232,10 @@
 }
 
 - (AVPlayerItem *)p_getPlayerItem {
+    if (self.playModel == YXCPlayModeRandom) {
+        NSInteger random = arc4random_uniform(100000) % self.musics.count;
+        self.index = random;
+    }
     YXCAudioModel *model = self.musics[self.index];
     AVPlayerItem *item = [AVPlayerItem playerItemWithURL:model.musicUrl];
     [self.imageView sd_setImageWithURL:model.musicImage];

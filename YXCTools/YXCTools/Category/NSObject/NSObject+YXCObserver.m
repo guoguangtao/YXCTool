@@ -41,10 +41,6 @@
     return self;
 }
 
-- (void)dealloc {
-    NSLog(@"%s - %@", __func__, self);
-}
-
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey,id> *)change context:(nullable void *)context {
     if (self.changeBlock) {
         self.changeBlock(object, change);
