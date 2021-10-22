@@ -28,6 +28,7 @@
 @property (nonatomic, strong) AVPlayer *player; /**< 播放器 */
 @property (nonatomic, strong) AVPlayerItem *playerItem; /**< 播放节目 */
 @property (nonatomic, assign) NSInteger index; /**< 下标 */
+@property (nonatomic, assign) BOOL sliderValueChange; /**< 进度条被拖拽 */
 
 @end
 
@@ -143,8 +144,20 @@
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = dictionary;
 }
 
-- (UIImage *)getImageViewImage {
-    return self.imageView.image;
+
+- (void)progressValueDidChange {
+    self.sliderValueChange = YES;
+    NSInteger second = self.progressSlider.value * CMTimeGetSeconds(self.playerItem.duration);
+    self.currentTimeLabel.text = [self convertStringWithTime:second];
+}
+
+- (void)progressSeek {
+    NSInteger second = self.progressSlider.value * CMTimeGetSeconds(self.playerItem.duration);
+    __weak typeof(self) wkSelf = self;
+    [self.playerItem seekToTime:CMTimeMake(second, 1.0f) completionHandler:^(BOOL finished) {
+        [wkSelf.player play];
+        wkSelf.sliderValueChange = NO;
+    }];
 }
 
 /// 播放下一曲
@@ -287,6 +300,8 @@
     self.progressSlider.maximumTrackTintColor = kColorFromHexCode(0xE6E6E6);
     UIImage *thumbImage = [UIImage imageNamed:@"player_slider"];
     [self.progressSlider setThumbImage:thumbImage forState:UIControlStateNormal];
+    [self.progressSlider addTarget:self action:@selector(progressValueDidChange) forControlEvents:UIControlEventValueChanged];
+    [self.progressSlider addTarget:self action:@selector(progressSeek) forControlEvents:UIControlEventTouchUpOutside | UIControlEventTouchUpInside];
     [self.view addSubview:self.progressSlider];
 }
 
@@ -359,6 +374,9 @@
     [_player addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0f)
                                           queue:dispatch_get_main_queue()
                                      usingBlock:^(CMTime time) {
+        if (wkSelf.sliderValueChange) {
+            return;
+        }
         NSInteger second = (NSInteger)CMTimeGetSeconds(wkSelf.playerItem.currentTime);
         NSInteger duration = (NSInteger)CMTimeGetSeconds(wkSelf.playerItem.duration);
         if (duration == 0) {
