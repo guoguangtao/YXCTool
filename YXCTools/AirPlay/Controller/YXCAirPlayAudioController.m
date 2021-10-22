@@ -217,6 +217,10 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 }
 
 - (void)playDidFinish {
+    if (self.playModel == YXCPlayModeSingle) {
+        [self p_changePlay];
+        return;
+    }
     [self playNextAudio];
 }
 
@@ -232,6 +236,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 }
 
 - (AVPlayerItem *)p_getPlayerItem {
+    // 判断是否是随机模式
     if (self.playModel == YXCPlayModeRandom) {
         NSInteger random = arc4random_uniform(100000) % self.musics.count;
         self.index = random;
