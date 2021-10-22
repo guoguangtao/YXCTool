@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UILabel *musicNameLabel; /**< 音乐名称 */
 @property (nonatomic, strong) UIButton *lastMusicButton; /**< 上一曲按钮 */
 @property (nonatomic, strong) UIButton *nextMusicButton; /**< 下一曲按钮 */
+@property (nonatomic, strong) UIButton *musicListButton; /**< 音乐列表 */
+@property (nonatomic, strong) UIButton *playModeButton; /**< 音乐播放模式 */
 @property (nonatomic, strong) YXCSlider *progressSlider; /**< 进度条 */
 @property (nonatomic, strong) UILabel *currentTimeLabel; /**< 当前播放时间 */
 @property (nonatomic, strong) UILabel *durationLabel; /**< 音乐播放时长 */
@@ -75,6 +77,14 @@
     }
 }
 
+- (void)playModelButtonClicked {
+    
+}
+
+- (void)musicListButtonClicked {
+    
+}
+
 
 #pragma mark - Public
 
@@ -110,6 +120,7 @@
         [wkSelf playNextAudio];
         return MPRemoteCommandHandlerStatusSuccess;
     }];
+    // 进度条
     [commandCenter.changePlaybackPositionCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
         // 进度条发生改变
         CGFloat position = ((MPChangePlaybackPositionCommandEvent *)event).positionTime;
@@ -130,15 +141,16 @@
     dictionary[MPNowPlayingInfoPropertyPlaybackRate] = @(1.0);
     // 歌曲名称
     dictionary[MPMediaItemPropertyTitle] = model.musicName;
-    
+    // 歌词
     dictionary[MPMediaItemPropertyAlbumTitle] = @"日月何寿 江海滴更漏爱向人间借朝暮 悲喜为酬种柳春莺 知它风尘不可求绵绵更在三生后 谁隔世读关鸠诗说红豆 遍南国未见人长久 见多少来时芳华 去时白头";
+    // 歌曲图片
     UIImage *image = self.imageView.image;
     MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(100, 100)
                                                                   requestHandler:^UIImage * _Nonnull(CGSize size) {
         return image;
     }];
     dictionary[MPMediaItemPropertyArtwork] = artwork;
-    
+    // 总时长
     dictionary[MPMediaItemPropertyPlaybackDuration] = @(CMTimeGetSeconds(self.playerItem.duration));
     
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = dictionary;
@@ -258,26 +270,35 @@
     [self.view addSubview:self.musicNameLabel];
     
     self.playButton = [UIButton new];
-    self.playButton.backgroundColor = UIColor.orangeColor;
-    self.playButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.playButton.yxc_expandSize = 20;
     [self.playButton addTarget:self action:@selector(playButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
-    [self.playButton setTitle:@"暂停" forState:UIControlStateSelected];
+    [self.playButton setImage:[UIImage imageNamed:@"player_play_btn"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"player_pause_btn"] forState:UIControlStateSelected];
     [self.view addSubview:self.playButton];
     
     self.lastMusicButton = [UIButton new];
-    self.lastMusicButton.backgroundColor = UIColor.orangeColor;
-    self.lastMusicButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.lastMusicButton.yxc_expandSize = 20;
     [self.lastMusicButton addTarget:self action:@selector(playLastAudio) forControlEvents:UIControlEventTouchUpInside];
-    [self.lastMusicButton setTitle:@"上一曲" forState:UIControlStateNormal];
+    [self.lastMusicButton setImage:[UIImage imageNamed:@"player_last_btn"] forState:UIControlStateNormal];
     [self.view addSubview:self.lastMusicButton];
     
     self.nextMusicButton = [UIButton new];
-    self.nextMusicButton.backgroundColor = UIColor.orangeColor;
-    self.nextMusicButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.lastMusicButton.yxc_expandSize = 20;
     [self.nextMusicButton addTarget:self action:@selector(playNextAudio) forControlEvents:UIControlEventTouchUpInside];
-    [self.nextMusicButton setTitle:@"下一曲" forState:UIControlStateNormal];
+    [self.nextMusicButton setImage:[UIImage imageNamed:@"player_next_btn"] forState:UIControlStateNormal];
     [self.view addSubview:self.nextMusicButton];
+    
+    self.playModeButton = [UIButton new];
+    self.playModeButton.yxc_expandSize = 20;
+    [self.playModeButton addTarget:self action:@selector(playModelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.playModeButton setImage:[UIImage imageNamed:@"player_listCirculation_btn"] forState:UIControlStateNormal];
+    [self.view addSubview:self.playModeButton];
+    
+    self.musicListButton = [UIButton new];
+    self.musicListButton.yxc_expandSize = 20;
+    [self.musicListButton addTarget:self action:@selector(musicListButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.musicListButton setImage:[UIImage imageNamed:@"player_musicList_btn"] forState:UIControlStateNormal];
+    [self.view addSubview:self.musicListButton];
     
     self.currentTimeLabel = [UILabel new];
     self.currentTimeLabel.text = @"00:00";
@@ -312,7 +333,7 @@
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.centerY.equalTo(self.view).offset(-100);
+        make.centerY.equalTo(self.view).offset(-50);
         make.width.height.mas_equalTo(200);
     }];
     
@@ -321,20 +342,11 @@
         make.bottom.equalTo(self.imageView.mas_top).offset(-50);
     }];
     
-    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.bottom.equalTo(self.view.mas_bottomMargin).offset(-100);
-        make.width.height.mas_equalTo(70);
-    }];
-    
-    [self.lastMusicButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.width.height.equalTo(self.playButton);
-        make.centerX.equalTo(self.view).multipliedBy(0.5);
-    }];
-    
-    [self.nextMusicButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.width.height.equalTo(self.playButton);
-        make.centerX.equalTo(self.view).multipliedBy(1.5);
+    NSArray<UIButton *> *buttons = @[self.playModeButton, self.lastMusicButton, self.playButton, self.nextMusicButton, self.musicListButton];
+    [buttons mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:20 leadSpacing:30 tailSpacing:30];
+    [buttons mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.mas_bottomMargin).offset(-20);
+        make.height.mas_equalTo(20);
     }];
     
     [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -352,7 +364,7 @@
     [self.progressSlider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(50);
         make.right.equalTo(self.view).offset(-50);
-        make.centerY.equalTo(self.imageView.mas_bottom).offset(50);
+        make.bottom.equalTo(self.playButton.mas_top).offset(-50);
     }];
 }
 
