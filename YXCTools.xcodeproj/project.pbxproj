@@ -20,6 +20,7 @@
 		873D44C126F486DF00C9FBB6 /* YXCPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44C026F486DF00C9FBB6 /* YXCPerson.m */; };
 		873D44C426F4B29900C9FBB6 /* YXCObserverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44C326F4B29900C9FBB6 /* YXCObserverHandler.m */; };
 		873D44C526F4B87100C9FBB6 /* NSObject+YXCObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44B926F478F700C9FBB6 /* NSObject+YXCObserver.m */; };
+		8785E5AB2722458F00339DBB /* YXCSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E5AA2722458F00339DBB /* YXCSlider.m */; };
 		879145B827201A5D004277AF /* YXCAirPlayAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879145B727201A5D004277AF /* YXCAirPlayAudioController.m */; };
 		879145BC27201F1A004277AF /* YXCAudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 879145BB27201F1A004277AF /* YXCAudioModel.m */; };
 		8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */; };
@@ -141,6 +142,8 @@
 		873D44C026F486DF00C9FBB6 /* YXCPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPerson.m; sourceTree = "<group>"; };
 		873D44C226F4B29900C9FBB6 /* YXCObserverHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCObserverHandler.h; sourceTree = "<group>"; };
 		873D44C326F4B29900C9FBB6 /* YXCObserverHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCObserverHandler.m; sourceTree = "<group>"; };
+		8785E5A92722458F00339DBB /* YXCSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCSlider.h; sourceTree = "<group>"; };
+		8785E5AA2722458F00339DBB /* YXCSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCSlider.m; sourceTree = "<group>"; };
 		879145B627201A5D004277AF /* YXCAirPlayAudioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAirPlayAudioController.h; sourceTree = "<group>"; };
 		879145B727201A5D004277AF /* YXCAirPlayAudioController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAirPlayAudioController.m; sourceTree = "<group>"; };
 		879145BA27201F1A004277AF /* YXCAudioModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAudioModel.h; sourceTree = "<group>"; };
@@ -357,9 +360,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8785E5A82722457700339DBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8785E5A92722458F00339DBB /* YXCSlider.h */,
+				8785E5AA2722458F00339DBB /* YXCSlider.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		879145B427201A30004277AF /* AirPlay */ = {
 			isa = PBXGroup;
 			children = (
+				8785E5A82722457700339DBB /* View */,
 				879145B927201F01004277AF /* Model */,
 				879145B527201A44004277AF /* Controller */,
 			);
@@ -1089,6 +1102,7 @@
 				8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */,
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8A603EAA24D2EE7A008AC9BD /* MASCompositeConstraint.m in Sources */,
+				8785E5AB2722458F00339DBB /* YXCSlider.m in Sources */,
 				8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */,
 				8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */,
 				8AF3A98F26008CD700F2AFC2 /* YXCPhotoAlbumListController.m in Sources */,

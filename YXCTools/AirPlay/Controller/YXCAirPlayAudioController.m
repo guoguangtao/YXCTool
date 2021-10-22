@@ -10,17 +10,19 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "YXCAudioModel.h"
+#import "YXCSlider.h"
 #import "UIImageView+WebCache.h"
 
 @interface YXCAirPlayAudioController ()
 
 @property (nonatomic, strong) NSArray<YXCAudioModel *> *musics; /**< 音乐资源数组 */
+@property (nonatomic, strong) NSArray<NSString *> *words; /**< 音乐歌词 */
 @property (nonatomic, strong) UIImageView *imageView; /**< 音乐专辑图片 */
 @property (nonatomic, strong) UIButton *playButton; /**< 播放按钮 */
 @property (nonatomic, strong) UILabel *musicNameLabel; /**< 音乐名称 */
 @property (nonatomic, strong) UIButton *lastMusicButton; /**< 上一曲按钮 */
 @property (nonatomic, strong) UIButton *nextMusicButton; /**< 下一曲按钮 */
-@property (nonatomic, strong) UIProgressView *progressView; /**< 进度条 */
+@property (nonatomic, strong) YXCSlider *progressSlider; /**< 进度条 */
 @property (nonatomic, strong) UILabel *currentTimeLabel; /**< 当前播放时间 */
 @property (nonatomic, strong) UILabel *durationLabel; /**< 音乐播放时长 */
 @property (nonatomic, strong) AVPlayer *player; /**< 播放器 */
@@ -48,8 +50,43 @@
     
     [self setupUI];
     [self setupConstraints];
+    [self addNotification];
+    [self setupMPRemoteCommandCenter];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - Custom Accessors (Setter 与 Getter 方法)
+
+
+#pragma mark - IBActions
+
+- (void)playButtonClicked:(UIButton *)button {
+    if (button.isSelected) {
+        // 暂停播放
+        [self.player pause];
+    } else {
+        // 播放
+        [self resumePlay];
+    }
+}
+
+
+#pragma mark - Public
+
+
+#pragma mark - Private
+
+- (void)addNotification {
+    // 播放完成通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playDidFinish) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-    
+}
+
+/// 相关远程控制中心
+- (void)setupMPRemoteCommandCenter {
     MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
     __weak typeof(self) wkSelf = self;
     [commandCenter.pauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
@@ -72,34 +109,43 @@
         [wkSelf playNextAudio];
         return MPRemoteCommandHandlerStatusSuccess;
     }];
+    [commandCenter.changePlaybackPositionCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        // 进度条发生改变
+        CGFloat position = ((MPChangePlaybackPositionCommandEvent *)event).positionTime;
+        // 设置进度
+        [wkSelf.playerItem seekToTime:CMTimeMakeWithSeconds(position, 1.0) completionHandler:^(BOOL finished) {
+            [wkSelf.player play];
+        }];
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
 }
 
-- (void)dealloc {
+- (void)configNowPlayingCenter {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    YXCAudioModel *model = self.musics[self.index];
+    // 当前播放时间
+    dictionary[MPNowPlayingInfoPropertyElapsedPlaybackTime] = @(CMTimeGetSeconds(self.playerItem.currentTime));
+    // 播放速度
+    dictionary[MPNowPlayingInfoPropertyPlaybackRate] = @(1.0);
+    // 歌曲名称
+    dictionary[MPMediaItemPropertyTitle] = model.musicName;
     
+    dictionary[MPMediaItemPropertyAlbumTitle] = @"日月何寿 江海滴更漏爱向人间借朝暮 悲喜为酬种柳春莺 知它风尘不可求绵绵更在三生后 谁隔世读关鸠诗说红豆 遍南国未见人长久 见多少来时芳华 去时白头";
+    UIImage *image = self.imageView.image;
+    MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(100, 100)
+                                                                  requestHandler:^UIImage * _Nonnull(CGSize size) {
+        return image;
+    }];
+    dictionary[MPMediaItemPropertyArtwork] = artwork;
+    
+    dictionary[MPMediaItemPropertyPlaybackDuration] = @(CMTimeGetSeconds(self.playerItem.duration));
+    
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = dictionary;
 }
 
-
-#pragma mark - Custom Accessors (Setter 与 Getter 方法)
-
-
-#pragma mark - IBActions
-
-- (void)playButtonClicked:(UIButton *)button {
-    button.selected = !button.isSelected;
-    if (button.isSelected) {
-        // 播放
-        [self resumePlay];
-    } else {
-        // 暂停播放
-        [self.player pause];
-    }
+- (UIImage *)getImageViewImage {
+    return self.imageView.image;
 }
-
-
-#pragma mark - Public
-
-
-#pragma mark - Private
 
 /// 播放下一曲
 - (void)playNextAudio {
@@ -160,7 +206,10 @@
                          forKeyPath:@"status"
                             options:NSKeyValueObservingOptionNew
                              change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-        NSLog(@"%lf", CMTimeGetSeconds(wkSelf.playerItem.duration));
+        AVPlayerItemStatus status = [change[NSKeyValueChangeNewKey] integerValue];
+        if (status == AVPlayerItemStatusReadyToPlay) {
+            [wkSelf configNowPlayingCenter];
+        }
     }];
 }
 
@@ -217,13 +266,6 @@
     [self.nextMusicButton setTitle:@"下一曲" forState:UIControlStateNormal];
     [self.view addSubview:self.nextMusicButton];
     
-    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-    self.progressView.progressTintColor = UIColor.orangeColor;
-    self.progressView.trackTintColor = UIColor.whiteColor;
-    self.progressView.layer.cornerRadius = 2;
-    self.progressView.layer.masksToBounds = YES;
-    [self.view addSubview:self.progressView];
-    
     self.currentTimeLabel = [UILabel new];
     self.currentTimeLabel.text = @"00:00";
     self.currentTimeLabel.textColor = UIColor.blackColor;
@@ -237,6 +279,15 @@
     self.durationLabel.font = [UIFont systemFontOfSize:10.0f];
     self.durationLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.durationLabel];
+    
+    self.progressSlider = [YXCSlider new];
+    self.progressSlider.minimumValue = 0.0f;
+    self.progressSlider.maximumValue = 1.0f;
+    self.progressSlider.minimumTrackTintColor = UIColor.whiteColor;
+    self.progressSlider.maximumTrackTintColor = kColorFromHexCode(0xE6E6E6);
+    UIImage *thumbImage = [UIImage imageNamed:@"player_slider"];
+    [self.progressSlider setThumbImage:thumbImage forState:UIControlStateNormal];
+    [self.view addSubview:self.progressSlider];
 }
 
 
@@ -271,22 +322,22 @@
         make.centerX.equalTo(self.view).multipliedBy(1.5);
     }];
     
-    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(50);
-        make.right.equalTo(self.view).offset(-50);
-        make.centerY.equalTo(self.imageView.mas_bottom).offset(50);
-    }];
-    
     [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.progressView).offset(1);
-        make.right.equalTo(self.progressView.mas_left).offset(-5);
+        make.centerY.equalTo(self.progressSlider).offset(-1.5);
+        make.right.equalTo(self.progressSlider.mas_left).offset(-5);
         make.width.mas_equalTo(40);
     }];
     
     [self.durationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.currentTimeLabel);
-        make.left.equalTo(self.progressView.mas_right).offset(5);
+        make.left.equalTo(self.progressSlider.mas_right).offset(5);
         make.width.mas_equalTo(self.currentTimeLabel);
+    }];
+    
+    [self.progressSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(50);
+        make.right.equalTo(self.view).offset(-50);
+        make.centerY.equalTo(self.imageView.mas_bottom).offset(50);
     }];
 }
 
@@ -310,9 +361,26 @@
                                      usingBlock:^(CMTime time) {
         NSInteger second = (NSInteger)CMTimeGetSeconds(wkSelf.playerItem.currentTime);
         NSInteger duration = (NSInteger)CMTimeGetSeconds(wkSelf.playerItem.duration);
-        wkSelf.progressView.progress = (CGFloat)second / (CGFloat)duration;
+        if (duration == 0) {
+            duration = 1;
+        }
+        [wkSelf.progressSlider setValue:(CGFloat)second / (CGFloat)duration animated:YES];
         wkSelf.currentTimeLabel.text = [wkSelf convertStringWithTime:second];
         wkSelf.durationLabel.text = [wkSelf convertStringWithTime:duration];
+    }];
+    [_player yxc_addOberser:self forKeyPath:@"timeControlStatus" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
+        AVPlayerTimeControlStatus status = [change[NSKeyValueChangeNewKey] integerValue];
+        switch (status) {
+            case AVPlayerTimeControlStatusPaused:
+                wkSelf.playButton.selected = NO;
+                break;
+            case AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate:
+                
+                break;
+            case AVPlayerTimeControlStatusPlaying:
+                wkSelf.playButton.selected = YES;
+                break;
+        }
     }];
     return _player;
 }
@@ -323,6 +391,30 @@
     }
     _musics = [YXCAudioModel musics];
     return _musics;
+}
+
+- (NSArray<NSString *> *)words {
+    if (_words) {
+        return _words;
+    }
+    _words = @[
+        @"盼你渡口 待你桥头",
+        @"松香接地走",
+        @"挥癯龙绣虎出怀袖",
+        @"起微石落海连波动",
+        @"描数曲箜篌线同轴",
+        @"勒笔烟直大漠 沧浪盘虬",
+        @"一纸淋漓漫点方圆透",
+        @"记我 长风万里绕指未相勾",
+        @"形生意成 此意 逍遥不游",
+        @"日月何寿 江海滴更漏",
+        @"爱向人间借朝暮 悲喜为酬",
+        @"种柳春莺 知它风尘不可求",
+        @"绵绵更在三生后 谁隔世读关鸠",
+        @"诗说红豆 遍南国未见人长久 见多少",
+        @"来时芳华 去时白头"
+    ];
+    return _words;
 }
 
 @end
