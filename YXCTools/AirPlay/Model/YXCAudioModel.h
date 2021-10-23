@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Method
 
-+ (NSArray *)musics;
-
 @end
 
 NS_ASSUME_NONNULL_END

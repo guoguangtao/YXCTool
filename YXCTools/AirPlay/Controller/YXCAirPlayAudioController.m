@@ -12,6 +12,8 @@
 #import "YXCAudioModel.h"
 #import "YXCSlider.h"
 #import "UIImageView+WebCache.h"
+#import "YXCPlayerMusicListView.h"
+#import "YXCMusicHandler.h"
 
 static NSString *const YXCPlayerRotationAnimationKey = @"YXCPlayerRotationAnimationKey";
 
@@ -23,9 +25,8 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     YXCPlayModeSingle = 2, /**< 单曲循环模式 */
 };
 
-@interface YXCAirPlayAudioController ()
+@interface YXCAirPlayAudioController ()<YXCPlayerMusicListViewDelegate>
 
-@property (nonatomic, strong) NSArray<YXCAudioModel *> *musics; /**< 音乐资源数组 */
 @property (nonatomic, strong) NSArray<NSString *> *words; /**< 音乐歌词 */
 @property (nonatomic, strong) UIImageView *imageView; /**< 音乐专辑图片 */
 @property (nonatomic, strong) UIButton *playButton; /**< 播放按钮 */
@@ -42,7 +43,8 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 @property (nonatomic, assign) NSInteger index; /**< 下标 */
 @property (nonatomic, assign) BOOL sliderValueChange; /**< 进度条被拖拽 */
 @property (nonatomic, assign) YXCPlayMode playModel; /**< 播放模式 */
-@property (nonatomic, strong) CABasicAnimation *rotationAnimation;
+@property (nonatomic, strong) CABasicAnimation *rotationAnimation; /**< 歌手图片动画 */
+@property (nonatomic, strong) YXCPlayerMusicListView *musicListView; /**< 播放列表 */
 
 @end
 
@@ -105,7 +107,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 }
 
 - (void)musicListButtonClicked {
-    
+    [self.musicListView show];
 }
 
 
@@ -158,7 +160,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 /// 设置信息
 - (void)configNowPlayingCenter:(BOOL)isPause {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    YXCAudioModel *model = self.musics[self.index];
+    YXCAudioModel *model = [YXCMusicHandler shareInstance].musics[self.index];
     // 当前播放时间
     dictionary[MPNowPlayingInfoPropertyElapsedPlaybackTime] = @(CMTimeGetSeconds(self.playerItem.currentTime));
     // 播放速度
@@ -199,7 +201,14 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 
 /// 播放下一曲
 - (void)playNextAudio {
-    if (self.index >= self.musics.count - 1) {
+    // 判断是否是随机模式
+    if (self.playModel == YXCPlayModeRandom) {
+        NSInteger random = arc4random_uniform(100000) % [YXCMusicHandler shareInstance].musics.count;
+        self.index = random;
+        [self p_changePlay];
+        return;
+    }
+    if (self.index >= [YXCMusicHandler shareInstance].musics.count - 1) {
         self.index = -1;
     }
     self.index++;
@@ -209,7 +218,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 /// 播放上一曲
 - (void)playLastAudio {
     if (self.index <= 0) {
-        self.index = self.musics.count;
+        self.index = [YXCMusicHandler shareInstance].musics.count;
     }
     self.index--;
     [self p_changePlay];
@@ -256,12 +265,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 }
 
 - (AVPlayerItem *)p_getPlayerItem {
-    // 判断是否是随机模式
-    if (self.playModel == YXCPlayModeRandom) {
-        NSInteger random = arc4random_uniform(100000) % self.musics.count;
-        self.index = random;
-    }
-    YXCAudioModel *model = self.musics[self.index];
+    YXCAudioModel *model = [YXCMusicHandler shareInstance].musics[self.index];
     AVPlayerItem *item = [AVPlayerItem playerItemWithURL:model.musicUrl];
     [self.imageView sd_setImageWithURL:model.musicImage];
     self.musicNameLabel.text = model.musicName;
@@ -285,6 +289,10 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     }];
 }
 
+- (void)p_playMusic {
+    
+}
+
 /// 将秒数进行转换
 /// @param time 秒
 - (NSString *)convertStringWithTime:(NSInteger)time {
@@ -299,6 +307,17 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 
 
 #pragma mark - Protocol
+
+#pragma mark - YXCPlayerMusicListViewDelegate
+
+- (void)listView:(YXCPlayerMusicListView *)listView didSelectedAtIndex:(NSInteger)index {
+    self.index = index;
+    [self p_changePlay];
+}
+
+- (NSInteger)currentPlayAtIndex:(YXCPlayerMusicListView *)list {
+    return self.index;
+}
 
 
 #pragma mark - UI
@@ -462,14 +481,6 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     return _player;
 }
 
-- (NSArray<YXCAudioModel *> *)musics {
-    if (_musics) {
-        return _musics;
-    }
-    _musics = [YXCAudioModel musics];
-    return _musics;
-}
-
 - (NSArray<NSString *> *)words {
     if (_words) {
         return _words;
@@ -504,6 +515,15 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     _rotationAnimation.cumulative = YES;
     _rotationAnimation.repeatCount = CGFLOAT_MAX; // 设置旋转次数
     return _rotationAnimation;
+}
+
+- (YXCPlayerMusicListView *)musicListView {
+    if (_musicListView) {
+        return _musicListView;
+    }
+    _musicListView = [YXCPlayerMusicListView new];
+    _musicListView.delegate = self;
+    return _musicListView;
 }
 
 @end
