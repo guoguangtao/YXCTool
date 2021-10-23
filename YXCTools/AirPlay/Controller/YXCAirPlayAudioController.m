@@ -13,6 +13,10 @@
 #import "YXCSlider.h"
 #import "UIImageView+WebCache.h"
 
+static NSString *const YXCPlayerRotationAnimationKey = @"YXCPlayerRotationAnimationKey";
+
+#define kTimerInterval 20
+
 typedef NS_ENUM(NSInteger, YXCPlayMode) {
     YXCPlayModeList = 0, /**< 列表循环模式 */
     YXCPlayModeRandom = 1, /**< 随机模式 */
@@ -38,6 +42,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 @property (nonatomic, assign) NSInteger index; /**< 下标 */
 @property (nonatomic, assign) BOOL sliderValueChange; /**< 进度条被拖拽 */
 @property (nonatomic, assign) YXCPlayMode playModel; /**< 播放模式 */
+@property (nonatomic, strong) CABasicAnimation *rotationAnimation;
 
 @end
 
@@ -78,7 +83,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 - (void)playButtonClicked:(UIButton *)button {
     if (button.isSelected) {
         // 暂停播放
-        [self.player pause];
+        [self pause];
     } else {
         // 播放
         [self resumePlay];
@@ -150,13 +155,14 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     }];
 }
 
-- (void)configNowPlayingCenter {
+/// 设置信息
+- (void)configNowPlayingCenter:(BOOL)isPause {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     YXCAudioModel *model = self.musics[self.index];
     // 当前播放时间
     dictionary[MPNowPlayingInfoPropertyElapsedPlaybackTime] = @(CMTimeGetSeconds(self.playerItem.currentTime));
     // 播放速度
-    dictionary[MPNowPlayingInfoPropertyPlaybackRate] = @(1.0);
+    dictionary[MPNowPlayingInfoPropertyPlaybackRate] = isPause ? @(0) : @(1.0);
     // 歌曲名称
     dictionary[MPMediaItemPropertyTitle] = model.musicName;
     // 歌词
@@ -187,6 +193,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     [self.playerItem seekToTime:CMTimeMake(second, 1.0f) completionHandler:^(BOOL finished) {
         [wkSelf.player play];
         wkSelf.sliderValueChange = NO;
+        [wkSelf configNowPlayingCenter:NO];
     }];
 }
 
@@ -208,12 +215,14 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     [self p_changePlay];
 }
 
-- (void)play {
-    [self.player play];
-}
-
 - (void)pause {
+    [self configNowPlayingCenter:YES];
     [self.player pause];
+//    [self.imageView.layer removeAnimationForKey:YXCPlayerRotationAnimationKey];
+    
+    CFTimeInterval pauseTime = [self.imageView.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    self.imageView.layer.speed = 0.0f;
+    self.imageView.layer.timeOffset = pauseTime;
 }
 
 - (void)playDidFinish {
@@ -231,7 +240,18 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     }
     __weak typeof(self) wkSelf = self;
     [self.playerItem seekToTime:self.playerItem.currentTime completionHandler:^(BOOL finished) {
+        [wkSelf configNowPlayingCenter:NO];
         [wkSelf.player play];
+        CFTimeInterval pauseTime = wkSelf.imageView.layer.timeOffset;
+        if (pauseTime == 0) {
+            [wkSelf.imageView.layer addAnimation:wkSelf.rotationAnimation forKey:YXCPlayerRotationAnimationKey];
+            return;
+        }
+        wkSelf.imageView.layer.speed = 1.0f;
+        wkSelf.imageView.layer.timeOffset = 0.0f;
+        wkSelf.imageView.layer.beginTime = 0.0f;
+        CFTimeInterval timeSincePause = [wkSelf.imageView.layer convertTime:CACurrentMediaTime() fromLayer:nil] - pauseTime;
+        wkSelf.imageView.layer.beginTime = timeSincePause;
     }];
 }
 
@@ -252,7 +272,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 - (void)p_changePlay {
     self.playerItem = [self p_getPlayerItem];
     [self.player replaceCurrentItemWithPlayerItem:self.playerItem];
-    [self play];
+    [self resumePlay];
     __weak typeof(self) wkSelf = self;
     [self.playerItem yxc_addOberser:self
                          forKeyPath:@"status"
@@ -260,7 +280,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
                              change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
         AVPlayerItemStatus status = [change[NSKeyValueChangeNewKey] integerValue];
         if (status == AVPlayerItemStatusReadyToPlay) {
-            [wkSelf configNowPlayingCenter];
+            [wkSelf configNowPlayingCenter:NO];
         }
     }];
 }
@@ -472,6 +492,18 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
         @"来时芳华 去时白头"
     ];
     return _words;
+}
+
+- (CABasicAnimation *)rotationAnimation {
+    if (_rotationAnimation) {
+        return _rotationAnimation;
+    }
+    _rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    _rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2];
+    _rotationAnimation.duration = kTimerInterval;
+    _rotationAnimation.cumulative = YES;
+    _rotationAnimation.repeatCount = CGFLOAT_MAX; // 设置旋转次数
+    return _rotationAnimation;
 }
 
 @end

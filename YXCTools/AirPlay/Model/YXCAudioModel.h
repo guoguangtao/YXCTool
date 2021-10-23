@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *musicName; /**< 音乐名称 */
 @property (nonatomic, copy) NSURL *musicUrl; /**< 音乐播放连接 */
 @property (nonatomic, copy) NSURL *musicImage; /**< 音乐图片 */
-@property (nonatomic, assign) NSInteger duration; /**< 音乐时长 */
 
 
 #pragma mark - Method
