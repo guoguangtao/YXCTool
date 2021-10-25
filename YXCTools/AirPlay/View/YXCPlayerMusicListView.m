@@ -109,6 +109,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = [YXCMusicHandler shareInstance].musics[indexPath.row].musicName;
+    cell.contentView.backgroundColor = UIColor.whiteColor;
     if (self.index == indexPath.row) {
         cell.textLabel.textColor = UIColor.blueColor;
     } else {
