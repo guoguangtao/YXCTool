@@ -109,11 +109,10 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = [YXCMusicHandler shareInstance].musics[indexPath.row].musicName;
-    cell.contentView.backgroundColor = UIColor.whiteColor;
     if (self.index == indexPath.row) {
-        cell.textLabel.textColor = UIColor.blueColor;
+        cell.textLabel.textColor = [UIColor yxc_colorWithLightColor:UIColor.systemBlueColor darkColor:UIColor.systemBlueColor];
     } else {
-        cell.textLabel.textColor = UIColor.blackColor;
+        cell.textLabel.textColor = [UIColor yxc_colorWithLightColor:UIColor.blackColor darkColor:UIColor.whiteColor];
     }
     return cell;
 }

@@ -111,5 +111,6 @@ _Pragma("clang diagnostic pop") \
 #import "UIButton+YXC_Category.h"
 #import "UIImage+YXC_Category.h"
 #import "UIImageView+YXC_Category.h"
+#import "UIColor+YXC_Category.h"
 
 #endif /* YXCToolHeader_h */
