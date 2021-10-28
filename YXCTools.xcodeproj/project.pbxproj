@@ -27,6 +27,7 @@
 		878FB6232723BBA4002D1F71 /* YXCMusicHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 878FB6222723BBA4002D1F71 /* YXCMusicHandler.m */; };
 		879145B827201A5D004277AF /* YXCAirPlayAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879145B727201A5D004277AF /* YXCAirPlayAudioController.m */; };
 		879145BC27201F1A004277AF /* YXCAudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 879145BB27201F1A004277AF /* YXCAudioModel.m */; };
+		8793A9222729027000E4B3AD /* YXCCAReplicatorLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8793A9212729027000E4B3AD /* YXCCAReplicatorLayerController.m */; };
 		8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */; };
 		87997D7226F36A7200D0FEB1 /* YXCTestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87997D7126F36A7200D0FEB1 /* YXCTestViewModel.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
@@ -160,6 +161,8 @@
 		879145BA27201F1A004277AF /* YXCAudioModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAudioModel.h; sourceTree = "<group>"; };
 		879145BB27201F1A004277AF /* YXCAudioModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAudioModel.m; sourceTree = "<group>"; };
 		879145BD27202FF8004277AF /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8793A9202729027000E4B3AD /* YXCCAReplicatorLayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCCAReplicatorLayerController.h; sourceTree = "<group>"; };
+		8793A9212729027000E4B3AD /* YXCCAReplicatorLayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCAReplicatorLayerController.m; sourceTree = "<group>"; };
 		8798358C26EAEC4A006E1CFE /* YXCCoreAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCCoreAnimationController.h; sourceTree = "<group>"; };
 		8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCoreAnimationController.m; sourceTree = "<group>"; };
 		87997D7026F36A7200D0FEB1 /* YXCTestViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTestViewModel.h; sourceTree = "<group>"; };
@@ -554,6 +557,8 @@
 				871AC00026EEFAF8003E93AA /* YXCCABasicAnimationController.m */,
 				871AC00226EF199C003E93AA /* YXCBasicAnimation.h */,
 				871AC00326EF199C003E93AA /* YXCBasicAnimation.m */,
+				8793A9202729027000E4B3AD /* YXCCAReplicatorLayerController.h */,
+				8793A9212729027000E4B3AD /* YXCCAReplicatorLayerController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1147,6 +1152,7 @@
 				8AF3A99226008CD700F2AFC2 /* YXCPhotoListImageCell.m in Sources */,
 				8AB4C8F926003DF300596D17 /* NSMutableDictionary+YXC_Category.m in Sources */,
 				879145BC27201F1A004277AF /* YXCAudioModel.m in Sources */,
+				8793A9222729027000E4B3AD /* YXCCAReplicatorLayerController.m in Sources */,
 				873D44C126F486DF00C9FBB6 /* YXCPerson.m in Sources */,
 				8A603EB024D2EE7A008AC9BD /* MASViewConstraint.m in Sources */,
 				8AB4C8F126003DF300596D17 /* UITextField+YXC_Category.m in Sources */,

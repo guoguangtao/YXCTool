@@ -227,7 +227,6 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
 - (void)pause {
     [self configNowPlayingCenter:YES];
     [self.player pause];
-//    [self.imageView.layer removeAnimationForKey:YXCPlayerRotationAnimationKey];
     
     CFTimeInterval pauseTime = [self.imageView.layer convertTime:CACurrentMediaTime() fromLayer:nil];
     self.imageView.layer.speed = 0.0f;
