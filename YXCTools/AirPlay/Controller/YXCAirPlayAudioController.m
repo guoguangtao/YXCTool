@@ -171,8 +171,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
     dictionary[MPMediaItemPropertyAlbumTitle] = @"日月何寿 江海滴更漏爱向人间借朝暮 悲喜为酬种柳春莺 知它风尘不可求绵绵更在三生后 谁隔世读关鸠诗说红豆 遍南国未见人长久 见多少来时芳华 去时白头";
     // 歌曲图片
     UIImage *image = self.imageView.image;
-    MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(100, 100)
-                                                                  requestHandler:^UIImage * _Nonnull(CGSize size) {
+    MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(100, 100) requestHandler:^UIImage * _Nonnull(CGSize size) {
         return image;
     }];
     dictionary[MPMediaItemPropertyArtwork] = artwork;

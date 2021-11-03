@@ -148,6 +148,7 @@
             [YXCControllerModel modelWithClassName:@"YXCBannerController" title:@"仿照华为音乐Banner" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCObserverController" title:@"观察者模式的使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCAirPlayAudioController" title:@"AirPlay播放音频" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCAudioController" title:@"播放音乐" parameter:nil],
         ];
     }
     

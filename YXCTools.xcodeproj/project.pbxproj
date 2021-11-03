@@ -21,6 +21,7 @@
 		873D44C426F4B29900C9FBB6 /* YXCObserverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44C326F4B29900C9FBB6 /* YXCObserverHandler.m */; };
 		873D44C526F4B87100C9FBB6 /* NSObject+YXCObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44B926F478F700C9FBB6 /* NSObject+YXCObserver.m */; };
 		87724D3C2726E0B20020132D /* UIColor+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 87724D3B2726E0B20020132D /* UIColor+YXC_Category.m */; };
+		877E8484272ACF3B008B6D9B /* YXCAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877E8483272ACF3B008B6D9B /* YXCAudioController.m */; };
 		8785E5AB2722458F00339DBB /* YXCSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E5AA2722458F00339DBB /* YXCSlider.m */; };
 		878FB61D2723AEC1002D1F71 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 878FB61C2723AEC1002D1F71 /* Musics.plist */; };
 		878FB6202723B7A5002D1F71 /* YXCPlayerMusicListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878FB61F2723B7A5002D1F71 /* YXCPlayerMusicListView.m */; };
@@ -149,6 +150,8 @@
 		873D44C326F4B29900C9FBB6 /* YXCObserverHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCObserverHandler.m; sourceTree = "<group>"; };
 		87724D3A2726E0B20020132D /* UIColor+YXC_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+YXC_Category.h"; sourceTree = "<group>"; };
 		87724D3B2726E0B20020132D /* UIColor+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YXC_Category.m"; sourceTree = "<group>"; };
+		877E8482272ACF3B008B6D9B /* YXCAudioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAudioController.h; sourceTree = "<group>"; };
+		877E8483272ACF3B008B6D9B /* YXCAudioController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAudioController.m; sourceTree = "<group>"; };
 		8785E5A92722458F00339DBB /* YXCSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCSlider.h; sourceTree = "<group>"; };
 		8785E5AA2722458F00339DBB /* YXCSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCSlider.m; sourceTree = "<group>"; };
 		878FB61C2723AEC1002D1F71 /* Musics.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Musics.plist; sourceTree = "<group>"; };
@@ -400,6 +403,8 @@
 			children = (
 				879145B627201A5D004277AF /* YXCAirPlayAudioController.h */,
 				879145B727201A5D004277AF /* YXCAirPlayAudioController.m */,
+				877E8482272ACF3B008B6D9B /* YXCAudioController.h */,
+				877E8483272ACF3B008B6D9B /* YXCAudioController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1129,6 +1134,7 @@
 				8AECEC2F24497FEA00537181 /* ViewController.m in Sources */,
 				8A603EAA24D2EE7A008AC9BD /* MASCompositeConstraint.m in Sources */,
 				8785E5AB2722458F00339DBB /* YXCSlider.m in Sources */,
+				877E8484272ACF3B008B6D9B /* YXCAudioController.m in Sources */,
 				8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */,
 				8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */,
 				8AF3A98F26008CD700F2AFC2 /* YXCPhotoAlbumListController.m in Sources */,
