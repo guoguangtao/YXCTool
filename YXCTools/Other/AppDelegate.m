@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "YXCDayLogHandler.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +23,7 @@
     #if DEBUG
     [[NSBundle bundleWithPath:@"/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle"] load];
     #endif
-    
+    [YXCDayLogHandler redirectLEBLogToDocumentFolder];
     NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
 
     return YES;
