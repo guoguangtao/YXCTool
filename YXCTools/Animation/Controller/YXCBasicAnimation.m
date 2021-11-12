@@ -13,10 +13,7 @@
 
 #pragma mark - Lifecycle
 
-- (void)dealloc {
-    
-    NSLog(@"%s", __func__);
-}
+
 
 
 #pragma mark - Custom Accessors (Setter 方法)

@@ -31,10 +31,7 @@
     [self setupConstraints];
 }
 
-- (void)dealloc {
-    
-    YXCLog(@"%s", __func__);
-}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     

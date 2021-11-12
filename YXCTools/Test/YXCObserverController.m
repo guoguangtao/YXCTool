@@ -34,7 +34,7 @@
     
     self.person = [YXCPerson new];
     [self.person yxc_addOberser:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-        NSLog(@"Controller 监听 name:%@", change[NSKeyValueChangeNewKey]);
+        YXCLog(@"Controller 监听 name:%@", change[NSKeyValueChangeNewKey]);
     }];
     self.person.name = @"第一次设置Name";
     __weak typeof(self) wkSelf = self;
@@ -44,10 +44,7 @@
     self.person = nil;
 }
 
-- (void)dealloc {
-    
-    NSLog(@"%s", __func__);
-}
+
 
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
@@ -62,7 +59,7 @@
 #pragma mark - Private
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    NSLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
+    YXCLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
 }
 
 

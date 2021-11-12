@@ -37,10 +37,7 @@
     return self;
 }
 
-- (void)dealloc {
-    
-    YXCLog(@"%s", __func__);
-}
+
 
 
 #pragma mark - Custom Accessors (Setter 方法)

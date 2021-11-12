@@ -42,16 +42,13 @@
 //    [self performSelectorTest];
     
     [self.viewModel requestData:^{
-        NSLog(@"数据请求成功，刷新UI");
+        YXCLog(@"数据请求成功，刷新UI");
     }];
     
 //    [YXCPerson shareInstance].name = @"Test";
 }
 
-- (void)dealloc {
-    
-    YXCLog(@"%s", __func__);
-}
+
 
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
@@ -67,7 +64,7 @@
 
 - (void)performSelectorTest {
     
-    NSLog(@"%s", __func__);
+    YXCLog(@"%s", __func__);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self performSelectorOnMainThread:@selector(performSelectorResponseMethod:) withObject:@"第一个参数" waitUntilDone:NO modes:@[NSRunLoopCommonModes, NSDefaultRunLoopMode]];
     });
@@ -76,8 +73,8 @@
 
 - (void)performSelectorResponseMethod:(NSString *)string {
     
-    NSLog(@"currentThread : %@", [NSThread currentThread]);
-    NSLog(@"argument_01 : %@", string);
+    YXCLog(@"currentThread : %@", [NSThread currentThread]);
+    YXCLog(@"argument_01 : %@", string);
 }
 
 
