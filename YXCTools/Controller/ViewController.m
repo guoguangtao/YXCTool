@@ -20,7 +20,7 @@
 /// 刷新UI
 - (void)injected {
     [self.view yxc_removeAllSubView];
-    
+    self.dataSources = nil;
     [self setupUI];
 }
 
@@ -149,6 +149,7 @@
             [YXCControllerModel modelWithClassName:@"YXCObserverController" title:@"观察者模式的使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCAirPlayAudioController" title:@"AirPlay播放音频" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCAudioController" title:@"播放音乐" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCBluetoothController" title:@"蓝牙使用" parameter:nil],
         ];
     }
     

@@ -29,6 +29,8 @@
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>若不允许，您将无法在消息等业务中使用多媒体功能</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>申请使用蓝牙权限</string>
 	<key>NSCameraUsageDescription</key>
 	<string>使用相机</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -61,6 +63,8 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>

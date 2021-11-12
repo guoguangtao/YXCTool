@@ -23,7 +23,7 @@
     #if DEBUG
     [[NSBundle bundleWithPath:@"/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle"] load];
     #endif
-    [YXCDayLogHandler redirectLEBLogToDocumentFolder];
+//    [YXCDayLogHandler redirectLEBLogToDocumentFolder];
     NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
 
     return YES;
