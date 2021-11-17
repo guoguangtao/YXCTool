@@ -47,8 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 连接蓝牙设备
 /// @param peripheral 需要连接的蓝牙设备
 /// @param options 可选字典，用于指定连接行为选项
-- (void)connectPeripheral:(CBPeripheral *)peripheral
-                  options:(NSDictionary<NSString *,id> *)options;
+- (void)connectPeripheral:(CBPeripheral *_Nonnull)peripheral
+                  options:(NSDictionary<NSString *,id> *_Nullable)options;
 
 @end
 

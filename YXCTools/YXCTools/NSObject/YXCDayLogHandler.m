@@ -48,7 +48,6 @@
     // 先删除已经存在的文件
     [defaultManager removeItemAtPath:logFilePath error:nil];
     // 将log输入到文件
-    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stdout);
     freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
 }
 

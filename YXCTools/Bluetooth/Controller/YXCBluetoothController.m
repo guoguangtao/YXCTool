@@ -59,7 +59,7 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(reloadDevices) object:nil];
-        [self performSelector:@selector(reloadDevices) withObject:nil afterDelay:3.0f];
+        [self performSelector:@selector(reloadDevices) withObject:nil afterDelay:1.0f];
     });
 }
 
