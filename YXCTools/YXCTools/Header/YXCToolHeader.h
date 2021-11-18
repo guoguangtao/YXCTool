@@ -27,7 +27,8 @@ dateString; \
 #define YXCPrintf(...) printf("%s : %s %s %d行 : %s\n", [kYXCDateString UTF8String], [kYXCClass UTF8String], __FUNCTION__, __LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
 #define YXCDebugLogMethod() YXCLog(@"%s", __func__);
 #else
-#define YXCLog(...);
+//#define YXCLog(...);
+#define YXCLog(fmt, ...) NSLog((@"%s " "%d行 : " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #define YXCPrintf(...);
 #define YXCDebugLogMethod();
 #endif

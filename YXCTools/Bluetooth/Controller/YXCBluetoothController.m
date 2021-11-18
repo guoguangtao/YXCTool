@@ -8,6 +8,7 @@
 
 #import "YXCBluetoothController.h"
 #import "YXCBlueToothManager.h"
+#import "YXCBlueToothDeviceCell.h"
 
 @interface YXCBluetoothController ()<UITableViewDelegate, UITableViewDataSource, YXCBlueToothManagerDelegate>
 
@@ -78,8 +79,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = self.dataSources[indexPath.row].name;
+    YXCBlueToothDeviceCell *cell = [YXCBlueToothDeviceCell cellWithTableView:tableView indexPath:indexPath];
+    cell.peripheral = self.dataSources[indexPath.row];
     return cell;
 }
 
@@ -137,7 +138,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [UIView new];
-    [_tableView registerClass:UITableViewCell.class forCellReuseIdentifier:kCellIdentifier];
     return _tableView;
 }
 
