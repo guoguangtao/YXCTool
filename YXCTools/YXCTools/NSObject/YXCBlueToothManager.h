@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) UIViewController *owner; /**< 拥有者 */
 @property (nonatomic, weak) id <YXCBlueToothManagerDelegate> delegate;
+@property (nonatomic, strong, readonly) CBPeripheral *connectingPeripheral; /**< 当前连接的蓝牙设备 */
 
 
 #pragma mark - Method
@@ -49,6 +50,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param options 可选字典，用于指定连接行为选项
 - (void)connectPeripheral:(CBPeripheral *_Nonnull)peripheral
                   options:(NSDictionary<NSString *,id> *_Nullable)options;
+
+/// 断开连接
+- (void)cancelPeripheralConnection:(CBPeripheral *_Nullable)peripheral;
+
+/// 发送文本
+- (void)sendText:(NSString *)text;
 
 @end
 

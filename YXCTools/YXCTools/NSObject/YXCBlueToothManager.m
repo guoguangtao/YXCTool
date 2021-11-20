@@ -11,6 +11,10 @@
 @interface YXCBlueToothManager ()<CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property (nonatomic, strong) CBCentralManager *manager; /**< 蓝牙管理 */
+@property (nonatomic, strong, readwrite) CBPeripheral *connectingPeripheral; /**< 当前连接的蓝牙设备 */
+@property (nonatomic, strong) CBCharacteristic *readCharacteristic; /**< 读属性特征 */
+@property (nonatomic, strong) CBCharacteristic *writeCharacteristic; /**< 写属性特征 */
+@property (nonatomic, strong) CBCharacteristic *notifyCharacteristic; /**< 通知属性特征 */
 
 @end
 
@@ -102,6 +106,10 @@ static YXCBlueToothManager *_instance;
         case CBManagerStatePoweredOn: {
             isOn = YES;
         }   break;
+        case CBManagerStateUnauthorized: {
+            // 未授权，进行申请权限
+            [self bluetoothUnauthorized];
+        }   break;;
             
         default:
             break;
@@ -133,7 +141,53 @@ static YXCBlueToothManager *_instance;
         YXCLog(@"要连接的蓝牙设备为空");
         return;
     }
+    // 判断是否是同一台设备
+    if ([peripheral.identifier.UUIDString isEqualToString:self.connectingPeripheral.identifier.UUIDString]) {
+        // 同一台设备不处理
+        YXCLog(@"将要连接的设备%@跟目前连接的设备%@一致，不处理!", peripheral, self.connectingPeripheral);
+        return;
+    }
+    // 先断开上一次连接的设备
+    [self cancelPeripheralConnection:self.connectingPeripheral];
+    // 连接当前目标设备
     [self.manager connectPeripheral:peripheral options:options];
+    // 观察目标设备的连接状态
+    NSKeyValueObservingOptions ops = NSKeyValueObservingOptionNew;
+    [peripheral yxc_addOberser:self
+                    forKeyPath:@"state"
+                       options:ops
+                        change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
+        YXCLog(@"设备连接状态发生改变:%@", object);
+    }];
+}
+
+/// 断开连接
+- (void)cancelPeripheralConnection:(CBPeripheral *)peripheral {
+    if (peripheral &&
+        (peripheral.state == CBPeripheralStateConnected ||
+         peripheral.state == CBPeripheralStateConnecting)) {
+        // 目标设备已连接或者正在连接中，断开连接
+        [self.manager cancelPeripheralConnection:peripheral];
+        return;
+    }
+    if (self.connectingPeripheral &&
+        (self.connectingPeripheral.state == CBPeripheralStateConnected ||
+        self.connectingPeripheral.state == CBPeripheralStateConnecting)) {
+        // 当前设备已连接或者正在连接中，断开连接
+        [self.manager cancelPeripheralConnection:self.connectingPeripheral];
+    }
+}
+
+/// 发送文本
+- (void)sendText:(NSString *)text {
+    if (self.writeCharacteristic == nil) {
+        return;
+    }
+    if (text == nil || !text.length) {
+        return;
+    }
+    NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
+    [self.connectingPeripheral writeValue:data forCharacteristic:self.writeCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
 
@@ -199,6 +253,48 @@ static YXCBlueToothManager *_instance;
     [self.owner presentViewController:controller animated:YES completion:nil];
 }
 
+/// 根据扫描到的特征，拼接当前特征的属性
+/// @param characteristic 特征
+- (NSString *)characteristicPropertiesString:(CBCharacteristic *)characteristic {
+    NSMutableString *mutableString = [NSMutableString new];
+    CBCharacteristicProperties properties = characteristic.properties;
+    if (properties & CBCharacteristicPropertyBroadcast) {
+        [mutableString appendString:@"CBCharacteristicPropertyBroadcast | "];
+    }
+    if (properties & CBCharacteristicPropertyRead) {
+        [mutableString appendString:@"CBCharacteristicPropertyRead | "];
+    }
+    if (properties & CBCharacteristicPropertyWriteWithoutResponse) {
+        [mutableString appendString:@"CBCharacteristicPropertyWriteWithoutResponse | "];
+    }
+    if (properties & CBCharacteristicPropertyWrite) {
+        [mutableString appendString:@"CBCharacteristicPropertyWrite | "];
+    }
+    if (properties & CBCharacteristicPropertyNotify) {
+        [mutableString appendString:@"CBCharacteristicPropertyNotify | "];
+    }
+    if (properties & CBCharacteristicPropertyIndicate) {
+        [mutableString appendString:@"CBCharacteristicPropertyIndicate | "];
+    }
+    if (properties & CBCharacteristicPropertyAuthenticatedSignedWrites) {
+        [mutableString appendString:@"CBCharacteristicPropertyAuthenticatedSignedWrites | "];
+    }
+    if (properties & CBCharacteristicPropertyExtendedProperties) {
+        [mutableString appendString:@"CBCharacteristicPropertyExtendedProperties | "];
+    }
+    if (properties & CBCharacteristicPropertyNotifyEncryptionRequired) {
+        [mutableString appendString:@"CBCharacteristicPropertyNotifyEncryptionRequired | "];
+    }
+    if (properties & CBCharacteristicPropertyIndicateEncryptionRequired) {
+        [mutableString appendString:@"CBCharacteristicPropertyIndicateEncryptionRequired | "];
+    }
+    NSString *string = [NSString stringWithString:mutableString];
+    if (mutableString.length > 2) {
+        string = [mutableString stringByReplacingCharactersInRange:NSMakeRange(mutableString.length - 2, 2) withString:@""];
+    }
+    return string;
+}
+
 
 #pragma mark - Protocol
 
@@ -235,7 +331,9 @@ static YXCBlueToothManager *_instance;
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI {
     if (_delegateFlag.respondsToDidDiscoverPeripheral) {
-        [self.delegate yxc_blueToothManager:central didDiscoverPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate yxc_blueToothManager:central didDiscoverPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI];
+        });
     }
 }
 
@@ -244,10 +342,14 @@ static YXCBlueToothManager *_instance;
     
     YXCLog(@"连接蓝牙设备%@成功", peripheral.name);
     if (_delegateFlag.respondsToDidConnectPeripheral) {
-        [self.delegate yxc_blueToothManager:central didConnectPeripheral:peripheral];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate yxc_blueToothManager:central didConnectPeripheral:peripheral];
+        });
     }
+    self.connectingPeripheral = peripheral;
     peripheral.delegate = self;
     [peripheral discoverServices:nil];
+    // 连接了设备成功后停止扫描蓝牙设备
     [self stopScan];
 }
 
@@ -255,14 +357,69 @@ static YXCBlueToothManager *_instance;
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     YXCLog(@"连接蓝牙设备%@失败,错误信息:%@", peripheral.name, error.description);
     if (_delegateFlag.respondsToDidFailToConnectPeripheral) {
-        [self.delegate yxc_blueToothManager:central didFailToConnectPeripheral:peripheral error:error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate yxc_blueToothManager:central didFailToConnectPeripheral:peripheral error:error];
+        });
     }
+}
+
+/// 蓝牙设备连接断开
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    YXCLog(@"蓝牙设备断开连接:%@, 错误信息:%@", peripheral, error.description);
+    self.connectingPeripheral = nil;
 }
 
 #pragma mark - CBPeripheralDelegate
 
+/// 发现服务回调
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error {
-    YXCLog(@"发现服务%@", peripheral);
+    YXCLog(@"发现服务 %@, error:%@", peripheral, error);
+    if (error) {
+        return;
+    }
+    for (CBService *service in peripheral.services) {
+        // 扫描特征
+        YXCLog(@"扫描服务 %@ 中的特征", service);
+        [peripheral discoverCharacteristics:nil forService:service];
+    }
+}
+
+/// 发现特征
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
+    YXCLog(@"%@ 在 %@发现特征, error:%@", peripheral, service, error);
+    for (CBCharacteristic *characteristic in service.characteristics) {
+        YXCLog(@"发现特征:%@, %@", characteristic, [self characteristicPropertiesString:characteristic]);
+        if (characteristic.properties & CBCharacteristicPropertyRead) {
+            self.readCharacteristic = characteristic;
+        }
+        if (characteristic.properties & CBCharacteristicPropertyWrite ||
+            characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) {
+            self.writeCharacteristic = characteristic;
+        }
+        if (characteristic.properties & CBCharacteristicPropertyNotify) {
+            self.notifyCharacteristic = characteristic;
+            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+        }
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+    YXCDebugLogMethod();
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.connectingPeripheral readValueForCharacteristic:self.readCharacteristic];
+    });
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    YXCDebugLogMethod();
+    NSData *data = characteristic.value;
+    if (data == nil) {
+        return;
+    }
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    YXCLog(@"UTF-8:%@", string);
+    string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    YXCLog(@"ASCII:%@", string);
 }
 
 

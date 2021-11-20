@@ -9,6 +9,7 @@
 #import "YXCBluetoothController.h"
 #import "YXCBlueToothManager.h"
 #import "YXCBlueToothDeviceCell.h"
+#import "YXCBluetoothCommunicationController.h"
 
 @interface YXCBluetoothController ()<UITableViewDelegate, UITableViewDataSource, YXCBlueToothManagerDelegate>
 
@@ -33,12 +34,14 @@
     
     [self setupUI];
     [self setupConstraints];
+    [YXCBlueToothManager shareInstance].owner = self;
     [YXCBlueToothManager shareInstance].delegate = self;
     [[YXCBlueToothManager shareInstance] startScan];
 }
 
 - (void)dealloc {
-    
+    YXCDebugLogMethod();
+    [[YXCBlueToothManager shareInstance] cancelPeripheralConnection:nil];
 }
 
 
@@ -101,12 +104,20 @@
 - (void)yxc_blueToothManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
     if (peripheral.name && peripheral.name.length) {
         for (CBPeripheral *p in self.dataSources) {
-            if ([p.name isEqualToString:peripheral.name]) {
+            if ([p.name isEqualToString:peripheral.name] &&
+                [p.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
                 return;
             }
         }
         [self addDevice:peripheral];
     }
+}
+
+- (void)yxc_blueToothManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+    // 设备连接成功
+    YXCLog(@"%@", [NSThread currentThread]);
+    YXCBluetoothCommunicationController *controller = [YXCBluetoothCommunicationController new];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
