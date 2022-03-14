@@ -8,9 +8,10 @@
 
 #import "YXCPHPickerViewController.h"
 #import <PhotosUI/PhotosUI.h>
+#import <ReplayKit/ReplayKit.h>
 #import "YXCPopOverView.h"
 
-@interface YXCPHPickerViewController ()<PHPickerViewControllerDelegate>
+@interface YXCPHPickerViewController ()<PHPickerViewControllerDelegate, RPBroadcastActivityViewControllerDelegate>
 
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIImageView *imageView;
@@ -45,6 +46,11 @@
 
 - (void)choosePhoto:(UIButton *)button {
     
+    [RPBroadcastActivityViewController loadBroadcastActivityViewControllerWithHandler:^(RPBroadcastActivityViewController * _Nullable broadcastActivityViewController, NSError * _Nullable error) {
+        broadcastActivityViewController.delegate = self;
+        [self presentViewController:broadcastActivityViewController animated:YES completion:nil];
+    }];
+    return;
     if (@available(iOS 14, *)) {
         PHPickerConfiguration *configuration = [PHPickerConfiguration new];
         configuration.filter = [PHPickerFilter imagesFilter]; // 设置所选的类型,这里设置是图片,默认是 nil,设置成 nil 则代表所有的类型都显示出来(包括 视频/LivePhoto )
@@ -66,6 +72,12 @@
 
 
 #pragma mark - Protocol
+
+#pragma mark - RPBroadcastActivityViewControllerDelegate
+
+- (void)broadcastActivityViewController:(RPBroadcastActivityViewController *)broadcastActivityViewController didFinishWithBroadcastController:(RPBroadcastController *)broadcastController error:(NSError *)error {
+    NSLog(@"%s", __func__);
+}
 
 #pragma mark - PHPickerViewControllerDelegate
 

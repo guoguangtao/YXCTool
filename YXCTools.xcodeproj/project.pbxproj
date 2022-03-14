@@ -31,6 +31,13 @@
 		878FB61D2723AEC1002D1F71 /* Musics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 878FB61C2723AEC1002D1F71 /* Musics.plist */; };
 		878FB6202723B7A5002D1F71 /* YXCPlayerMusicListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878FB61F2723B7A5002D1F71 /* YXCPlayerMusicListView.m */; };
 		878FB6232723BBA4002D1F71 /* YXCMusicHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 878FB6222723BBA4002D1F71 /* YXCMusicHandler.m */; };
+		878FD09C2759CC5300563E6F /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 878FD09B2759CC5300563E6F /* ReplayKit.framework */; };
+		878FD09E2759CC5300563E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 878FD09D2759CC5300563E6F /* UIKit.framework */; };
+		878FD0A22759CC5300563E6F /* BroadcastSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878FD0A12759CC5300563E6F /* BroadcastSetupViewController.m */; };
+		878FD0A62759CC5300563E6F /* ReplayUIExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 878FD09A2759CC5300563E6F /* ReplayUIExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		878FD0B0275A06B700563E6F /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 878FD09B2759CC5300563E6F /* ReplayKit.framework */; };
+		878FD0B4275A06B700563E6F /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 878FD0B3275A06B700563E6F /* SampleHandler.m */; };
+		878FD0B8275A06B700563E6F /* ReplayLoadExtesion.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 878FD0AF275A06B700563E6F /* ReplayLoadExtesion.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		879145B827201A5D004277AF /* YXCAirPlayAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879145B727201A5D004277AF /* YXCAirPlayAudioController.m */; };
 		879145BC27201F1A004277AF /* YXCAudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 879145BB27201F1A004277AF /* YXCAudioModel.m */; };
 		8793A9222729027000E4B3AD /* YXCCAReplicatorLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8793A9212729027000E4B3AD /* YXCCAReplicatorLayerController.m */; };
@@ -112,6 +119,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		878FD0A42759CC5300563E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8AECEC1C24497FEA00537181 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 878FD0992759CC5300563E6F;
+			remoteInfo = ReplayUIExtension;
+		};
+		878FD0B6275A06B700563E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8AECEC1C24497FEA00537181 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 878FD0AE275A06B700563E6F;
+			remoteInfo = ReplayLoadExtesion;
+		};
 		8AECEC4024497FED00537181 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8AECEC1C24497FEA00537181 /* Project object */;
@@ -127,6 +148,21 @@
 			remoteInfo = YXCTools;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		878FD0A72759CC5300563E6F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				878FD0B8275A06B700563E6F /* ReplayLoadExtesion.appex in Embed App Extensions */,
+				878FD0A62759CC5300563E6F /* ReplayUIExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2F198AD77A7E55714E61DF4F /* Pods-YXCTools-YXCToolsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXCTools-YXCToolsUITests.release.xcconfig"; path = "Target Support Files/Pods-YXCTools-YXCToolsUITests/Pods-YXCTools-YXCToolsUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +211,16 @@
 		878FB61F2723B7A5002D1F71 /* YXCPlayerMusicListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPlayerMusicListView.m; sourceTree = "<group>"; };
 		878FB6212723BBA4002D1F71 /* YXCMusicHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCMusicHandler.h; sourceTree = "<group>"; };
 		878FB6222723BBA4002D1F71 /* YXCMusicHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCMusicHandler.m; sourceTree = "<group>"; };
+		878FD09A2759CC5300563E6F /* ReplayUIExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReplayUIExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		878FD09B2759CC5300563E6F /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		878FD09D2759CC5300563E6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		878FD0A02759CC5300563E6F /* BroadcastSetupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BroadcastSetupViewController.h; sourceTree = "<group>"; };
+		878FD0A12759CC5300563E6F /* BroadcastSetupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BroadcastSetupViewController.m; sourceTree = "<group>"; };
+		878FD0A32759CC5300563E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		878FD0AF275A06B700563E6F /* ReplayLoadExtesion.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReplayLoadExtesion.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		878FD0B2275A06B700563E6F /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
+		878FD0B3275A06B700563E6F /* SampleHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
+		878FD0B5275A06B700563E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		879145B627201A5D004277AF /* YXCAirPlayAudioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAirPlayAudioController.h; sourceTree = "<group>"; };
 		879145B727201A5D004277AF /* YXCAirPlayAudioController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAirPlayAudioController.m; sourceTree = "<group>"; };
 		879145BA27201F1A004277AF /* YXCAudioModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAudioModel.h; sourceTree = "<group>"; };
@@ -345,6 +391,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		878FD0972759CC5300563E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				878FD09C2759CC5300563E6F /* ReplayKit.framework in Frameworks */,
+				878FD09E2759CC5300563E6F /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		878FD0AC275A06B700563E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				878FD0B0275A06B700563E6F /* ReplayKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AECEC2124497FEA00537181 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,6 +530,26 @@
 				878FB61F2723B7A5002D1F71 /* YXCPlayerMusicListView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		878FD09F2759CC5300563E6F /* ReplayUIExtension */ = {
+			isa = PBXGroup;
+			children = (
+				878FD0A02759CC5300563E6F /* BroadcastSetupViewController.h */,
+				878FD0A12759CC5300563E6F /* BroadcastSetupViewController.m */,
+				878FD0A32759CC5300563E6F /* Info.plist */,
+			);
+			path = ReplayUIExtension;
+			sourceTree = "<group>";
+		};
+		878FD0B1275A06B700563E6F /* ReplayLoadExtesion */ = {
+			isa = PBXGroup;
+			children = (
+				878FD0B2275A06B700563E6F /* SampleHandler.h */,
+				878FD0B3275A06B700563E6F /* SampleHandler.m */,
+				878FD0B5275A06B700563E6F /* Info.plist */,
+			);
+			path = ReplayLoadExtesion;
 			sourceTree = "<group>";
 		};
 		879145B427201A30004277AF /* AirPlay */ = {
@@ -781,6 +864,8 @@
 				8AECEC2624497FEA00537181 /* YXCTools */,
 				8AECEC4224497FED00537181 /* YXCToolsTests */,
 				8AECEC4D24497FED00537181 /* YXCToolsUITests */,
+				878FD09F2759CC5300563E6F /* ReplayUIExtension */,
+				878FD0B1275A06B700563E6F /* ReplayLoadExtesion */,
 				8AECEC2524497FEA00537181 /* Products */,
 				2262E85DF374FD9B5745A783 /* Pods */,
 				D5A062BAB8EDFF6A18E0002F /* Frameworks */,
@@ -793,6 +878,8 @@
 				8AECEC2424497FEA00537181 /* YXCTools.app */,
 				8AECEC3F24497FED00537181 /* YXCToolsTests.xctest */,
 				8AECEC4A24497FED00537181 /* YXCToolsUITests.xctest */,
+				878FD09A2759CC5300563E6F /* ReplayUIExtension.appex */,
+				878FD0AF275A06B700563E6F /* ReplayLoadExtesion.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -962,6 +1049,8 @@
 				C1CFAA2BBF02BDB45B09EC60 /* Pods_YXCTools.framework */,
 				6770C98EB7183CE5D3B22001 /* Pods_YXCTools_YXCToolsUITests.framework */,
 				D2A43C86E48CFEF53286C0C6 /* Pods_YXCToolsTests.framework */,
+				878FD09B2759CC5300563E6F /* ReplayKit.framework */,
+				878FD09D2759CC5300563E6F /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -969,6 +1058,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		878FD0992759CC5300563E6F /* ReplayUIExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 878FD0AA2759CC5300563E6F /* Build configuration list for PBXNativeTarget "ReplayUIExtension" */;
+			buildPhases = (
+				878FD0962759CC5300563E6F /* Sources */,
+				878FD0972759CC5300563E6F /* Frameworks */,
+				878FD0982759CC5300563E6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReplayUIExtension;
+			productName = ReplayUIExtension;
+			productReference = 878FD09A2759CC5300563E6F /* ReplayUIExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		878FD0AE275A06B700563E6F /* ReplayLoadExtesion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 878FD0B9275A06B700563E6F /* Build configuration list for PBXNativeTarget "ReplayLoadExtesion" */;
+			buildPhases = (
+				878FD0AB275A06B700563E6F /* Sources */,
+				878FD0AC275A06B700563E6F /* Frameworks */,
+				878FD0AD275A06B700563E6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReplayLoadExtesion;
+			productName = ReplayLoadExtesion;
+			productReference = 878FD0AF275A06B700563E6F /* ReplayLoadExtesion.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8AECEC2324497FEA00537181 /* YXCTools */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8AECEC5324497FED00537181 /* Build configuration list for PBXNativeTarget "YXCTools" */;
@@ -978,10 +1101,13 @@
 				8AECEC2124497FEA00537181 /* Frameworks */,
 				8AECEC2224497FEA00537181 /* Resources */,
 				F5332CC7405EB7BCAE7E7A3F /* [CP] Embed Pods Frameworks */,
+				878FD0A72759CC5300563E6F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				878FD0A52759CC5300563E6F /* PBXTargetDependency */,
+				878FD0B7275A06B700563E6F /* PBXTargetDependency */,
 			);
 			name = YXCTools;
 			productName = YXCTools;
@@ -1037,6 +1163,12 @@
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = GGT;
 				TargetAttributes = {
+					878FD0992759CC5300563E6F = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					878FD0AE275A06B700563E6F = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					8AECEC2324497FEA00537181 = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -1064,6 +1196,8 @@
 			projectRoot = "";
 			targets = (
 				8AECEC2324497FEA00537181 /* YXCTools */,
+				878FD0992759CC5300563E6F /* ReplayUIExtension */,
+				878FD0AE275A06B700563E6F /* ReplayLoadExtesion */,
 				8AECEC3E24497FED00537181 /* YXCToolsTests */,
 				8AECEC4924497FED00537181 /* YXCToolsUITests */,
 			);
@@ -1071,6 +1205,20 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		878FD0982759CC5300563E6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		878FD0AD275A06B700563E6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AECEC2224497FEA00537181 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1202,6 +1350,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		878FD0962759CC5300563E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				878FD0A22759CC5300563E6F /* BroadcastSetupViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		878FD0AB275A06B700563E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				878FD0B4275A06B700563E6F /* SampleHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AECEC2024497FEA00537181 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1320,6 +1484,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		878FD0A52759CC5300563E6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 878FD0992759CC5300563E6F /* ReplayUIExtension */;
+			targetProxy = 878FD0A42759CC5300563E6F /* PBXContainerItemProxy */;
+		};
+		878FD0B7275A06B700563E6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 878FD0AE275A06B700563E6F /* ReplayLoadExtesion */;
+			targetProxy = 878FD0B6275A06B700563E6F /* PBXContainerItemProxy */;
+		};
 		8AECEC4124497FED00537181 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8AECEC2324497FEA00537181 /* YXCTools */;
@@ -1352,6 +1526,114 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		878FD0A82759CC5300563E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R34852FKA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReplayUIExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReplayUIExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 GGT. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayUIExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		878FD0A92759CC5300563E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R34852FKA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReplayUIExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReplayUIExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 GGT. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayUIExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		878FD0BA275A06B700563E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R34852FKA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReplayLoadExtesion/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReplayLoadExtesion;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 GGT. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayLoadExtesion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		878FD0BB275A06B700563E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R34852FKA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReplayLoadExtesion/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReplayLoadExtesion;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 GGT. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayLoadExtesion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8AECEC5124497FED00537181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1631,6 +1913,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		878FD0AA2759CC5300563E6F /* Build configuration list for PBXNativeTarget "ReplayUIExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				878FD0A82759CC5300563E6F /* Debug */,
+				878FD0A92759CC5300563E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		878FD0B9275A06B700563E6F /* Build configuration list for PBXNativeTarget "ReplayLoadExtesion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				878FD0BA275A06B700563E6F /* Debug */,
+				878FD0BB275A06B700563E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8AECEC1F24497FEA00537181 /* Build configuration list for PBXProject "YXCTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
