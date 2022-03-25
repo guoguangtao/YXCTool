@@ -387,15 +387,19 @@ static YXCBlueToothManager *_instance;
 /// 发现特征
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
     YXCLog(@"%@ 在 %@发现特征, error:%@", peripheral, service, error);
+    // 遍历服务中所有的特征
     for (CBCharacteristic *characteristic in service.characteristics) {
         YXCLog(@"发现特征:%@, %@", characteristic, [self characteristicPropertiesString:characteristic]);
+        // 判断特征是否有读权限
         if (characteristic.properties & CBCharacteristicPropertyRead) {
             self.readCharacteristic = characteristic;
         }
+        // 判断特征是否有写入权限
         if (characteristic.properties & CBCharacteristicPropertyWrite ||
             characteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) {
             self.writeCharacteristic = characteristic;
         }
+        // 判断特征是否有通知权限
         if (characteristic.properties & CBCharacteristicPropertyNotify) {
             self.notifyCharacteristic = characteristic;
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
