@@ -283,12 +283,17 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
         AVPlayerItemStatus status = [change[NSKeyValueChangeNewKey] integerValue];
         if (status == AVPlayerItemStatusReadyToPlay) {
             [wkSelf configNowPlayingCenter:NO];
+        } else if (status == AVPlayerItemStatusFailed) {
+            // 加载失败，播放下一曲
+            YXCAudioModel *model = [YXCMusicHandler shareInstance].musics[self.index];
+            YXCLog(@"%@ 加载失败", model.musicName);
+            [self playNextAudio];
         }
     }];
 }
 
 - (void)p_playMusic {
-    
+
 }
 
 /// 将秒数进行转换
