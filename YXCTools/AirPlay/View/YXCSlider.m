@@ -19,22 +19,22 @@
 
 /// 刷新UI
 - (void)injected {
-    
+
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    
+
     if (self = [super initWithFrame:frame]) {
-        
+
         [self setupUI];
         [self setupConstraints];
     }
-    
+
     return self;
 }
 
 - (void)dealloc {
-    
+
 }
 
 #pragma mark - Custom Accessors (Setter 与 Getter 方法)
@@ -59,16 +59,16 @@
 #pragma mark - UI
 
 - (void)setupUI {
-    
-    
+
+
 }
 
 
 #pragma mark - Constraints
 
 - (void)setupConstraints {
-    
-    
+
+
 }
 
 
