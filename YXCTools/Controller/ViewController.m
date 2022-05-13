@@ -151,6 +151,7 @@
             [YXCControllerModel modelWithClassName:@"YXCAudioController" title:@"播放音乐" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCBluetoothController" title:@"蓝牙使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCAutoLayoutController" title:@"Masonry" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCScanQRCodeController" title:@"二维码扫描" parameter:nil],
         ];
     }
     
