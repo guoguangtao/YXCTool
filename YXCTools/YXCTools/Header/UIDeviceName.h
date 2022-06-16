@@ -39,6 +39,11 @@ static NSString *const iPhone12Mini = @"iPhone 12 mini";
 static NSString *const iPhone12 = @"iPhone 12";
 static NSString *const iPhone12Pro = @"iPhone 12 Pro";
 static NSString *const iPhone12ProMax = @"iPhone 12 Pro Max";
+static NSString *const iPhone13Mini = @"iPhone 13 mini";
+static NSString *const iPhone13 = @"iPhone 13";
+static NSString *const iPhone13Pro = @"iPhone 13 Pro";
+static NSString *const iPhone13ProMax = @"iPhone 13 Pro Max";
+static NSString *const iPhoneSE3 = @"iPhone SE (3rd generation)";
 static NSString *const simulator = @"Simulator";
 
 // iPad
@@ -50,10 +55,12 @@ static NSString *const iPad5 = @"iPad (5th generation)";
 static NSString *const iPad6 = @"iPad (6th generation)";
 static NSString *const iPad7 = @"iPad (7th generation)";
 static NSString *const iPad8 = @"iPad (8th generation)";
+static NSString *const iPad9 = @"iPad (9th generation)";
 static NSString *const iPadAir = @"iPad Air";
 static NSString *const iPadAir2 = @"iPad Air 2";
 static NSString *const iPadAir3 = @"iPad Air (3rd generation)";
 static NSString *const iPadAir4 = @"iPad Air (4th generation)";
+static NSString *const iPadAir5 = @"iPad Air (5th generation)";
 static NSString *const iPadPro12_9_inch = @"iPad Pro (12.9-inch)";
 static NSString *const iPadPro9_7_inch = @"iPad Pro (9.7-inch)";
 static NSString *const iPadPro12_9_inch2 = @"iPad Pro (12.9-inch) (2nd generation)";
@@ -62,11 +69,14 @@ static NSString *const iPadPro11_inch = @"iPad Pro (11-inch)";
 static NSString *const iPadPro12_9_inch3 = @"iPad Pro (12.9-inch) (3rd generation)";
 static NSString *const iPadPro11_inch2 = @"iPad Pro (11-inch) (2nd generation)";
 static NSString *const iPadPro12_9_inch4 = @"iPad Pro (12.9-inch) (4th generation)";
+static NSString *const iPadPro11_inch3 = @"iPad Pro (11-inch) (3rd generation)";
+static NSString *const iPadPro12_9_inch5 = @"iPad Pro (12.9-inch) (5th generation)";
 static NSString *const iPadmini = @"iPad mini";
 static NSString *const iPadmini2 = @"iPad mini 2";
 static NSString *const iPadmini3 = @"iPad mini 3";
 static NSString *const iPadmini4 = @"iPad mini 4";
 static NSString *const iPadmini5 = @"iPad mini (5th generation)";
+static NSString *const iPadmini6 = @"iPad mini (6th generation)";
 
 
 #endif /* UIDeviceName_h */

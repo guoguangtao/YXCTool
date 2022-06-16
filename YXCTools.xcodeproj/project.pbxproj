@@ -21,6 +21,7 @@
 		873D44C126F486DF00C9FBB6 /* YXCPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44C026F486DF00C9FBB6 /* YXCPerson.m */; };
 		873D44C426F4B29900C9FBB6 /* YXCObserverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44C326F4B29900C9FBB6 /* YXCObserverHandler.m */; };
 		873D44C526F4B87100C9FBB6 /* NSObject+YXCObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D44B926F478F700C9FBB6 /* NSObject+YXCObserver.m */; };
+		873F31CF28473AE4001F99B9 /* YXCNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 873F31CE28473AE4001F99B9 /* YXCNetManager.m */; };
 		8741D2E02755C4C200142931 /* YXCAutoLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8741D2DF2755C4C200142931 /* YXCAutoLayoutController.m */; };
 		8755C538273E17CC00DA4383 /* YXCBlueToothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8755C537273E17CC00DA4383 /* YXCBlueToothManager.m */; };
 		876CD6A4282DFA3300FB6689 /* YXCScanQRCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 876CD6A3282DFA3300FB6689 /* YXCScanQRCodeController.m */; };
@@ -195,6 +196,8 @@
 		873D44C026F486DF00C9FBB6 /* YXCPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCPerson.m; sourceTree = "<group>"; };
 		873D44C226F4B29900C9FBB6 /* YXCObserverHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCObserverHandler.h; sourceTree = "<group>"; };
 		873D44C326F4B29900C9FBB6 /* YXCObserverHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCObserverHandler.m; sourceTree = "<group>"; };
+		873F31CD28473AE4001F99B9 /* YXCNetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCNetManager.h; sourceTree = "<group>"; };
+		873F31CE28473AE4001F99B9 /* YXCNetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCNetManager.m; sourceTree = "<group>"; };
 		8741D2DE2755C4C200142931 /* YXCAutoLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAutoLayoutController.h; sourceTree = "<group>"; };
 		8741D2DF2755C4C200142931 /* YXCAutoLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAutoLayoutController.m; sourceTree = "<group>"; };
 		8755C536273E17CC00DA4383 /* YXCBlueToothManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBlueToothManager.h; sourceTree = "<group>"; };
@@ -465,6 +468,15 @@
 				871AC00A26EF4A6C003E93AA /* YXCBannerCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		873F31CC284738C5001F99B9 /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				873F31CD28473AE4001F99B9 /* YXCNetManager.h */,
+				873F31CE28473AE4001F99B9 /* YXCNetManager.m */,
+			);
+			path = Net;
 			sourceTree = "<group>";
 		};
 		8741D2DB2755C46B00142931 /* AutoLayout */ = {
@@ -933,6 +945,7 @@
 		8AECEC2624497FEA00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				873F31CC284738C5001F99B9 /* Net */,
 				876CD69F282DF87800FB6689 /* Scan */,
 				8AECEC7C2449972B00537181 /* YXCTool.pch */,
 				8741D2DB2755C46B00142931 /* AutoLayout */,
@@ -1417,6 +1430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				873F31CF28473AE4001F99B9 /* YXCNetManager.m in Sources */,
 				873D44C526F4B87100C9FBB6 /* NSObject+YXCObserver.m in Sources */,
 				8AB4C8F026003DF300596D17 /* UIView+YXC_Category.m in Sources */,
 				8AA37E37254FE21000622B5A /* YXCBezierPathView.m in Sources */,
