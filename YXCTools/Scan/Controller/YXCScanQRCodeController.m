@@ -9,6 +9,7 @@
 #import "YXCScanQRCodeController.h"
 #import "YXCScanView.h"
 #import "YXCScanTools.h"
+#import "NSObject+YXC_Category.h"
 
 @interface YXCScanQRCodeController ()<AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 
@@ -209,6 +210,55 @@
     });
 }
 
+/// 自动聚焦
+- (void)p_changeVideoScale:(AVMetadataMachineReadableCodeObject *)objc {
+
+    NSArray *array = objc.corners;
+    NSLog(@"cornersArray:%@", array);
+
+    CGPoint point_01 = CGPointZero;
+    CFDictionaryRef ref_01 = (__bridge CFDictionaryRef)[array firstObject];
+    CGPointMakeWithDictionaryRepresentation(ref_01, &point_01);
+    NSLog(@"point_01.x : %lf, point_01.y : %lf", point_01.x, point_01.y);
+
+    CGPoint point_02 = CGPointZero;
+    CFDictionaryRef ref_02 = (__bridge CFDictionaryRef)array[2];
+    CGPointMakeWithDictionaryRepresentation(ref_02, &point_02);
+    NSLog(@"point_02.x : %lf, point_02.y : %lf", point_02.x, point_02.y);
+
+    CGFloat scale = 90 / (NSInteger)((point_02.x - point_01.x) * self.view.bounds.size.width);
+    [self p_setVideoScale:scale];
+}
+
+/// 设置聚焦
+- (void)p_setVideoScale:(CGFloat)scale {
+
+    NSLog(@"----scale:%lf", scale);
+    [self.captureDevice lockForConfiguration:nil];
+    CGFloat videoMaxZoomFactor = self.captureDevice.activeFormat.videoMaxZoomFactor;
+    if (scale < 1) {
+        scale = 1;
+    } else if (scale > videoMaxZoomFactor) {
+        scale = videoMaxZoomFactor;
+    }
+    NSLog(@"====scale:%lf", scale);
+    [self.captureDevice rampToVideoZoomFactor:scale withRate:5];
+    [self.deviceInput.device unlockForConfiguration];
+}
+
+- (AVCaptureConnection *)p_connectionWithMediaType:(NSString *)mediaType fromConnections:(NSArray *)connections {
+
+    for (AVCaptureConnection *connection in connections) {
+        for (AVCaptureInputPort *port in [connection inputPorts]) {
+            if ([[port mediaType] isEqualToString:mediaType]) {
+                return connection;
+            }
+        }
+    }
+
+    return nil;
+}
+
 
 #pragma mark - Protocol
 
@@ -221,11 +271,10 @@
     if (metadataObjects != nil && metadataObjects.count) {
         AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects firstObject];
         stringValue = metadataObject.stringValue;
-        //
-        if (stringValue && stringValue.length) {
-            YXCLog(@"二维码扫描结果:%@", stringValue);
-            [self p_stopScan];
+        if (stringValue.checkString) {
+            NSLog(@"识别二维码:%@", stringValue);
         }
+        [self p_changeVideoScale:metadataObject];
     }
 }
 
