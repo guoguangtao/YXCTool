@@ -185,7 +185,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    YXCLog(@"%s", __func__);
+    NSLog(@"%s", __func__);
 }
 
 #pragma mark - UI

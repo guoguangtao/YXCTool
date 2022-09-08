@@ -42,7 +42,7 @@
 
 void *test(void *data) {
     
-    YXCLog(@"%s", __func__);
+    NSLog(@"%s", __func__);
     
     return NULL;
 }

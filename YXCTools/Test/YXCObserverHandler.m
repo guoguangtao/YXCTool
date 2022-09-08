@@ -28,7 +28,7 @@
 #pragma mark - Private
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    YXCLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
+    NSLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
 }
 
 

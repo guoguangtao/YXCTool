@@ -140,11 +140,11 @@
                           delay:0
                         options:options
                      animations:^{
-        YXCLog(@"动画 ing");
+        NSLog(@"动画 ing");
         weakself.scrolling = YES;
         weakself.contentView.x = -(weakself.contentView.width);
     } completion:^(BOOL finished) {
-        YXCLog(@"动画完成");
+        NSLog(@"动画完成");
         weakself.scrolling = NO;
         weakself.contentView.x = 0;
         if (weakself.pauseDelay > 0) {

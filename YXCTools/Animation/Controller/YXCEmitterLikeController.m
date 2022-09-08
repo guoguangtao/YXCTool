@@ -59,7 +59,7 @@
     // 3 秒后停止动画
     [self performSelector:@selector(stopFire) withObject:nil afterDelay:3];
     
-    YXCLog(@"%@", self.view.layer.sublayers);
+    NSLog(@"%@", self.view.layer.sublayers);
 }
 
 

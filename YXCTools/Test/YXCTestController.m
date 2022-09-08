@@ -42,7 +42,7 @@
 //    [self performSelectorTest];
     
     [self.viewModel requestData:^{
-        YXCLog(@"数据请求成功，刷新UI");
+        NSLog(@"数据请求成功，刷新UI");
     }];
     
 //    [YXCPerson shareInstance].name = @"Test";
@@ -64,7 +64,7 @@
 
 - (void)performSelectorTest {
     
-    YXCLog(@"%s", __func__);
+    NSLog(@"%s", __func__);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self performSelectorOnMainThread:@selector(performSelectorResponseMethod:) withObject:@"第一个参数" waitUntilDone:NO modes:@[NSRunLoopCommonModes, NSDefaultRunLoopMode]];
     });
@@ -73,8 +73,8 @@
 
 - (void)performSelectorResponseMethod:(NSString *)string {
     
-    YXCLog(@"currentThread : %@", [NSThread currentThread]);
-    YXCLog(@"argument_01 : %@", string);
+    NSLog(@"currentThread : %@", [NSThread currentThread]);
+    NSLog(@"argument_01 : %@", string);
 }
 
 

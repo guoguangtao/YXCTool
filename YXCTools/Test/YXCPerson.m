@@ -41,14 +41,14 @@ static YXCPerson *_instance;
 
 - (void)dealloc {
     
-    YXCLog(@"%s - %@ retainCount : %ld", __func__, self, CFGetRetainCount((__bridge CFTypeRef)self));
+    NSLog(@"%s - %@ retainCount : %ld", __func__, self, CFGetRetainCount((__bridge CFTypeRef)self));
 }
 
 - (instancetype)init {
     
     if (self = [super init]) {
 //        [self yxc_addOberser:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-//            YXCLog(@"Person 内部监听 name : %@", change[NSKeyValueChangeNewKey]);
+//            NSLog(@"Person 内部监听 name : %@", change[NSKeyValueChangeNewKey]);
 //        }];
     }
     

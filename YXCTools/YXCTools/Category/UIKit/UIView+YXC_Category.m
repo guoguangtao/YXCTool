@@ -549,7 +549,7 @@
 /// @param contextInfo context 信息
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     
-    YXCLog(@"图片保存成功");
+    NSLog(@"图片保存成功");
 }
 
 /// 将当前 view 转成 图片

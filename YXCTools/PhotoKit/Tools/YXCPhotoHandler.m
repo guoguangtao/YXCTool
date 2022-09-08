@@ -37,10 +37,10 @@
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
     
     switch (authStatus) {
-        case AVAuthorizationStatusNotDetermined: YXCLog(@"还没申请权限,现在开始申请"); break;
-        case AVAuthorizationStatusRestricted : YXCLog(@"相机受限制"); break;
-        case AVAuthorizationStatusDenied : YXCLog(@"相机权限被拒绝"); break;
-        case AVAuthorizationStatusAuthorized : YXCLog(@"相机权限已授权"); break;
+        case AVAuthorizationStatusNotDetermined: NSLog(@"还没申请权限,现在开始申请"); break;
+        case AVAuthorizationStatusRestricted : NSLog(@"相机受限制"); break;
+        case AVAuthorizationStatusDenied : NSLog(@"相机权限被拒绝"); break;
+        case AVAuthorizationStatusAuthorized : NSLog(@"相机权限已授权"); break;
     }
     
     if (authStatus == AVAuthorizationStatusNotDetermined) {
@@ -73,11 +73,11 @@
     PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
     
     switch (authStatus) {
-        case PHAuthorizationStatusNotDetermined: YXCLog(@"相册还没申请权限,现在开始申请"); break;
-        case PHAuthorizationStatusRestricted : YXCLog(@"相册受限制"); break;
-        case PHAuthorizationStatusDenied : YXCLog(@"相册权限被拒绝"); break;
-        case PHAuthorizationStatusAuthorized : YXCLog(@"相册权限已授权"); break;
-        case PHAuthorizationStatusLimited: YXCLog(@"相册部分授权"); break;
+        case PHAuthorizationStatusNotDetermined: NSLog(@"相册还没申请权限,现在开始申请"); break;
+        case PHAuthorizationStatusRestricted : NSLog(@"相册受限制"); break;
+        case PHAuthorizationStatusDenied : NSLog(@"相册权限被拒绝"); break;
+        case PHAuthorizationStatusAuthorized : NSLog(@"相册权限已授权"); break;
+        case PHAuthorizationStatusLimited: NSLog(@"相册部分授权"); break;
     }
     
     if (authStatus == PHAuthorizationStatusNotDetermined) {
@@ -237,7 +237,7 @@
 //                });
 //            }
 //        } failureBlock:^(NSError *error) {
-//            YXCLog(@"Asset group failed");
+//            NSLog(@"Asset group failed");
 //        }];
 //    });
 //
@@ -251,7 +251,7 @@
 //    NSMutableArray *imagesArray = [NSMutableArray array];
 //    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
 //        if (result) {
-//            YXCLog(@"图片所在的字节数：%ld", [result defaultRepresentation].size);
+//            NSLog(@"图片所在的字节数：%ld", [result defaultRepresentation].size);
 //            [imagesArray addObject:result];
 //        } else {
 //            dispatch_async(dispatch_get_main_queue(), ^{

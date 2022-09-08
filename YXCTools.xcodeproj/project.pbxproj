@@ -29,6 +29,7 @@
 		876CD6AE282E30F500FB6689 /* YXCScanTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 876CD6AD282E30F500FB6689 /* YXCScanTools.m */; };
 		87724D3C2726E0B20020132D /* UIColor+YXC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 87724D3B2726E0B20020132D /* UIColor+YXC_Category.m */; };
 		8774DD412748F9FA006E0598 /* YXCBluetoothCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774DD402748F9FA006E0598 /* YXCBluetoothCommunicationController.m */; };
+		8775721A28C9BE8F00DC4CD4 /* YXCiOS16Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8775721928C9BE8F00DC4CD4 /* YXCiOS16Controller.m */; };
 		87789AA42736575700103C44 /* YXCBluetoothController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87789AA32736575700103C44 /* YXCBluetoothController.m */; };
 		877E8484272ACF3B008B6D9B /* YXCAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877E8483272ACF3B008B6D9B /* YXCAudioController.m */; };
 		8785E5AB2722458F00339DBB /* YXCSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E5AA2722458F00339DBB /* YXCSlider.m */; };
@@ -212,6 +213,8 @@
 		87724D3B2726E0B20020132D /* UIColor+YXC_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YXC_Category.m"; sourceTree = "<group>"; };
 		8774DD3F2748F9FA006E0598 /* YXCBluetoothCommunicationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBluetoothCommunicationController.h; sourceTree = "<group>"; };
 		8774DD402748F9FA006E0598 /* YXCBluetoothCommunicationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBluetoothCommunicationController.m; sourceTree = "<group>"; };
+		8775721828C9BE8E00DC4CD4 /* YXCiOS16Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCiOS16Controller.h; sourceTree = "<group>"; };
+		8775721928C9BE8F00DC4CD4 /* YXCiOS16Controller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCiOS16Controller.m; sourceTree = "<group>"; };
 		87789AA22736575700103C44 /* YXCBluetoothController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBluetoothController.h; sourceTree = "<group>"; };
 		87789AA32736575700103C44 /* YXCBluetoothController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBluetoothController.m; sourceTree = "<group>"; };
 		877E8482272ACF3B008B6D9B /* YXCAudioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAudioController.h; sourceTree = "<group>"; };
@@ -539,6 +542,23 @@
 				876CD6AD282E30F500FB6689 /* YXCScanTools.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		8775721628C9BE4C00DC4CD4 /* iOS16 */ = {
+			isa = PBXGroup;
+			children = (
+				8775721728C9BE6300DC4CD4 /* Controller */,
+			);
+			path = iOS16;
+			sourceTree = "<group>";
+		};
+		8775721728C9BE6300DC4CD4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8775721828C9BE8E00DC4CD4 /* YXCiOS16Controller.h */,
+				8775721928C9BE8F00DC4CD4 /* YXCiOS16Controller.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		87789A9E2736569B00103C44 /* Bluetooth(蓝牙) */ = {
@@ -945,6 +965,7 @@
 		8AECEC2624497FEA00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				8775721628C9BE4C00DC4CD4 /* iOS16 */,
 				873F31CC284738C5001F99B9 /* Net */,
 				876CD69F282DF87800FB6689 /* Scan */,
 				8AECEC7C2449972B00537181 /* YXCTool.pch */,
@@ -1471,6 +1492,7 @@
 				8AD0C8C72541167B00BA2C06 /* YXCEmitterLikeController.m in Sources */,
 				8AECEC3A24497FED00537181 /* main.m in Sources */,
 				8A81CA552563FBFC00BE03D4 /* YXCGCDController.m in Sources */,
+				8775721A28C9BE8F00DC4CD4 /* YXCiOS16Controller.m in Sources */,
 				8A2B79D82516111C00BB9595 /* YXCDatePickerController.m in Sources */,
 				87040DF62745314D000B860E /* YXCBlueToothDeviceCell.m in Sources */,
 				8AF3A99226008CD700F2AFC2 /* YXCPhotoListImageCell.m in Sources */,

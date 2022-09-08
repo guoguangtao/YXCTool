@@ -96,7 +96,7 @@ static YXCBlueToothManager *_instance;
 
 - (void)startScan {
     if (self.manager.isScanning) {
-        YXCLog(@"正在扫描中");
+        NSLog(@"正在扫描中");
         return;
     }
     
@@ -116,7 +116,7 @@ static YXCBlueToothManager *_instance;
     }
     
     if (isOn) {
-        YXCLog(@"开始扫描蓝牙");
+        NSLog(@"开始扫描蓝牙");
         NSDictionary *options = @{
             // 不重复扫描已发现设备
             CBCentralManagerScanOptionAllowDuplicatesKey : @(NO),
@@ -138,13 +138,13 @@ static YXCBlueToothManager *_instance;
 - (void)connectPeripheral:(CBPeripheral *)peripheral
                   options:(NSDictionary<NSString *,id> *)options {
     if (peripheral == nil) {
-        YXCLog(@"要连接的蓝牙设备为空");
+        NSLog(@"要连接的蓝牙设备为空");
         return;
     }
     // 判断是否是同一台设备
     if ([peripheral.identifier.UUIDString isEqualToString:self.connectingPeripheral.identifier.UUIDString]) {
         // 同一台设备不处理
-        YXCLog(@"将要连接的设备%@跟目前连接的设备%@一致，不处理!", peripheral, self.connectingPeripheral);
+        NSLog(@"将要连接的设备%@跟目前连接的设备%@一致，不处理!", peripheral, self.connectingPeripheral);
         return;
     }
     // 先断开上一次连接的设备
@@ -157,7 +157,7 @@ static YXCBlueToothManager *_instance;
                     forKeyPath:@"state"
                        options:ops
                         change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-        YXCLog(@"设备连接状态发生改变:%@", object);
+        NSLog(@"设备连接状态发生改变:%@", object);
     }];
 }
 
@@ -304,22 +304,22 @@ static YXCBlueToothManager *_instance;
     CBManagerState state = central.state;
     switch (state) {
         case CBManagerStateUnknown: {
-            YXCLog(@"未知状态");
+            NSLog(@"未知状态");
         }   break;
         case CBManagerStateResetting: {
-            YXCLog(@"重启状态");
+            NSLog(@"重启状态");
         }   break;
         case CBManagerStateUnsupported: {
-            YXCLog(@"当前蓝牙不支持");
+            NSLog(@"当前蓝牙不支持");
         }   break;
         case CBManagerStateUnauthorized: {
-            YXCLog(@"未授权");
+            NSLog(@"未授权");
         }   break;
         case CBManagerStatePoweredOff: {
-            YXCLog(@"蓝牙未开启");
+            NSLog(@"蓝牙未开启");
         }   break;
         case CBManagerStatePoweredOn: {
-            YXCLog(@"蓝牙已开启");
+            NSLog(@"蓝牙已开启");
         }   break;
     }
     [self startScan];
@@ -340,7 +340,7 @@ static YXCBlueToothManager *_instance;
 /// 蓝牙设备连接成功
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
-    YXCLog(@"连接蓝牙设备%@成功", peripheral.name);
+    NSLog(@"连接蓝牙设备%@成功", peripheral.name);
     if (_delegateFlag.respondsToDidConnectPeripheral) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate yxc_blueToothManager:central didConnectPeripheral:peripheral];
@@ -355,7 +355,7 @@ static YXCBlueToothManager *_instance;
 
 /// 蓝牙设备连接失败
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    YXCLog(@"连接蓝牙设备%@失败,错误信息:%@", peripheral.name, error.description);
+    NSLog(@"连接蓝牙设备%@失败,错误信息:%@", peripheral.name, error.description);
     if (_delegateFlag.respondsToDidFailToConnectPeripheral) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate yxc_blueToothManager:central didFailToConnectPeripheral:peripheral error:error];
@@ -365,7 +365,7 @@ static YXCBlueToothManager *_instance;
 
 /// 蓝牙设备连接断开
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    YXCLog(@"蓝牙设备断开连接:%@, 错误信息:%@", peripheral, error.description);
+    NSLog(@"蓝牙设备断开连接:%@, 错误信息:%@", peripheral, error.description);
     self.connectingPeripheral = nil;
 }
 
@@ -373,23 +373,23 @@ static YXCBlueToothManager *_instance;
 
 /// 发现服务回调
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error {
-    YXCLog(@"发现服务 %@, error:%@", peripheral, error);
+    NSLog(@"发现服务 %@, error:%@", peripheral, error);
     if (error) {
         return;
     }
     for (CBService *service in peripheral.services) {
         // 扫描特征
-        YXCLog(@"扫描服务 %@ 中的特征", service);
+        NSLog(@"扫描服务 %@ 中的特征", service);
         [peripheral discoverCharacteristics:nil forService:service];
     }
 }
 
 /// 发现特征
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
-    YXCLog(@"%@ 在 %@发现特征, error:%@", peripheral, service, error);
+    NSLog(@"%@ 在 %@发现特征, error:%@", peripheral, service, error);
     // 遍历服务中所有的特征
     for (CBCharacteristic *characteristic in service.characteristics) {
-        YXCLog(@"发现特征:%@, %@", characteristic, [self characteristicPropertiesString:characteristic]);
+        NSLog(@"发现特征:%@, %@", characteristic, [self characteristicPropertiesString:characteristic]);
         // 判断特征是否有读权限
         if (characteristic.properties & CBCharacteristicPropertyRead) {
             self.readCharacteristic = characteristic;
@@ -421,9 +421,9 @@ static YXCBlueToothManager *_instance;
         return;
     }
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    YXCLog(@"UTF-8:%@", string);
+    NSLog(@"UTF-8:%@", string);
     string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    YXCLog(@"ASCII:%@", string);
+    NSLog(@"ASCII:%@", string);
 }
 
 

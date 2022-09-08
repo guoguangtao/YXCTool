@@ -34,7 +34,7 @@
     
     self.person = [YXCPerson new];
     [self.person yxc_addOberser:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
-        YXCLog(@"Controller 监听 name:%@", change[NSKeyValueChangeNewKey]);
+        NSLog(@"Controller 监听 name:%@", change[NSKeyValueChangeNewKey]);
     }];
     self.person.name = @"第一次设置Name";
     __weak typeof(self) wkSelf = self;
@@ -59,7 +59,7 @@
 #pragma mark - Private
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    YXCLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
+    NSLog(@"Person外部监听name:%@", change[NSKeyValueChangeNewKey]);
 }
 
 

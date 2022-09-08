@@ -69,7 +69,7 @@
 
 - (void)animationDidStart:(CAAnimation *)anim {
     
-    YXCLog(@"%s", __func__);
+    NSLog(@"%s", __func__);
 }
 
 /* Called when the animation either completes its active duration or
@@ -79,7 +79,7 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     
-    YXCLog(@"%s", __func__);
+    NSLog(@"%s", __func__);
 }
 
 

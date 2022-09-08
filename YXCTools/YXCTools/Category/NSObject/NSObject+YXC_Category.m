@@ -154,7 +154,7 @@
         string = @"一致";
     }
     
-    YXCLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), string, originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
+    NSLog(@"%@  -- 方法 --- %@：{\n %@_method : %p, %@_IMP : %p\n %@_method : %p, %@_IMP : %p\n}", NSStringFromSelector(selector), string, originCls, originMethod, originCls, originIMP, targetCls, targetMethod, targetCls, targetIMP);
 }
 
 /// 查询一个类本身是否拥有某个方法
@@ -175,12 +175,12 @@
             // 选择器地址始终唯一，就算两个不同的类相同的方法名所对应的选择器地址
             if (selector == method_getName(m)) {
                 hasMethod = YES;
-                YXCLog(@"%@ 查找到 %@，方法具体实现地址：%p", cls, NSStringFromSelector(selector), method_getImplementation(m));
+                NSLog(@"%@ 查找到 %@，方法具体实现地址：%p", cls, NSStringFromSelector(selector), method_getImplementation(m));
                 break;
             }
         }
         if (!hasMethod) {
-            YXCLog(@"%@ 未查找到 %@", cls, NSStringFromSelector(selector));
+            NSLog(@"%@ 未查找到 %@", cls, NSStringFromSelector(selector));
         }
         cls = [cls superclass];
         free(methodList);
@@ -192,13 +192,13 @@
     Class cls = [self class];
     
     while (cls) {
-        YXCLog(@"cls = %@ 方法列表", cls);
+        NSLog(@"cls = %@ 方法列表", cls);
         unsigned int count;
         Method *methodList = class_copyMethodList(cls, &count);
         
         for (int i = 0; i < count; i++) {
             Method method = methodList[i];
-            YXCLog(@"%@", NSStringFromSelector(method_getName(method)));
+            NSLog(@"%@", NSStringFromSelector(method_getName(method)));
         }
         cls = [cls superclass];
         free(methodList);
@@ -212,7 +212,7 @@
     Class cls = [self class];
     
     while (cls) {
-        YXCLog(@"cls = %@ 属性", cls);
+        NSLog(@"cls = %@ 属性", cls);
         unsigned int count;
         objc_property_t *propertyList = class_copyPropertyList(cls, &count);
         for (int i = 0; i < count; i++) {
@@ -220,7 +220,7 @@
             NSString *propertyName = [NSString stringWithCString:property_getName(property)
                                                         encoding:NSUTF8StringEncoding];
             id value = [self valueForKeyPath:propertyName];
-            YXCLog(@"%@ : %@", propertyName, value);
+            NSLog(@"%@ : %@", propertyName, value);
         }
         cls = [cls superclass];
         free(propertyList);
@@ -233,7 +233,7 @@
     Class cls = [self class];
     
     while (cls) {
-        YXCLog(@"cls = %@ 成员变量", cls);
+        NSLog(@"cls = %@ 成员变量", cls);
         unsigned int count;
         Ivar *ivarList = class_copyIvarList(cls, &count);
         for (int i = 0; i < count; i++) {
@@ -241,7 +241,7 @@
             NSString *ivarName = [NSString stringWithCString:ivar_getName(ivar)
                                                     encoding:NSUTF8StringEncoding];
             id value = [self valueForKeyPath:ivarName];
-            YXCLog(@"%@ - %@", ivarName, value);
+            NSLog(@"%@ - %@", ivarName, value);
         }
         cls = [cls superclass];
         free(ivarList);

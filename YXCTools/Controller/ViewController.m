@@ -46,13 +46,13 @@
     __block BOOL result = YES;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     [self test:^{
-        YXCLog(@"Test 调用完成");
+        NSLog(@"Test 调用完成");
         result = NO;
         dispatch_semaphore_signal(semaphore);
     }];
     
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    YXCLog(@"返回结果");
+    NSLog(@"返回结果");
     
     
     return result;
@@ -60,7 +60,7 @@
 
 - (void)test:(void (^)(void))completion {
     
-    YXCLog(@"Test ---");
+    NSLog(@"Test ---");
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if (completion) {
@@ -137,6 +137,7 @@
     
     if (_dataSources == nil) {
         _dataSources = @[
+            [YXCControllerModel modelWithClassName:@"YXCiOS16Controller" title:@"iOS16适配" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCiOS14Controller" title:@"iOS14适配" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCPhotoAlbumListController" title:@"PhotoKit的使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCTableViewEditController" title:@"UITableView多选状态" parameter:nil],

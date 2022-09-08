@@ -85,7 +85,7 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
-    YXCLog(@"setValue:forUndefinedKey - %@ : %@", key, value);
+    NSLog(@"setValue:forUndefinedKey - %@ : %@", key, value);
 }
 
 - (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level {

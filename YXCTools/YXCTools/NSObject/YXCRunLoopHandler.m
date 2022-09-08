@@ -67,7 +67,7 @@
     
     [self stop];
     
-    YXCLog(@"%s", __func__);
+    NSLog(@"%s", __func__);
 }
 
 #pragma mark - Custom Accessors (Setter 方法)

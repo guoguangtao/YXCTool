@@ -58,7 +58,7 @@
 
 - (void)addDevice:(CBPeripheral *)peripheral {
     @synchronized (self) {
-        YXCLog(@"添加新设备 name:%@, identifier:%@, UUIDString:%@", peripheral.name, peripheral.identifier, peripheral.identifier.UUIDString);
+        NSLog(@"添加新设备 name:%@, identifier:%@, UUIDString:%@", peripheral.name, peripheral.identifier, peripheral.identifier.UUIDString);
         [self.dataSources addObject:peripheral];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -115,7 +115,7 @@
 
 - (void)yxc_blueToothManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     // 设备连接成功
-    YXCLog(@"%@", [NSThread currentThread]);
+    NSLog(@"%@", [NSThread currentThread]);
     YXCBluetoothCommunicationController *controller = [YXCBluetoothCommunicationController new];
     [self.navigationController pushViewController:controller animated:YES];
 }

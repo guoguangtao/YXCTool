@@ -76,7 +76,7 @@
 - (void)dealloc {
 //    YXCDebugLogMethod();
     if (self.object) {
-//        YXCLog(@"%@移除在%@中的监听", self.object.kvoObserver.target,  self.object.kvoObserver);
+//        NSLog(@"%@移除在%@中的监听", self.object.kvoObserver.target,  self.object.kvoObserver);
         [self.object.kvoObserver.target removeObserver:self.object.kvoObserver forKeyPath:self.object.kvoObserver.keyPath];
         if (self.deallocBlock) {
             self.deallocBlock();

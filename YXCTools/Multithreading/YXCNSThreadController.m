@@ -44,18 +44,18 @@
     
     YXCThread *thread = [[YXCThread alloc] initWithBlock:^{
         NSThread *currentThread = [YXCThread currentThread];
-        YXCLog(@"%s, %@主线程", __func__, [NSThread isMainThread] ? @"是" : @"不是");
-        YXCLog(@"%@", currentThread);
-        YXCLog(@"%@多线程", [NSThread isMultiThreaded] ? @"是" : @"不是");
+        NSLog(@"%s, %@主线程", __func__, [NSThread isMainThread] ? @"是" : @"不是");
+        NSLog(@"%@", currentThread);
+        NSLog(@"%@多线程", [NSThread isMultiThreaded] ? @"是" : @"不是");
     }];
     thread.name = @"测试线程";
     [thread start];
     
 //    [YXCThread detachNewThreadWithBlock:^{
 //        NSThread *currentThread = [YXCThread currentThread];
-//        YXCLog(@"%s, %@主线程", __func__, [NSThread isMainThread] ? @"是" : @"不是");
-//        YXCLog(@"%@", currentThread);
-//        YXCLog(@"%@多线程", [NSThread isMultiThreaded] ? @"是" : @"不是");
+//        NSLog(@"%s, %@主线程", __func__, [NSThread isMainThread] ? @"是" : @"不是");
+//        NSLog(@"%@", currentThread);
+//        NSLog(@"%@多线程", [NSThread isMultiThreaded] ? @"是" : @"不是");
 //        [YXCThread exit];
 //    }];
     
@@ -66,9 +66,9 @@
 - (void)test {
     
     NSThread *currentThread = [YXCThread currentThread];
-    YXCLog(@"%s, %@主线程", __func__, [NSThread isMainThread] ? @"是" : @"不是");
-    YXCLog(@"%@", currentThread);
-    YXCLog(@"%@多线程", [NSThread isMultiThreaded] ? @"是" : @"不是");
+    NSLog(@"%s, %@主线程", __func__, [NSThread isMainThread] ? @"是" : @"不是");
+    NSLog(@"%@", currentThread);
+    NSLog(@"%@多线程", [NSThread isMultiThreaded] ? @"是" : @"不是");
 }
 
 

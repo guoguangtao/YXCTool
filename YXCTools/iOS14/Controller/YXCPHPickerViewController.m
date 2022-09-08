@@ -94,15 +94,15 @@
                 // 取出图片
                 if (!error && object && [object isKindOfClass:UIImage.class]) {
                     NSData *imgData = UIImageJPEGRepresentation(object, 1);
-                    YXCLog(@"imgData - %ld", imgData.length);
+                    NSLog(@"imgData - %ld", imgData.length);
                     UIImage *image = (UIImage *)object;
                     [image compressWithMaxLengthKB:5120 complete:^(NSData * _Nonnull imageData) {
-                        YXCLog(@"imageData - %ld", imageData.length);
+                        NSLog(@"imageData - %ld", imageData.length);
                     }];
                     
-                    YXCLog(@"imageSize - %@", NSStringFromCGSize(image.size));
+                    NSLog(@"imageSize - %@", NSStringFromCGSize(image.size));
                     UIImage *resultImage = [image compressWithSize:CGSizeMake(50, 50)];
-                    YXCLog(@"resultImage - %@", NSStringFromCGSize(resultImage.size));
+                    NSLog(@"resultImage - %@", NSStringFromCGSize(resultImage.size));
                     dispatch_async(dispatch_get_main_queue(), ^{
                         self.imageView.image = resultImage;
                     });

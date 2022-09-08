@@ -126,7 +126,7 @@
         [self.collectionView reloadItemsAtIndexPaths:indexPaths];
     } @catch (NSException *exception) {
         [self.collectionView reloadData];
-        YXCLog(@"相册列表刷新异常");
+        NSLog(@"相册列表刷新异常");
     }
 }
 

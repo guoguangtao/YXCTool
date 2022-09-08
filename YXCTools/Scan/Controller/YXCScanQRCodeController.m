@@ -154,7 +154,7 @@
     if (error == nil) {
         if (self.captureDevice.isSmoothAutoFocusSupported && self.captureDevice.isSmoothAutoFocusEnabled == NO) {
             self.captureDevice.smoothAutoFocusEnabled = YES;
-            YXCLog(@"确定启用平滑自动对焦");
+            NSLog(@"确定启用平滑自动对焦");
         }
         if (self.captureDevice.isAutoFocusRangeRestrictionSupported) {
             self.captureDevice.autoFocusRangeRestriction = AVCaptureAutoFocusRangeRestrictionFar;
@@ -162,7 +162,7 @@
         if ([self.captureDevice isFocusModeSupported:AVCaptureFocusModeAutoFocus] &&
             self.captureDevice.focusMode != AVCaptureFocusModeContinuousAutoFocus) {
             self.captureDevice.focusMode = AVCaptureFocusModeContinuousAutoFocus;
-            YXCLog(@"确定设备对焦模式--%ld", (long)self.captureDevice.focusMode);
+            NSLog(@"确定设备对焦模式--%ld", (long)self.captureDevice.focusMode);
         }
         NSLog(@"autoFocusRangeRestrictionSupported:%d,---autoFocusRangeRestriction:%ld", self.captureDevice.autoFocusRangeRestrictionSupported, (long)self.captureDevice.autoFocusRangeRestriction);
         if ([self.captureDevice isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]) {

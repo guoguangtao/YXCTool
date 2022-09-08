@@ -17,14 +17,9 @@
 
 #pragma mark - Lifecycle
 
-/// 刷新UI
-- (void)injected {
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -48,18 +43,9 @@
 
 #pragma mark - UI
 
-- (void)setupUI {
-    
-    
-}
-
 
 #pragma mark - Constraints
 
-- (void)setupConstraints {
-    
-    
-}
 
 
 #pragma mark - 懒加载

@@ -286,7 +286,7 @@ typedef NS_ENUM(NSInteger, YXCPlayMode) {
         } else if (status == AVPlayerItemStatusFailed) {
             // 加载失败，播放下一曲
             YXCAudioModel *model = [YXCMusicHandler shareInstance].musics[self.index];
-            YXCLog(@"%@ 加载失败，开始播放下一曲", model.musicName);
+            NSLog(@"%@ 加载失败，开始播放下一曲", model.musicName);
             [self playNextAudio];
         }
     }];

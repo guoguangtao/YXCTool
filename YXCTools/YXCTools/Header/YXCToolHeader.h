@@ -23,12 +23,11 @@ dateString; \
 #define kYXCClass [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent
 
 #ifdef DEBUG
-#define YXCLog(fmt, ...) NSLog((@"%s " "%d行 : " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define NSLog(fmt, ...) NSLog((@"<%@>%s " "%d行 : " fmt), ([NSThread currentThread].isMainThread ? @"主" : @"非主"), __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #define YXCPrintf(...) printf("%s : %s %s %d行 : %s\n", [kYXCDateString UTF8String], [kYXCClass UTF8String], __FUNCTION__, __LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
-#define YXCDebugLogMethod() YXCLog(@"%s", __func__);
+#define YXCDebugLogMethod() NSLog(@"%s", __func__);
 #else
-//#define YXCLog(...);
-#define YXCLog(fmt, ...) NSLog((@"%s " "%d行 : " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define NSLog(fmt, ...) NSLog((@"<%@>%s " "%d行 : " fmt), ([NSThread currentThread].isMainThread ? @"主" : @"非主"), __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #define YXCPrintf(...);
 #define YXCDebugLogMethod();
 #endif

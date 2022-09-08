@@ -46,7 +46,7 @@
                              change:^(NSObject * _Nullable object, NSDictionary<NSKeyValueChangeKey,id> * _Nullable change) {
         AVPlayerItemStatus status = [change[NSKeyValueChangeNewKey] integerValue];
         if (status == AVPlayerItemStatusReadyToPlay) {
-            YXCLog(@"总时长:%lf", CMTimeGetSeconds(wkSelf.playerItem.duration));
+            NSLog(@"总时长:%lf", CMTimeGetSeconds(wkSelf.playerItem.duration));
         }
     }];
     
@@ -119,7 +119,7 @@
                                      usingBlock:^(CMTime time) {
 //        NSInteger second = (NSInteger)CMTimeGetSeconds(wkSelf.playerItem.currentTime);
 //        NSInteger duration = (NSInteger)CMTimeGetSeconds(wkSelf.playerItem.duration);
-//        YXCLog(@"second:%ld, duration:%ld", second, duration);
+//        NSLog(@"second:%ld, duration:%ld", second, duration);
     }];
     return _player;
 }
