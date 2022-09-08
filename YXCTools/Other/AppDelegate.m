@@ -47,6 +47,21 @@ void UncaughtExceptionHandler(NSException *exception) {
     return [UITextField yxc_shouldAllowExtensionPointIdentifier:extensionPointIdentifier];
 }
 
+- (void)setLaunchScreen:(BOOL)launchScreen {
+
+    _launchScreen = launchScreen;
+    [self application:[UIApplication sharedApplication] supportedInterfaceOrientationsForWindow:nil];
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+
+    if (self.isLaunchScreen) {
+        return UIInterfaceOrientationMaskLandscapeRight;
+    }
+
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - UISceneSession lifecycle
 
 

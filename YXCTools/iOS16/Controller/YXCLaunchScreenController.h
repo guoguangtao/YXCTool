@@ -1,5 +1,5 @@
 //
-//  YXCiOS16Controller.h
+//  YXCLaunchScreenController.h
 //  YXCTools
 //
 //  Created by guogt on 2022/9/8.
@@ -10,9 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
-/// iOS16 适配模块
-@interface YXCiOS16Controller : YXCBaseController
+/// 横竖屏适配
+@interface YXCLaunchScreenController : YXCBaseController
 
 #pragma mark - Property
 
