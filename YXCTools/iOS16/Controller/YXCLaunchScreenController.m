@@ -97,14 +97,36 @@
     }
     
     if (@available(iOS 16.0, *)) {
-        [self setNeedsUpdateOfSupportedInterfaceOrientations];
-        NSArray *array = [[[UIApplication sharedApplication] connectedScenes] allObjects];
-        UIWindowScene *scene = [array firstObject];
-        UIInterfaceOrientationMask orientation = isLaunchScreen ? UIInterfaceOrientationMaskLandscapeRight : UIInterfaceOrientationMaskPortrait;
-        UIWindowSceneGeometryPreferencesIOS *geometryPreferencesIOS = [[UIWindowSceneGeometryPreferencesIOS alloc] initWithInterfaceOrientations:orientation];
-        [scene requestGeometryUpdateWithPreferences:geometryPreferencesIOS errorHandler:^(NSError * _Nonnull error) {
-            NSLog(@"强制%@错误:%@", isLaunchScreen ? @"横屏" : @"竖屏", error);
-        }];
+        void (^errorHandler)(NSError *error) = ^(NSError *error) {
+                    NSLog(@"强制%@错误:%@", isLaunchScreen ? @"横屏" : @"竖屏", error);
+                };
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                SEL supportedInterfaceSelector = NSSelectorFromString(@"setNeedsUpdateOfSupportedInterfaceOrientations");
+                [self performSelector:supportedInterfaceSelector];
+                NSArray *array = [[UIApplication sharedApplication].connectedScenes allObjects];
+                UIWindowScene *scene = (UIWindowScene *)[array firstObject];
+                Class UIWindowSceneGeometryPreferencesIOS = NSClassFromString(@"UIWindowSceneGeometryPreferencesIOS");
+                if (UIWindowSceneGeometryPreferencesIOS) {
+                    SEL initWithInterfaceOrientationsSelector = NSSelectorFromString(@"initWithInterfaceOrientations:");
+                    UIInterfaceOrientationMask orientation = isLaunchScreen ? UIInterfaceOrientationMaskLandscapeRight : UIInterfaceOrientationMaskPortrait;
+                    id geometryPreferences = [[UIWindowSceneGeometryPreferencesIOS alloc] performSelector:initWithInterfaceOrientationsSelector withObject:@(orientation)];
+                    if (geometryPreferences) {
+                        SEL requestGeometryUpdateWithPreferencesSelector = NSSelectorFromString(@"requestGeometryUpdateWithPreferences:errorHandler:");
+                        if ([scene respondsToSelector:requestGeometryUpdateWithPreferencesSelector]) {
+                            [scene performSelector:requestGeometryUpdateWithPreferencesSelector withObject:geometryPreferences withObject:errorHandler];
+                        }
+                    }
+                }
+        #pragma clang diagnostic pop
+//        [self setNeedsUpdateOfSupportedInterfaceOrientations];
+//        NSArray *array = [[[UIApplication sharedApplication] connectedScenes] allObjects];
+//        UIWindowScene *scene = [array firstObject];
+//        UIInterfaceOrientationMask orientation = isLaunchScreen ? UIInterfaceOrientationMaskLandscapeRight : UIInterfaceOrientationMaskPortrait;
+//        UIWindowSceneGeometryPreferencesIOS *geometryPreferencesIOS = [[UIWindowSceneGeometryPreferencesIOS alloc] initWithInterfaceOrientations:orientation];
+//        [scene requestGeometryUpdateWithPreferences:geometryPreferencesIOS errorHandler:^(NSError * _Nonnull error) {
+//            NSLog(@"强制%@错误:%@", isLaunchScreen ? @"横屏" : @"竖屏", error);
+//        }];
     } else {
         [self p_swichToNewOrientation:isLaunchScreen ? UIInterfaceOrientationLandscapeRight : UIInterfaceOrientationPortrait];
     }
