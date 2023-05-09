@@ -110,7 +110,6 @@
     if (_dataSources == nil) {
         _dataSources = @[
             [YXCControllerModel modelWithClassName:@"YXCLaunchScreenController" title:@"横竖屏切换" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCUIPasteController" title:@"UIPasteControl的使用" parameter:nil],
         ];
     }
 

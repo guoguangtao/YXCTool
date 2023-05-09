@@ -7,7 +7,6 @@
 //
 
 #import "NSObject+YXC_Category.h"
-#import "YXCToolHeader.h"
 #import <objc/runtime.h>
 
 @implementation NSObject (YXC_Category)
@@ -187,7 +186,7 @@
     }
 }
 
-- (void)printfAllMethod {
+- (void)printfAllMethod:(BOOL)printSuperProperty {
     
     Class cls = [self class];
     
@@ -200,14 +199,18 @@
             Method method = methodList[i];
             NSLog(@"%@", NSStringFromSelector(method_getName(method)));
         }
-        cls = [cls superclass];
+        if (printSuperProperty) {
+            cls = [cls superclass];
+        } else {
+            cls = nil;
+        }
         free(methodList);
     }
     
     
 }
 
-- (void)printfAllProperty {
+- (void)printfAllProperty:(BOOL)printSuperProperty {
     
     Class cls = [self class];
     
@@ -219,16 +222,27 @@
             objc_property_t property = propertyList[i];
             NSString *propertyName = [NSString stringWithCString:property_getName(property)
                                                         encoding:NSUTF8StringEncoding];
-            id value = [self valueForKeyPath:propertyName];
-            NSLog(@"%@ : %@", propertyName, value);
+            id value;
+            @try {
+                value = [self valueForKeyPath:propertyName];
+            } @catch (NSException *exception) {
+                NSLog(@"获取 %@ 的内容异常", propertyName);
+            } @finally {
+                NSLog(@"%@ : %@", propertyName, value);
+            }
         }
-        cls = [cls superclass];
+        if (printSuperProperty) {
+            cls = [cls superclass];
+        } else {
+            cls = nil;
+        }
         free(propertyList);
     }
     
+    
 }
 
-- (void)printfAllVar {
+- (void)printfAllVar:(BOOL)printSuperProperty {
     
     Class cls = [self class];
     
@@ -243,7 +257,11 @@
             id value = [self valueForKeyPath:ivarName];
             NSLog(@"%@ - %@", ivarName, value);
         }
-        cls = [cls superclass];
+        if (printSuperProperty) {
+            cls = [cls superclass];
+        } else {
+            cls = nil;
+        }
         free(ivarList);
     }
     

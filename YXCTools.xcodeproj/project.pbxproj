@@ -24,7 +24,6 @@
 		873F31CF28473AE4001F99B9 /* YXCNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 873F31CE28473AE4001F99B9 /* YXCNetManager.m */; };
 		8741D2E02755C4C200142931 /* YXCAutoLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8741D2DF2755C4C200142931 /* YXCAutoLayoutController.m */; };
 		8755C538273E17CC00DA4383 /* YXCBlueToothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8755C537273E17CC00DA4383 /* YXCBlueToothManager.m */; };
-		875B051B28CAD72E0045F874 /* YXCUIPasteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 875B051A28CAD72E0045F874 /* YXCUIPasteController.m */; };
 		876CD6A4282DFA3300FB6689 /* YXCScanQRCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 876CD6A3282DFA3300FB6689 /* YXCScanQRCodeController.m */; };
 		876CD6AA282E2FE300FB6689 /* YXCScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876CD6A8282E2FE300FB6689 /* YXCScanView.m */; };
 		876CD6AE282E30F500FB6689 /* YXCScanTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 876CD6AD282E30F500FB6689 /* YXCScanTools.m */; };
@@ -50,6 +49,7 @@
 		8793A9222729027000E4B3AD /* YXCCAReplicatorLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8793A9212729027000E4B3AD /* YXCCAReplicatorLayerController.m */; };
 		8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */; };
 		87997D7226F36A7200D0FEB1 /* YXCTestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87997D7126F36A7200D0FEB1 /* YXCTestViewModel.m */; };
+		87F5FB132A09E4A100D563EE /* NSURL+YXCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F5FB122A09E4A100D563EE /* NSURL+YXCCategory.m */; };
 		87FC56F9273BE69F00229313 /* YXCDayLogHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC56F8273BE69F00229313 /* YXCDayLogHandler.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
 		8A2B79CD2516092200BB9595 /* YXCiOS14Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79CC2516092200BB9595 /* YXCiOS14Controller.m */; };
@@ -205,8 +205,6 @@
 		8741D2DF2755C4C200142931 /* YXCAutoLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCAutoLayoutController.m; sourceTree = "<group>"; };
 		8755C536273E17CC00DA4383 /* YXCBlueToothManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBlueToothManager.h; sourceTree = "<group>"; };
 		8755C537273E17CC00DA4383 /* YXCBlueToothManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBlueToothManager.m; sourceTree = "<group>"; };
-		875B051928CAD72E0045F874 /* YXCUIPasteController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCUIPasteController.h; sourceTree = "<group>"; };
-		875B051A28CAD72E0045F874 /* YXCUIPasteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCUIPasteController.m; sourceTree = "<group>"; };
 		876CD6A2282DFA3300FB6689 /* YXCScanQRCodeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCScanQRCodeController.h; sourceTree = "<group>"; };
 		876CD6A3282DFA3300FB6689 /* YXCScanQRCodeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCScanQRCodeController.m; sourceTree = "<group>"; };
 		876CD6A8282E2FE300FB6689 /* YXCScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCScanView.m; sourceTree = "<group>"; };
@@ -253,6 +251,8 @@
 		8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCoreAnimationController.m; sourceTree = "<group>"; };
 		87997D7026F36A7200D0FEB1 /* YXCTestViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTestViewModel.h; sourceTree = "<group>"; };
 		87997D7126F36A7200D0FEB1 /* YXCTestViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTestViewModel.m; sourceTree = "<group>"; };
+		87F5FB112A09E4A100D563EE /* NSURL+YXCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+YXCCategory.h"; sourceTree = "<group>"; };
+		87F5FB122A09E4A100D563EE /* NSURL+YXCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+YXCCategory.m"; sourceTree = "<group>"; };
 		87FC56F7273BE69F00229313 /* YXCDayLogHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCDayLogHandler.h; sourceTree = "<group>"; };
 		87FC56F8273BE69F00229313 /* YXCDayLogHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCDayLogHandler.m; sourceTree = "<group>"; };
 		8A2B79C82516070A00BB9595 /* YXCControllerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCControllerModel.h; sourceTree = "<group>"; };
@@ -565,8 +565,6 @@
 				8775721928C9BE8F00DC4CD4 /* YXCiOS16Controller.m */,
 				8775721B28C9C0A400DC4CD4 /* YXCLaunchScreenController.h */,
 				8775721C28C9C0A400DC4CD4 /* YXCLaunchScreenController.m */,
-				875B051928CAD72E0045F874 /* YXCUIPasteController.h */,
-				875B051A28CAD72E0045F874 /* YXCUIPasteController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -905,6 +903,8 @@
 		8AB4C8DC26003DF300596D17 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
+				87F5FB112A09E4A100D563EE /* NSURL+YXCCategory.h */,
+				87F5FB122A09E4A100D563EE /* NSURL+YXCCategory.m */,
 				8AB4C8E226003DF300596D17 /* NSArray+YXC_Category.h */,
 				8AB4C8E726003DF300596D17 /* NSArray+YXC_Category.m */,
 				8AE30EC22625C8F000AD0221 /* NSMutableAttributedString+YXC_Category.h */,
@@ -1468,6 +1468,7 @@
 				87789AA42736575700103C44 /* YXCBluetoothController.m in Sources */,
 				8A603EAB24D2EE7A008AC9BD /* MASConstraintMaker.m in Sources */,
 				8AB4C8FB26003DF300596D17 /* NSDate+YXC_Category.m in Sources */,
+				87F5FB132A09E4A100D563EE /* NSURL+YXCCategory.m in Sources */,
 				871AC00B26EF4A6C003E93AA /* YXCBannerCell.m in Sources */,
 				878FB6202723B7A5002D1F71 /* YXCPlayerMusicListView.m in Sources */,
 				876CD6AA282E2FE300FB6689 /* YXCScanView.m in Sources */,
@@ -1485,7 +1486,6 @@
 				8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */,
 				8AF3A98F26008CD700F2AFC2 /* YXCPhotoAlbumListController.m in Sources */,
 				8A603EAF24D2EE7A008AC9BD /* MASConstraint.m in Sources */,
-				875B051B28CAD72E0045F874 /* YXCUIPasteController.m in Sources */,
 				8A603EAE24D2EE7A008AC9BD /* View+MASAdditions.m in Sources */,
 				8AECEC2924497FEA00537181 /* AppDelegate.m in Sources */,
 				8AE02B3025CA7EA3005A0D99 /* YXCTestController.m in Sources */,

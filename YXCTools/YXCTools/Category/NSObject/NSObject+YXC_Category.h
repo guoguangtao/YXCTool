@@ -77,13 +77,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)printfMethodWithSelector:(SEL)selector isClassMethod:(BOOL)isClassMethod;
 
 /// 打印一个类的所有属性
-- (void)printfAllProperty;
+/// @param printSuperProperty 是否需要打印父类的属性
+- (void)printfAllProperty:(BOOL)printSuperProperty;
 
 /// 打印一个类的所有成员变量
-- (void)printfAllVar;
+/// @param printSuperProperty 是否需要打印父类的变量
+- (void)printfAllVar:(BOOL)printSuperProperty;
 
 /// 打印一个类的所有方法
-- (void)printfAllMethod;
+/// @param printSuperProperty 是否需要打印父类的方法
+- (void)printfAllMethod:(BOOL)printSuperProperty;
 
 @end
 
