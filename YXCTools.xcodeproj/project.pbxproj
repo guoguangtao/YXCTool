@@ -49,6 +49,9 @@
 		8793A9222729027000E4B3AD /* YXCCAReplicatorLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8793A9212729027000E4B3AD /* YXCCAReplicatorLayerController.m */; };
 		8798358E26EAEC4A006E1CFE /* YXCCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */; };
 		87997D7226F36A7200D0FEB1 /* YXCTestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87997D7126F36A7200D0FEB1 /* YXCTestViewModel.m */; };
+		87D2C5AE2AC5651A0015B829 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2C5AD2AC5651A0015B829 /* ShareViewController.m */; };
+		87D2C5B12AC5651A0015B829 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87D2C5AF2AC5651A0015B829 /* MainInterface.storyboard */; };
+		87D2C5B52AC5651A0015B829 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 87D2C5AA2AC565190015B829 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		87F5FB132A09E4A100D563EE /* NSURL+YXCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F5FB122A09E4A100D563EE /* NSURL+YXCCategory.m */; };
 		87FC56F9273BE69F00229313 /* YXCDayLogHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC56F8273BE69F00229313 /* YXCDayLogHandler.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
@@ -140,6 +143,13 @@
 			remoteGlobalIDString = 878FD0AE275A06B700563E6F;
 			remoteInfo = ReplayLoadExtesion;
 		};
+		87D2C5B32AC5651A0015B829 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8AECEC1C24497FEA00537181 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87D2C5A92AC565190015B829;
+			remoteInfo = ShareExtension;
+		};
 		8AECEC4024497FED00537181 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8AECEC1C24497FEA00537181 /* Project object */;
@@ -163,6 +173,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				87D2C5B52AC5651A0015B829 /* ShareExtension.appex in Embed App Extensions */,
 				878FD0B8275A06B700563E6F /* ReplayLoadExtesion.appex in Embed App Extensions */,
 				878FD0A62759CC5300563E6F /* ReplayUIExtension.appex in Embed App Extensions */,
 			);
@@ -251,6 +262,13 @@
 		8798358D26EAEC4A006E1CFE /* YXCCoreAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCoreAnimationController.m; sourceTree = "<group>"; };
 		87997D7026F36A7200D0FEB1 /* YXCTestViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTestViewModel.h; sourceTree = "<group>"; };
 		87997D7126F36A7200D0FEB1 /* YXCTestViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTestViewModel.m; sourceTree = "<group>"; };
+		87D2C5AA2AC565190015B829 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		87D2C5AC2AC5651A0015B829 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		87D2C5AD2AC5651A0015B829 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		87D2C5B02AC5651A0015B829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		87D2C5B22AC5651A0015B829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87D2C5B92AC57A450015B829 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
+		87D2C5BA2AC57A6B0015B829 /* YXCTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YXCTools.entitlements; sourceTree = "<group>"; };
 		87F5FB112A09E4A100D563EE /* NSURL+YXCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+YXCCategory.h"; sourceTree = "<group>"; };
 		87F5FB122A09E4A100D563EE /* NSURL+YXCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+YXCCategory.m"; sourceTree = "<group>"; };
 		87FC56F7273BE69F00229313 /* YXCDayLogHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCDayLogHandler.h; sourceTree = "<group>"; };
@@ -426,6 +444,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				878FD0B0275A06B700563E6F /* ReplayKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87D2C5A72AC565190015B829 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +693,18 @@
 				878FB6222723BBA4002D1F71 /* YXCMusicHandler.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		87D2C5AB2AC5651A0015B829 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				87D2C5B92AC57A450015B829 /* ShareExtension.entitlements */,
+				87D2C5AC2AC5651A0015B829 /* ShareViewController.h */,
+				87D2C5AD2AC5651A0015B829 /* ShareViewController.m */,
+				87D2C5AF2AC5651A0015B829 /* MainInterface.storyboard */,
+				87D2C5B22AC5651A0015B829 /* Info.plist */,
+			);
+			path = ShareExtension;
 			sourceTree = "<group>";
 		};
 		8A1E82A6251605880016627D /* iOS14(iOS 14 适配) */ = {
@@ -954,6 +991,7 @@
 				8AECEC4D24497FED00537181 /* YXCToolsUITests */,
 				878FD09F2759CC5300563E6F /* ReplayUIExtension */,
 				878FD0B1275A06B700563E6F /* ReplayLoadExtesion */,
+				87D2C5AB2AC5651A0015B829 /* ShareExtension */,
 				8AECEC2524497FEA00537181 /* Products */,
 				2262E85DF374FD9B5745A783 /* Pods */,
 				D5A062BAB8EDFF6A18E0002F /* Frameworks */,
@@ -968,6 +1006,7 @@
 				8AECEC4A24497FED00537181 /* YXCToolsUITests.xctest */,
 				878FD09A2759CC5300563E6F /* ReplayUIExtension.appex */,
 				878FD0AF275A06B700563E6F /* ReplayLoadExtesion.appex */,
+				87D2C5AA2AC565190015B829 /* ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -975,6 +1014,7 @@
 		8AECEC2624497FEA00537181 /* YXCTools */ = {
 			isa = PBXGroup;
 			children = (
+				87D2C5BA2AC57A6B0015B829 /* YXCTools.entitlements */,
 				8775721628C9BE4C00DC4CD4 /* iOS16 */,
 				873F31CC284738C5001F99B9 /* Net */,
 				876CD69F282DF87800FB6689 /* Scan */,
@@ -1183,6 +1223,23 @@
 			productReference = 878FD0AF275A06B700563E6F /* ReplayLoadExtesion.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		87D2C5A92AC565190015B829 /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87D2C5B82AC5651A0015B829 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				87D2C5A62AC565190015B829 /* Sources */,
+				87D2C5A72AC565190015B829 /* Frameworks */,
+				87D2C5A82AC565190015B829 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = 87D2C5AA2AC565190015B829 /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8AECEC2324497FEA00537181 /* YXCTools */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8AECEC5324497FED00537181 /* Build configuration list for PBXNativeTarget "YXCTools" */;
@@ -1199,6 +1256,7 @@
 			dependencies = (
 				878FD0A52759CC5300563E6F /* PBXTargetDependency */,
 				878FD0B7275A06B700563E6F /* PBXTargetDependency */,
+				87D2C5B42AC5651A0015B829 /* PBXTargetDependency */,
 			);
 			name = YXCTools;
 			productName = YXCTools;
@@ -1260,6 +1318,9 @@
 					878FD0AE275A06B700563E6F = {
 						CreatedOnToolsVersion = 13.1;
 					};
+					87D2C5A92AC565190015B829 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					8AECEC2324497FEA00537181 = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -1291,6 +1352,7 @@
 				878FD0AE275A06B700563E6F /* ReplayLoadExtesion */,
 				8AECEC3E24497FED00537181 /* YXCToolsTests */,
 				8AECEC4924497FED00537181 /* YXCToolsUITests */,
+				87D2C5A92AC565190015B829 /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1307,6 +1369,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87D2C5A82AC565190015B829 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87D2C5B12AC5651A0015B829 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,6 +1527,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		87D2C5A62AC565190015B829 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87D2C5AE2AC5651A0015B829 /* ShareViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AECEC2024497FEA00537181 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1592,6 +1670,11 @@
 			target = 878FD0AE275A06B700563E6F /* ReplayLoadExtesion */;
 			targetProxy = 878FD0B6275A06B700563E6F /* PBXContainerItemProxy */;
 		};
+		87D2C5B42AC5651A0015B829 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87D2C5A92AC565190015B829 /* ShareExtension */;
+			targetProxy = 87D2C5B32AC5651A0015B829 /* PBXContainerItemProxy */;
+		};
 		8AECEC4124497FED00537181 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8AECEC2324497FEA00537181 /* YXCTools */;
@@ -1605,6 +1688,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		87D2C5AF2AC5651A0015B829 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87D2C5B02AC5651A0015B829 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		8AECEC3024497FEA00537181 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1643,7 +1734,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayUIExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools.ReplayUIExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1670,7 +1761,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayUIExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools.ReplayUIExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1697,7 +1788,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayLoadExtesion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools.ReplayLoadExtesion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1724,7 +1815,63 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools.ReplayLoadExtesion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools.ReplayLoadExtesion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		87D2C5B62AC5651A0015B829 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R34852FKA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 GGT. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		87D2C5B72AC5651A0015B829 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R34852FKA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 GGT. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1859,6 +2006,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = YXCTools/YXCTools.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
@@ -1881,7 +2029,7 @@
 					"-Xlinker",
 					dynamic_lookup,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1894,6 +2042,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = YXCTools/YXCTools.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
@@ -1907,7 +2056,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCTools;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1936,7 +2085,7 @@
 					"-Xlinker",
 					dynamic_lookup,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCToolsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCToolsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YXCTools.app/YXCTools";
@@ -1956,7 +2105,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCToolsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCToolsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YXCTools.app/YXCTools";
@@ -1983,7 +2132,7 @@
 					"-Xlinker",
 					dynamic_lookup,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCToolsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCToolsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = YXCTools;
@@ -2001,7 +2150,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.GYHS.YXCToolsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpplay.YXCToolsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = YXCTools;
@@ -2025,6 +2174,15 @@
 			buildConfigurations = (
 				878FD0BA275A06B700563E6F /* Debug */,
 				878FD0BB275A06B700563E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87D2C5B82AC5651A0015B829 /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87D2C5B62AC5651A0015B829 /* Debug */,
+				87D2C5B72AC5651A0015B829 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
