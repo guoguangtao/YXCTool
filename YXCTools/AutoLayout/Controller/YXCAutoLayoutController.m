@@ -31,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(injected) name:@"INJECTION_BUNDLE_NOTIFICATION" object:nil];
+
     [self setupUI];
     [self setupConstraints];
 }
@@ -61,8 +63,10 @@
     
     self.icon = [self createdButtonWithTitle:@"icon"];
     self.nameLabel = [self createdLabelWithText:@"WiFiName"];
+    [self.nameLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     self.titleLabel = [self createdLabelWithText:@"这是标题"];
     self.scanButton = [self createdButtonWithTitle:@"ScanButton"];
+    [self.scanButton setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
 }
 
 - (UILabel *)createdLabelWithText:(NSString *)text {
@@ -72,6 +76,7 @@
     label.textColor = UIColor.blackColor;
     label.text = text;
     label.backgroundColor = kRandom_color;
+    label.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:label];
     return label;
 }
@@ -80,6 +85,7 @@
     
     UIButton *button = [UIButton new];
     button.backgroundColor = kRandom_color;
+    button.translatesAutoresizingMaskIntoConstraints = NO;
     [button setTitle:title forState:UIControlStateNormal];
     [self.view addSubview:button];
     return button;
@@ -89,30 +95,27 @@
 #pragma mark - Constraints
 
 - (void)setupConstraints {
-    
-    NSArray *arrayView = @[self.icon, self.nameLabel, self.titleLabel, self.scanButton];
-    [arrayView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.view);
-    }];
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-    }];
-    
-    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(20);
-        make.width.height.mas_equalTo(20);
-    }];
-    
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.icon.mas_right).offset(4);
-        make.right.lessThanOrEqualTo(self.titleLabel.mas_left).offset(-13.5);
-    }];
-    
-    [self.scanButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view.mas_right).offset(-20);
-        make.width.height.mas_equalTo(44);
-    }];
+
+    [self.view addConstraints:@[
+        // self.icon 相对于父视图约束
+        [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:20],
+        [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+        [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1.0 constant:50],
+        [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:50],
+
+        // self.nameLabel
+        [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.icon attribute:NSLayoutAttributeRight multiplier:1.0 constant:10],
+        [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.icon attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+
+        // self.titleLabel
+        [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameLabel attribute:NSLayoutAttributeRight multiplier:1.0 constant:5],
+        [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.icon attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+        [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.scanButton attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-5],
+
+        // self.scanButton
+        [NSLayoutConstraint constraintWithItem:self.scanButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-20],
+        [NSLayoutConstraint constraintWithItem:self.scanButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+    ]];
 }
 
 

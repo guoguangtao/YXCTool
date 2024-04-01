@@ -28,7 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(injected) name:@"INJECTION_BUNDLE_NOTIFICATION" object:nil];
+
     [self setupUI];
     [self setupConstraints];
 }
@@ -151,7 +153,7 @@
             [YXCControllerModel modelWithClassName:@"YXCAirPlayAudioController" title:@"AirPlay播放音频" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCAudioController" title:@"播放音乐" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCBluetoothController" title:@"蓝牙使用" parameter:nil],
-            [YXCControllerModel modelWithClassName:@"YXCAutoLayoutController" title:@"Masonry" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCAutoLayoutController" title:@"AutoLayout的使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCScanQRCodeController" title:@"二维码扫描" parameter:nil],
         ];
     }
