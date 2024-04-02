@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *scanButton;
+@property (nonatomic, strong) UILabel *redTextLabel;
 
 @end
 
@@ -67,6 +68,8 @@
     self.titleLabel = [self createdLabelWithText:@"这是标题"];
     self.scanButton = [self createdButtonWithTitle:@"ScanButton"];
     [self.scanButton setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+
+    self.redTextLabel = [self createdLabelWithText:@"这是一个红色的文本"];
 }
 
 - (UILabel *)createdLabelWithText:(NSString *)text {
@@ -115,6 +118,12 @@
         // self.scanButton
         [NSLayoutConstraint constraintWithItem:self.scanButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-20],
         [NSLayoutConstraint constraintWithItem:self.scanButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+
+        // self.redView
+        [NSLayoutConstraint constraintWithItem:self.redTextLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:20],
+        [NSLayoutConstraint constraintWithItem:self.redTextLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:0.8 constant:0],
+//        [NSLayoutConstraint constraintWithItem:self.redTextLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0],
+//        [NSLayoutConstraint constraintWithItem:self.redTextLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0],
     ]];
 }
 
