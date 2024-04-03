@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,7 @@
 		8774DD412748F9FA006E0598 /* YXCBluetoothCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774DD402748F9FA006E0598 /* YXCBluetoothCommunicationController.m */; };
 		8775721A28C9BE8F00DC4CD4 /* YXCiOS16Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8775721928C9BE8F00DC4CD4 /* YXCiOS16Controller.m */; };
 		8775721D28C9C0A400DC4CD4 /* YXCLaunchScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8775721C28C9C0A400DC4CD4 /* YXCLaunchScreenController.m */; };
+		877672732BBCFD4700B7446E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 877672722BBCFD4700B7446E /* PrivacyInfo.xcprivacy */; };
 		87789AA42736575700103C44 /* YXCBluetoothController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87789AA32736575700103C44 /* YXCBluetoothController.m */; };
 		877E8484272ACF3B008B6D9B /* YXCAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877E8483272ACF3B008B6D9B /* YXCAudioController.m */; };
 		8785E5AB2722458F00339DBB /* YXCSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E5AA2722458F00339DBB /* YXCSlider.m */; };
@@ -230,6 +231,7 @@
 		8775721928C9BE8F00DC4CD4 /* YXCiOS16Controller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCiOS16Controller.m; sourceTree = "<group>"; };
 		8775721B28C9C0A400DC4CD4 /* YXCLaunchScreenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCLaunchScreenController.h; sourceTree = "<group>"; };
 		8775721C28C9C0A400DC4CD4 /* YXCLaunchScreenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCLaunchScreenController.m; sourceTree = "<group>"; };
+		877672722BBCFD4700B7446E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		87789AA22736575700103C44 /* YXCBluetoothController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBluetoothController.h; sourceTree = "<group>"; };
 		87789AA32736575700103C44 /* YXCBluetoothController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCBluetoothController.m; sourceTree = "<group>"; };
 		877E8482272ACF3B008B6D9B /* YXCAudioController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCAudioController.h; sourceTree = "<group>"; };
@@ -1039,6 +1041,7 @@
 				8AECEC3324497FED00537181 /* Assets.xcassets */,
 				8AECEC3524497FED00537181 /* LaunchScreen.storyboard */,
 				8AECEC3924497FED00537181 /* main.m */,
+				877672722BBCFD4700B7446E /* PrivacyInfo.xcprivacy */,
 			);
 			path = YXCTools;
 			sourceTree = "<group>";
@@ -1387,6 +1390,7 @@
 				8AECEC3724497FED00537181 /* LaunchScreen.storyboard in Resources */,
 				8AECEC3424497FED00537181 /* Assets.xcassets in Resources */,
 				878FB61D2723AEC1002D1F71 /* Musics.plist in Resources */,
+				877672732BBCFD4700B7446E /* PrivacyInfo.xcprivacy in Resources */,
 				8AECEC3224497FEA00537181 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
