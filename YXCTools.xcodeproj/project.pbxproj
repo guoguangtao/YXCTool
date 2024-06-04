@@ -580,6 +580,7 @@
 		8775721628C9BE4C00DC4CD4 /* iOS16 */ = {
 			isa = PBXGroup;
 			children = (
+				87E96C6B2C06F761002C282F /* View */,
 				8775721728C9BE6300DC4CD4 /* Controller */,
 			);
 			path = iOS16;
@@ -707,6 +708,13 @@
 				87D2C5B22AC5651A0015B829 /* Info.plist */,
 			);
 			path = ShareExtension;
+			sourceTree = "<group>";
+		};
+		87E96C6B2C06F761002C282F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8A1E82A6251605880016627D /* iOS14(iOS 14 适配) */ = {
