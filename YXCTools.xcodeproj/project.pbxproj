@@ -10,6 +10,7 @@
 		49E2432A2F06642EF82344FE /* Pods_YXCTools_YXCToolsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6770C98EB7183CE5D3B22001 /* Pods_YXCTools_YXCToolsUITests.framework */; };
 		4A1B833D030C8D9CDEF0C816 /* Pods_YXCTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CFAA2BBF02BDB45B09EC60 /* Pods_YXCTools.framework */; };
 		87040DF62745314D000B860E /* YXCBlueToothDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87040DF52745314D000B860E /* YXCBlueToothDeviceCell.m */; };
+		8707D80E2C0EE2720067D990 /* YXCTouchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8707D80D2C0EE2720067D990 /* YXCTouchController.m */; };
 		871AC00126EEFAF8003E93AA /* YXCCABasicAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00026EEFAF8003E93AA /* YXCCABasicAnimationController.m */; };
 		871AC00426EF199C003E93AA /* YXCBasicAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00326EF199C003E93AA /* YXCBasicAnimation.m */; };
 		871AC00726EF48A0003E93AA /* YXCBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871AC00626EF48A0003E93AA /* YXCBannerController.m */; };
@@ -190,6 +191,8 @@
 		72353CAC46B9978B2DA1CFA4 /* Pods-YXCTools-YXCToolsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXCTools-YXCToolsUITests.debug.xcconfig"; path = "Target Support Files/Pods-YXCTools-YXCToolsUITests/Pods-YXCTools-YXCToolsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		87040DF42745314D000B860E /* YXCBlueToothDeviceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YXCBlueToothDeviceCell.h; path = YXCTools/Bluetooth/View/YXCBlueToothDeviceCell.h; sourceTree = SOURCE_ROOT; };
 		87040DF52745314D000B860E /* YXCBlueToothDeviceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = YXCBlueToothDeviceCell.m; path = YXCTools/Bluetooth/View/YXCBlueToothDeviceCell.m; sourceTree = SOURCE_ROOT; };
+		8707D80C2C0EE2720067D990 /* YXCTouchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCTouchController.h; sourceTree = "<group>"; };
+		8707D80D2C0EE2720067D990 /* YXCTouchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCTouchController.m; sourceTree = "<group>"; };
 		871ABFFF26EEFAF8003E93AA /* YXCCABasicAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCCABasicAnimationController.h; sourceTree = "<group>"; };
 		871AC00026EEFAF8003E93AA /* YXCCABasicAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCCABasicAnimationController.m; sourceTree = "<group>"; };
 		871AC00226EF199C003E93AA /* YXCBasicAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCBasicAnimation.h; sourceTree = "<group>"; };
@@ -988,6 +991,8 @@
 				873D44C326F4B29900C9FBB6 /* YXCObserverHandler.m */,
 				873D44BF26F486DF00C9FBB6 /* YXCPerson.h */,
 				873D44C026F486DF00C9FBB6 /* YXCPerson.m */,
+				8707D80C2C0EE2720067D990 /* YXCTouchController.h */,
+				8707D80D2C0EE2720067D990 /* YXCTouchController.m */,
 			);
 			name = "Test(测试界面)";
 			path = Test;
@@ -1617,6 +1622,7 @@
 				87FC56F9273BE69F00229313 /* YXCDayLogHandler.m in Sources */,
 				8A81CA4F2563CE4100BE03D4 /* YXCNSThreadController.m in Sources */,
 				8AB4C8FF26003DF300596D17 /* YXCImagePickerHandler.m in Sources */,
+				8707D80E2C0EE2720067D990 /* YXCTouchController.m in Sources */,
 				8A781698253ED68000A82DF9 /* YXCAnimationController.m in Sources */,
 				8755C538273E17CC00DA4383 /* YXCBlueToothManager.m in Sources */,
 				8AB4C8ED26003DF300596D17 /* UITextView+YXC_Category.m in Sources */,

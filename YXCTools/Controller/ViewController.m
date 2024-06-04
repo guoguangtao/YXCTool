@@ -155,6 +155,7 @@
             [YXCControllerModel modelWithClassName:@"YXCBluetoothController" title:@"蓝牙使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCAutoLayoutController" title:@"AutoLayout的使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCScanQRCodeController" title:@"二维码扫描" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCTouchController" title:@"Touch" parameter:nil],
         ];
     }
     
