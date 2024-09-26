@@ -56,6 +56,14 @@
 
 #pragma mark - IBActions
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
+    __weak typeof(self) wkSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [wkSelf performSelectorResponseMethod:@"延时调用"];
+    });
+}
+
 
 #pragma mark - Public
 

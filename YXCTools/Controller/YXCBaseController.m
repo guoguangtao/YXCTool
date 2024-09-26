@@ -23,6 +23,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
+- (void)dealloc {
+    
+    NSLog(@"%@", self);
+}
+
 
 
 

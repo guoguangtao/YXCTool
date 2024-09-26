@@ -54,6 +54,7 @@
 		87D2C5AE2AC5651A0015B829 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2C5AD2AC5651A0015B829 /* ShareViewController.m */; };
 		87D2C5B12AC5651A0015B829 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87D2C5AF2AC5651A0015B829 /* MainInterface.storyboard */; };
 		87D2C5B52AC5651A0015B829 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 87D2C5AA2AC565190015B829 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		87DFCFE92C7860B100F28F5D /* YXCImageSynthesisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DFCFE82C7860B100F28F5D /* YXCImageSynthesisController.m */; };
 		87F5FB132A09E4A100D563EE /* NSURL+YXCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F5FB122A09E4A100D563EE /* NSURL+YXCCategory.m */; };
 		87FC56F9273BE69F00229313 /* YXCDayLogHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC56F8273BE69F00229313 /* YXCDayLogHandler.m */; };
 		8A2B79CA2516070A00BB9595 /* YXCControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2B79C92516070A00BB9595 /* YXCControllerModel.m */; };
@@ -274,6 +275,8 @@
 		87D2C5B22AC5651A0015B829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87D2C5B92AC57A450015B829 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		87D2C5BA2AC57A6B0015B829 /* YXCTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YXCTools.entitlements; sourceTree = "<group>"; };
+		87DFCFE72C7860B100F28F5D /* YXCImageSynthesisController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCImageSynthesisController.h; sourceTree = "<group>"; };
+		87DFCFE82C7860B100F28F5D /* YXCImageSynthesisController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCImageSynthesisController.m; sourceTree = "<group>"; };
 		87F5FB112A09E4A100D563EE /* NSURL+YXCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+YXCCategory.h"; sourceTree = "<group>"; };
 		87F5FB122A09E4A100D563EE /* NSURL+YXCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+YXCCategory.m"; sourceTree = "<group>"; };
 		87FC56F7273BE69F00229313 /* YXCDayLogHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCDayLogHandler.h; sourceTree = "<group>"; };
@@ -993,6 +996,8 @@
 				873D44C026F486DF00C9FBB6 /* YXCPerson.m */,
 				8707D80C2C0EE2720067D990 /* YXCTouchController.h */,
 				8707D80D2C0EE2720067D990 /* YXCTouchController.m */,
+				87DFCFE72C7860B100F28F5D /* YXCImageSynthesisController.h */,
+				87DFCFE82C7860B100F28F5D /* YXCImageSynthesisController.m */,
 			);
 			name = "Test(测试界面)";
 			path = Test;
@@ -1634,6 +1639,7 @@
 				8AB4C8FC26003DF300596D17 /* NSDictionary+YXC_Category.m in Sources */,
 				8AB4C8F626003DF300596D17 /* UIControl+YXC_Category.m in Sources */,
 				8AADCC1B25184AFC000F7F5F /* YXCUIPageControlController.m in Sources */,
+				87DFCFE92C7860B100F28F5D /* YXCImageSynthesisController.m in Sources */,
 				8AF10FBF26B25103006CFFB7 /* YXCBigPictureCell.m in Sources */,
 				8AB4C8FA26003DF300596D17 /* NSMutableArray+YXC_Category.m in Sources */,
 				8A2B79D525160CBC00BB9595 /* YXCBaseController.m in Sources */,

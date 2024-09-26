@@ -534,9 +534,18 @@
 - (void)saveToAlbum {
     
     UIImage *image = [self convertViewToImage];
+    NSLog(@"image : %@, size : %@", image, NSStringFromCGSize(image.size));
+    if (image != nil) {
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    }
+}
+
+- (void)saveToAlbumWithSize:(CGSize)size {
+    
+    UIImage *image = [self convertViewToImage];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.frame = CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT);
+    imageView.frame = CGRectMake(0, 0, size.width, size.height);
     image = [imageView convertViewToImage];
     if (image != nil) {
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);

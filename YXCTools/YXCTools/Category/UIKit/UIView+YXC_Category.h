@@ -51,8 +51,11 @@ typedef NS_OPTIONS(NSUInteger, YXCViewBorder) {
 /// 移除所有子视图
 - (void)yxc_removeAllSubView;
 
-/// 将 view 转成图片保存到相册中
+/// 将 view 转成图片保存到相册中，按照 view 的 size 进行保存
 - (void)saveToAlbum;
+
+/// 将 view 转成图片保存到相册中
+- (void)saveToAlbumWithSize:(CGSize)size;
 
 /// 将当前 view 转成 图片
 - (UIImage *)convertViewToImage;

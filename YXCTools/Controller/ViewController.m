@@ -156,6 +156,7 @@
             [YXCControllerModel modelWithClassName:@"YXCAutoLayoutController" title:@"AutoLayout的使用" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCScanQRCodeController" title:@"二维码扫描" parameter:nil],
             [YXCControllerModel modelWithClassName:@"YXCTouchController" title:@"Touch" parameter:nil],
+            [YXCControllerModel modelWithClassName:@"YXCImageSynthesisController" title:@"照片合成" parameter:nil],
         ];
     }
     
