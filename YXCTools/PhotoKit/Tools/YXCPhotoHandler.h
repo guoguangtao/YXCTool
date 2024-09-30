@@ -12,7 +12,7 @@
 #import "YXCAssetModel.h"
 
 /// 遍历相册回调
-typedef void(^YXCAlbumsPhotoAssetBlock)(NSArray <YXCAssetModel *> *photos);
+typedef void(^YXCAlbumsPhotoAssetBlock)(NSArray <YXCAssetModel *> *_Nullable photos);
 
 /// 相册/相机 访问工具类
 @interface YXCPhotoHandler : NSObject
@@ -24,19 +24,21 @@ typedef void(^YXCAlbumsPhotoAssetBlock)(NSArray <YXCAssetModel *> *photos);
 
 /// 相机权限
 /// @param handler 第一次申请权限回调
-+ (BOOL)cameraAuthorizationStatusCompletionHandler:(void (^)(BOOL granted))handler;
++ (BOOL)cameraAuthorizationStatusCompletionHandler:(void (^_Nullable)(BOOL granted))handler;
 
 
 /// 相册权限
 /// @param handler 第一次申请权限回调
-+ (BOOL)photoAuthorizationStatus:(void (^)(PHAuthorizationStatus status))handler;
++ (BOOL)photoAuthorizationStatus:(void (^_Nullable)(PHAuthorizationStatus status))handler;
 
 /// 获取所有图片
 /// @param complete 完成回调
-+ (void)getAllPhotoAlbumsComplete:(void (^)(NSArray<NSDictionary *> *photosArray))complete;
++ (void)getAllPhotoAlbumsComplete:(void (^_Nullable)(NSArray<NSDictionary *> *_Nullable photosArray))complete;
 
 
-+ (void)getAlbumsPhotoWithCollection:(PHAssetCollection *)collection complete:(YXCAlbumsPhotoAssetBlock)complete;
++ (void)getAlbumsPhotoWithCollection:(PHAssetCollection *_Nonnull)collection complete:(YXCAlbumsPhotoAssetBlock _Nullable)complete;
+
++ (void)getVideoWithAsset:(PHAsset *_Nullable)asset complete:(void (^_Nullable)(AVAsset *_Nullable asset, NSDictionary *_Nullable info))completion;
 
 
 #pragma mark - 注释掉 AssetsLibrary 的方式

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -33,6 +34,9 @@
 
     [self setupUI];
     [self setupConstraints];
+    
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    delegate.navigationController = self.navigationController;
 }
 
 - (void)dealloc {

@@ -179,6 +179,8 @@
         [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
             if (asset.mediaType == PHAssetMediaTypeImage) {
                 [models addObject:[YXCAssetModel modelWithAsset:asset]];
+            } else if (asset.mediaType == PHAssetMediaTypeVideo) {
+                [models addObject:[YXCAssetModel modelWithAsset:asset]];
             }
         }];
         
@@ -188,6 +190,20 @@
             }
         });
     });
+}
+
++ (void)getVideoWithAsset:(PHAsset *)asset complete:(void (^ _Nullable)(AVAsset * _Nullable, NSDictionary * _Nullable))completion {
+    
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    options.networkAccessAllowed = true;
+    
+    [[PHImageManager defaultManager] requestAVAssetForVideo:asset 
+                                                    options:options
+                                              resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+        if (completion) {
+            completion(asset, info);
+        }
+    }];
 }
 
 #pragma mark - Private
